@@ -1,0 +1,19 @@
+body[data-theme='cbe'] {
+
+  footer#page-footer {
+    background-color: white !important;
+    height: $footer-height;
+    border-top: 1px solid $black-ligth;
+    .container {
+      text-align: center;
+      p.politics {
+        color: $black-ligth;
+        a {
+          color: $black-ligth;
+        }
+      }
+    }
+
+  }
+
+}

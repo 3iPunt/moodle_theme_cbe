@@ -1,0 +1,23 @@
+body[data-theme='cbe'] {
+
+  .btn {
+    border-radius: $border-input;
+  }
+
+  .btn-secondary {
+    background-color: $grey-medium;
+    color: white;
+  }
+
+  input::placeholder {
+    color: $grey-medium;
+  }
+  .form-control {
+    border-radius: $border-input;
+    background-color: $grey-light;
+    border: 1px solid $grey-border;
+  }
+
+}
+
+

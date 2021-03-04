@@ -1,0 +1,34 @@
+body[data-theme='cbe'] {
+
+
+
+  div#nav-drawer {
+    background-color: white;
+    border-right: 1px solid $black-ligth;
+  }
+
+  [data-region="drawer"] {
+    top: $nav-height;
+  }
+
+  nav.navbar, nav.navbar_login {
+    background-color: white;
+    height: $nav-height;
+    max-height: $nav-height;
+    border-bottom: 1px solid $black-ligth;
+  }
+
+  nav.navbar_login {
+    #login-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: $nav-height;
+      > img {
+        height: 60px;
+        width: inherit;
+      }
+    }
+  }
+
+}

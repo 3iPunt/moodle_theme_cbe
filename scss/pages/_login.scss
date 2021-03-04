@@ -1,0 +1,46 @@
+body[data-theme='cbe'][data-region='login'] {
+
+  #page {
+    background:
+            linear-gradient(rgb(255 255 255 / 40%),
+            rgb(255 255 255 / 40%)),
+            url('[[pix:theme|login_background|]]');
+    #region-main-box {
+      display: flex;
+      section#region-main-login {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        >div[role='main'] {
+          width: 100%;
+          .card {
+            .card-block {
+              .card-body {
+                text-align: center;
+                .row {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  >div {
+                    max-width: inherit !important;
+                    flex: inherit !important;
+                    form {
+                      input {
+                        text-align: center;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+}

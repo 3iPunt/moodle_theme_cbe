@@ -1,0 +1,20 @@
+body[data-theme='cbe'] {
+
+  font-family: $font;
+  color: $black-ligth;
+
+  .font-size-sm {
+    font-size: $font-size-sm;
+  }
+
+  #page {
+    margin-top: $nav-height;
+    background-color: $grey-light !important;
+  }
+
+  .card {
+    border: 1px solid $grey-border;
+    box-shadow: $shadow-color 0 3px 6px;
+  }
+
+}
