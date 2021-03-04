@@ -1,8 +1,6 @@
-# CBE #
+# THEME CBE #
 
-TODO Describe the plugin shortly here.
-
-TODO Provide more detailed description here.
+Tema para el proyecto del Consorci d'Educació de Barcelona.
 
 ## License ##
 
