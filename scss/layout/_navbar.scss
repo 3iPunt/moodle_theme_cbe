@@ -16,9 +16,6 @@ body[data-theme='cbe'] {
     height: $nav-height;
     max-height: $nav-height;
     border-bottom: 1px solid $black-ligth;
-  }
-
-  nav.navbar_login {
     #login-logo {
       display: flex;
       justify-content: center;
@@ -27,6 +24,23 @@ body[data-theme='cbe'] {
       > img {
         height: 60px;
         width: inherit;
+      }
+    }
+  }
+
+  nav.navbar {
+    button.btn.nav-link {
+      border-radius: 0;
+      height: 30px;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 8px;
+      background-color: $grey-medium !important;
+      color: white;
+      i.icon {
+        font-size: 18px;
       }
     }
   }

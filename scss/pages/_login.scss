@@ -29,6 +29,18 @@ body[data-theme='cbe'][data-region='login'] {
                       input {
                         text-align: center;
                       }
+                      .input-icon {
+                        text-align: left;
+                        position: relative;
+                        i.icon {
+                          position: absolute;
+                          left: 14px;
+                          top: 7px;
+                          color: $grey-medium2;
+                          font-size: 23px;
+                          font-weight: 700;
+                        }
+                      }
                     }
                   }
                 }

@@ -48,12 +48,9 @@
                 d-none d-sm-inline
             {{/ output.should_display_navbar_logo }}
                 ">
-            {{# output.should_display_navbar_logo }}
-                <span class="logo d-none d-sm-inline">
-                    <img src="{{output.get_compact_logo_url}}" alt="{{sitename}}">
-                </span>
-            {{/ output.should_display_navbar_logo }}
-            <span class="site-name d-none d-md-inline">{{{ sitename }}}</span>
+            <div id="login-logo">
+                {{# pix }} logo, theme_cbe, Logotipo {{/ pix }}
+            </div>
         </a>
 
         <ul class="navbar-nav d-none d-md-flex">
