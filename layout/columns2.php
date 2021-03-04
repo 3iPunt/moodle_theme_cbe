@@ -62,7 +62,7 @@ $templatecontext['flatnavigation'] = $nav;
 $templatecontext['firstcollectionlabel'] = $nav->get_collectionlabel();
 
 if (is_siteadmin()) {
-    echo $OUTPUT->render_from_template('theme_boost/columns2', $templatecontext);
+    echo $OUTPUT->render_from_template('theme_cbe/columns2_admin', $templatecontext);
 } else {
     echo $OUTPUT->render_from_template('theme_cbe/columns2', $templatecontext);
 }

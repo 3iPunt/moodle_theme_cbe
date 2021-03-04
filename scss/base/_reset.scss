@@ -1,7 +1,22 @@
-body[data-theme='cbe'] {
+body[data-theme='cbe'][data-role='user'] {
 
   font-family: $font;
   color: $black-ligth;
+
+  *:focus {
+    outline-style: none !important;
+    outline-color: transparent !important;
+    outline-offset: unset !important;
+    box-shadow: none !important;
+  }
+
+  .dropdown-item:active,
+  .dropdown-item:hover,
+  .dropdown-item:focus,
+  .dropdown-item:focus-within {
+    outline: 0;
+    background-color: $primary-color;
+  }
 
   .font-size-sm {
     font-size: $font-size-sm;
@@ -15,6 +30,7 @@ body[data-theme='cbe'] {
   .card {
     border: 1px solid $grey-border;
     box-shadow: $shadow-color 0 3px 6px;
+    border-radius: 0;
   }
 
 }
