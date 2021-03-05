@@ -1,0 +1,27 @@
+body[data-theme='cbe'] {
+
+  footer.course-footer {
+    border-top: 1px solid $grey-border;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .user-role img.icon {
+      width: 32px;
+      height: 32px;
+    }
+    .students {
+      span {
+        font-size: 21px;
+        font-family: $fontbold;
+        color: $grey-medium;
+        margin-left: 8px;
+      }
+      i.fa-users {
+        font-size: 26px;
+        color: $grey-medium;
+      }
+    }
+  }
+
+}
