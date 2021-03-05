@@ -43,7 +43,7 @@ body[data-theme='cbe'] {
     }
     &[data-theme='cbe'] {
       .nav-item {
-        padding-right: 0;
+        padding-right: 10px;
       }
       .menu-lang {
         a.nav-link {
@@ -128,6 +128,74 @@ body[data-theme='cbe'] {
     height: calc(100% - 75px);
     .message-app {
       background-color: white;
+    }
+  }
+
+  &[data-role='user'] {
+    nav.navbar {
+      #menu-apps {
+        position: relative;
+        top: -2px;
+        #menu-apps-btn {
+          margin-right: 20px;
+          cursor: pointer;
+          #dropdownMenuButton {
+            cursor: pointer;
+            border: none;
+            background-color: inherit;
+          }
+          .dropdown-menu-right {
+            border-radius: 5px;
+            box-shadow: $shadow-color 0 3px 8px;
+            margin-top: 15px;
+            padding: 10px;
+            ul.apps, ul.mycourses {
+              list-style: none;
+              display: grid;
+              flex-wrap: wrap;
+              padding: 15px 5px;
+              margin-bottom: 0;
+              grid-template-columns: 84px 84px 84px;
+              grid-gap: 15px 4px;
+              li.app {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: start;
+                text-align: center;
+                .icon {
+                  width: 40px;
+                  height: 40px;
+                  background-color: $primary-color;
+                  border-radius: $border-radius;
+                  margin-right: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  i {
+                    color: white;
+                    font-size: 19px;
+                  }
+                  &:hover {
+                    background-color: $primary-color-light;
+                  }
+                }
+                .text {
+                  text-align: center;
+                  margin-top: 4px;
+                  height: 29px;
+                  font-size: 14px;
+                  line-height: 18px;
+                  overflow-wrap: anywhere;
+                }
+              }
+            }
+            ul.mycourses {
+              border-top: 1px solid $grey-border;
+            }
+          }
+        }
+      }
     }
   }
 

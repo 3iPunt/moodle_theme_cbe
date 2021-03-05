@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="260" height="410" viewBox="0 0 260 410">
+  <defs>
+    <filter id="Rectángulo_1533" x="-3" y="-1" width="266" height="416" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.271"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Rectángulo_1533)">
+        <rect id="Rectángulo_1533-2" data-name="Rectángulo 1533" width="260" height="410" rx="5" transform="translate(0 40)" fill="#fff" stroke="#d9d9d9" stroke-width="1"/>
+      </g>
+    </clipPath>
+  </defs>
+  <g id="Enmascarar_grupo_12" data-name="Enmascarar grupo 12" transform="translate(0 -40)" clip-path="url(#clip-path)">
+    <g id="Grupo_1774" data-name="Grupo 1774" transform="translate(-6 11)">
+      <rect id="Rectángulo_1530" data-name="Rectángulo 1530" width="40" height="40" rx="10" transform="translate(24 335)" fill="#d5045c"/>
+      <rect id="Rectángulo_1531" data-name="Rectángulo 1531" width="40" height="40" rx="10" transform="translate(108 335)" fill="#d5045c"/>
+      <rect id="Rectángulo_1532" data-name="Rectángulo 1532" width="40" height="40" rx="10" transform="translate(192 335)" fill="#d5045c"/>
+      <text id="Català" transform="translate(45 393)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-22.092" y="0">Català</tspan></text>
+      <text id="Educació_Física" data-name="Educació
+Física" transform="translate(129 393)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-32.382" y="0">Educació</tspan><tspan x="-19.621" y="18">Física</tspan></text>
+      <text id="Matemà-_tiques" data-name="Matemà-tiques" transform="translate(210 393)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-31.983" y="0">Matemà-</tspan><tspan x="-21.833" y="18">tiques</tspan></text>
+      <g id="Grupo_1802" data-name="Grupo 1802">
+        <g id="Grupo_1799" data-name="Grupo 1799">
+          <rect id="Rectángulo_1521" data-name="Rectángulo 1521" width="40" height="40" rx="10" transform="translate(24 56)" fill="#d5045c"/>
+          <text id="E-mail" transform="translate(45 114)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-22.54" y="0">E-mail</tspan></text>
+          <path id="Icon_zocial-email" data-name="Icon zocial-email" d="M.072,16.932V5.318q0-.02.06-.383l6.835,5.847L.153,17.335a1.709,1.709,0,0,1-.081-.4Zm.907-12.8a.869.869,0,0,1,.343-.06H19.731a1.142,1.142,0,0,1,.363.06L13.239,10l-.907.726-1.795,1.472L8.742,10.722,7.835,10ZM1,18.122l6.876-6.593,2.662,2.157L13.2,11.528l6.876,6.593a.968.968,0,0,1-.343.06H1.322A.913.913,0,0,1,1,18.122Zm13.106-7.339,6.815-5.847a1.2,1.2,0,0,1,.06.383V16.932a1.545,1.545,0,0,1-.06.4Z" transform="translate(33.473 63.875)" fill="#fff"/>
+        </g>
+        <g id="Grupo_1800" data-name="Grupo 1800">
+          <rect id="Rectángulo_1522" data-name="Rectángulo 1522" width="40" height="40" rx="10" transform="translate(108 56)" fill="#d5045c"/>
+          <text id="Cercar" transform="translate(129 114)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-22.694" y="0">Cercar</tspan></text>
+          <path id="Icon_map-search" data-name="Icon map-search" d="M16.907,14.094a8.359,8.359,0,1,0-2.814,2.812l5.672,5.671,2.813-2.814ZM9.78,14.94a5.157,5.157,0,1,1,5.159-5.154A5.165,5.165,0,0,1,9.78,14.94Z" transform="translate(115.992 62.992)" fill="#fff"/>
+        </g>
+        <g id="Grupo_1801" data-name="Grupo 1801">
+          <rect id="Rectángulo_1523" data-name="Rectángulo 1523" width="40" height="40" rx="10" transform="translate(192 56)" fill="#d5045c"/>
+          <text id="Mapes" transform="translate(210 114)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-23.212" y="0">Mapes</tspan></text>
+          <path id="Icon_awesome-map-marker-alt" data-name="Icon awesome-map-marker-alt" d="M7.01,20.414C1.1,11.843,0,10.963,0,7.813a7.813,7.813,0,0,1,15.626,0c0,3.15-1.1,4.03-7.01,12.6a.977.977,0,0,1-1.606,0Zm.8-9.346A3.255,3.255,0,1,0,4.558,7.813,3.255,3.255,0,0,0,7.813,11.068Z" transform="translate(205.382 64.432)" fill="#fff"/>
+        </g>
+      </g>
+      <line id="Línea_88" data-name="Línea 88" x2="228" transform="translate(17.5 315.5)" fill="none" stroke="#d9d9d9" stroke-width="1"/>
+      <g id="Grupo_1806" data-name="Grupo 1806" transform="translate(0 10)">
+        <g id="Grupo_1803" data-name="Grupo 1803">
+          <rect id="Rectángulo_1524" data-name="Rectángulo 1524" width="40" height="40" rx="10" transform="translate(24 134)" fill="#d5045c"/>
+          <text id="Vídeos" transform="translate(45 192)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-23.31" y="0">Vídeos</tspan></text>
+          <g id="Grupo_1777" data-name="Grupo 1777" transform="translate(5.966 2.964)">
+            <path id="Trazado_3057" data-name="Trazado 3057" d="M30.152,10.8a.939.939,0,0,0-.511.148l-4.755,3a.47.47,0,0,0-.22.4v4.178a.47.47,0,0,0,.22.4l4.755,3a.988.988,0,0,0,.511.148H31.3a.468.468,0,0,0,.473-.467V11.267A.472.472,0,0,0,31.3,10.8Z" transform="translate(19.579 134.607)" fill="#fff"/>
+            <path id="Trazado_3058" data-name="Trazado 3058" d="M15.525,23.073H5.081A2.84,2.84,0,0,1,2.25,20.247V11.826A2.835,2.835,0,0,1,5.076,9H15.52a2.835,2.835,0,0,1,2.826,2.826v8.416A2.828,2.828,0,0,1,15.525,23.073Z" transform="translate(24.47 135)" fill="#fff"/>
+          </g>
+        </g>
+        <g id="Grupo_1804" data-name="Grupo 1804">
+          <rect id="Rectángulo_1525" data-name="Rectángulo 1525" width="40" height="40" rx="10" transform="translate(108 134)" fill="#d5045c"/>
+          <text id="Llocs" transform="translate(129 192)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-17.759" y="0">Llocs</tspan></text>
+          <path id="Icon_material-web" data-name="Icon material-web" d="M23.291,6H5.255A2.252,2.252,0,0,0,3.011,8.255L3,21.782a2.261,2.261,0,0,0,2.255,2.255H23.291a2.261,2.261,0,0,0,2.255-2.255V8.255A2.261,2.261,0,0,0,23.291,6ZM17.654,21.782H5.255V17.273h12.4Zm0-5.636H5.255V11.636h12.4Zm5.636,5.636H18.782V11.636h4.509Z" transform="translate(113.727 138.982)" fill="#fff"/>
+        </g>
+        <g id="Grupo_1805" data-name="Grupo 1805">
+          <rect id="Rectángulo_1526" data-name="Rectángulo 1526" width="40" height="40" rx="10" transform="translate(192 134)" fill="#d5045c"/>
+          <text id="Reunió" transform="translate(212 192)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-25.011" y="0">Reunió</tspan></text>
+          <path id="Icon_material-video-call" data-name="Icon material-video-call" d="M21.588,14.493V10.221A1.224,1.224,0,0,0,20.368,9H5.721A1.224,1.224,0,0,0,4.5,10.221V22.426a1.224,1.224,0,0,0,1.221,1.221H20.368a1.224,1.224,0,0,0,1.221-1.221V18.154l4.882,4.882V9.61Zm-3.662,3.051H14.265v3.662H11.823V17.544H8.162V15.1h3.662V11.441h2.441V15.1h3.662Z" transform="translate(196.8 137.853)" fill="#fff"/>
+        </g>
+      </g>
+      <g id="Grupo_1810" data-name="Grupo 1810" transform="translate(0 20)">
+        <g id="Grupo_1807" data-name="Grupo 1807">
+          <rect id="Rectángulo_1528" data-name="Rectángulo 1528" width="40" height="40" rx="10" transform="translate(24 212)" fill="#d5045c"/>
+          <text id="Arxius" transform="translate(45 270)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-21.525" y="0">Arxius</tspan></text>
+          <path id="Icon_awesome-file-alt" data-name="Icon awesome-file-alt" d="M8.957,5.438V0h-8A.957.957,0,0,0,0,.96V19.513a.957.957,0,0,0,.96.96H14.395a.957.957,0,0,0,.96-.96V6.4H9.916A.962.962,0,0,1,8.957,5.438Zm2.559,9.436a.481.481,0,0,1-.48.48H4.318a.481.481,0,0,1-.48-.48v-.32a.481.481,0,0,1,.48-.48h6.717a.481.481,0,0,1,.48.48Zm0-2.559a.481.481,0,0,1-.48.48H4.318a.481.481,0,0,1-.48-.48V12a.481.481,0,0,1,.48-.48h6.717a.481.481,0,0,1,.48.48Zm0-2.879v.32a.481.481,0,0,1-.48.48H4.318a.481.481,0,0,1-.48-.48v-.32a.481.481,0,0,1,.48-.48h6.717A.481.481,0,0,1,11.516,9.436Zm3.839-4.562v.244H10.236V0h.244a.959.959,0,0,1,.68.28L15.074,4.2A.957.957,0,0,1,15.354,4.874Z" transform="translate(35.7 221.028)" fill="#fff"/>
+        </g>
+        <g id="Grupo_1808" data-name="Grupo 1808">
+          <rect id="Rectángulo_1527" data-name="Rectángulo 1527" width="40" height="40" rx="10" transform="translate(108 212)" fill="#d5045c"/>
+          <text id="Xat" transform="translate(129 270)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-11.452" y="0">Xat</tspan></text>
+          <g id="Icon_ionic-ios-chatbubbles" data-name="Icon ionic-ios-chatbubbles" transform="translate(113 216.591)">
+            <path id="Trazado_3062" data-name="Trazado 3062" d="M25.27,18.181a1.316,1.316,0,0,1,.179-.663,1.829,1.829,0,0,1,.114-.168,8.8,8.8,0,0,0,1.5-4.9,9.24,9.24,0,0,0-9.435-9.071,9.37,9.37,0,0,0-9.25,7.219,8.729,8.729,0,0,0-.2,1.858,9.214,9.214,0,0,0,9.288,9.185,11.186,11.186,0,0,0,2.564-.418c.614-.168,1.222-.391,1.38-.451a1.436,1.436,0,0,1,.505-.092,1.412,1.412,0,0,1,.549.109l3.08,1.092a.734.734,0,0,0,.212.054.432.432,0,0,0,.435-.435.7.7,0,0,0-.027-.147Z" transform="translate(-1.093)" fill="#fff"/>
+            <path id="Trazado_3063" data-name="Trazado 3063" d="M18.067,24.254c-.2.054-.445.114-.717.174a10.025,10.025,0,0,1-1.847.244,9.214,9.214,0,0,1-9.288-9.185A10.269,10.269,0,0,1,6.3,14.325c.033-.234.071-.467.125-.7.054-.244.119-.489.19-.728l-.435.386a8.083,8.083,0,0,0-2.8,6.078A7.993,7.993,0,0,0,4.722,23.82c.125.19.2.337.174.435s-.646,3.368-.646,3.368a.436.436,0,0,0,.147.418.443.443,0,0,0,.277.1.39.39,0,0,0,.158-.033l3.047-1.2a.849.849,0,0,1,.652.011,9.141,9.141,0,0,0,3.3.652,8.531,8.531,0,0,0,6.523-2.993s.174-.239.375-.521C18.524,24.124,18.3,24.194,18.067,24.254Z" transform="translate(0 -2.168)" fill="#fff"/>
+          </g>
+        </g>
+        <g id="Grupo_1809" data-name="Grupo 1809">
+          <rect id="Rectángulo_1529" data-name="Rectángulo 1529" width="40" height="40" rx="10" transform="translate(192 212)" fill="#d5045c"/>
+          <text id="Calendari" transform="translate(210 270)" fill="#262626" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-33.481" y="0">Calendari</tspan></text>
+          <path id="Icon_material-schedule" data-name="Icon material-schedule" d="M13.326,3A10.337,10.337,0,1,0,23.673,13.337,10.332,10.332,0,0,0,13.326,3Zm.01,18.606a8.269,8.269,0,1,1,8.269-8.269A8.267,8.267,0,0,1,13.337,21.606Zm.517-13.438H12.3v6.2l5.427,3.256.775-1.271L13.854,13.6Z" transform="translate(199.597 218.888)" fill="#fff"/>
+        </g>
+      </g>
+      <text id="_1e" data-name="1e" transform="translate(45 361)" fill="#fff" font-size="18" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-9.027" y="0">1e</tspan></text>
+      <text id="_2n" data-name="2n" transform="translate(128 361)" fill="#fff" font-size="18" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-11.403" y="0">2n</tspan></text>
+      <text id="_1r" data-name="1r" transform="translate(212 361)" fill="#fff" font-size="18" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-7.209" y="0">1r</tspan></text>
+    </g>
+  </g>
+</svg>
