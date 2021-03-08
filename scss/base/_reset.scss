@@ -37,4 +37,18 @@ body[data-theme='cbe'][data-role='user'] {
     margin-top: 32px;
   }
 
+  .btn-tooltip {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+}
+
+body[data-theme='cbe'][data-role='admin'] {
+  #page-wrapper #page {
+    margin-top: $nav-height;
+  }
 }
