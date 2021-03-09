@@ -85,49 +85,65 @@
                             <div class="icon email">
                                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
                             </div>
-                            <div class="text">E-mail</div>
+                            <div class="text">
+                                {{# str }} app_menu_email, theme_cbe {{/ str }}
+                            </div>
                         </li>
                         <li class="app search">
                             <div class="icon">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </div>
-                            <div class="text">Buscar</div>
+                            <div class="text">
+                                {{# str }} app_menu_search, theme_cbe {{/ str }}
+                            </div>
                         </li>
                         <li class="app maps">
                             <div class="icon">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                             </div>
-                            <div class="text">Mapas</div>
+                            <div class="text">
+                                {{# str }} app_menu_maps, theme_cbe {{/ str }}
+                            </div>
                         </li>
                         <li class="app videos">
                             <div class="icon">
                                 <i class="fa fa-film" aria-hidden="true"></i>
                             </div>
-                            <div class="text">Videos</div>
+                            <div class="text">
+                                {{# str }} app_menu_videos, theme_cbe {{/ str }}
+                            </div>
                         </li>
                         <li class="app meets">
                             <div class="icon">
                                 <i class="fa fa-video-camera" aria-hidden="true"></i>
                             </div>
-                            <div class="text">Reuniones</div>
+                            <div class="text">
+                                {{# str }} app_menu_meets, theme_cbe {{/ str }}
+                            </div>
                         </li>
                         <li class="app files">
                             <div class="icon">
                                 <i class="fa fa-file-o" aria-hidden="true"></i>
                             </div>
-                            <div class="text">Archivos</div>
+                            <div class="text">
+                                {{# str }} app_menu_files, theme_cbe {{/ str }}
+                            </div>
                         </li>
                         <li class="app chats">
                             <div class="icon">
                                 <i class="fa fa-commenting-o" aria-hidden="true"></i>
                             </div>
-                            <div class="text">Chat</div>
+                            <div class="text">
+                                {{# str }} app_menu_chat, theme_cbe {{/ str }}
+                            </div>
                         </li>
                         <li class="app schedule">
                             <div class="icon">
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                             </div>
-                            <div class="text">Calendario</div>
+                            <div class="text">
+                                {{# str }} app_menu_schedule, theme_cbe {{/ str }}
+                            </div>
                         </li>
                     </ul>
                     <ul class="mycourses">
@@ -170,5 +186,26 @@
                 {{{ output.user_menu }}}
             </li>
         </ul>
-        <!-- search_box -->
+
+        {{# in_course }}
+        <div id="header-course">
+            <ul class="course-menu">
+                <li class="course-menu-item">
+                    {{# str }} course_menu_board, theme_cbe {{/ str }}
+                </li>
+                <li class="course-menu-item active">
+                    {{# str }} course_menu_themes, theme_cbe {{/ str }}
+                </li>
+                <li class="course-menu-item">
+                    {{# str }} course_menu_tasks, theme_cbe {{/ str }}
+                </li>
+                <li class="course-menu-item">
+                    {{# str }} course_menu_virtuals, theme_cbe {{/ str }}
+                </li>
+                <li class="course-menu-item">
+                    {{# str }} course_menu_moreinfo, theme_cbe {{/ str }}
+                </li>
+            </ul>
+        </div>
+        {{/in_course}}
 </nav>

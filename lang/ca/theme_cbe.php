@@ -26,16 +26,16 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'CBE';
-$string['course_menu_board'] = 'Board';
-$string['course_menu_themes'] = 'Themes';
-$string['course_menu_tasks'] = 'Tasks';
-$string['course_menu_virtuals'] = 'Virtual classes';
-$string['course_menu_moreinfo'] = 'More info';
+$string['course_menu_board'] = 'Tauler';
+$string['course_menu_themes'] = 'Temes';
+$string['course_menu_tasks'] = 'Tasques';
+$string['course_menu_virtuals'] = 'Classes virtuals';
+$string['course_menu_moreinfo'] = 'Més infos';
 $string['app_menu_email'] = 'E-mail';
-$string['app_menu_search'] = 'Search';
-$string['app_menu_maps'] = 'Maps';
+$string['app_menu_search'] = 'Cercar';
+$string['app_menu_maps'] = 'Mapes';
 $string['app_menu_videos'] = 'Videos';
-$string['app_menu_meets'] = 'Meets';
-$string['app_menu_files'] = 'Files';
-$string['app_menu_chat'] = 'Chat';
-$string['app_menu_schedule'] = 'Schedule';
+$string['app_menu_meets'] = 'Reunió';
+$string['app_menu_files'] = 'Arxius';
+$string['app_menu_chat'] = 'Xat';
+$string['app_menu_schedule'] = 'Calendari';

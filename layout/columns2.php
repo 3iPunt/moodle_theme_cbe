@@ -22,6 +22,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use format_designfirstformat\coursenavigation;
+
 defined('MOODLE_INTERNAL') || die();
 
 user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
@@ -39,6 +41,32 @@ $extraclasses = [];
 if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
+
+switch ($PAGE->context->contextlevel) {
+    case CONTEXT_COURSE:
+        $in_course = true;
+        break;
+    default:
+        $in_course = false;
+}
+
+/*
+$location = coursenavigation::get_location();
+switch ($location) {
+    case 'course':
+        $in_course = true;
+        break;
+    case 'section':
+        $in_course = true;
+        break;
+    case 'mod':
+        $in_course = true;
+        break;
+    default:
+        $in_course = false;
+}
+*/
+
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;
@@ -54,7 +82,9 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes,
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
-    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
+    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
+    'in_course' => $in_course
+
 ];
 
 $nav = $PAGE->flatnav;
