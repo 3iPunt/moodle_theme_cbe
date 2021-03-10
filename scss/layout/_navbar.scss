@@ -28,7 +28,7 @@ body[data-theme='cbe'] {
       z-index: 1032;
     }
     button.btn.nav-link {
-      border-radius: 0;
+      border-radfius: 0;
       height: 30px;
       width: 30px;
       display: flex;
@@ -260,6 +260,15 @@ body[data-theme='cbe'] {
             }
           }
         }
+      }
+    }
+  }
+
+  &[data-role='admin'] {
+    nav.navbar {
+      img.userpicture {
+        width: 35px;
+        height: 35px;
       }
     }
   }
