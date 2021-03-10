@@ -39,11 +39,11 @@
 }}
 <nav data-theme="cbe" class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex" aria-label="{{#str}}sitemenubar, admin{{/str}}">
 
-        <div data-region="drawer-toggle" class="d-inline-block mr-3">
+        <div id="navbar-burger" data-region="drawer-toggle" class="d-inline-block mr-3">
             <button aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}" aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left mr-1 btn-light bg-gray" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav">{{#pix}}i/menubars{{/pix}}<span class="sr-only">{{#str}}sidepanel, core{{/str}}</span></button>
         </div>
 
-        <a href="{{{ config.wwwroot }}}" class="navbar-brand aabtn {{# output.should_display_navbar_logo }}has-logo{{/ output.should_display_navbar_logo }}
+        <a id="navbar-logo" href="{{{ config.wwwroot }}}" class="navbar-brand aabtn {{# output.should_display_navbar_logo }}has-logo{{/ output.should_display_navbar_logo }}
             {{^ output.should_display_navbar_logo }}
                 d-none d-sm-inline
             {{/ output.should_display_navbar_logo }}
@@ -53,18 +53,41 @@
             </div>
         </a>
 
-        <div class="ml-auto">
+        {{# in_course }}
+        <div id="navbar-header-course">
+            <ul class="course-menu">
+                <li class="course-menu-item">
+                    {{# str }} course_menu_board, theme_cbe {{/ str }}
+                </li>
+                <li class="course-menu-item active">
+                    {{# str }} course_menu_themes, theme_cbe {{/ str }}
+                </li>
+                <li class="course-menu-item">
+                    {{# str }} course_menu_tasks, theme_cbe {{/ str }}
+                </li>
+                <li class="course-menu-item">
+                    {{# str }} course_menu_virtuals, theme_cbe {{/ str }}
+                </li>
+                <li class="course-menu-item">
+                    {{# str }} course_menu_moreinfo, theme_cbe {{/ str }}
+                </li>
+            </ul>
+        </div>
+        {{/in_course}}
+
+        <div id="navbar-auto" class="ml-auto">
             {{{ output.search_box }}}
         </div>
 
-        <ul class="navbar-nav d-none d-md-flex menu-lang">
+        <!-- HIDDEN ? -->
+        <ul id="navbar-lang" class="navbar-nav d-none d-md-flex menu-lang">
             <!-- custom_menu -->
             {{{ output.custom_menu }}}
             <!-- page_heading_menu -->
             {{{ output.page_heading_menu }}}
         </ul>
 
-        <div id="menu-apps">
+        <div id="navbar-menu-apps">
             <div id="menu-apps-btn">
                 <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <svg id="Menú_Apps" data-name="Menú Apps" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
@@ -176,7 +199,7 @@
             </div>
         </div>
 
-        <ul class="nav navbar-nav usernav">
+        <ul id="navbar-usernav" class="nav navbar-nav usernav">
             <!-- navbar_plugin_output -->
             <li class="nav-item">
                 {{{ output.navbar_plugin_output }}}
@@ -186,26 +209,4 @@
                 {{{ output.user_menu }}}
             </li>
         </ul>
-
-        {{# in_course }}
-        <div id="header-course">
-            <ul class="course-menu">
-                <li class="course-menu-item">
-                    {{# str }} course_menu_board, theme_cbe {{/ str }}
-                </li>
-                <li class="course-menu-item active">
-                    {{# str }} course_menu_themes, theme_cbe {{/ str }}
-                </li>
-                <li class="course-menu-item">
-                    {{# str }} course_menu_tasks, theme_cbe {{/ str }}
-                </li>
-                <li class="course-menu-item">
-                    {{# str }} course_menu_virtuals, theme_cbe {{/ str }}
-                </li>
-                <li class="course-menu-item">
-                    {{# str }} course_menu_moreinfo, theme_cbe {{/ str }}
-                </li>
-            </ul>
-        </div>
-        {{/in_course}}
 </nav>

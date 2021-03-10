@@ -47,6 +47,7 @@ body[data-theme='cbe'] {
       }
       .menu-lang {
         z-index: 1050;
+        display: none !important;
         a.nav-link {
           &::after {
             display: inline-block;
@@ -72,7 +73,7 @@ body[data-theme='cbe'] {
             width: 30px;
             font-size: 30px;
             color: $black-ligth;
-            margin-right: 20px;
+            margin-right: 12px;
           }
           .usermenu {
             .userbutton {
@@ -82,6 +83,7 @@ body[data-theme='cbe'] {
               img.userpicture {
                 height: 50px;
                 width: 50px;
+                border: 2px solid $grey-light;
               }
             }
             a.dropdown-toggle {
@@ -89,6 +91,17 @@ body[data-theme='cbe'] {
               &::after {
                 content: inherit;
               }
+            }
+          }
+        }
+        .dropdown-item {
+          display: flex;
+          align-items: center;
+          margin: 7px 0;
+          &:hover, &:active, &:focus {
+            background-color: $grey-light;
+            span.menu-action-text, i.icon {
+              color: $black-ligth;
             }
           }
         }
@@ -138,7 +151,7 @@ body[data-theme='cbe'] {
       .aabtn {
         z-index: 1050;
       }
-      #menu-apps {
+      #navbar-menu-apps {
         position: relative;
         top: -2px;
         z-index: 1050;
@@ -149,6 +162,10 @@ body[data-theme='cbe'] {
             cursor: pointer;
             border: none;
             background-color: inherit;
+            padding: 4px;
+            &[aria-expanded="true"] {
+              background-color: $grey-light;
+            }
           }
           .dropdown-menu-right {
             border-radius: 5px;
@@ -203,7 +220,7 @@ body[data-theme='cbe'] {
           }
         }
       }
-      div#header-course {
+      div#navbar-header-course {
         height: $nav-height;
         position: absolute;
         width: 100%;

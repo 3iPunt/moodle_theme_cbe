@@ -4,6 +4,8 @@ body[data-theme='cbe'] {
     background-color: white !important;
     height: $footer-height;
     border-top: 1px solid $black-ligth;
+    display: flex;
+    align-items: center;
     a {
       color: $black-ligth;
     }

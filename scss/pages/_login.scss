@@ -1,5 +1,7 @@
 body[data-theme='cbe'][data-region='login'] {
 
+  font-family: $font;
+
   #page {
     background:
             linear-gradient(rgb(255 255 255 / 40%),
