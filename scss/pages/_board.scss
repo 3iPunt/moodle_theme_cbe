@@ -79,4 +79,20 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
+  #page-content.course {
+    display: flex;
+    justify-content: center;
+    #region-main-box {
+      display: flex;
+      #left-menu-course {
+        background-color: white;
+        margin-right: 20px;
+        padding: 20px;
+        border: 1px solid $border-color;
+        width: 100%;
+        height: fit-content;
+      }
+    }
+  }
+
 }
