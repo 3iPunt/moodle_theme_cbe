@@ -258,6 +258,13 @@ body[data-theme='cbe'] {
                 bottom: -30px;
               }
             }
+            a.link {
+              text-decoration: none;
+              color: inherit;
+              &:hover {
+                color: $grey-medium;
+              }
+            }
           }
         }
       }

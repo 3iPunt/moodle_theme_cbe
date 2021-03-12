@@ -1,0 +1,82 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  header.course {
+    justify-content: center;
+    .header-board {
+      background-position: center;
+      background-size: cover;
+      height: 250px;
+      color: white;
+      .degraded {
+        background: rgb(0,0,0);
+        background: linear-gradient(180deg,rgba(0,0,0,0.8) 10%,rgba(0,0,0,0) 100%);
+        .title-box {
+          padding: 20px;
+          h3.category {
+            font-size: 23px;
+          }
+          h2.coursename {
+            font-size: 44px;
+            font-weight: 600;
+            letter-spacing: 1px;
+          }
+        }
+        ul.teachers-box {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          list-style: none;
+          .picture-teacher {
+            height: 70px;
+            width: 70px;
+            border-radius: 35px;
+            border: 1px solid $grey-medium;
+            margin-right: 20px;
+          }
+          .online {
+            height: 10px;
+            width: 10px;
+            border-radius: 5px;
+            background-color: darkgrey;
+            border: 1px solid $grey-medium;
+            position: absolute;
+            right: 26px;
+            bottom: 4px;
+            &.connected {
+              background-color: #0f9a0f;
+            }
+          }
+        }
+        .edition {
+          background-color: $primary-color;
+          height: 54px;
+          width: 68px;
+          position: absolute;
+          right: -10px;
+          top: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 9px 0 0 10px;
+          cursor: pointer;
+          i {
+            font-size: 37px;
+          }
+          .triangle {
+            width: 0;
+            height: 0;
+            border-top: 10px solid #861949;
+            border-right: 10px solid transparent;
+            position: absolute;
+            bottom: -10px;
+            right: 0px;
+          }
+          &:hover {
+            background-color: #e82373;
+          }
+        }
+      }
+    }
+  }
+
+}

@@ -54,25 +54,7 @@
         </a>
 
         {{# in_course }}
-        <div id="navbar-header-course">
-            <ul class="course-menu">
-                <li class="course-menu-item">
-                    {{# str }} course_menu_board, theme_cbe {{/ str }}
-                </li>
-                <li class="course-menu-item active">
-                    {{# str }} course_menu_themes, theme_cbe {{/ str }}
-                </li>
-                <li class="course-menu-item">
-                    {{# str }} course_menu_tasks, theme_cbe {{/ str }}
-                </li>
-                <li class="course-menu-item">
-                    {{# str }} course_menu_virtuals, theme_cbe {{/ str }}
-                </li>
-                <li class="course-menu-item">
-                    {{# str }} course_menu_moreinfo, theme_cbe {{/ str }}
-                </li>
-            </ul>
-        </div>
+            {{{ navbar_header_course }}}
         {{/in_course}}
 
         <div id="navbar-auto" class="ml-auto">

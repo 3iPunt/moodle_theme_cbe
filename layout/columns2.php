@@ -22,7 +22,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use format_designfirstformat\coursenavigation;
+use theme_cbe\course_navigation;
+use theme_cbe\output\navbar_header_course_component;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -45,27 +46,16 @@ if ($navdraweropen) {
 switch ($PAGE->context->contextlevel) {
     case CONTEXT_COURSE:
         $in_course = true;
+        $course_id = $PAGE->context->instanceid;
+        $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+        $nav_header_course_component = new navbar_header_course_component($course_id);
+        $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
         break;
     default:
         $in_course = false;
+        $nav_header_course = '';
+        $course_page = '';
 }
-
-/*
-$location = coursenavigation::get_location();
-switch ($location) {
-    case 'course':
-        $in_course = true;
-        break;
-    case 'section':
-        $in_course = true;
-        break;
-    case 'mod':
-        $in_course = true;
-        break;
-    default:
-        $in_course = false;
-}
-*/
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
@@ -83,8 +73,8 @@ $templatecontext = [
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
-    'in_course' => $in_course
-
+    'in_course' => $in_course,
+    'navbar_header_course'=> $nav_header_course
 ];
 
 $nav = $PAGE->flatnav;
