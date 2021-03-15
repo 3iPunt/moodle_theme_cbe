@@ -64,11 +64,11 @@ class course_header_navbar_component implements renderable, templatable {
      */
     public function export_for_template(renderer_base $output): stdClass {
 
-        $url_board = new moodle_url(course_navigation::PAGE_BOARD, ['id'=> $this->course_id]);
-        $url_themes = new moodle_url(course_navigation::PAGE_THEMES, ['id'=> $this->course_id]);
-        $url_tasks = new moodle_url(course_navigation::PAGE_TASKS, ['id'=> $this->course_id]);
-        $url_vclasses = new moodle_url(course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]);
-        $url_more_info = new moodle_url(course_navigation::PAGE_MOREINFO, ['id'=> $this->course_id, 'section' => 0]);
+        $url_board = new moodle_url('/' . course_navigation::PAGE_BOARD, ['id'=> $this->course_id]);
+        $url_themes = new moodle_url('/' . course_navigation::PAGE_THEMES, ['id'=> $this->course_id]);
+        $url_tasks = new moodle_url('/' . course_navigation::PAGE_TASKS, ['id'=> $this->course_id]);
+        $url_vclasses = new moodle_url('/' . course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]);
+        $url_more_info = new moodle_url('/' . course_navigation::PAGE_MOREINFO, ['id'=> $this->course_id, 'section' => 0]);
 
         $data = new stdClass();
         $data->board = [

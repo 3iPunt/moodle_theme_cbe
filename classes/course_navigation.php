@@ -39,11 +39,11 @@ defined('MOODLE_INTERNAL') || die;
  */
 class course_navigation  {
 
-    const PAGE_BOARD = '/local/cbe/view_board.php';
-    const PAGE_THEMES = '/course/view.php';
-    const PAGE_TASKS = '/local/cbe/view_tasks.php';
-    const PAGE_VCLASSES = '/local/cbe/view_virtualclasses.php';
-    const PAGE_MOREINFO = '/local/cbe/view_moreinfo.php';
+    const PAGE_BOARD = 'local/cbe/view_board.php';
+    const PAGE_THEMES = 'course/view.php';
+    const PAGE_TASKS = 'local/cbe/view_tasks.php';
+    const PAGE_VCLASSES = 'local/cbe/view_virtualclasses.php';
+    const PAGE_MOREINFO = 'local/cbe/view_moreinfo.php';
 
     /**
     * Get Navigation Page.
