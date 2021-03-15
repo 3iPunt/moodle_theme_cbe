@@ -335,6 +335,8 @@ class core_renderer extends \core_renderer {
                 $course_page = course_navigation::get_navigation_page();
                 $courseimage = $coursecbe->get_courseimage();
                 $teachers = $coursecbe->get_teachers();
+                $coursename = $coursecbe->get_name();
+                $coursecategory = $coursecbe->get_category();
                 $is_teacher = true;
                 break;
             default:
@@ -343,6 +345,8 @@ class core_renderer extends \core_renderer {
                 $courseimage = '';
                 $is_teacher = false;
                 $teachers = [];
+                $coursename = '';
+                $coursecategory = '';
         }
 
         $is_board = false;
@@ -376,6 +380,8 @@ class core_renderer extends \core_renderer {
         $header->in_course = $in_course;
         $header->teachers = $teachers;
         $header->is_teacher = $is_teacher;
+        $header->coursename = $coursename;
+        $header->categoryname= $coursecategory;
 
         return $this->render_from_template('core/full_header', $header);
     }

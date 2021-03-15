@@ -26,8 +26,11 @@ namespace theme_cbe;
 
 use coding_exception;
 use core_course\external\course_summary_exporter;
+use core_course_category;
+use core_customfield\category;
 use course_enrolment_manager;
 use dml_exception;
+use moodle_exception;
 use stdClass;
 use user_picture;
 
@@ -55,6 +58,29 @@ class course  {
      */
     public function __construct(int $course_id) {
         $this->course_id = $course_id;
+    }
+
+    /**
+     * Get Name.
+     *
+     * @return string
+     * @throws dml_exception
+     */
+    function get_name(): string {
+        return get_course($this->course_id)->fullname;
+    }
+
+    /**
+     * Get Category.
+     *
+     * @return string
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    function get_category(): string {
+        $category_id = get_course($this->course_id)->category;
+        $category = core_course_category::get($category_id);
+        return $category->get_formatted_name();
     }
 
     /**
