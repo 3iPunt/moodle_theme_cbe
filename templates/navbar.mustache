@@ -37,35 +37,175 @@
         "sitename": "Moodle Site"
     }
 }}
-<nav class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+<nav data-theme="cbe" class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex" aria-label="{{#str}}sitemenubar, admin{{/str}}">
 
-        <div data-region="drawer-toggle" class="d-inline-block mr-3">
+        <div id="navbar-burger" data-region="drawer-toggle" class="d-inline-block mr-3">
             <button aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}" aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left mr-1 btn-light bg-gray" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav">{{#pix}}i/menubars{{/pix}}<span class="sr-only">{{#str}}sidepanel, core{{/str}}</span></button>
         </div>
 
-        <a href="{{{ config.wwwroot }}}" class="navbar-brand aabtn {{# output.should_display_navbar_logo }}has-logo{{/ output.should_display_navbar_logo }}
+        <a id="navbar-logo" href="{{{ config.wwwroot }}}" class="navbar-brand aabtn {{# output.should_display_navbar_logo }}has-logo{{/ output.should_display_navbar_logo }}
             {{^ output.should_display_navbar_logo }}
                 d-none d-sm-inline
             {{/ output.should_display_navbar_logo }}
                 ">
-            {{# output.should_display_navbar_logo }}
-                <span class="logo d-none d-sm-inline">
-                    <img src="{{output.get_compact_logo_url}}" alt="{{sitename}}">
-                </span>
-            {{/ output.should_display_navbar_logo }}
-            <span class="site-name d-none d-md-inline">{{{ sitename }}}</span>
+            <div id="login-logo">
+                {{# pix }} logo, theme_cbe, Logotipo {{/ pix }}
+            </div>
         </a>
 
-        <ul class="navbar-nav d-none d-md-flex">
+        {{# in_course }}
+            {{{ navbar_header_course }}}
+        {{/in_course}}
+
+        <div id="navbar-auto" class="ml-auto">
+            {{{ output.search_box }}}
+        </div>
+
+        <!-- HIDDEN ? -->
+        <ul id="navbar-lang" class="navbar-nav d-none d-md-flex menu-lang">
             <!-- custom_menu -->
             {{{ output.custom_menu }}}
             <!-- page_heading_menu -->
             {{{ output.page_heading_menu }}}
         </ul>
-        <div class="ml-auto">
-            {{{ output.search_box }}}
+
+        <div id="navbar-menu-apps">
+            <div id="menu-apps-btn">
+                <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg id="Menú_Apps" data-name="Menú Apps" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+                        <rect id="Rectángulo_2" data-name="Rectángulo 2" width="6" height="6" fill="#262626"/>
+                        <rect id="Rectángulo_1447" data-name="Rectángulo 1447" width="6" height="6" transform="translate(0 10)" fill="#262626"/>
+                        <rect id="Rectángulo_1450" data-name="Rectángulo 1450" width="6" height="6" transform="translate(0 20)" fill="#262626"/>
+                        <rect id="Rectángulo_1440" data-name="Rectángulo 1440" width="6" height="6" transform="translate(10)" fill="#262626"/>
+                        <rect id="Rectángulo_1446" data-name="Rectángulo 1446" width="6" height="6" transform="translate(10 10)" fill="#262626"/>
+                        <rect id="Rectángulo_1449" data-name="Rectángulo 1449" width="6" height="6" transform="translate(10 20)" fill="#262626"/>
+                        <rect id="Rectángulo_1441" data-name="Rectángulo 1441" width="6" height="6" transform="translate(20)" fill="#262626"/>
+                        <rect id="Rectángulo_1445" data-name="Rectángulo 1445" width="6" height="6" transform="translate(20 10)" fill="#262626"/>
+                        <rect id="Rectángulo_1448" data-name="Rectángulo 1448" width="6" height="6" transform="translate(20 20)" fill="#262626"/>
+                    </svg>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" >
+                    <ul class="apps">
+                        <li class="app">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon email">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_email, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app search">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_search, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app maps">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_maps, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app videos">
+                            <a href="https://pad.pilotescola.digital" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-film" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_videos, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app meets">
+                            <a href="https://jitsi.pilotescola.digital" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_meets, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app files">
+                            <a href="https://nextcloud.pilotescola.digital" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-file-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_files, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app chats">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_chat, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app schedule">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_schedule, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul id="app-my-courses" class="mycourses">
+                        <li class="app">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">Catalá</div>
+                            </a>
+                        </li>
+                        <li class="app">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">Educació física</div>
+                            </a>
+                        </li>
+                        <li class="app">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">Matemàtiques</div>
+                            </a>
+                        </li>
+                        <li class="app">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">Medi Natural</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <ul class="nav navbar-nav usernav">
+
+        <ul id="navbar-usernav" class="nav navbar-nav usernav">
             <!-- navbar_plugin_output -->
             <li class="nav-item">
                 {{{ output.navbar_plugin_output }}}
@@ -75,5 +215,4 @@
                 {{{ output.user_menu }}}
             </li>
         </ul>
-        <!-- search_box -->
 </nav>

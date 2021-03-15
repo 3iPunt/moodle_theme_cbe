@@ -1,0 +1,63 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  #region-main {
+    #block-region-content {
+      section.card {
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: inherit;
+        .card-body {
+          h5.card-title {
+            display: none !important;
+          }
+          .card-text {
+            div[data-region="myoverview"] {
+              .card.dashboard-card[data-region="course-content"] {
+                background-color: white;
+                border: 1px solid $grey-border;
+                box-shadow: $shadow-color 0 3px 6px;
+                border-radius: 0;
+                margin-right: 24px;
+                margin-bottom: 24px;
+                @media (min-width: 1600px) {
+                  width: calc(33% - 1.8rem);
+                }
+                @media (max-width: 1600px) {
+                  width: calc(50% - 1.8rem);
+                }
+                @media (max-width: 768px) {
+                  width: calc(100% - 1.8rem);
+                }
+                .card-img.dashboard-card-img {
+                  height: 150px;
+                  min-height: 150px;
+                }
+                .coursename {
+                  font-size: 22px;
+                  font-family: $fontbold;
+                }
+                .categoryname {
+                  font-family: $fontbold;
+                  color: $grey-medium;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+body[data-theme='cbe'][data-role='admin'] {
+  .dashboard-card[data-theme='cbe'] {
+    .teachers {
+      display: none;
+    }
+    .course-footer {
+      display: none;
+    }
+  }
+}

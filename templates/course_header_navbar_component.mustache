@@ -1,0 +1,19 @@
+<div id="navbar-header-course">
+    <ul class="course-menu">
+        <li class="course-menu-item {{# board.active }}active{{/board.active}}">
+            <a class="link" href="{{ board.href }}">{{# str }} course_menu_board, theme_cbe {{/ str }}</a>
+        </li>
+        <li class="course-menu-item {{# themes.active }}active{{/themes.active}}">
+            <a class="link" href="{{ themes.href }}">{{# str }} course_menu_themes, theme_cbe {{/ str }}</a>
+        </li>
+        <li class="course-menu-item {{# tasks.active }}active{{/tasks.active}}">
+            <a class="link" href="{{ tasks.href }}">{{# str }} course_menu_tasks, theme_cbe {{/ str }}</a>
+        </li>
+        <li class="course-menu-item {{# vclasses.active }}active{{/vclasses.active}}">
+            <a class="link" href="{{ vclasses.href }}">{{# str }} course_menu_virtuals, theme_cbe {{/ str }}</a>
+        </li>
+        <li class="course-menu-item {{# more_info.active }}active{{/more_info.active}}">
+            <a class="link" href="{{ more_info.href }}">{{# str }} course_menu_moreinfo, theme_cbe {{/ str }}</a>
+        </li>
+    </ul>
+</div>

@@ -22,6 +22,9 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use theme_cbe\output\course_header_navbar_component;
+use theme_cbe\output\course_left_section_component;
+
 defined('MOODLE_INTERNAL') || die();
 
 user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
@@ -39,6 +42,24 @@ $extraclasses = [];
 if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
+
+switch ($PAGE->context->contextlevel) {
+    case CONTEXT_COURSE:
+        $in_course = true;
+        $course_id = $PAGE->context->instanceid;
+        $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+        $nav_header_course_component = new course_header_navbar_component($course_id);
+        $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
+        $course_left_menu_component = new course_left_section_component($course_id);
+        $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
+        break;
+    default:
+        $in_course = false;
+        $nav_header_course = '';
+        $course_page = '';
+        $course_left_menu = '';
+}
+
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;
@@ -54,7 +75,10 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes,
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
-    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
+    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
+    'in_course' => $in_course,
+    'course_left_menu' => $course_left_menu,
+    'navbar_header_course'=> $nav_header_course
 ];
 
 $nav = $PAGE->flatnav;
@@ -62,7 +86,7 @@ $templatecontext['flatnavigation'] = $nav;
 $templatecontext['firstcollectionlabel'] = $nav->get_collectionlabel();
 
 if (is_siteadmin()) {
-    echo $OUTPUT->render_from_template('theme_boost/columns2', $templatecontext);
+    echo $OUTPUT->render_from_template('theme_cbe/columns2_admin', $templatecontext);
 } else {
     echo $OUTPUT->render_from_template('theme_cbe/columns2', $templatecontext);
 }

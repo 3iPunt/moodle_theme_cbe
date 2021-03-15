@@ -1,0 +1,12 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  &.pagelayout-mydashboard {
+    #page {
+      header#page-header {
+        display: none;
+      }
+    }
+  }
+
+
+}

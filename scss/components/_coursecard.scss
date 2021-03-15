@@ -1,0 +1,49 @@
+body[data-theme='cbe'][data-role="user"]  {
+
+  .dashboard-card {
+    .teachers {
+      position: absolute;
+      top: 118px;
+      right: 12px;
+      display: flex;
+      .teacher {
+        height: 50px;
+        width: 50px;
+        margin: 0 0 0 10px;
+        img.picture-teacher {
+          width: 50px;
+          height: 50px;
+          border-radius: 25px;
+          border: 1px solid white;
+          box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+        }
+      }
+    }
+  }
+
+
+  footer.course-footer {
+    border-top: 1px solid $grey-border;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .user-role img.icon {
+      width: 32px;
+      height: 32px;
+    }
+    .students {
+      span {
+        font-size: 21px;
+        font-family: $fontbold;
+        color: $grey-medium;
+        margin-left: 8px;
+      }
+      i.fa-users {
+        font-size: 26px;
+        color: $grey-medium;
+      }
+    }
+  }
+
+}
