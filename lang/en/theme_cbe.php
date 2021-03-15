@@ -39,3 +39,6 @@ $string['app_menu_meets'] = 'Meets';
 $string['app_menu_files'] = 'Files';
 $string['app_menu_chat'] = 'Chat';
 $string['app_menu_schedule'] = 'Schedule';
+$string['course_left_resources'] = 'Resources';
+$string['course_left_grades'] = 'Grades';
+$string['course_left_participants'] = 'Participants';

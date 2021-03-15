@@ -39,3 +39,6 @@ $string['app_menu_meets'] = 'Reuniones';
 $string['app_menu_files'] = 'Archivos';
 $string['app_menu_chat'] = 'Chat';
 $string['app_menu_schedule'] = 'Calendario';
+$string['course_left_resources'] = 'Recursos';
+$string['course_left_grades'] = 'Calificaciones';
+$string['course_left_participants'] = 'Participantes';

@@ -24,6 +24,10 @@
 
 namespace theme_cbe;
 
+use coding_exception;
+use stdClass;
+use theme_cbe\output\course_left_section_menu_component;
+
 defined('MOODLE_INTERNAL') || die;
 
 /**
@@ -74,6 +78,73 @@ class course_navigation  {
         global $PAGE;
         $path = $PAGE->url->get_path();
         return strpos($path, $page);
+    }
+
+    /**
+     * Left Section
+     *
+     * @param int $course_id
+     * @return array
+     * @throws coding_exception
+     */
+    static function left_section(int $course_id): array {
+        global $PAGE;
+        $path = $PAGE->url->get_path();
+        if (strpos($path, self::PAGE_BOARD)) {
+            return self::left_section_board($course_id);
+        } else if (strpos($path, self::PAGE_THEMES)) {
+            return [];
+        } else if (strpos($path, self::PAGE_TASKS)) {
+            return [];
+        } else if (strpos($path, self::PAGE_VCLASSES)) {
+            return [];
+        } else if (strpos($path, self::PAGE_MOREINFO)) {
+            return [];
+        } else {
+            return [];
+        }
+    }
+
+    /**
+     * Left Section Board in Course.
+     *
+     * @param int $course_id
+     * @return array
+     * @throws coding_exception
+     */
+    static function left_section_board(int $course_id): array {
+        $sections = [];
+        //$sections[] = self::section_pending_tasks($course_id);
+        $sections[] = self::section_menu_left($course_id);
+        return $sections;
+    }
+
+    /**
+     * Section Pending Tasks.
+     *
+     * @param int $course_id
+     * @return bool|string
+     * @throws coding_exception
+     */
+    static function section_pending_tasks(int $course_id){
+        global $PAGE;
+        $output = $PAGE->get_renderer('theme_cbe');
+        $renderer = new course_left_section_menu_component($course_id);
+        return $output->render($renderer);
+    }
+
+    /**
+     * Section Menu Left.
+     *
+     * @param int $course_id
+     * @return bool|string
+     * @throws coding_exception
+     */
+    static function section_menu_left(int $course_id) {
+        global $PAGE;
+        $output = $PAGE->get_renderer('theme_cbe');
+        $renderer = new course_left_section_menu_component($course_id);
+        return $output->render($renderer);
     }
 
 }

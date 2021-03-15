@@ -345,6 +345,21 @@ class core_renderer extends \core_renderer {
                 $teachers = [];
         }
 
+        $is_board = false;
+        $is_themes = false;
+        $is_list = false;
+        $is_generic = false;
+
+        if ($course_page === 'board') {
+            $is_board = true;
+        } else if ($course_page === 'themes' || $course_page === 'moreinfo') {
+            $is_themes = true;
+        } else if ($course_page === 'tasks' || $course_page === 'vclasses') {
+            $is_list = true;
+        } else {
+            $is_generic = true;
+        }
+
         $header = new stdClass();
         $header->settingsmenu = $this->context_header_settings_menu();
         $header->contextheader = $this->context_header();
@@ -353,8 +368,10 @@ class core_renderer extends \core_renderer {
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
-        $header->is_board = $course_page === 'board';
-        $header->is_generic = $course_page !== 'board';
+        $header->is_board = $is_board ;
+        $header->is_themes = $is_themes;
+        $header->is_list = $is_list;
+        $header->is_generic = $is_generic;
         $header->courseimage = $courseimage;
         $header->in_course = $in_course;
         $header->teachers = $teachers;

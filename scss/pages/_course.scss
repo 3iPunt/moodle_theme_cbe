@@ -1,0 +1,62 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  header.course {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  #page-content.course {
+    display: flex;
+    justify-content: center;
+    #region-main-box {
+      display: flex;
+      #left-menu-course {
+        margin-right: 20px;
+        width: 100%;
+        height: fit-content;
+        #course-left-section{
+          .menu-card {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid $border-color;
+            h3.title {
+              font-size: 24px;
+              font-weight: 600;
+            }
+            .menu-left {
+              list-style: none;
+              margin-bottom: 0;
+              li.link {
+                margin: 12px 0;
+                a {
+                  color: $black-ligth;
+                  i {
+                    font-size: 14px;
+                    background-color: $black-ligth;
+                    color: white;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 15px;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0 0 0 1px;
+                  }
+                  span.text {
+                    margin-left: 10px;
+                  }
+                  &:hover {
+                    text-decoration: none;
+                    color: $primary-color;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
