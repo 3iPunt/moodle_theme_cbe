@@ -80,6 +80,90 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
+  #publicate-module {
+    background-color: white;
+    border: 1px solid $grey-border;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px;
+    display: flex;
+    align-items: center;
+    img.picture-teacher {
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      margin: 20px;
+    }
+    .text-action {
+      margin-left: 15px;
+    }
+  }
+
+  .modules {
+    background-color: white;
+    border: 1px solid $grey-border;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    .mod {
+      width: 60px;
+      height: 60px;
+      background-color: $primary-color;
+      border-radius: 30px;
+      margin: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 60px;
+      .icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        margin: 0;
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        &.forum {
+          background-image: url('[[pix:theme|icon/forum]]');
+        }
+        &.assign {
+          background-image: url('[[pix:theme|icon/assign]]');
+        }
+        &.resource {
+          background-image: url('[[pix:theme|icon/resource]]');
+        }
+      }
+    }
+    .text {
+      margin-left: 15px;
+      .name {
+        font-family: $fontbold;
+        font-size: 18px;
+      }
+      .added {
+        font-size: 16px;
+        font-weight: 600;
+        color: $grey-medium;
+      }
+    }
+  }
+  .action {
+    font-size: 20px;
+    color: white;
+    margin-right: 20px;
+    cursor: pointer;
+    background-color: $grey-medium;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    &:hover {
+      background-color: $primary-color;
+    }
+  }
 
 
 }

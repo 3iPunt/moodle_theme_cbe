@@ -2,7 +2,7 @@ body[data-theme='cbe'][data-role='user'] {
 
   header.course {
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   #page-content.course {
@@ -55,6 +55,11 @@ body[data-theme='cbe'][data-role='user'] {
             }
           }
         }
+      }
+      #region-main.in_course {
+        background-color: transparent;
+        border: none;
+        padding: 0;
       }
     }
   }

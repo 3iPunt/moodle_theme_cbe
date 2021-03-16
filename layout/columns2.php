@@ -22,6 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use theme_cbe\course_navigation;
 use theme_cbe\output\course_header_navbar_component;
 use theme_cbe\output\course_left_section_component;
 
@@ -52,12 +53,20 @@ switch ($PAGE->context->contextlevel) {
         $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
         $course_left_menu_component = new course_left_section_component($course_id);
         $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
+        $course_page = course_navigation::get_navigation_page();
         break;
     default:
         $in_course = false;
         $nav_header_course = '';
         $course_page = '';
         $course_left_menu = '';
+        $course_page = '';
+}
+
+if ($course_page === 'board' || $course_page === 'themes' || $course_page === 'moreinfo') {
+    $is_course_blocks = true;
+} else {
+    $is_course_blocks = false;
 }
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
@@ -78,7 +87,8 @@ $templatecontext = [
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     'in_course' => $in_course,
     'course_left_menu' => $course_left_menu,
-    'navbar_header_course'=> $nav_header_course
+    'navbar_header_course'=> $nav_header_course,
+    'is_course_blocks'=> $is_course_blocks
 ];
 
 $nav = $PAGE->flatnav;
