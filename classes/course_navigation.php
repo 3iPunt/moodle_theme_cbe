@@ -67,6 +67,7 @@ class course_navigation  {
             return 'moreinfo';
         } else if (strpos($path, 'grade') ||
                    strpos($path, 'user') ||
+                   strpos($path, 'course/modedit') ||
                    strpos($path, 'course/edit'
                    )) {
             return 'generic';
