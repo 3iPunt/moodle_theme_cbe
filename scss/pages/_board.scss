@@ -243,6 +243,9 @@ body[data-theme='cbe'][data-role='user'] {
     &.label .mod .icon  {
       background-image: url('[[pix:theme|icon/publication]]');
     }
+    &.bigbluebuttonbn .mod .icon  {
+      background-image: url('[[pix:theme|icon/bigbluebuttonbn]]');
+    }
     &.label {
       margin-bottom: 75px;
     }
