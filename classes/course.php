@@ -149,7 +149,7 @@ class course  {
         foreach ($sections as $section) {
             if ($section->section > 0) {
                 if (is_null($section->name)) {
-                    $name = 'Topic ' . $section->section;
+                    $name = get_string('sectionname', 'format_'.$course->format) . ' ' . $section->section;
                 } else {
                     $name = $section->name;
                 }
