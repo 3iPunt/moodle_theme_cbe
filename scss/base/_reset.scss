@@ -23,6 +23,10 @@ body[data-theme='cbe'][data-role='user'] {
     font-size: $font-size-sm;
   }
 
+  #navbar-logo:focus {
+    background-color: transparent !important;
+  }
+
   #page {
     margin-top: $nav-height;
     background-color: $grey-light !important;
