@@ -86,7 +86,7 @@ body[data-theme='cbe'][data-role='user'] {
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px;
     display: flex;
     align-items: center;
-    img.picture-teacher {
+    img.picture-current {
       width: 60px;
       height: 60px;
       border-radius: 30px;
@@ -101,8 +101,9 @@ body[data-theme='cbe'][data-role='user'] {
     background-color: white;
     border: 1px solid $grey-border;
     display: flex;
-    align-items: center;
+    align-items: normal;
     margin-top: 15px;
+    position: relative;
     .mod {
       width: 60px;
       height: 60px;
@@ -122,19 +123,16 @@ body[data-theme='cbe'][data-role='user'] {
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
-        &.forum {
-          background-image: url('[[pix:theme|icon/forum]]');
-        }
-        &.assign {
-          background-image: url('[[pix:theme|icon/assign]]');
-        }
-        &.resource {
-          background-image: url('[[pix:theme|icon/resource]]');
-        }
+      }
+      img.picture {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
       }
     }
     .text {
       margin-left: 15px;
+      margin-top: 25px;
       .name {
         font-family: $fontbold;
         font-size: 18px;
@@ -143,6 +141,65 @@ body[data-theme='cbe'][data-role='user'] {
         font-size: 16px;
         font-weight: 600;
         color: $grey-medium;
+      }
+      .publication {
+        margin-top: 20px;
+        margin-bottom: 25px;
+      }
+    }
+    &.forum .mod .icon {
+      background-image: url('[[pix:theme|icon/forum]]');
+    }
+    &.assign .mod .icon  {
+      background-image: url('[[pix:theme|icon/assign]]');
+    }
+    &.resource .mod .icon  {
+      background-image: url('[[pix:theme|icon/resource]]');
+    }
+    &.quiz .mod .icon  {
+      background-image: url('[[pix:theme|icon/quiz]]');
+    }
+    &.url .mod .icon  {
+      background-image: url('[[pix:theme|icon/url]]');
+    }
+    &.audio .mod .icon  {
+      background-image: url('[[pix:theme|icon/audio]]');
+    }
+    &.video .mod .icon  {
+      background-image: url('[[pix:theme|icon/video]]');
+    }
+    &.feedback .mod .icon  {
+      background-image: url('[[pix:theme|icon/feedback]]');
+    }
+    &.label .mod .icon  {
+      background-image: url('[[pix:theme|icon/publication]]');
+    }
+    &.label {
+      margin-bottom: 75px;
+    }
+    .to_comment {
+      position: absolute;
+      bottom: -60px;
+      height: 60px;
+      background-color: white;
+      border: 1px solid $grey-border;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      img.picture-current {
+        height: 38px;
+        width: 38px;
+        border-radius: 19px;
+        margin-left: 30px;
+      }
+      input.comment {
+        margin-left: 42px;
+        border-radius: 20px;
+        height: 38px;
+        border: 1px solid $grey-border;
+        width: 100%;
+        margin-right: 20px;
+        padding: 16px 20px;
       }
     }
   }
@@ -160,6 +217,7 @@ body[data-theme='cbe'][data-role='user'] {
     justify-content: center;
     position: absolute;
     right: 0;
+    margin-top: 30px;
     &:hover {
       background-color: $primary-color;
     }
