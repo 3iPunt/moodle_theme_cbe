@@ -78,7 +78,7 @@
                     </section>
                     {{/ is_course_blocks}}
 
-                    <section class="{{# is_course_blocks }}col-9 in_course{{/is_course_blocks}}{{^ is_course_blocks }}col-12 in_course{{/is_course_blocks}}" id="region-main" {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}} aria-label="{{#str}}content{{/str}}">
+                    <section class="{{# is_course_blocks }}col-9 in_course{{/is_course_blocks}}{{^ is_course_blocks }}col-12 in_course{{/is_course_blocks}} " id="region-main" {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}} aria-label="{{#str}}content{{/str}}" data-region="{{ course_page }}">
                         {{#hasregionmainsettingsmenu}}
                             <div class="region_main_settings_menu_proxy"></div>
                         {{/hasregionmainsettingsmenu}}

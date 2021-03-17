@@ -65,6 +65,11 @@ class course_navigation  {
             return 'vclasses';
         } else if (strpos($path, self::PAGE_MOREINFO)) {
             return 'moreinfo';
+        } else if (strpos($path, 'grade') ||
+                   strpos($path, 'user') ||
+                   strpos($path, 'course/edit'
+                   )) {
+            return 'generic';
         } else {
             return '';
         }
@@ -101,6 +106,8 @@ class course_navigation  {
         } else if (strpos($path, self::PAGE_VCLASSES)) {
             return [];
         } else if (strpos($path, self::PAGE_MOREINFO)) {
+            return [];
+        } else if (strpos($path, 'grade')) {
             return [];
         } else {
             return [];

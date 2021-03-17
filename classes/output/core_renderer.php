@@ -327,6 +327,8 @@ class core_renderer extends \core_renderer {
             ));
         }
 
+        $courseid = null;
+
         switch ($PAGE->context->contextlevel) {
             case CONTEXT_COURSE:
                 $courseid = $PAGE->context->instanceid;
@@ -353,6 +355,7 @@ class core_renderer extends \core_renderer {
         $is_themes = false;
         $is_list = false;
         $is_generic = false;
+        $is_default = false;
 
         if ($course_page === 'board') {
             $is_board = true;
@@ -360,8 +363,10 @@ class core_renderer extends \core_renderer {
             $is_themes = true;
         } else if ($course_page === 'tasks' || $course_page === 'vclasses' || $course_page === 'moreinfo') {
             $is_list = true;
-        } else {
+        } else if ($course_page === 'generic') {
             $is_generic = true;
+        } else {
+            $is_default = true;
         }
 
         $header = new stdClass();
@@ -375,13 +380,15 @@ class core_renderer extends \core_renderer {
         $header->is_board = $is_board ;
         $header->is_themes = $is_themes;
         $header->is_list = $is_list;
-        $header->is_generic = $is_generic;
+        $header->is_generic= $is_generic;
+        $header->is_default = $is_default;
         $header->courseimage = $courseimage;
         $header->in_course = $in_course;
         $header->teachers = $teachers;
         $header->is_teacher = $is_teacher;
         $header->coursename = $coursename;
         $header->categoryname= $coursecategory;
+        $header->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
 
         return $this->render_from_template('core/full_header', $header);
     }

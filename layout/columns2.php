@@ -89,6 +89,7 @@ $templatecontext = [
     'course_left_menu' => $course_left_menu,
     'navbar_header_course'=> $nav_header_course,
     'is_course_blocks'=> $is_course_blocks,
+    'course_page'=> $course_page,
 ];
 
 $nav = $PAGE->flatnav;

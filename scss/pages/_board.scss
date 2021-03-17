@@ -11,7 +11,7 @@ body[data-theme='cbe'][data-role='user'] {
         background: rgb(0,0,0);
         background: linear-gradient(180deg,rgba(0,0,0,0.8) 10%,rgba(0,0,0,0) 100%);
         .title-box {
-          padding: 20px;
+          padding: 24px;
           h3.category {
             font-size: 23px;
           }
@@ -61,6 +61,7 @@ body[data-theme='cbe'][data-role='user'] {
           border-radius: 9px 0 0 10px;
           cursor: pointer;
           i {
+            color: white;
             font-size: 37px;
           }
           .triangle {
@@ -70,10 +71,11 @@ body[data-theme='cbe'][data-role='user'] {
             border-right: 10px solid transparent;
             position: absolute;
             bottom: -10px;
-            right: 0px;
+            right: 0;
           }
-          &:hover {
-            background-color: #e82373;
+          &:hover, &:focus {
+            background-color: #e82373 !important;
+            text-decoration: none;
           }
         }
       }
