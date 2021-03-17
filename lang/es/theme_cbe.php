@@ -44,4 +44,7 @@ $string['course_left_grades'] = 'Calificaciones';
 $string['course_left_participants'] = 'Participantes';
 $string['course_left_settings'] = 'Ajustes';
 $string['pending_tasks'] = 'Próximas entregas';
+$string['course_navigation'] = 'Contenido';
 $string['deadline'] = 'Fecha límite';
+$string['course_navigation_view_all'] = 'Ver todos los temas';
+$string['course_navigation_create_theme'] = 'Crear nuevo tema';

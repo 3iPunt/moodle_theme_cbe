@@ -92,6 +92,49 @@ body[data-theme='cbe'][data-role='user'] {
                 }
               }
             }
+            .themes-navigation {
+              border-top: 1px solid $border-color;
+              margin-top: 17px;
+              ul.themes {
+                list-style: none;
+                margin: 10px 0;
+                li.theme {
+                  margin: 30px 0;
+                  cursor: pointer;
+                  font-size: 20px;
+                  font-weight: 600;
+                  &.active {
+                    font-size: 24px;
+                    font-family: $fontbold;
+                    border-left: 6px solid $primary-color;
+                    padding-left: 30px;
+                    position: relative;
+                    left: -36px;
+                  }
+                }
+              }
+              #view_alls, #create_theme {
+                cursor: pointer;
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                i {
+                  font-size: 23px;
+                }
+                span {
+                  margin-left: 7px;
+                }
+                &:hover {
+                  color: $grey-medium;
+                }
+              }
+              #create_theme {
+                padding-bottom: 0;
+              }
+            }
           }
         }
       }

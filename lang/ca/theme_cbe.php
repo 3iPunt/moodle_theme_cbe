@@ -44,4 +44,7 @@ $string['course_left_grades'] = 'Avaluacions';
 $string['course_left_participants'] = 'Participants';
 $string['course_left_settings'] = 'Ajustos';
 $string['pending_tasks'] = 'Properes entregues';
+$string['course_navigation'] = 'Contingut';
 $string['deadline'] = 'Data límit';
+$string['course_navigation_view_all'] = 'Veure tots els temes';
+$string['course_navigation_create_theme'] = 'Crear un tema nou';
