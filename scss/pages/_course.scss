@@ -111,6 +111,12 @@ body[data-theme='cbe'][data-role='user'] {
                     position: relative;
                     left: -36px;
                   }
+                  a {
+                    color: $black-ligth;
+                    &:hover {
+                      text-decoration: none;
+                    }
+                  }
                 }
               }
               #view_alls, #create_theme {
@@ -121,6 +127,7 @@ body[data-theme='cbe'][data-role='user'] {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                color: $black-ligth;
                 i {
                   font-size: 23px;
                 }
@@ -129,6 +136,7 @@ body[data-theme='cbe'][data-role='user'] {
                 }
                 &:hover {
                   color: $grey-medium;
+                  text-decoration: none;
                 }
               }
               #create_theme {

@@ -27,15 +27,17 @@ namespace theme_cbe;
 use coding_exception;
 use core_course\external\course_summary_exporter;
 use core_course_category;
-use core_customfield\category;
 use course_enrolment_manager;
+use course_modinfo;
 use dml_exception;
 use moodle_exception;
+use moodle_url;
 use stdClass;
 use user_picture;
 
 global $CFG;
 require_once($CFG->dirroot . '/enrol/locallib.php');
+require_once($CFG->dirroot . '/lib/modinfolib.php');
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -127,5 +129,42 @@ class course  {
 
         }
         return $data;
+    }
+
+    /**
+     * Get Themes.
+     *
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    public function get_themes(): array {
+
+        $param = optional_param('section', null, PARAM_INT);
+
+        $course = get_course($this->course_id);
+        /** @var course_modinfo $modinfo */
+        $modinfo = get_fast_modinfo($course->id);
+        $sections = $modinfo->get_section_info_all();
+        $themes = array();
+        foreach ($sections as $section) {
+            if ($section->section > 0) {
+                if (is_null($section->name)) {
+                    $name = 'Topic ' . $section->section;
+                } else {
+                    $name = $section->name;
+                }
+
+                $href = new moodle_url('/course/view.php', [
+                    'id'=> $this->course_id, 'section' => $section->section
+                ]);
+
+                $theme = new stdClass();
+                $theme->name = $name;
+                $theme->href = $href->out(false);
+                $theme->active = $param === $section->section;
+                $themes[] = $theme;
+            }
+        }
+        return $themes;
     }
 }

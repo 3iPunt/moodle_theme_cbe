@@ -3,24 +3,24 @@
 {{/ title }}
 <div class="themes-navigation">
 
-    <div id="view_alls">
+    <a id="view_alls" href="{{ view_all }}">
         <i class="fa fa-eye" aria-hidden="true"></i>
         <span>{{# str }} course_navigation_view_all, theme_cbe {{/ str }}</span>
-    </div>
+    </a>
 
     <ul class="themes">
-        <li class="theme active">Introducción</li>
-        <li class="theme">Tema 1</li>
-        <li class="theme">Tema 2</li>
-        <li class="theme">Tema 3</li>
-        <li class="theme">Tema 4</li>
+        {{# themes }}
+        <li class="theme {{# active }}active{{/ active }}">
+            <a href="{{ href }}">{{ name }}</a>
+        </li>
+        {{/ themes }}
     </ul>
 
 
-    <div id="create_theme">
+    <a id="create_theme">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         <span>{{# str }} course_navigation_create_theme, theme_cbe {{/ str }}</span>
-    </div>
+    </a>
 
 
 
