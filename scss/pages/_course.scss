@@ -21,7 +21,7 @@ body[data-theme='cbe'][data-role='user'] {
             padding: 20px;
             border: 1px solid $border-color;
             h3.title {
-              font-size: 24px;
+              font-size: 20px;
               font-weight: 600;
             }
             .menu-left {
@@ -50,6 +50,45 @@ body[data-theme='cbe'][data-role='user'] {
                     text-decoration: none;
                     color: $primary-color;
                   }
+                }
+              }
+            }
+            .pending-taks {
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              padding: 10px 0 0;
+              margin-bottom: 0;
+              li.task {
+                display: flex;
+                margin: 5px 0 15px 0;
+                .icon {
+                  width: 40px;
+                  min-width: 40px;
+                  height: 40px;
+                  display: flex;
+                  border-radius: 20px;
+                  background-color: $primary-color;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  background-size: 18px;
+                  &.assign {
+                    background-image: url('[[pix:theme|icon/assign]]');
+                  }
+                  &.feedback {
+                    background-image: url('[[pix:theme|icon/feedback]]');
+                  }
+                }
+                .text {
+                  margin-left: 8px;
+                  font-weight: 600;
+                  line-height: 19px;
+                }
+                .deadline {
+                  margin-left: 8px;
+                  font-size: 12px;
+                  color: grey;
+                  margin-top: 3px;
                 }
               }
             }

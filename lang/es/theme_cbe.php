@@ -42,3 +42,6 @@ $string['app_menu_schedule'] = 'Calendario';
 $string['course_left_resources'] = 'Recursos';
 $string['course_left_grades'] = 'Calificaciones';
 $string['course_left_participants'] = 'Participantes';
+$string['course_left_settings'] = 'Ajustes';
+$string['pending_tasks'] = 'Próximas entregas';
+$string['deadline'] = 'Fecha límite';

@@ -42,3 +42,6 @@ $string['app_menu_schedule'] = 'Schedule';
 $string['course_left_resources'] = 'Resources';
 $string['course_left_grades'] = 'Grades';
 $string['course_left_participants'] = 'Participants';
+$string['course_left_settings'] = 'Settings';
+$string['pending_tasks'] = 'Upcoming deliveries';
+$string['deadline'] = 'Deadline';

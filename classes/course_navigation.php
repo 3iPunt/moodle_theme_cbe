@@ -27,6 +27,7 @@ namespace theme_cbe;
 use coding_exception;
 use stdClass;
 use theme_cbe\output\course_left_section_menu_component;
+use theme_cbe\output\course_left_section_pending_tasks_component;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -114,7 +115,7 @@ class course_navigation  {
      */
     static function left_section_board(int $course_id): array {
         $sections = [];
-        //$sections[] = self::section_pending_tasks($course_id);
+        $sections[] = self::section_pending_tasks($course_id);
         $sections[] = self::section_menu_left($course_id);
         return $sections;
     }
@@ -129,7 +130,7 @@ class course_navigation  {
     static function section_pending_tasks(int $course_id){
         global $PAGE;
         $output = $PAGE->get_renderer('theme_cbe');
-        $renderer = new course_left_section_menu_component($course_id);
+        $renderer = new course_left_section_pending_tasks_component($course_id);
         return $output->render($renderer);
     }
 

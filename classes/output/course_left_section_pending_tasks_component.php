@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class course_left_section_menu_component
+ * Class course_left_section_pending_tasks_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
@@ -35,13 +35,13 @@ use theme_cbe\course_navigation;
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * Class course_left_section_menu_component
+ * Class course_left_section_pending_tasks_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class course_left_section_menu_component implements renderable, templatable {
+class course_left_section_pending_tasks_component implements renderable, templatable {
 
     /** @var int Course ID */
     protected $course_id;
@@ -63,15 +63,8 @@ class course_left_section_menu_component implements renderable, templatable {
      * @throws moodle_exception
      */
     public function export_for_template(renderer_base $output): stdClass {
-        $links = [
-            'resource' => '',
-            'grades' => new moodle_url('/grade/report/index.php', ['id'=> $this->course_id]),
-            'participants' => new moodle_url('/user/index.php', ['id'=> $this->course_id]),
-            'settings' => new moodle_url('//course/edit.php', ['id'=> $this->course_id])
-        ];
         $data = new stdClass();
-        $data->title = null;
-        $data->links = $links;
+        $data->title = get_string('pending_tasks', 'theme_cbe');
         return $data;
     }
 }
