@@ -72,13 +72,13 @@
                     </div>
                     {{/hasregionmainsettingsmenu}}
 
-                    {{# in_course}}
+                    {{# is_course_blocks }}
                     <section id="left-menu-course">
                         {{{ course_left_menu }}}
                     </section>
-                    {{/ in_course}}
+                    {{/ is_course_blocks}}
 
-                    <section {{# in_course}}class="col-9 {{# is_course_blocks }}in_course{{/is_course_blocks}}"{{/ in_course}} id="region-main" {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}} aria-label="{{#str}}content{{/str}}">
+                    <section class="{{# is_course_blocks }}col-9 in_course{{/is_course_blocks}}{{^ is_course_blocks }}col-12 in_course{{/is_course_blocks}}" id="region-main" {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}} aria-label="{{#str}}content{{/str}}">
                         {{#hasregionmainsettingsmenu}}
                             <div class="region_main_settings_menu_proxy"></div>
                         {{/hasregionmainsettingsmenu}}

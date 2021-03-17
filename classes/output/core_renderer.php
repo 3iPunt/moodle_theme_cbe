@@ -356,9 +356,9 @@ class core_renderer extends \core_renderer {
 
         if ($course_page === 'board') {
             $is_board = true;
-        } else if ($course_page === 'themes' || $course_page === 'moreinfo') {
+        } else if ($course_page === 'themes') {
             $is_themes = true;
-        } else if ($course_page === 'tasks' || $course_page === 'vclasses') {
+        } else if ($course_page === 'tasks' || $course_page === 'vclasses' || $course_page === 'moreinfo') {
             $is_list = true;
         } else {
             $is_generic = true;

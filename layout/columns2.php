@@ -59,11 +59,11 @@ switch ($PAGE->context->contextlevel) {
         $in_course = false;
         $nav_header_course = '';
         $course_page = '';
-        $course_left_menu = '';
+        $course_left_menu = false;
         $course_page = '';
 }
 
-if ($course_page === 'board' || $course_page === 'themes' || $course_page === 'moreinfo') {
+if ($course_page === 'board' || $course_page === 'themes') {
     $is_course_blocks = true;
 } else {
     $is_course_blocks = false;
@@ -88,7 +88,7 @@ $templatecontext = [
     'in_course' => $in_course,
     'course_left_menu' => $course_left_menu,
     'navbar_header_course'=> $nav_header_course,
-    'is_course_blocks'=> $is_course_blocks
+    'is_course_blocks'=> $is_course_blocks,
 ];
 
 $nav = $PAGE->flatnav;
