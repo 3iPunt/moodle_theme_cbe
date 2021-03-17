@@ -84,17 +84,84 @@ body[data-theme='cbe'][data-role='user'] {
     background-color: white;
     border: 1px solid $grey-border;
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px;
-    display: flex;
-    align-items: center;
-    img.picture-current {
-      width: 60px;
-      height: 60px;
-      border-radius: 30px;
-      margin: 20px;
+    cursor: pointer;
+    #create_on_hold {
+      display: flex;
+      align-items: center;
+      &:hover {
+        box-shadow: inset 0 0 0 2px #dedede;
+        .text-action {
+          font-size: 18px;
+          color: #b7b7b7;
+          font-weight: 600;
+        }
+        .action {
+          background-color: $primary-color;
+        }
+      }
+      img.picture-current {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        margin: 20px;
+      }
+      .text-action {
+        margin-left: 15px;
+      }
     }
-    .text-action {
-      margin-left: 15px;
+
+    #create_ready {
+      display: none;
+      padding: 20px;
+      .select_type {
+        margin-bottom: 15px;
+        select {
+          padding: 5px 14px;
+          border: 0;
+          border-radius: 0;
+          background-color: #E6E6E6;
+          margin-right: 10px;
+        }
+      }
+      .comment {
+        textarea {
+          width: 100%;
+          background-color: #E6E6E6;
+          border: 0;
+          padding: 17px;
+          height: 115px;
+        }
+      }
+      .action_buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+        .select-module {
+          select {
+            padding: 5px 14px;
+            border: 0;
+            border-radius: 0;
+            background-color: #E6E6E6;
+            margin-right: 10px;
+          }
+        }
+        button.cancel {
+          border: none;
+          background-color: transparent;
+          &:hover {
+            background-color: $grey-light;
+          }
+        }
+        button.btn.btn-primary.publicate {
+          padding: 5px 11px;
+        }
+      }
     }
+
+
+
   }
 
   .modules {
@@ -182,7 +249,7 @@ body[data-theme='cbe'][data-role='user'] {
       bottom: -60px;
       height: 60px;
       background-color: white;
-      border: 1px solid $grey-border;
+      outline: 1px solid $grey-border;
       width: 100%;
       display: flex;
       align-items: center;
