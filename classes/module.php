@@ -15,59 +15,73 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class course_left_section_pending_tasks_component
+ * Class module
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_cbe\output;
+namespace theme_cbe;
 
+use cm_info;
+use coding_exception;
+use core_availability\info_module;
+use core_course\external\course_summary_exporter;
+use core_course_category;
+use course_enrolment_manager;
+use course_modinfo;
+use dml_exception;
+use mod_assign\plugininfo\assignfeedback;
+use mod_quiz\plugininfo\quiz;
 use moodle_exception;
 use moodle_url;
-use renderable;
-use renderer_base;
 use stdClass;
-use templatable;
-use theme_cbe\course;
-use theme_cbe\course_navigation;
+use user_picture;
+
+global $CFG;
+require_once($CFG->dirroot . '/enrol/locallib.php');
+require_once($CFG->dirroot . '/lib/modinfolib.php');
 
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * Class course_left_section_pending_tasks_component
+ * Class module
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class course_left_section_pending_tasks_component implements renderable, templatable {
+class module  {
 
-    /** @var int Course ID */
-    protected $course_id;
+    /** @var int Course Module ID */
+    protected $cm_id;
+
+    /** @var cm_info Course Module Moodle*/
+    protected $cm;
+
+    /** @var stdClass Course Moodle*/
+    protected $coursemoodle;
 
     /**
      * constructor.
      *
-     * @param int $course_id
+     * @param int $cm_id
+     * @throws moodle_exception
      */
-    public function __construct(int $course_id) {
-        $this->course_id = $course_id;
+    public function __construct(int $cm_id) {
+        $this->cm_id = $cm_id;
+        list($this->coursemoodle, $this->cm) = get_course_and_cm_from_cmid($cm_id);
     }
 
     /**
-     * Export for template.
+     * Get CM Info.
      *
-     * @param renderer_base $output
-     * @return stdClass
-     * @throws moodle_exception
+     * @return cm_info
      */
-    public function export_for_template(renderer_base $output): stdClass {
-        $course_cbe = new course($this->course_id);
-        $data = new stdClass();
-        $data->title = get_string('pending_tasks', 'theme_cbe');
-        $data->pending_tasks = $course_cbe->get_pending_tasks();
-        return $data;
+    public function get_cm_info(): cm_info {
+        return $this->cm;
     }
+
+
 }

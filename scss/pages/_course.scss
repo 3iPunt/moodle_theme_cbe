@@ -78,17 +78,34 @@ body[data-theme='cbe'][data-role='user'] {
                   &.feedback {
                     background-image: url('[[pix:theme|icon/feedback]]');
                   }
+                  &.quiz {
+                    background-image: url('[[pix:theme|icon/quiz]]');
+                  }
+                  &.bigbluebuttonbn {
+                    background-image: url('[[pix:theme|icon/bigbluebuttonbn]]');
+                  }
+                  &.forum {
+                    background-image: url('[[pix:theme|icon/forum]]');
+                  }
                 }
-                .text {
-                  margin-left: 8px;
-                  font-weight: 600;
-                  line-height: 19px;
-                }
-                .deadline {
-                  margin-left: 8px;
-                  font-size: 12px;
-                  color: grey;
-                  margin-top: 3px;
+                .data {
+                  display: flex;
+                  flex-direction: column;
+                  a.text {
+                    margin-left: 8px;
+                    font-weight: 600;
+                    line-height: 19px;
+                    color: $black-ligth;
+                    & {
+                      text-decoration: none;
+                    }
+                  }
+                  .deadline {
+                    margin-left: 8px;
+                    font-size: 12px;
+                    color: grey;
+                    margin-top: 3px;
+                  }
                 }
               }
             }

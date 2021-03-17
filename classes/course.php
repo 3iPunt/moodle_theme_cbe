@@ -167,4 +167,34 @@ class course  {
         }
         return $themes;
     }
+
+    /**
+     * Get Pending Tasks.
+     *
+     * @return array
+     * @throws dml_exception
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    public function get_pending_tasks () {
+        global $CFG, $PAGE;
+        require_once($CFG->dirroot.'/calendar/lib.php');
+        $course = get_course($this->course_id);
+        $calendar = \calendar_information::create(time(), $this->course_id, $course->category);
+        list($data, $template) = calendar_get_view($calendar, 'upcoming_mini');
+        $tasks = [];
+        foreach ($data->events as $event) {
+            $task = new stdClass();
+            $module = new module($event->instance);
+            $task->modname = $module->get_cm_info()->modname;
+            $task->name = $module->get_cm_info()->name;
+            $task->deadline = userdate(
+                $event->timeusermidnight,
+                get_string('strftimedatefullshort', 'core_langconfig'));
+            $event->timeusermidnight;
+            $task->view_href = $event->viewurl;
+            $tasks[] = $task;
+        }
+        return $tasks;
+    }
 }
