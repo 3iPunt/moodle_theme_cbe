@@ -11,4 +11,8 @@
         </div>
     </li>
     {{/ pending_tasks }}
+    {{^ has_pending_tasks }}
+        <p>{{# str }} pending_tasks_not, theme_cbe {{/ str }}</p>
+    {{/has_pending_tasks}}
+
 </ul>

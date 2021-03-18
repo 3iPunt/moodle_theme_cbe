@@ -68,6 +68,7 @@ class course_left_section_pending_tasks_component implements renderable, templat
         $data = new stdClass();
         $data->title = get_string('pending_tasks', 'theme_cbe');
         $data->pending_tasks = $course_cbe->get_pending_tasks();
+        $data->has_pending_tasks = count($course_cbe->get_pending_tasks()) > 0;
         return $data;
     }
 }
