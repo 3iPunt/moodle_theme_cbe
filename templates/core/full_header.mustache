@@ -34,31 +34,99 @@
         <div class="card header-board" style='background-image: url("{{{courseimage}}}");'>
             <div class="degraded">
                 <div class="title-box">
-                    <h3 class="category">1è Primària A</h3>
-                    <h2 class="coursename">PLÀSTICA</h2>
+                    <h3 class="category">{{ categoryname }}</h3>
+                    <h2 class="coursename">{{ coursename }}</h2>
                 </div>
                 <ul class="teachers-box">
                     {{# teachers }}
                     <li class="teacher">
                         <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ fullname }}">
                             <img class="picture-teacher" src="{{ picture }}" alt="">
-                            <div class="online {{# is_connected}}connected{{/ is_connected }}"></div>
+                            <div class="online {{# is_connected }}connected{{/ is_connected }}"></div>
                         </button>
                     </li>
                     {{/ teachers}}
                 </ul>
                 {{# is_teacher }}
-                    <div class="edition">
+                    <a class="edition" href="{{ edit_course }}">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <div class="triangle"></div>
-                    </div>
+                    </a>
                 {{/ is_teacher }}
             </div>
 
         </div>
     </div>
     {{/ is_board }}
+    {{# is_themes }}
+        <div class="col-9 pt-3 pb-3">
+            <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">
+                <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
+                    <div class="d-sm-flex align-items-center">
+                        {{#contextheader}}
+                            <div class="mr-auto">
+                                {{{contextheader}}}
+                            </div>
+                        {{/contextheader}}
+
+                        {{#settingsmenu}}
+                            <div class="context-header-settings-menu">
+                                {{{settingsmenu}}}
+                            </div>
+                        {{/settingsmenu}}
+                        <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
+                            {{#headeractions}}
+                                <div class="header-action ml-2">{{{.}}}</div>
+                            {{/headeractions}}
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap">
+                        <div class="ml-auto d-flex">
+                            {{{pageheadingbutton}}}
+                        </div>
+                        <div id="course-header">
+                            {{{courseheader}}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/ is_themes}}
     {{# is_generic }}
+        <div class="col-9 pt-3 pb-3">
+            <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">
+                <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
+                    <div class="d-sm-flex align-items-center">
+                        {{#contextheader}}
+                            <div class="mr-auto">
+                                {{{contextheader}}}
+                            </div>
+                        {{/contextheader}}
+
+                        {{#settingsmenu}}
+                            <div class="context-header-settings-menu">
+                                {{{settingsmenu}}}
+                            </div>
+                        {{/settingsmenu}}
+                        <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
+                            {{#headeractions}}
+                                <div class="header-action ml-2">{{{.}}}</div>
+                            {{/headeractions}}
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap">
+                        <div class="ml-auto d-flex">
+                            {{{pageheadingbutton}}}
+                        </div>
+                        <div id="course-header">
+                            {{{courseheader}}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/ is_generic}}
+    {{# is_default }}
     <div class="col-12 pt-3 pb-3">
         <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">
             <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
@@ -96,5 +164,5 @@
             </div>
         </div>
     </div>
-    {{/ is_generic }}
+    {{/ is_default }}
 </header>

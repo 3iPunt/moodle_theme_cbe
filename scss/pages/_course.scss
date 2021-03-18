@@ -1,0 +1,189 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  header.course {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  #page-content.course {
+    display: flex;
+    justify-content: center;
+    #region-main-box {
+      display: flex;
+      position: relative;
+      #left-menu-course {
+        margin-right: 20px;
+        width: 100%;
+        height: fit-content;
+        #course-left-section{
+          .menu-card {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid $border-color;
+            h3.title {
+              font-size: 20px;
+              font-weight: 600;
+            }
+            .menu-left {
+              list-style: none;
+              margin-bottom: 0;
+              li.link {
+                margin: 12px 0;
+                a {
+                  color: $black-ligth;
+                  i {
+                    font-size: 14px;
+                    background-color: $black-ligth;
+                    color: white;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 15px;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0 0 0 1px;
+                  }
+                  span.text {
+                    margin-left: 10px;
+                  }
+                  &:hover {
+                    text-decoration: none;
+                    color: $primary-color;
+                  }
+                }
+              }
+            }
+            .pending-taks {
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              padding: 10px 0 0;
+              margin-bottom: 0;
+              li.task {
+                display: flex;
+                margin: 5px 0 15px 0;
+                .icon {
+                  width: 40px;
+                  min-width: 40px;
+                  height: 40px;
+                  display: flex;
+                  border-radius: 20px;
+                  background-color: $primary-color;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  background-size: 18px;
+                  &.assign {
+                    background-image: url('[[pix:theme|icon/assign]]');
+                  }
+                  &.feedback {
+                    background-image: url('[[pix:theme|icon/feedback]]');
+                  }
+                  &.quiz {
+                    background-image: url('[[pix:theme|icon/quiz]]');
+                  }
+                  &.bigbluebuttonbn {
+                    background-image: url('[[pix:theme|icon/bigbluebuttonbn]]');
+                  }
+                  &.forum {
+                    background-image: url('[[pix:theme|icon/forum]]');
+                  }
+                }
+                .data {
+                  display: flex;
+                  flex-direction: column;
+                  a.text {
+                    margin-left: 8px;
+                    font-weight: 600;
+                    line-height: 19px;
+                    color: $black-ligth;
+                    & {
+                      text-decoration: none;
+                    }
+                  }
+                  .deadline {
+                    margin-left: 8px;
+                    font-size: 12px;
+                    color: grey;
+                    margin-top: 3px;
+                  }
+                }
+              }
+            }
+            .themes-navigation {
+              border-top: 1px solid $border-color;
+              margin-top: 17px;
+              ul.themes {
+                list-style: none;
+                margin: 10px 0;
+                li.theme {
+                  margin: 30px 0;
+                  cursor: pointer;
+                  font-size: 20px;
+                  font-weight: 600;
+                  &.active {
+                    font-size: 24px;
+                    font-family: $fontbold;
+                    border-left: 6px solid $primary-color;
+                    padding-left: 30px;
+                    position: relative;
+                    left: -36px;
+                  }
+                  a {
+                    color: $black-ligth;
+                    &:hover {
+                      text-decoration: none;
+                    }
+                  }
+                }
+              }
+              #view_alls, #create_theme {
+                cursor: pointer;
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $black-ligth;
+                i {
+                  font-size: 23px;
+                }
+                span {
+                  margin-left: 7px;
+                }
+                &:hover {
+                  color: $grey-medium;
+                  text-decoration: none;
+                }
+              }
+              #create_theme {
+                padding-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+      #region-main.in_course {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        #completionprogressid {
+          margin-top: 10px;
+          margin-right: 10px;
+        }
+      }
+      div#region-main-settings-menu {
+        float: inherit;
+        position: absolute;
+        right: 15px;
+      }
+    }
+  }
+
+  &.path-grade-report-grader .gradeparent {
+    position: relative;
+    overflow-x: scroll;
+  }
+
+}

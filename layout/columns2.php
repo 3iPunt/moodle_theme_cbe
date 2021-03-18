@@ -23,7 +23,8 @@
  */
 
 use theme_cbe\course_navigation;
-use theme_cbe\output\navbar_header_course_component;
+use theme_cbe\output\course_header_navbar_component;
+use theme_cbe\output\course_left_section_component;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -48,13 +49,24 @@ switch ($PAGE->context->contextlevel) {
         $in_course = true;
         $course_id = $PAGE->context->instanceid;
         $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
-        $nav_header_course_component = new navbar_header_course_component($course_id);
+        $nav_header_course_component = new course_header_navbar_component($course_id);
         $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
+        $course_left_menu_component = new course_left_section_component($course_id);
+        $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
+        $course_page = course_navigation::get_navigation_page();
         break;
     default:
         $in_course = false;
         $nav_header_course = '';
         $course_page = '';
+        $course_left_menu = false;
+        $course_page = '';
+}
+
+if ($course_page === 'board' || $course_page === 'themes') {
+    $is_course_blocks = true;
+} else {
+    $is_course_blocks = false;
 }
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
@@ -74,7 +86,10 @@ $templatecontext = [
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     'in_course' => $in_course,
-    'navbar_header_course'=> $nav_header_course
+    'course_left_menu' => $course_left_menu,
+    'navbar_header_course'=> $nav_header_course,
+    'is_course_blocks'=> $is_course_blocks,
+    'course_page'=> $course_page,
 ];
 
 $nav = $PAGE->flatnav;

@@ -1,0 +1,48 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  #page-header.row.course {
+    .singlebutton {
+      button {
+        visibility: hidden;
+        &:before {
+          visibility: visible;
+          content: "\f013";
+          font: normal normal normal 14px/1 FontAwesome;
+          background-color: $primary-color;
+          border: none;
+          height: 54px;
+          width: 68px;
+          font-size: 37px;
+          position: absolute;
+          right: -10px;
+          top: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 9px 0 0 10px;
+          cursor: pointer;
+        }
+        &:hover {
+          &:before {
+            color: white;
+            background-color: #f93c88;
+          }
+        }
+      }
+      input[name="edit"][value="off"] ~ button {
+        &:before {
+          background-color: $grey-medium;
+          content: "\f085";
+        }
+      }
+    }
+    .action-menu.moodle-actionmenu {
+      position: absolute;
+      bottom: 9px;
+      right: 11px;
+    }
+  }
+
+
+
+}

@@ -26,13 +26,18 @@ namespace theme_cbe;
 
 use coding_exception;
 use core_course\external\course_summary_exporter;
+use core_course_category;
 use course_enrolment_manager;
+use course_modinfo;
 use dml_exception;
+use moodle_exception;
+use moodle_url;
 use stdClass;
 use user_picture;
 
 global $CFG;
 require_once($CFG->dirroot . '/enrol/locallib.php');
+require_once($CFG->dirroot . '/lib/modinfolib.php');
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -55,6 +60,29 @@ class course  {
      */
     public function __construct(int $course_id) {
         $this->course_id = $course_id;
+    }
+
+    /**
+     * Get Name.
+     *
+     * @return string
+     * @throws dml_exception
+     */
+    function get_name(): string {
+        return get_course($this->course_id)->fullname;
+    }
+
+    /**
+     * Get Category.
+     *
+     * @return string
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    function get_category(): string {
+        $category_id = get_course($this->course_id)->category;
+        $category = core_course_category::get($category_id);
+        return $category->get_formatted_name();
     }
 
     /**
@@ -101,5 +129,72 @@ class course  {
 
         }
         return $data;
+    }
+
+    /**
+     * Get Themes.
+     *
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    public function get_themes(): array {
+
+        $param = optional_param('section', null, PARAM_INT);
+
+        $course = get_course($this->course_id);
+        /** @var course_modinfo $modinfo */
+        $modinfo = get_fast_modinfo($course->id);
+        $sections = $modinfo->get_section_info_all();
+        $themes = array();
+        foreach ($sections as $section) {
+            if ($section->section > 0) {
+                if (is_null($section->name)) {
+                    $name = get_string('sectionname', 'format_'.$course->format) . ' ' . $section->section;
+                } else {
+                    $name = $section->name;
+                }
+
+                $href = new moodle_url('/course/view.php', [
+                    'id'=> $this->course_id, 'section' => $section->section
+                ]);
+
+                $theme = new stdClass();
+                $theme->name = $name;
+                $theme->href = $href->out(false);
+                $theme->active = $param === $section->section;
+                $themes[] = $theme;
+            }
+        }
+        return $themes;
+    }
+
+    /**
+     * Get Pending Tasks.
+     *
+     * @return array
+     * @throws dml_exception
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    public function get_pending_tasks () {
+        global $CFG, $PAGE;
+        require_once($CFG->dirroot.'/calendar/lib.php');
+        $course = get_course($this->course_id);
+        $calendar = \calendar_information::create(time(), $this->course_id, $course->category);
+        list($data, $template) = calendar_get_view($calendar, 'upcoming_mini');
+        $tasks = [];
+        foreach ($data->events as $event) {
+            $task = new stdClass();
+            $module = new module($event->instance);
+            $task->modname = $module->get_cm_info()->modname;
+            $task->name = $module->get_cm_info()->name;
+            $task->deadline = userdate(
+                $event->timeusermidnight,
+                get_string('strftimedatefullshort', 'core_langconfig'));
+            $event->timeusermidnight;
+            $task->view_href = $event->viewurl;
+            $tasks[] = $task;
+        }
+        return $tasks;
     }
 }

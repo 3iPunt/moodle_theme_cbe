@@ -1,0 +1,34 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  div[data-region='moreinfo'] {
+
+    header.moreinfo-header {
+      background-color: #fff;
+      padding: 22px;
+      border: 1px solid $border-color;
+      box-shadow: $shadow-color 0 3px 6px;
+      border-radius: 0;
+      margin-top: 7px;
+      .title {
+        font-size: 44px;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      .subtitle {
+        font-size: 23px;
+        color: $grey-medium;
+        margin-bottom: 4px;
+      }
+    }
+
+    main.contain {
+      background-color: white;
+      padding: 30px;
+      border: 1px solid $border-color;
+      margin-top: 20px;
+    }
+
+  }
+
+
+}

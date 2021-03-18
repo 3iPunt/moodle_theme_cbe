@@ -15,52 +15,73 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class renderer
+ * Class module
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace theme_cbe\output;
+
+namespace theme_cbe;
+
+use cm_info;
+use coding_exception;
+use core_availability\info_module;
+use core_course\external\course_summary_exporter;
+use core_course_category;
+use course_enrolment_manager;
+use course_modinfo;
+use dml_exception;
+use mod_assign\plugininfo\assignfeedback;
+use mod_quiz\plugininfo\quiz;
+use moodle_exception;
+use moodle_url;
+use stdClass;
+use user_picture;
+
+global $CFG;
+require_once($CFG->dirroot . '/enrol/locallib.php');
+require_once($CFG->dirroot . '/lib/modinfolib.php');
 
 defined('MOODLE_INTERNAL') || die;
 
-use moodle_exception;
-use plugin_renderer_base;
-
 /**
- * Class renderer
+ * Class module
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class renderer extends plugin_renderer_base {
+class module  {
+
+    /** @var int Course Module ID */
+    protected $cm_id;
+
+    /** @var cm_info Course Module Moodle*/
+    protected $cm;
+
+    /** @var stdClass Course Moodle*/
+    protected $coursemoodle;
 
     /**
-     * Defer to template.
+     * constructor.
      *
-     * @param course_header_navbar_component $component
-     *
-     * @return string html for the page
+     * @param int $cm_id
      * @throws moodle_exception
      */
-    public function render_course_header_navbar_component(course_header_navbar_component $component): string {
-        $data = $component->export_for_template($this);
-        return parent::render_from_template('theme_cbe/course_header_navbar_component', $data);
+    public function __construct(int $cm_id) {
+        $this->cm_id = $cm_id;
+        list($this->coursemoodle, $this->cm) = get_course_and_cm_from_cmid($cm_id);
     }
 
     /**
-     * Defer to template.
+     * Get CM Info.
      *
-     * @param course_left_section_component $component
-     *
-     * @return string html for the page
-     * @throws moodle_exception
+     * @return cm_info
      */
-    public function render_course_left_section_component(course_left_section_component $component): string {
-        $data = $component->export_for_template($this);
-        return parent::render_from_template('theme_cbe/course_left_section_component', $data);
+    public function get_cm_info(): cm_info {
+        return $this->cm;
     }
+
 
 }

@@ -1,0 +1,18 @@
+{{# title }}
+<h3 class="title">{{ title }}</h3>
+{{/ title }}
+<ul class="pending-taks">
+    {{# pending_tasks }}
+    <li class="task">
+        <span class="icon {{ modname }}"></span>
+        <div class="data">
+            <a class="text" href="{{ view_href }}">{{ name }}</a>
+            <div class="deadline">{{# str }} deadline, theme_cbe {{/ str }}: {{ deadline }}</div>
+        </div>
+    </li>
+    {{/ pending_tasks }}
+    {{^ has_pending_tasks }}
+        <p>{{# str }} pending_tasks_not, theme_cbe {{/ str }}</p>
+    {{/has_pending_tasks}}
+
+</ul>

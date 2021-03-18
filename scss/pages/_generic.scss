@@ -1,0 +1,14 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  #page-content.course {
+    #region-main-box {
+      section#region-main.in_course[data-region="generic"] {
+        background-color: white;
+        padding: 30px;
+        border: 1px solid $border-color;
+      }
+    }
+  }
+
+
+}

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class user_comnavbar_header_course_componentponent
+ * Class course_header_navbar_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
@@ -35,13 +35,13 @@ use theme_cbe\course_navigation;
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * Class navbar_header_course_component
+ * Class course_header_navbar_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class navbar_header_course_component implements renderable, templatable {
+class course_header_navbar_component implements renderable, templatable {
 
     /** @var int Course ID */
     protected $course_id;
@@ -64,11 +64,11 @@ class navbar_header_course_component implements renderable, templatable {
      */
     public function export_for_template(renderer_base $output): stdClass {
 
-        $url_board = new moodle_url(course_navigation::PAGE_BOARD, ['id'=> $this->course_id]);
-        $url_themes = new moodle_url(course_navigation::PAGE_THEMES, ['id'=> $this->course_id]);
-        $url_tasks = new moodle_url(course_navigation::PAGE_TASKS, ['id'=> $this->course_id]);
-        $url_vclasses = new moodle_url(course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]);
-        $url_more_info = new moodle_url(course_navigation::PAGE_MOREINFO, ['id'=> $this->course_id, 'section' => 0]);
+        $url_board = new moodle_url('/' . course_navigation::PAGE_BOARD, ['id'=> $this->course_id]);
+        $url_themes = new moodle_url('/' . course_navigation::PAGE_THEMES, ['id'=> $this->course_id]);
+        $url_tasks = new moodle_url('/' . course_navigation::PAGE_TASKS, ['id'=> $this->course_id]);
+        $url_vclasses = new moodle_url('/' . course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]);
+        $url_more_info = new moodle_url('/' . course_navigation::PAGE_MOREINFO, ['id'=> $this->course_id, 'section' => 0]);
 
         $data = new stdClass();
         $data->board = [

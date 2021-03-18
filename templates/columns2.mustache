@@ -63,15 +63,27 @@
         <div id="page" class="container-fluid d-print-block">
             {{{ output.full_header }}}
 
-            <div id="page-content" class="row pb-3 d-print-block">
-                <div id="region-main-box" class="col-12">
+            <div id="page-content" class="row pb-3 d-print-block {{# in_course}}course{{/ in_course}}">
+                <div id="region-main-box" class="{{^ in_course}}col-12{{/ in_course}}{{# in_course}}col-9{{/ in_course}}">
+
                     {{#hasregionmainsettingsmenu}}
                     <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
                         <div> {{{ output.region_main_settings_menu }}} </div>
                     </div>
                     {{/hasregionmainsettingsmenu}}
-                    <section id="region-main" {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}} aria-label="{{#str}}content{{/str}}">
 
+                    {{# is_course_blocks }}
+                    <section id="left-menu-course">
+                        {{{ course_left_menu }}}
+                    </section>
+                    {{/ is_course_blocks}}
+
+                    <section
+                            {{# in_course }} class="{{# is_course_blocks }}col-9 in_course{{/is_course_blocks}}{{^ is_course_blocks }}col-12 in_course{{/is_course_blocks}}"{{/ in_course }}
+                            id="region-main"
+                            {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}}
+                            aria-label="{{#str}}content{{/str}}"
+                            data-region="{{ course_page }}">
                         {{#hasregionmainsettingsmenu}}
                             <div class="region_main_settings_menu_proxy"></div>
                         {{/hasregionmainsettingsmenu}}
@@ -79,8 +91,8 @@
                         {{{ output.main_content }}}
                         {{{ output.activity_navigation }}}
                         {{{ output.course_content_footer }}}
-
                     </section>
+
                     {{#hasblocks}}
                     <section data-region="blocks-column" class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
                         {{{ sidepreblocks }}}

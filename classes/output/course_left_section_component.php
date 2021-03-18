@@ -15,52 +15,55 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class renderer
+ * Class course_left_section_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 namespace theme_cbe\output;
+
+use coding_exception;
+use renderable;
+use renderer_base;
+use stdClass;
+use templatable;
+use theme_cbe\course_navigation;
 
 defined('MOODLE_INTERNAL') || die;
 
-use moodle_exception;
-use plugin_renderer_base;
-
 /**
- * Class renderer
+ * Class course_left_section_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class renderer extends plugin_renderer_base {
+class course_left_section_component implements renderable, templatable {
+
+    /** @var int Course ID */
+    protected $course_id;
 
     /**
-     * Defer to template.
+     * constructor.
      *
-     * @param course_header_navbar_component $component
-     *
-     * @return string html for the page
-     * @throws moodle_exception
+     * @param int $course_id
      */
-    public function render_course_header_navbar_component(course_header_navbar_component $component): string {
-        $data = $component->export_for_template($this);
-        return parent::render_from_template('theme_cbe/course_header_navbar_component', $data);
+    public function __construct(int $course_id) {
+        $this->course_id = $course_id;
     }
 
     /**
-     * Defer to template.
+     * Export for template.
      *
-     * @param course_left_section_component $component
-     *
-     * @return string html for the page
-     * @throws moodle_exception
+     * @param renderer_base $output
+     * @return stdClass
+     * @throws coding_exception
      */
-    public function render_course_left_section_component(course_left_section_component $component): string {
-        $data = $component->export_for_template($this);
-        return parent::render_from_template('theme_cbe/course_left_section_component', $data);
+    public function export_for_template(renderer_base $output): stdClass {
+        $data = new stdClass();
+        $data->sections = course_navigation::left_section($this->course_id);
+        return $data;
     }
-
 }

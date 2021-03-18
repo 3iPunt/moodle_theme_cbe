@@ -1,0 +1,31 @@
+{{# title }}
+<h3 class="title">{{ title }}</h3>
+{{/ title }}
+<ul class="menu-left">
+    <li class="link">
+        <a href="{{ links.resource }}">
+            <i class="fa fa-file-o" aria-hidden="true"></i>
+            <span class="text">{{# str }} course_left_resources, theme_cbe {{/ str }}</span>
+        </a>
+    </li>
+    <li class="link">
+        <a href="{{ links.grades }}">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <span class="text">{{# str }} course_left_grades, theme_cbe {{/ str }}</span>
+        </a>
+    </li>
+    <li class="link">
+        <a href="{{ links.participants }}">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span class="text">{{# str }} course_left_participants, theme_cbe {{/ str }}</span>
+        </a>
+    </li>
+    {{# links.settings }}
+    <li class="link">
+        <a href="{{ links.settings }}">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+            <span class="text">{{# str }} course_left_settings, theme_cbe {{/ str }}</span>
+        </a>
+    </li>
+    {{/ links.settings }}
+</ul>

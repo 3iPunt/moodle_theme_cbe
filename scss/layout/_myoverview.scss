@@ -50,3 +50,14 @@ body[data-theme='cbe'][data-role='user'] {
   }
 
 }
+
+body[data-theme='cbe'][data-role='admin'] {
+  .dashboard-card[data-theme='cbe'] {
+    .teachers {
+      display: none;
+    }
+    .course-footer {
+      display: none;
+    }
+  }
+}
