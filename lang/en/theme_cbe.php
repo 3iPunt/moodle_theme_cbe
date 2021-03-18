@@ -61,3 +61,4 @@ $string['app_menu_tasks'] = 'Tasks';
 $string['app_menu_photos'] = 'Photos';
 $string['app_menu_youtube'] = 'Youtube';
 $string['app_menu_dict'] = 'Dictionary';
+$string['view_course'] = 'view class';
