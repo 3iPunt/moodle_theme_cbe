@@ -299,7 +299,7 @@ body[data-theme='cbe'][data-role='user'] {
     right: 0;
     margin-top: 30px;
     &:hover, &:focus {
-      background-color: $primary-color;
+      background-color: $primary-color !important;
       text-decoration: none;
     }
   }
