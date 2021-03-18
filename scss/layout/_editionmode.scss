@@ -36,10 +36,13 @@ body[data-theme='cbe'][data-role='user'] {
         }
       }
     }
+    .action-menu.moodle-actionmenu {
+      position: absolute;
+      bottom: 9px;
+      right: 11px;
+    }
   }
-  .context-header-settings-menu {
 
-  }
 
 
 }

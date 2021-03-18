@@ -10,6 +10,7 @@ body[data-theme='cbe'][data-role='user'] {
     justify-content: center;
     #region-main-box {
       display: flex;
+      position: relative;
       #left-menu-course {
         margin-right: 20px;
         width: 100%;
@@ -167,6 +168,11 @@ body[data-theme='cbe'][data-role='user'] {
         background-color: transparent;
         border: none;
         padding: 0;
+      }
+      div#region-main-settings-menu {
+        float: inherit;
+        position: absolute;
+        right: 15px;
       }
     }
   }
