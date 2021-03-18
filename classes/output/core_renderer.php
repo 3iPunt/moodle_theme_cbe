@@ -27,6 +27,7 @@ namespace theme_cbe\output;
 use action_menu;
 use action_menu_filler;
 use action_menu_link_secondary;
+use context_course;
 use core_text;
 use custom_menu;
 use html_writer;
@@ -332,6 +333,7 @@ class core_renderer extends \core_renderer {
         switch ($PAGE->context->contextlevel) {
             case CONTEXT_COURSE:
                 $courseid = $PAGE->context->instanceid;
+                $coursecontext = context_course::instance($courseid);
                 $coursecbe = new course($courseid);
                 $in_course = true;
                 $course_page = course_navigation::get_navigation_page();
@@ -339,7 +341,7 @@ class core_renderer extends \core_renderer {
                 $teachers = $coursecbe->get_teachers();
                 $coursename = $coursecbe->get_name();
                 $coursecategory = $coursecbe->get_category();
-                $is_teacher = true;
+                $is_teacher = has_capability('moodle/course:update', $coursecontext);
                 break;
             default:
                 $in_course = false;

@@ -168,6 +168,10 @@ body[data-theme='cbe'][data-role='user'] {
         background-color: transparent;
         border: none;
         padding: 0;
+        #completionprogressid {
+          margin-top: 10px;
+          margin-right: 10px;
+        }
       }
       div#region-main-settings-menu {
         float: inherit;
@@ -175,6 +179,11 @@ body[data-theme='cbe'][data-role='user'] {
         right: 15px;
       }
     }
+  }
+
+  &.path-grade-report-grader .gradeparent {
+    position: relative;
+    overflow-x: scroll;
   }
 
 }
