@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'theme_cbe';
 $plugin->release = '0.1.0';
-$plugin->version = 2021030300;
+$plugin->version = 2021030500;
 $plugin->requires = 2020110900;
 $plugin->maturity = MATURITY_ALPHA;
 $plugin->dependencies = array(

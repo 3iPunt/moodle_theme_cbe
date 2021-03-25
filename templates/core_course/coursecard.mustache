@@ -42,18 +42,7 @@
             <span class="sr-only">{{#str}}aria:courseimage, core_course{{/str}}</span>
         </div>
     </a>
-    <div class="teachers" >
-        <div class="teacher">
-            <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="Juana García Sánchez">
-                <img class="picture-teacher" src="https://randomuser.me/api/portraits/women/75.jpg" alt="">
-            </button>
-        </div>
-        <div class="teacher">
-            <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="Monica Reus Lerma">
-                <img class="picture-teacher" src="https://randomuser.me/api/portraits/women/63.jpg" alt="">
-            </button>
-        </div>
-    </div>
+    <div data-region="coursecard-teachers-{{id}}"></div>
     <div class="card-body pr-1 course-info-container" id="course-info-container-{{id}}-{{uniqid}}">
         <div class="d-flex align-items-start">
             <div class="w-100 text-truncate">
@@ -74,7 +63,7 @@
                     <span class="sr-only">
                             {{#str}}aria:coursename, core_course{{/str}}
                         </span>
-                    {{$coursename}}{{/coursename}} {{ totalcoursecount }}
+                    {{$coursename}}{{/coursename}} {{ totalcoursecount }} {{ user_id }}
                 </a>
                 {{^visible}}
                     <div class="d-flex flex-wrap">
@@ -84,27 +73,12 @@
             </div>
         </div>
     </div>
-    <footer class="course-footer">
-        <div class="user-role">
-            <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="Profesor">
-                {{# pix }} role_teacher, theme_cbe, Teacher {{/ pix }}
-            </button>
-        </div>
-        <div class="students">
-            <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="20 {{# str }} students {{/ str }}">
-                <i class="fa fa-users" aria-hidden="true"></i><span>20</span>
-            </button>
-        </div>
-        <div class="user-role">
-            <a href="{{ viewurl }}" class="btn btn-secondary aula">{{# str }} view_course, theme_cbe {{/ str }}</a>
-        </div>
-    </footer>
+    <div data-region="coursecard-footer-{{ id }}"></div>
 </div>
 
 {{#js}}
-    require(['theme_cbe/coursecard'], function() {
-        console.log('aki');
-        /*coursecard.initCourseCard('[data-region="course-content"]');*/
+    require(['theme_cbe/coursecard'], function(coursecard) {
+        coursecard.initCourseCard('[data-region="course-content"]', {{ id }});
     });
 {{/js}}
 

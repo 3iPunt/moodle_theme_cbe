@@ -41,14 +41,17 @@ define([
          *
          */
         let REGIONS = {
-            COURSE_CONTENT: 'data-region="course-content"',
+            COURSE_CONTENT: '[data-region="course-content"]',
+            TEACHERS_CONTENT: '[data-region="coursecard-teachers-"]',
+            FOOTER_CONTENT: '[data-region="coursecard-footer-"]',
         };
 
         /**
          * @property {string} CUSTOMSSO
          */
         let SERVICES = {
-            CUSTOMSSO: 'theme_cbe_coursecard'
+            COURSECARD_EXTRA: 'theme_cbe_coursecard_extra',
+            COURSECARD_TEACHERS: 'theme_cbe_coursecard_teachers'
         };
 
         /**
@@ -56,7 +59,8 @@ define([
          * @property {string} LOADING
          */
         let TEMPLATES = {
-            /*PASSWORD: 'theme_cbe/login_form_password',*/
+            COURSECARD_FOOTER: 'theme_cbe/coursecard_footer',
+            COURSECARD_TEACHERS: 'theme_cbe/coursecard_teachers',
             LOADING: 'core/overlay_loading'
         };
 
@@ -64,8 +68,44 @@ define([
          * @constructor
          * @param {String} region
          */
-        function CourseCard(region) {
-            alert("hola 2");
+        function CourseCard(region, courseId) {
+
+            var identifierfooter = $('[data-region="coursecard-footer-' + courseId + '"]');
+            var identifierteachers = $('[data-region="coursecard-teachers-' + courseId + '"]');
+            Templates.render(TEMPLATES.LOADING, {visible: true}).done(function(html) {
+                /** FOOTER **/
+                var request_footer = {
+                    methodname: SERVICES.COURSECARD_EXTRA,
+                    args: {
+                        course_id: courseId
+                    }
+                };
+                Ajax.call([request_footer])[0].done(function(response) {
+                    var template = TEMPLATES.COURSECARD_FOOTER;
+                    Templates.render(template, response).done(function(html, js) {
+                        identifierfooter.html(html);
+                        Templates.runTemplateJS(js);
+                    });
+                }).fail(Notification.exception);
+
+                /** TEACHERS **/
+                var request_teachers = {
+                    methodname: SERVICES.COURSECARD_TEACHERS,
+                    args: {
+                        course_id: courseId,
+                    }
+                };
+
+                Ajax.call([request_teachers])[0].done(function(response) {
+                    var template = TEMPLATES.COURSECARD_TEACHERS;
+                    Templates.render(template, response).done(function(html, js) {
+                        identifierteachers.html(html);
+                        Templates.runTemplateJS(js);
+                    });
+                }).fail(Notification.exception);
+
+            });
+
         }
 
         /** @type {jQuery} The jQuery node for the region. */
@@ -76,10 +116,8 @@ define([
              * @param {String} region
              * @return {CourseCard}
              */
-            initCourseCard: function (region) {
-                console.log('hola por aki');
-
-                return new CourseCard(region);
+            initCourseCard: function (region, courseId) {
+                return new CourseCard(region, courseId);
             }
         };
     }
