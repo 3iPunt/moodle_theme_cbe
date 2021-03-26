@@ -112,10 +112,13 @@ class coursecard_external extends external_api {
 
     /**
      * @param string $course_id
-     * @return array
+     * @return array[]
+     * @throws coding_exception
+     * @throws dml_exception
      * @throws invalid_parameter_exception
      */
     public static function getteachers(string $course_id): array {
+        global $PAGE;
 
         $params = self::validate_parameters(
             self::getcourseextra_parameters(), [
@@ -123,15 +126,23 @@ class coursecard_external extends external_api {
             ]
         );
 
+        $context = context_course::instance($course_id);
+        $PAGE->set_context($context);
         $course = new course($course_id);
 
+        $course_teachers = $course->get_teachers();
+        $teachers = [];
+
+        foreach ($course_teachers as $course_teacher) {
+            $teacher = [
+                'picture' => $course_teacher->picture,
+                'fullname' => $course_teacher->fullname
+            ];
+            $teachers[] = $teacher;
+        }
+
         return [
-            'teachers' => [
-                [
-                    'picture' => 'http://localhost/consorci/pluginfile.php/25/user/icon/cbe/f1?rev=33',
-                    'fullname' => 'Maria Antonio Gijmems'
-                ]
-            ]
+            'teachers' => $teachers
         ];
     }
 
