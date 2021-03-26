@@ -25,11 +25,14 @@ namespace theme_cbe\external;
 use coding_exception;
 use context_course;
 use course_enrolment_manager;
+use dml_exception;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
+use moodle_exception;
+use moodle_url;
 use theme_cbe\course;
 
 defined('MOODLE_INTERNAL') || die();
@@ -55,7 +58,8 @@ class coursecard_external extends external_api {
      * @return array
      * @throws invalid_parameter_exception
      * @throws coding_exception
-     * @throws \dml_exception
+     * @throws dml_exception
+     * @throws moodle_exception
      */
     public static function getcourseextra(string $course_id): array {
 
@@ -81,9 +85,11 @@ class coursecard_external extends external_api {
         $enrolmanager = new course_enrolment_manager($PAGE, $course, $instancefilter = null, $role->id,
             $searchfilter = '', $groupfilter = 0, $statusfilter = -1);
         $students = $enrolmanager->get_users('id');
+        $view_url = new moodle_url('/local/cbe/view_board.php', ['id'=> $course_id]);
         return [
             'role' => $rolename,
             'rolename' => get_string($rolename, 'theme_cbe'),
+            'view_url' => $view_url->out(false),
             'students_num' => count($students)
         ];
     }

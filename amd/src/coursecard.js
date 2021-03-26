@@ -72,6 +72,7 @@ define([
 
             var identifierfooter = $('[data-region="coursecard-footer-' + courseId + '"]');
             var identifierteachers = $('[data-region="coursecard-teachers-' + courseId + '"]');
+            var identifiercourse = $('[data-region="course-content"][data-course-id="' + courseId + '"]');
             Templates.render(TEMPLATES.LOADING, {visible: true}).done(function(html) {
                 /** FOOTER **/
                 var request_footer = {
@@ -82,6 +83,14 @@ define([
                 };
                 Ajax.call([request_footer])[0].done(function(response) {
                     var template = TEMPLATES.COURSECARD_FOOTER;
+                    var view_url = response.view_url;
+                    var hrefs = identifiercourse.find('a[href*="/course/"]');
+                    hrefs.each(function() {
+                        var href_current = $(this).attr('href');
+                        if (href_current.includes('/course/')) {
+                            $(this).attr('href', view_url);
+                        }
+                    });
                     Templates.render(template, response).done(function(html, js) {
                         identifierfooter.html(html);
                         Templates.runTemplateJS(js);
