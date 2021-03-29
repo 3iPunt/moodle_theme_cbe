@@ -193,6 +193,9 @@ body[data-theme='cbe'][data-role='user'] {
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
+        &:hover {
+          opacity: 90%;
+        }
       }
       img.picture {
         width: 60px;
