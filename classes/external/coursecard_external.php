@@ -66,7 +66,7 @@ class coursecard_external extends external_api {
         global $PAGE, $DB, $CFG;
         require_once($CFG->dirroot . '/enrol/locallib.php');
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::getcourseextra_parameters(), [
                 'course_id' => $course_id
             ]
@@ -96,6 +96,7 @@ class coursecard_external extends external_api {
 
     /**
      * @return external_single_structure
+     * TODO: RETURNS
      */
     public static function getcourseextra_returns() {
         return null;
@@ -120,7 +121,7 @@ class coursecard_external extends external_api {
     public static function getteachers(string $course_id): array {
         global $PAGE;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::getcourseextra_parameters(), [
                 'course_id' => $course_id
             ]
@@ -148,6 +149,7 @@ class coursecard_external extends external_api {
 
     /**
      * @return external_single_structure
+     * TODO: RETURNS
      */
     public static function getteachers_returns() {
         return null;

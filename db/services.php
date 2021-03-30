@@ -15,10 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package theme_designfirst
- * @author 2020 José María Tomás Zafra <jmtomas@tresipunt.com>
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @copyright 3iPunt <https://www.tresipunt.com/>
+ * @package     theme_cbe
+ * @copyright   3iPunt <https://www.tresipunt.com/>
  */
 
 use theme_cbe\external\coursecard_external;
