@@ -349,6 +349,7 @@ body[data-theme='cbe'][data-role='user'] {
         margin-top: -1px;
         background-color: white;
         z-index: 10;
+        position: relative;
         img.picture-current {
           height: 38px;
           width: 38px;
@@ -363,6 +364,18 @@ body[data-theme='cbe'][data-role='user'] {
           width: 100%;
           margin-right: 20px;
           padding: 16px 20px;
+        }
+        button.send {
+          border: none;
+          background-color: transparent;
+          color: $grey-medium2;
+          position: absolute;
+          right: 31px;
+          font-size: 18px;
+          display: none;
+          &:hover {
+            color: $primary-color;
+          }
         }
       }
     }
@@ -383,6 +396,7 @@ body[data-theme='cbe'][data-role='user'] {
     position: absolute;
     right: 0;
     margin-top: 30px;
+    border: none;
     &:hover, &:focus {
       background-color: $primary-color !important;
       text-decoration: none;

@@ -94,6 +94,14 @@ body[data-theme='cbe'][data-role="user"] {
           }
         }
       }
+      footer {
+        display: flex;
+        .btn.cancel {
+          &:hover {
+            background-color: $grey-light;
+          }
+        }
+      }
     }
   }
 

@@ -47,7 +47,7 @@ define([
         };
 
         /**
-         * @property {string} CUSTOMSSO
+         *
          */
         let SERVICES = {
             COURSECARD_EXTRA: 'theme_cbe_coursecard_extra',
@@ -55,8 +55,7 @@ define([
         };
 
         /**
-         * @property {string} PASSWORD
-         * @property {string} LOADING
+         *
          */
         let TEMPLATES = {
             COURSECARD_FOOTER: 'theme_cbe/coursecard_footer',
@@ -67,6 +66,7 @@ define([
         /**
          * @constructor
          * @param {String} region
+         * @param {Number} courseId
          */
         function CourseCard(region, courseId) {
 
@@ -123,6 +123,7 @@ define([
         return {
             /**
              * @param {String} region
+             * @param {Number} courseId
              * @return {CourseCard}
              */
             initCourseCard: function (region, courseId) {
