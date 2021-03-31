@@ -112,21 +112,18 @@ class course  {
         $teachers = $enrolmanager->get_users(
             'u.lastname', 'ASC', 0, 0
         );
-
         $data = [];
         foreach ($teachers as $teacher) {
-
             $userpicture = new user_picture($teacher);
             $userpicture->size = 1;
             $pictureurl = $userpicture->get_url($PAGE)->out(false);
-
             $row = new stdClass();
             $row->id = $teacher->id;
             $row->fullname = fullname($teacher);
             $row->picture = $pictureurl;
+            // TODO: If user has been connected less than 30 minutes ago
             $row->is_connected = true;
             $data[] = $row;
-
         }
         return $data;
     }

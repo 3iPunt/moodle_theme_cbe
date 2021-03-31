@@ -1,0 +1,151 @@
+#page-mod-tresipuntaudio-view[data-theme='cbe'][data-role="user"] {
+  #region-main-box {
+    #audiointro {
+      margin: 0 20px 0;
+      p.audiodetails {
+        display: none;
+      }
+    }
+    .resourcecontent {
+      margin: 60px;
+      .mediaplugin {
+        > audio.video-js {
+          display: none;
+        }
+
+        > div {
+          max-width: 100% !important;
+        }
+
+        .video-js {
+
+          .vjs-big-play-button {
+          }
+
+          .vjs-control-bar {
+            background-color: rgb(0 0 0 / 41%);
+            .vjs-volume-menu-button-horizontal {
+              &:focus {
+              }
+            }
+
+            .vjs-play-control {
+
+              &:hover {
+                &::before {
+                }
+              }
+
+              &::before {
+              }
+
+              &.vjs-button::before {
+              }
+
+              &.vjs-playing::before {
+              }
+
+              &.vjs-paused::before {
+              }
+            }
+
+            .vjs-volume-menu-button {
+
+              &:hover {
+                &:before {
+                }
+              }
+
+              &.vjs-vol-0 {
+
+                &::before {
+                }
+              }
+
+              &.vjs-vol-1 {
+                &::before {
+                }
+              }
+
+              &.vjs-vol-2 {
+                &::before {
+                }
+              }
+
+              &.vjs-vol-3 {
+                &::before {
+                }
+              }
+
+              &:hover {
+                .vjs-menu-content {
+                }
+              }
+
+              &::before {
+              }
+
+              .vjs-menu {
+
+                .vjs-menu-content {
+
+                  .vjs-volume-bar.vjs-slider-horizontal {
+
+                    .vjs-volume-level {
+                    }
+                  }
+                }
+              }
+            }
+
+            .vjs-remaining-time-display {
+            }
+
+            .vjs-current-time {
+            }
+
+            .vjs-time-divider {
+            }
+
+            .vjs-duration {
+            }
+
+            .vjs-progress-control {
+
+              &:hover {
+                .vjs-progress-holder {
+                }
+              }
+
+              .vjs-progress-holder {
+
+                .vjs-load-progress {
+
+                  > div {
+                  }
+                }
+
+                .vjs-play-progress {
+                  background-color: $primary-color;
+
+                  &:before {
+                  }
+                }
+              }
+
+            }
+
+            .vjs-fullscreen-control {
+
+              &:hover {
+              }
+
+              &:before {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
