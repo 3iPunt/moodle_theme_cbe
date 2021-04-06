@@ -158,7 +158,12 @@ body[data-theme='cbe'][data-role='user'] {
                 }
               }
               #create_theme {
-                padding-bottom: 0;
+                border: none;
+                margin: 0;
+                padding: 10px 0;
+                &:hover {
+                  color: white;
+                }
               }
             }
           }
@@ -169,8 +174,14 @@ body[data-theme='cbe'][data-role='user'] {
         border: none;
         padding: 0;
         #completionprogressid {
-          margin-top: 10px;
+          margin-top: 16px;
           margin-right: 10px;
+        }
+        .single-section {
+          #completionprogressid {
+            margin-bottom: 10px;
+            margin-right: 10px;
+          }
         }
       }
       div#region-main-settings-menu {

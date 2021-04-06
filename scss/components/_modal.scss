@@ -102,4 +102,61 @@ body[data-theme='cbe'][data-role="user"] {
     }
   }
 
+  .bd-createsection-modal-lg {
+    .cbe-modal {
+      .modal-content {
+        main {
+          flex-direction: column;
+          padding: 20px;
+          .label-create {
+            font-size: 16px;
+            margin-bottom: 2px;
+          }
+          .input-create {
+            padding: 10px 20px;
+            border: 1px solid $grey-border;
+            border-radius: 0;
+            font-size: 18px;
+            font-family: $fontbold;
+          }
+          .themes-create {
+            list-style: none;
+            margin: 10px 0;
+            li.theme-create {
+              font-size: 20px;
+              margin: 0 22px;
+              font-weight: 600;
+              display: flex;
+              flex-direction: column;
+              span.section-name-create {
+                margin-left: 20px;
+              }
+            }
+            label.here {
+              font-size: 14px;
+              font-weight: normal;
+              color: $grey-medium;
+              margin-bottom: 0;
+            }
+            .position.last {
+              margin-left: 22px;
+              margin-top: 4px;
+            }
+          }
+          .action-buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            .cancel {
+              &:hover {
+                background-color: $grey-light;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 }

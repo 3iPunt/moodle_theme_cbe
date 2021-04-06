@@ -16,13 +16,39 @@ body[data-theme='cbe'][data-role='user'] {
       background-color: #fff;
       margin: 0 0 15px;
       border: 1px solid $border-color;
-      padding: 15px 10px;
-      margin-top: 0;
+      padding: 10px 10px 15px;
+      .section-navigation {
+        &.navigationtitle, &.mdl-bottom {
+          a {
+            padding: 4px 6px 4px 10px;
+            border: 1px solid $grey-light;
+            font-size: 12px;
+            color: $grey-medium;
+            &:hover {
+              background-color: $primary-color;
+              text-decoration: none;
+              color: white;
+            }
+            span.rarrow {
+              margin-left: 5px;
+            }
+            span.larrow {
+              margin-right: 7px;
+            }
+          }
+          .mdl-left {
+            a {
+              padding: 4px 11px 4px 10px;
+            }
+          }
+        }
+      }
       .sectionname {
         text-align: left;
         font-size: 28px;
         font-family: $fontbold;
         margin-left: 20px;
+        margin-top: 45px;
       }
       >.topics .section.main {
         background-color: #fff;
@@ -38,7 +64,54 @@ body[data-theme='cbe'][data-role='user'] {
         }
       }
     }
+    .section.main {
+      .sectionname {
+        font-size: 28px;
+        font-family: $fontbold;
+        margin: 18px 24px 25px;
+        a {
+          color: $black-ligth;
+          &:hover {
+            text-decoration: none;
+            color: $primary-color;
+          }
+        }
+      }
+      .summary {
+        margin: 10px 26px 30px;
+      }
+      &.sectiondraggable {
+        .section-handle {
+          position: relative;
+          top: 16px;
+        }
+      }
+    }
+
+    li.activity {
+      .activityinstance {
+        >.aalink {
+          &:hover {
+            color: $primary-color;
+            text-decoration: none;
+          }
+        }
+        .instancename {
+          color: $black-ligth;
+          font-size: 16px;
+          &:hover {
+            color: $primary-color;
+            text-decoration: none;
+          }
+        }
+      }
+      .actions {
+        right: 30px;
+      }
+    }
   }
+
+
 
 
 
