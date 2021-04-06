@@ -25,33 +25,35 @@
     <div class="modal-dialog modal-lg cbe-modal">
         <div class="modal-content">
             <header>
-                <h1>Creación de Tema</h1>
-                <p>Para crear un tema, indique su nombre y seleccione la posición donde desee crearla</p>
+                <h1>{{# str }} creation_theme, theme_cbe {{/ str }}</h1>
+                <p>{{# str }} create_theme_detail, theme_cbe {{/ str }}</p>
             </header>
             <main data-region="modal-create-section">
-                <label class="label-create" for="name">Nombre del tema:</label>
-                <input class="input-create" type="text" id="section-name-input" data-txt="name" placeholder="Escriba el nombre del tema">
+                <label class="label-create" for="name">{{# str }} theme_name, theme_cbe {{/ str }}:</label>
+                <input class="input-create" type="text" id="section-name-input" data-txt="name" placeholder="{{# str }} write_name_theme, theme_cbe {{/ str }}">
                 <hr>
-                <label class="label-create" for="name">Seleccione posición:</label>
+                <label class="label-create" for="name">{{# str }} select_position, theme_cbe {{/ str }}:</label>
                 <ul class="themes-create" data-region="themes">
                     {{# themes }}
                         <li class="theme-create">
                             <div class="position">
                                 <input type="radio" name="position" class="select-position" value="{{ section }}">
-                                <label class="here">Aquí</label>
+                                <label class="here">{{# str }} here, theme_cbe {{/ str }}</label>
                             </div>
                             <span class="section-name-create">{{ name }}</span>
                         </li>
                     {{/ themes }}
                     <div class="position last">
                         <input type="radio" name="position" class="select-position" value="0" checked>
-                        <label class="here">Aquí</label>
+                        <label class="here">{{# str }} here, theme_cbe {{/ str }}</label>
                     </div>
                 </ul>
                 <hr>
                 <div class="action-buttons">
-                    <button class="btn cancel" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary" data-action="createsection">Crear tema</button>
+                    <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                    <button class="btn btn-primary" data-action="createsection">
+                        {{# str }} create_theme, theme_cbe {{/ str }}
+                    </button>
                 </div>
             </main>
         </div>
