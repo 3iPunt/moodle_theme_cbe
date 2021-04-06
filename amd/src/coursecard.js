@@ -70,9 +70,9 @@ define([
          */
         function CourseCard(region, courseId) {
 
-            var identifierfooter = $('[data-region="coursecard-footer-' + courseId + '"]');
-            var identifierteachers = $('[data-region="coursecard-teachers-' + courseId + '"]');
-            var identifiercourse = $('[data-region="course-content"][data-course-id="' + courseId + '"]');
+            var identifierfooter = $('[data-role="user"] [data-region="coursecard-footer-' + courseId + '"]');
+            var identifierteachers = $('[data-role="user"] [data-region="coursecard-teachers-' + courseId + '"]');
+            var identifiercourse = $('[data-role="user"] [data-region="course-content"][data-course-id="' + courseId + '"]');
             Templates.render(TEMPLATES.LOADING, {visible: true}).done(function(html) {
                 /** FOOTER **/
                 var request_footer = {

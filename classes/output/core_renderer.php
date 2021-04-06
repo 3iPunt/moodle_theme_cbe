@@ -392,7 +392,11 @@ class core_renderer extends \core_renderer {
         $header->categoryname= $coursecategory;
         $header->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
 
-        return $this->render_from_template('core/full_header', $header);
+        if (is_siteadmin()) {
+            return $this->render_from_template('core/full_header', $header);
+        } else {
+            return $this->render_from_template('theme_cbe/full_header', $header);
+        }
     }
 
 }

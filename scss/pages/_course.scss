@@ -74,19 +74,19 @@ body[data-theme='cbe'][data-role='user'] {
                   background-repeat: no-repeat;
                   background-size: 18px;
                   &.assign {
-                    background-image: url('[[pix:theme|icon/assign]]');
+                    background-image: url('[[pix:mod_assign|icon]]');
                   }
                   &.feedback {
-                    background-image: url('[[pix:theme|icon/feedback]]');
+                    background-image: url('[[pix:mod_feedback|icon]]');
                   }
                   &.quiz {
-                    background-image: url('[[pix:theme|icon/quiz]]');
+                    background-image: url('[[pix:mod_quiz|icon]]');
                   }
                   &.bigbluebuttonbn {
-                    background-image: url('[[pix:theme|icon/bigbluebuttonbn]]');
+                    background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
                   }
                   &.forum {
-                    background-image: url('[[pix:theme|icon/forum]]');
+                    background-image: url('[[pix:mod_forum|icon]]');
                   }
                 }
                 .data {
