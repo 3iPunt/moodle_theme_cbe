@@ -10,15 +10,18 @@
 @import "components/coursecard";
 @import "components/modtresipuntvideo";
 @import "components/modtresipuntaudio";
+@import "components/modulecbe";
 
 @import "layout/navbar";
 @import "layout/footer";
 @import "layout/myoverview";
 @import "layout/editionmode";
+@import "layout/fullheader";
 
 @import "pages/login";
 @import "pages/dashboard";
 @import "pages/course";
+@import "pages/module";
 @import "pages/board";
 @import "pages/themes";
 @import "pages/moreinfo";

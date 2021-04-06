@@ -1,31 +1,11 @@
 body[data-theme='cbe'][data-role='user'] {
 
   div[data-region='tasks'] {
-
-    header.moreinfo-header {
-      background-color: #fff;
-      padding: 22px 22px 14px;
-      border: 1px solid $border-color;
-      box-shadow: $shadow-color 0 3px 6px;
-      border-radius: 0;
-      margin-top: 7px;
-      .title {
-        font-size: 44px;
-        font-weight: 600;
-        letter-spacing: 1px;
-      }
-      .subtitle {
-        font-size: 23px;
-        color: $grey-medium;
-        margin-bottom: 4px;
-      }
-    }
-
     main.contain {
       background-color: white;
       padding: 30px;
       border: 1px solid $border-color;
-      margin-top: 20px;
+      margin-top: 0;
       .filters {
         width: 100%;
         position: relative;
@@ -99,9 +79,18 @@ body[data-theme='cbe'][data-role='user'] {
           .module-component {
             display: flex;
             align-items: center;
-            img.icon {
+            div.modicon {
               background-color: $primary-color;
-              padding: 8px;
+              width: 54px;
+              height: 54px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-right: 10px;
+              border-radius: 27px;
+              img.icon {
+                margin: 0;
+              }
             }
             .data {
               >a.title {

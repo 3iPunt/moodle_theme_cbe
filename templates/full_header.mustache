@@ -92,6 +92,24 @@
             </div>
         </div>
     {{/ is_themes}}
+    {{# is_custom }}
+        <div class="col-9 pt-3 pb-3 is_custom">
+            <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">
+                <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
+                    <div class="text">
+                        <h2 class="subtitle">{{ categoryname }}</h2>
+                        <h1 class="title">{{ coursename }}</h1>
+                    </div>
+                    {{# is_teacher }}
+                        <a class="edition" href="{{ edit_course }}">
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                            <div class="triangle"></div>
+                        </a>
+                    {{/ is_teacher }}
+                </div>
+            </div>
+        </div>
+    {{/ is_custom}}
     {{# is_generic }}
         <div class="col-9 pt-3 pb-3">
             <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">

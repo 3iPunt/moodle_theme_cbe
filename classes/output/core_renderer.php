@@ -347,6 +347,20 @@ class core_renderer extends \core_renderer {
                 $coursecategory = $coursecbe->get_category();
                 $is_teacher = has_capability('moodle/course:update', $coursecontext);
                 break;
+            case CONTEXT_MODULE:
+                $cmid = $PAGE->context->instanceid;
+                list($course, $cm) = get_course_and_cm_from_cmid($cmid);
+                $courseid = $course->id;
+                $coursecontext = context_course::instance($courseid);
+                $coursecbe = new course($courseid);
+                $in_course = true;
+                $course_page = course_navigation::get_navigation_page();
+                $courseimage = $coursecbe->get_courseimage();
+                $teachers = $coursecbe->get_teachers();
+                $coursename = $coursecbe->get_name();
+                $coursecategory = $coursecbe->get_category();
+                $is_teacher = has_capability('moodle/course:update', $coursecontext);
+                break;
             default:
                 $in_course = false;
                 $course_page = '';
@@ -359,7 +373,7 @@ class core_renderer extends \core_renderer {
 
         $is_board = false;
         $is_themes = false;
-        $is_list = false;
+        $is_custom = false;
         $is_generic = false;
         $is_default = false;
 
@@ -367,8 +381,12 @@ class core_renderer extends \core_renderer {
             $is_board = true;
         } else if ($course_page === 'themes') {
             $is_themes = true;
-        } else if ($course_page === 'tasks' || $course_page === 'vclasses' || $course_page === 'moreinfo') {
-            $is_list = true;
+        } else if (
+            $course_page === 'tasks' ||
+            $course_page === 'vclasses' ||
+            $course_page === 'moreinfo' ||
+            $course_page === 'module') {
+            $is_custom= true;
         } else if ($course_page === 'generic') {
             $is_generic = true;
         } else {
@@ -385,7 +403,7 @@ class core_renderer extends \core_renderer {
         $header->headeractions = $this->page->get_header_actions();
         $header->is_board = $is_board ;
         $header->is_themes = $is_themes;
-        $header->is_list = $is_list;
+        $header->is_custom = $is_custom;
         $header->is_generic= $is_generic;
         $header->is_default = $is_default;
         $header->courseimage = $courseimage;
@@ -393,7 +411,7 @@ class core_renderer extends \core_renderer {
         $header->teachers = $teachers;
         $header->is_teacher = $is_teacher;
         $header->coursename = $coursename;
-        $header->categoryname= $coursecategory;
+        $header->categoryname = $coursecategory;
         $header->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
 
         if (is_siteadmin()) {
