@@ -65,7 +65,7 @@ class course_navigation  {
             return 'vclasses';
         } else if (strpos($path, self::PAGE_MOREINFO)) {
             return 'moreinfo';
-        } else if (strpos($path, '/mod/')) {
+        } else if (strpos($path, 'mod/')) {
             return 'module';
         } else if (strpos($path, 'grade') ||
                    strpos($path, 'user') ||
@@ -112,7 +112,7 @@ class course_navigation  {
             return [];
         } else if (strpos($path, self::PAGE_MOREINFO)) {
             return self::left_section_themes($course_id);
-        } else if (strpos($path, '/mod/')) {
+        } else if (strpos($path, 'mod/')) {
             return self::left_section_board($course_id);
         } else if (strpos($path, 'grade')) {
             return [];
