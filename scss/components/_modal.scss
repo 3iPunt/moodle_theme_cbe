@@ -1,0 +1,105 @@
+body[data-theme='cbe'][data-role="user"] {
+
+  .cbe-modal {
+    .modal-content {
+      padding: 30px;
+      header {
+        text-align: center;
+        h1 {
+          font-weight: 600;
+        }
+      }
+      main {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        .column {
+          width: 100%;
+          margin: 10px;
+          h2 {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+          }
+          ul.select-modules {
+            list-style: none;
+            margin-top: 25px;
+            li.select-module {
+              margin: 10px 0;
+              a.create-mod {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-decoration: none;
+                color: $black-ligth;
+                &:hover {
+                  background-color: $grey-light;
+                  .mod-icon {
+                    background-color: #b22361;
+                  }
+                }
+                .mod-icon {
+                  background-color: $primary-color;
+                  min-width: 60px;
+                  height: 60px;
+                  background-size: 35px 35px;
+                  background-repeat: no-repeat;
+                  background-position: 50%;
+                  &.forum {
+                    background-image: url('[[pix:mod_forum|icon]]');
+                  }
+                  &.assign  {
+                    background-image: url('[[pix:mod_assign|icon]]');
+                  }
+                  &.resource {
+                    background-image: url('[[pix:mod_resource|icon]]');
+                  }
+                  &.quiz {
+                    background-image: url('[[pix:mod_quiz|icon]]');
+                  }
+                  &.url {
+                    background-image: url('[[pix:mod_url|icon]]');
+                  }
+                  &.tresipuntaudio {
+                    background-image: url('[[pix:mod_tresipuntaudio|icon]]');
+                  }
+                  &.tresipuntvideo {
+                    background-image: url('[[pix:mod_tresipuntvideo|icon]]');
+                  }
+                  &.feedback {
+                    background-image: url('[[pix:mod_feedback|icon]]');
+                  }
+                  &.bigbluebuttonbn {
+                    background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+                  }
+                }
+                .text {
+                  padding-left: 20px;
+                  font-size: 15px;
+                  font-weight: 600;
+                  border: 1px solid $grey-medium2;
+                  height: 60px;
+                  display: flex;
+                  align-items: center;
+                  position: relative;
+                  left: -1px;
+                  width: 100%;
+                }
+              }
+
+            }
+          }
+        }
+      }
+      footer {
+        display: flex;
+        .btn.cancel {
+          &:hover {
+            background-color: $grey-light;
+          }
+        }
+      }
+    }
+  }
+
+}

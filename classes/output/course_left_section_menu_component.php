@@ -24,6 +24,7 @@
 
 namespace theme_cbe\output;
 
+use context_course;
 use moodle_exception;
 use moodle_url;
 use renderable;
@@ -63,10 +64,20 @@ class course_left_section_menu_component implements renderable, templatable {
      * @throws moodle_exception
      */
     public function export_for_template(renderer_base $output): stdClass {
+
+        $coursecontext = context_course::instance($this->course_id);
+        if (has_capability('moodle/course:update', $coursecontext)) {
+            $settings = new moodle_url('/course/edit.php', ['id'=> $this->course_id]);
+        } else {
+            $settings = false;
+        }
+
         $links = [
             'resource' => '',
+            'vclasses' => new moodle_url('/' . course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]),
             'grades' => new moodle_url('/grade/report/index.php', ['id'=> $this->course_id]),
-            'participants' => new moodle_url('/user/index.php', ['id'=> $this->course_id])
+            'participants' => new moodle_url('/user/index.php', ['id'=> $this->course_id]),
+            'settings' => $settings
         ];
         $data = new stdClass();
         $data->title = null;

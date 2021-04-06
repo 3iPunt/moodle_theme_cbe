@@ -1,0 +1,45 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  .course-content {
+    .topics {
+      li#section-0 {
+        display: none;
+      }
+      .section.main {
+        background-color: #fff;
+        margin: 0 0 15px;
+        border: 1px solid $border-color;
+        padding: 15px 10px;
+      }
+    }
+    .single-section {
+      background-color: #fff;
+      margin: 0 0 15px;
+      border: 1px solid $border-color;
+      padding: 15px 10px;
+      margin-top: 0;
+      .sectionname {
+        text-align: left;
+        font-size: 28px;
+        font-family: $fontbold;
+        margin-left: 20px;
+      }
+      >.topics .section.main {
+        background-color: #fff;
+        margin: 0;
+        border: none;
+        padding: 0;
+        .summary {
+          margin: 10px 30px;
+        }
+        ul.section {
+          margin: 20px 0 20px;
+          padding: 10px 13px;
+        }
+      }
+    }
+  }
+
+
+
+}

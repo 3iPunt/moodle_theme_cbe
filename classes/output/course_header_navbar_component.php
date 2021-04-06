@@ -67,7 +67,6 @@ class course_header_navbar_component implements renderable, templatable {
         $url_board = new moodle_url('/' . course_navigation::PAGE_BOARD, ['id'=> $this->course_id]);
         $url_themes = new moodle_url('/' . course_navigation::PAGE_THEMES, ['id'=> $this->course_id]);
         $url_tasks = new moodle_url('/' . course_navigation::PAGE_TASKS, ['id'=> $this->course_id]);
-        $url_vclasses = new moodle_url('/' . course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]);
         $url_more_info = new moodle_url('/' . course_navigation::PAGE_MOREINFO, ['id'=> $this->course_id, 'section' => 0]);
 
         $data = new stdClass();
@@ -82,10 +81,6 @@ class course_header_navbar_component implements renderable, templatable {
         $data->tasks = [
             'href' => $url_tasks->out(false),
             'active' => course_navigation::is_current_page(course_navigation::PAGE_TASKS)
-        ];
-        $data->vclasses = [
-            'href' => $url_vclasses->out(false),
-            'active' => course_navigation::is_current_page(course_navigation::PAGE_VCLASSES)
         ];
         $data->more_info = [
             'href' => $url_more_info->out(false),

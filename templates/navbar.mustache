@@ -85,10 +85,42 @@
                     </svg>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" >
-                    <ul class="apps">
-                        <li class="app">
+                    <ul id="app-admin">
+                        <li class="app roles">
                             <a href="#" class="app-link" target="_blank">
-                                <div class="icon email">
+                                <div class="icon roles">
+                                    <i class="fa fa-user-secret" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_roles, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app evaluation">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_evaluation, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul id="app-apps" class="apps">
+                        <li class="app cloud">
+                            <a href="https://nextcloud.pilotescola.digital" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-cloud" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_cloud, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app email">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
                                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
                                 </div>
                                 <div class="text">
@@ -106,43 +138,33 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="app maps">
-                            <a href="#" class="app-link" target="_blank">
-                                <div class="icon">
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                </div>
-                                <div class="text">
-                                    {{# str }} app_menu_maps, theme_cbe {{/ str }}
-                                </div>
-                            </a>
-                        </li>
-                        <li class="app videos">
+                        <li class="app pad">
                             <a href="https://pad.pilotescola.digital" class="app-link" target="_blank">
                                 <div class="icon">
-                                    <i class="fa fa-film" aria-hidden="true"></i>
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
                                 </div>
                                 <div class="text">
-                                    {{# str }} app_menu_videos, theme_cbe {{/ str }}
+                                    {{# str }} app_menu_pads, theme_cbe {{/ str }}
                                 </div>
                             </a>
                         </li>
-                        <li class="app meets">
-                            <a href="https://jitsi.pilotescola.digital" class="app-link" target="_blank">
+                        <li class="app create-files">
+                            <a href="#" class="app-link" target="_blank">
                                 <div class="icon">
-                                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                                    <i class="fa fa-file-word-o" aria-hidden="true"></i>
                                 </div>
                                 <div class="text">
-                                    {{# str }} app_menu_meets, theme_cbe {{/ str }}
+                                    {{# str }} app_menu_create_file, theme_cbe {{/ str }}
                                 </div>
                             </a>
                         </li>
-                        <li class="app files">
-                            <a href="https://nextcloud.pilotescola.digital" class="app-link" target="_blank">
+                        <li class="app form-feedback">
+                            <a href="#" class="app-link" target="_blank">
                                 <div class="icon">
-                                    <i class="fa fa-file-o" aria-hidden="true"></i>
+                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                 </div>
                                 <div class="text">
-                                    {{# str }} app_menu_files, theme_cbe {{/ str }}
+                                    {{# str }} app_menu_form_feedback, theme_cbe {{/ str }}
                                 </div>
                             </a>
                         </li>
@@ -156,6 +178,46 @@
                                 </div>
                             </a>
                         </li>
+                        <li class="app meet-jitsi">
+                            <a href="https://jitsi.pilotescola.digital" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_meets_jitsi, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app meet-bbb">
+                            <a href="" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_meets_bbb, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app blogs">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-rss" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_blogs, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app contacts">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_contacts, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
                         <li class="app schedule">
                             <a href="#" class="app-link" target="_blank">
                                 <div class="icon">
@@ -163,6 +225,68 @@
                                 </div>
                                 <div class="text">
                                     {{# str }} app_menu_schedule, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app tasks">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-list-ol" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_tasks, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app evaluation">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_evaluation, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app photos">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_photos, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul id="app-external" class="external-links">
+                        <li class="app youtube">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_youtube, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app maps">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_maps, theme_cbe {{/ str }}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="app dict">
+                            <a href="#" class="app-link" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-book" aria-hidden="true"></i>
+                                </div>
+                                <div class="text">
+                                    {{# str }} app_menu_dict, theme_cbe {{/ str }}
                                 </div>
                             </a>
                         </li>

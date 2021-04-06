@@ -4,14 +4,24 @@
 
 @import "base/reset";
 @import "base/form";
+@import "base/icons";
 
+@import "components/modal";
 @import "components/coursecard";
+@import "components/modtresipuntvideo";
+@import "components/modtresipuntaudio";
 
 @import "layout/navbar";
 @import "layout/footer";
 @import "layout/myoverview";
+@import "layout/editionmode";
 
 @import "pages/login";
 @import "pages/dashboard";
 @import "pages/course";
 @import "pages/board";
+@import "pages/themes";
+@import "pages/moreinfo";
+@import "pages/tasks";
+@import "pages/vclasses";
+@import "pages/generic";

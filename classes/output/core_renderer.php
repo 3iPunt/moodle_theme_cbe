@@ -27,6 +27,7 @@ namespace theme_cbe\output;
 use action_menu;
 use action_menu_filler;
 use action_menu_link_secondary;
+use context_course;
 use core_text;
 use custom_menu;
 use html_writer;
@@ -327,15 +328,20 @@ class core_renderer extends \core_renderer {
             ));
         }
 
+        $courseid = null;
+
         switch ($PAGE->context->contextlevel) {
             case CONTEXT_COURSE:
                 $courseid = $PAGE->context->instanceid;
+                $coursecontext = context_course::instance($courseid);
                 $coursecbe = new course($courseid);
                 $in_course = true;
                 $course_page = course_navigation::get_navigation_page();
                 $courseimage = $coursecbe->get_courseimage();
                 $teachers = $coursecbe->get_teachers();
-                $is_teacher = true;
+                $coursename = $coursecbe->get_name();
+                $coursecategory = $coursecbe->get_category();
+                $is_teacher = has_capability('moodle/course:update', $coursecontext);
                 break;
             default:
                 $in_course = false;
@@ -343,21 +349,26 @@ class core_renderer extends \core_renderer {
                 $courseimage = '';
                 $is_teacher = false;
                 $teachers = [];
+                $coursename = '';
+                $coursecategory = '';
         }
 
         $is_board = false;
         $is_themes = false;
         $is_list = false;
         $is_generic = false;
+        $is_default = false;
 
         if ($course_page === 'board') {
             $is_board = true;
-        } else if ($course_page === 'themes' || $course_page === 'moreinfo') {
+        } else if ($course_page === 'themes') {
             $is_themes = true;
-        } else if ($course_page === 'tasks' || $course_page === 'vclasses') {
+        } else if ($course_page === 'tasks' || $course_page === 'vclasses' || $course_page === 'moreinfo') {
             $is_list = true;
-        } else {
+        } else if ($course_page === 'generic') {
             $is_generic = true;
+        } else {
+            $is_default = true;
         }
 
         $header = new stdClass();
@@ -371,13 +382,21 @@ class core_renderer extends \core_renderer {
         $header->is_board = $is_board ;
         $header->is_themes = $is_themes;
         $header->is_list = $is_list;
-        $header->is_generic = $is_generic;
+        $header->is_generic= $is_generic;
+        $header->is_default = $is_default;
         $header->courseimage = $courseimage;
         $header->in_course = $in_course;
         $header->teachers = $teachers;
         $header->is_teacher = $is_teacher;
+        $header->coursename = $coursename;
+        $header->categoryname= $coursecategory;
+        $header->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
 
-        return $this->render_from_template('core/full_header', $header);
+        if (is_siteadmin()) {
+            return $this->render_from_template('core/full_header', $header);
+        } else {
+            return $this->render_from_template('theme_cbe/full_header', $header);
+        }
     }
 
 }
