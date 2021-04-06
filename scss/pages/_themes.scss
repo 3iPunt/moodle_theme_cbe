@@ -19,7 +19,7 @@ body[data-theme='cbe'][data-role='user'] {
       padding: 10px 10px 15px;
       .section-navigation {
         &.navigationtitle, &.mdl-bottom {
-          a {
+          >span>a {
             padding: 4px 6px 4px 10px;
             border: 1px solid $grey-light;
             font-size: 12px;
