@@ -41,7 +41,8 @@ define([
          *
          */
         let INPUT = {
-            NAME_TEXT: '[data-txt="name"]'
+            NAME_TEXT: '[data-txt="name"]',
+            POSITION_RADIO_CHECKED: '.select-position:radio[name=position]:checked'
         };
 
         /**
@@ -55,7 +56,7 @@ define([
          *
          */
         let SERVICES = {
-            COURSECARD_EXTRA: 'theme_cbe_section_create',
+            SECTION_CREATE: 'theme_cbe_section_create',
         };
 
         /**
@@ -64,10 +65,26 @@ define([
          * @param {Number} courseId
          */
         function Createsection(region, courseId) {
-
-            console.log(courseId);
-
+            this.courseid = courseId;
+            this.node = $(region);
+            this.node.find(ACTION.CREATEBUTTON).on('click', this.onCreateButtonClick.bind(this));
         }
+
+        Createsection.prototype.onCreateButtonClick = function (e) {
+            var name = this.node.find(INPUT.NAME_TEXT).val();
+            var position = $(INPUT.POSITION_RADIO_CHECKED).val();
+            var request = {
+                methodname: SERVICES.SECTION_CREATE,
+                args: {
+                    course_id: this.courseid,
+                    name: name,
+                    position: position
+                }
+            };
+            Ajax.call([request])[0].done(function(response) {
+                location.reload();
+            }).fail(Notification.exception);
+        };
 
         /** @type {jQuery} The jQuery node for the region. */
         Createsection.prototype.node = null;

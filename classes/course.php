@@ -156,6 +156,8 @@ class course  {
                 ]);
 
                 $theme = new stdClass();
+                $theme->id = $section->id;
+                $theme->section = $section->section;
                 $theme->name = $name;
                 $theme->href = $href->out(false);
                 $theme->active = $param === $section->section;

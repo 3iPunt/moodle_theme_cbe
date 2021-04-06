@@ -20,6 +20,7 @@
  */
 
 use theme_cbe\external\coursecard_external;
+use theme_cbe\external\section_external;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -37,6 +38,14 @@ $functions = [
         'methodname' => 'getteachers',
         'description' => 'Get teachers',
         'type' => 'read',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_section_create' => [
+        'classname' => section_external::class,
+        'methodname' => 'sectioncreate',
+        'description' => 'Section Create',
+        'type' => 'write',
         'ajax' => true,
         'loginrequired' => true
     ],

@@ -37,14 +37,14 @@
                     {{# themes }}
                         <li class="theme-create">
                             <div class="position">
-                                <input type="radio" name="position" class="select-position">
+                                <input type="radio" name="position" class="select-position" value="{{ section }}">
                                 <label class="here">Aquí</label>
                             </div>
                             <span class="section-name-create">{{ name }}</span>
                         </li>
                     {{/ themes }}
                     <div class="position last">
-                        <input type="radio" name="position" class="select-position">
+                        <input type="radio" name="position" class="select-position" value="0" checked>
                         <label class="here">Aquí</label>
                     </div>
                 </ul>

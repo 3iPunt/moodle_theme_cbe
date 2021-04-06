@@ -53,7 +53,7 @@ class course_user  {
      * @return bool
      * @throws coding_exception
      */
-    static public function is_teacher(int $courseid, int $userid = null) {
+    static public function is_teacher(int $courseid, int $userid = null): bool {
         $coursecontext = context_course::instance($courseid);
         return has_capability('moodle/course:update', $coursecontext, $userid);
     }
