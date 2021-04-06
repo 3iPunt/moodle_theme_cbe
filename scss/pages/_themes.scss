@@ -1,5 +1,26 @@
 body[data-theme='cbe'][data-role='user'] {
 
+  #page-header.course {
+    .card-body {
+      padding: 20px 20px 0;
+      .page-header-headings {
+        h1 {
+          font-size: 44px;
+          font-weight: 600;
+          letter-spacing: 1px;
+        }
+        h2 {
+          font-size: 23px;
+          color: $grey-medium;
+          margin-bottom: 4px;
+        }
+      }
+      .d-flex.flex-wrap {
+        height: 10px;
+      }
+    }
+  }
+
   .course-content {
     .topics {
       li#section-0 {

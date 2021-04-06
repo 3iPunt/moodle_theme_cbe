@@ -27,13 +27,17 @@ namespace theme_cbe\output;
 use action_menu;
 use action_menu_filler;
 use action_menu_link_secondary;
+use coding_exception;
 use context_course;
+use context_header;
 use core_text;
 use custom_menu;
+use dml_exception;
 use html_writer;
 use moodle_exception;
 use moodle_url;
 use pix_icon;
+use renderer_base;
 use stdClass;
 use theme_cbe\course;
 use theme_cbe\course_navigation;
@@ -397,6 +401,96 @@ class core_renderer extends \core_renderer {
         } else {
             return $this->render_from_template('theme_cbe/full_header', $header);
         }
+    }
+
+    /**
+     * Outputs a heading
+     *
+     * @param string $text
+     * @param int $level
+     * @param null $classes
+     * @param null $id
+     * @return string
+     * @throws coding_exception
+     */
+    public function heading($text, $level = 2, $classes = null, $id = null): string {
+        $level = (integer) $level;
+        if ($level < 1 or $level > 6) {
+            throw new coding_exception('Heading level must be an integer between 1 and 6.');
+        }
+
+        return  html_writer::tag('h' . $level, $text, array(
+            'id' => $id, 'class' => renderer_base::prepare_classes($classes)));;
+    }
+
+    /**
+     * Renders the header bar.
+     *
+     * @param context_header $contextheader
+     * @return string
+     * @throws dml_exception
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    protected function render_context_header(context_header $contextheader): string {
+
+        // Generate the heading first and before everything else as we might have to do an early return.
+        if (!isset($contextheader->heading)) {
+            $heading = $this->heading($this->page->heading, $contextheader->headinglevel);
+        } else {
+            $coursecbe = new course($this->page->course->id);
+            $heading = $this->heading($coursecbe->get_category(), 2);
+            $heading .= $this->heading($contextheader->heading, $contextheader->headinglevel);
+        }
+
+        $showheader = empty($this->page->layout_options['nocontextheader']);
+        if (!$showheader) {
+            // Return the heading wrapped in an sr-only element so it is only visible to screen-readers.
+            return html_writer::div($heading, 'sr-only');
+        }
+
+        // All the html stuff goes here.
+        $html = html_writer::start_div('page-context-header');
+
+        // Image data.
+        if (isset($contextheader->imagedata)) {
+            // Header specific image.
+            $html .= html_writer::div($contextheader->imagedata, 'page-header-image');
+        }
+
+        // Headings.
+        $html .= html_writer::tag('div', $heading, array('class' => 'page-header-headings'));
+
+        // Buttons.
+        if (isset($contextheader->additionalbuttons)) {
+            $html .= html_writer::start_div('btn-group header-button-group');
+            foreach ($contextheader->additionalbuttons as $button) {
+                if (!isset($button->page)) {
+                    // Include js for messaging.
+                    if ($button['buttontype'] === 'togglecontact') {
+                        \core_message\helper::togglecontact_requirejs();
+                    }
+                    if ($button['buttontype'] === 'message') {
+                        \core_message\helper::messageuser_requirejs();
+                    }
+                    $image = $this->pix_icon($button['formattedimage'], $button['title'], 'moodle', array(
+                        'class' => 'iconsmall',
+                        'role' => 'presentation'
+                    ));
+                    $image .= html_writer::span($button['title'], 'header-button-title');
+                } else {
+                    $image = html_writer::empty_tag('img', array(
+                        'src' => $button['formattedimage'],
+                        'role' => 'presentation'
+                    ));
+                }
+                $html .= html_writer::link($button['url'], html_writer::tag('span', $image), $button['linkattributes']);
+            }
+            $html .= html_writer::end_div();
+        }
+        $html .= html_writer::end_div();
+
+        return $html;
     }
 
 }
