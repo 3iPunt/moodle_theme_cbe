@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
 
 user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
 
-global $CFG, $OUTPUT, $PAGE, $SITE;
+global $CFG, $OUTPUT, $PAGE, $SITE, $USER, $DB;
 
 require_once($CFG->libdir . '/behat/lib.php');
 
@@ -87,6 +87,11 @@ if ($course_page === 'board' ||
     $is_course_blocks = false;
 }
 
+$teacherrole = $DB->get_record('role', array('shortname' => 'editingteacher'));
+$is_teacher = user_has_role_assignment($USER->id, $teacherrole->id);
+
+$user_courses = \theme_cbe\course_user::user_get_courses();
+
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;
@@ -108,6 +113,8 @@ $templatecontext = [
     'navbar_header_course'=> $nav_header_course,
     'is_course_blocks'=> $is_course_blocks,
     'course_page'=> $course_page,
+    'is_teacher'=> $is_teacher,
+    'user_courses'=> $user_courses,
 ];
 
 $nav = $PAGE->flatnav;

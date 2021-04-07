@@ -6,6 +6,12 @@ body[data-theme='cbe'][data-role='user'] {
       padding: 30px;
       border: 1px solid $border-color;
       margin-top: 0;
+      .title_page {
+        font-size: 30px;
+        font-family: $fontbold;
+        color: $black-ligth;
+        margin-bottom: 20px;
+      }
       .filters {
         width: 100%;
         position: relative;
@@ -76,37 +82,6 @@ body[data-theme='cbe'][data-role='user'] {
         td {
           color: $black-ligth;
           vertical-align: middle;
-          .module-component {
-            display: flex;
-            align-items: center;
-            div.modicon {
-              background-color: $primary-color;
-              width: 54px;
-              height: 54px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-right: 10px;
-              border-radius: 27px;
-              img.icon {
-                margin: 0;
-              }
-            }
-            .data {
-              >a.title {
-                color: $black-ligth;
-                &:hover {
-                  color: $primary-color !important;
-                  text-decoration: none;
-                }
-              }
-              >p.section {
-                font-size: 14px;
-                color: $grey-medium;
-                margin: 0;
-              }
-            }
-          }
         }
       }
     }

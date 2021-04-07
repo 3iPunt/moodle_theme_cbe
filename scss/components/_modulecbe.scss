@@ -1,5 +1,54 @@
 body[data-theme='cbe'][data-role="user"] {
 
+  .module-component-cbe {
+    display: flex;
+    align-items: center;
+    div.mod {
+      background-color: $primary-color;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      border-radius: 27px;
+      .icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        margin: 0;
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        &:hover {
+          opacity: 90%;
+        }
+      }
+      &.assign .icon  {
+        background-image: url('[[pix:mod_assign|icon]]');
+      }
+      &.bigbluebuttonbn .icon  {
+        background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+      }
+    }
+    .data {
+      >a.title {
+        color: $black-ligth;
+        font-weight: 600;
+        &:hover {
+          color: $primary-color !important;
+          text-decoration: none;
+        }
+      }
+      >p.section {
+        font-size: 14px;
+        color: $grey-medium;
+        margin: 0;
+      }
+    }
+  }
+
   .modulecbe {
     background-color: white;
     border: 1px solid $grey-border;

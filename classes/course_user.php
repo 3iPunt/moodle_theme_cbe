@@ -28,6 +28,9 @@ global $CFG;
 
 use coding_exception;
 use context_course;
+use moodle_exception;
+use moodle_url;
+use stdClass;
 
 require_once($CFG->dirroot . '/enrol/locallib.php');
 require_once($CFG->dirroot . '/lib/modinfolib.php');
@@ -56,6 +59,25 @@ class course_user  {
     static public function is_teacher(int $courseid, int $userid = null): bool {
         $coursecontext = context_course::instance($courseid);
         return has_capability('moodle/course:update', $coursecontext, $userid);
+    }
+
+    /**
+     * User Get Courses;
+     *
+     * @param int|null $userid
+     * @return stdClass[]
+     * @throws coding_exception|moodle_exception
+     */
+    static public function user_get_courses(): array {
+        $data = [];
+        foreach (enrol_get_my_courses() as $enrolcourse) {
+            $course = new stdClass();
+            $url = new moodle_url('/local/cbe/view_board.php', [ 'id'=> $enrolcourse->id ]);
+            $course->fullname = $enrolcourse->fullname;
+            $course->view_url = $url->out(false);
+            $data[] = $course;
+        }
+        return $data;
     }
 
 }

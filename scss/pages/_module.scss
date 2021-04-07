@@ -5,6 +5,23 @@ body[data-theme='cbe'][data-role='user'] {
       background-color: white;
       border: 1px solid $border-color;
       padding: 30px;
+      div[role="main"] {
+        >h2 {
+          font-size: 28px;
+          font-family: $fontbold;
+          margin: 0 0 0 70px;
+          &:after {
+            content: "";
+            background-color: $primary-color;
+            height: 58px;
+            width: 58px;
+            position: absolute;
+            left: 30px;
+            top: 20px;
+            border-radius: 29px;
+          }
+        }
+      }
     }
   }
 

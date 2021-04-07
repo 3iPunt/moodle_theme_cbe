@@ -85,6 +85,7 @@
                     </svg>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" >
+                    {{# is_teacher }}
                     <ul id="app-admin">
                         <li class="app roles">
                             <a href="#" class="app-link" target="_blank">
@@ -107,6 +108,7 @@
                             </a>
                         </li>
                     </ul>
+                    {{/ is_teacher }}
                     <ul id="app-apps" class="apps">
                         <li class="app cloud">
                             <a href="https://nextcloud.pilotescola.digital" class="app-link" target="_blank">
@@ -292,38 +294,16 @@
                         </li>
                     </ul>
                     <ul id="app-my-courses" class="mycourses">
+                        {{# user_courses }}
                         <li class="app">
-                            <a href="#" class="app-link" target="_blank">
+                            <a href="{{ view_url }}" class="app-link" target="_blank">
                                 <div class="icon">
                                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                 </div>
-                                <div class="text">Catalá</div>
+                                <div class="text">{{ fullname }}</div>
                             </a>
                         </li>
-                        <li class="app">
-                            <a href="#" class="app-link" target="_blank">
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                </div>
-                                <div class="text">Educació física</div>
-                            </a>
-                        </li>
-                        <li class="app">
-                            <a href="#" class="app-link" target="_blank">
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                </div>
-                                <div class="text">Matemàtiques</div>
-                            </a>
-                        </li>
-                        <li class="app">
-                            <a href="#" class="app-link" target="_blank">
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                </div>
-                                <div class="text">Medi Natural</div>
-                            </a>
-                        </li>
+                         {{/ user_courses }}
                     </ul>
                 </div>
             </div>
