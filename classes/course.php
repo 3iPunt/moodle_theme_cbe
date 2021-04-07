@@ -32,6 +32,7 @@ use course_modinfo;
 use dml_exception;
 use moodle_exception;
 use moodle_url;
+use section_info;
 use stdClass;
 use user_picture;
 
@@ -53,13 +54,18 @@ class course  {
     /** @var int Course ID */
     protected $course_id;
 
+    /** @var stdClass Course */
+    protected $course;
+
     /**
      * constructor.
      *
      * @param int $course_id
+     * @throws dml_exception
      */
     public function __construct(int $course_id) {
         $this->course_id = $course_id;
+        $this->course = get_course($this->course_id);
     }
 
     /**
@@ -123,6 +129,54 @@ class course  {
             $row->picture = $pictureurl;
             // TODO: If user has been connected less than 30 minutes ago
             $row->is_connected = true;
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    /**
+     * Get Students.
+     *
+     * @return array
+     * @throws dml_exception
+     * @throws coding_exception
+     */
+    public function get_students(): array {
+        global $PAGE, $DB;
+        $role = $DB->get_record('role', array('shortname' => 'student'));
+        $enrolmanager = new course_enrolment_manager($PAGE, $this->course, $instancefilter = null, $role->id,
+            $searchfilter = '', $groupfilter = 0, $statusfilter = -1);
+        $students = $enrolmanager->get_users(
+            'u.firstname', 'ASC', 0, 0
+        );
+        $data = [];
+        foreach ($students as $student) {
+            $userpicture = new user_picture($student);
+            $userpicture->size = 1;
+            $pictureurl = $userpicture->get_url($PAGE)->out(false);
+            $row = new stdClass();
+            $row->id = $student->id;
+            $row->fullname = fullname($student);
+            $row->picture = $pictureurl;
+            // TODO: If user has been connected less than 30 minutes ago
+            $row->is_connected = true;
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    /**
+     * Get Groups.
+     *
+     * @return array
+     */
+    public function get_groups(): array {
+        $groups = groups_get_all_groups($this->course_id);
+        $data = [];
+        foreach ($groups as $group) {
+            $row = new stdClass();
+            $row->id = $group->id;
+            $row->name = $group->name;
             $data[] = $row;
         }
         return $data;
@@ -195,5 +249,31 @@ class course  {
             $tasks[] = $task;
         }
         return $tasks;
+    }
+
+    /**
+     * Get Section 0.
+     *
+     * @return section_info
+     * @throws coding_exception
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    public function get_section_zero(): section_info {
+        $course = get_course($this->course_id);
+        /** @var course_modinfo $modinfo*/
+        $modinfo = get_fast_modinfo($course->id);
+        $sections = $modinfo->get_section_info_all();
+        $section0 = null;
+        foreach ($sections as $section) {
+            if ($section->section === 0) {
+                $section0 = $section;
+            }
+        }
+        if (is_null($section0)) {
+            throw new moodle_exception(get_string('section_zero_error', 'theme_cbe'));
+        } else {
+            return $section0;
+        }
     }
 }

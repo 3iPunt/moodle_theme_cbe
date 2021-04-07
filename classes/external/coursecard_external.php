@@ -85,7 +85,7 @@ class coursecard_external extends external_api {
         $enrolmanager = new course_enrolment_manager($PAGE, $course, $instancefilter = null, $role->id,
             $searchfilter = '', $groupfilter = 0, $statusfilter = -1);
         $students = $enrolmanager->get_users('id');
-        $view_url = new moodle_url('/local/cbe/view_board.php', ['id'=> $course_id]);
+        $view_url = new moodle_url('/theme/cbe/view_board.php', ['id'=> $course_id]);
         return [
             'role' => $rolename,
             'rolename' => get_string($rolename, 'theme_cbe'),

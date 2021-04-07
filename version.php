@@ -25,11 +25,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'theme_cbe';
-$plugin->release = '0.1.0';
-$plugin->version = 2021040600;
+$plugin->release = '1.0.0';
+$plugin->version = 2021040701;
 $plugin->requires = 2020110900;
 $plugin->maturity = MATURITY_ALPHA;
 $plugin->dependencies = array(
-    'theme_boost' => 2020110900,
-    'local_cbe' => 2021030900
+    'theme_boost' => 2020110900
 );

@@ -1,0 +1,146 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+  }}
+{{!
+  @template theme_cbe/board_page
+
+
+}}
+<div id="board-content" data-region="board-content">
+    {{# is_teacher }}
+    <div id="publicate-module">
+        <div id="create_on_hold">
+            <button type="button" class="btn-tooltip picture" data-toggle="tooltip" data-placement="bottom" title="{{ user.fullname }}">
+                <img class="picture-current" src="{{ user.picture }}" alt="">
+                <div class="online {{# user.is_connected}}connected{{/ user.is_connected }}"></div>
+            </button>
+            <div class="text-action">{{# str }} board_publication, theme_cbe {{/ str }} ...</div>
+            <div class="add-module action"><i class="fa fa-plus" aria-hidden="true"></i></div>
+        </div>
+        <div id="create_ready" data-region="create-ready">
+            <p>{{# str }} share_with, theme_cbe {{/ str }}</p>
+            <div class="form-create">
+                <div class="select_type">
+                    <select name="" class="alumn">
+                        <option value="0">{{# str }} all_students, theme_cbe {{/ str }}</option>
+                        {{# students }}
+                        <option value="{{ id }}">{{ fullname }}</option>
+                        {{/ students }}
+                    </select>
+                    <select name="" class="group">
+                        <option value="0">{{# str }} all_groups, theme_cbe {{/ str }}</option>
+                        {{# groups }}
+                            <option value="{{ id }}">{{ name }}</option>
+                        {{/ groups }}
+                    </select>
+                </div>
+                <div class="comment">
+                    <textarea data-text="comment" name="comment" id="comment" cols="30" rows="10" placeholder="{{# str }} share_comment, theme_cbe {{/ str }}"></textarea>
+                </div>
+                <div class="action_buttons">
+                    <div class="select-module">
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target=".bd-createmodule-modal-lg">
+                            {{# str }} create_module, theme_cbe {{/ str }}
+                        </button>
+                    </div>
+                    <div class="action-publication">
+                        <button id="publicate_cancel" class="btn cancel">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                        <button id="publicate_confirm"  class="btn btn-primary publicate" data-action="publicate">
+                            {{# str }} share, theme_cbe {{/ str }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/ is_teacher }}
+    {{# modules }}
+        <div class="modulecbe {{ modname }}">
+        {{# is_publication }}
+            {{> theme_cbe/publication_board_component }}
+        {{/ is_publication }}
+        {{^ is_publication }}
+            {{> theme_cbe/module_board_component }}
+        {{/ is_publication }}
+        </div>
+    {{/ modules }}
+</div>
+{{# is_teacher }}
+<div class="modal fade bd-createmodule-modal-lg" tabindex="-1" role="dialog" aria-labelledby="createModuleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg cbe-modal">
+        <div class="modal-content">
+            <header>
+                <h1>{{# str }} create_item, theme_cbe {{/ str }}</h1>
+                <p>{{# str }} select_activity_resource, theme_cbe {{/ str }}</p>
+            </header>
+            <main>
+                <div class="column">
+                    <h2>{{# str }} activities_upper, theme_cbe {{/ str }}</h2>
+                        <ul class="select-modules">
+                            {{# create.activities }}
+                            <li class="select-module">
+                                <a href="{{ mod_url }}" class="create-mod">
+                                    <div class="mod-icon {{ modname }}"></div>
+                                    <div class="text">{{ modtitle }}</div>
+                                </a>
+                            </li>
+                            {{/ create.activities}}
+                        </ul>
+                </div>
+                <div class="column">
+                    <h2>{{# str }} resources_upper, theme_cbe {{/ str }}</h2>
+                    <ul class="select-modules">
+                        <li class="select-module video">
+                            {{# create.resources }}
+                                <li class="select-module">
+                                    <a href="{{ mod_url }}" class="create-mod">
+                                        <div class="mod-icon {{ modname }}"></div>
+                                        <div class="text">{{ modtitle }}</div>
+                                    </a>
+                                </li>
+                            {{/ create.resources}}
+                        </li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{{/ is_teacher }}
+{{#js}}
+    require(['jquery'], function($) {
+
+        $( "#create_on_hold" ).click(function() {
+            $( "#create_on_hold" ).hide();
+            $( "#create_ready" ).show();
+        });
+
+        $( "#publicate_cancel" ).click(function() {
+            $( "#create_on_hold" ).show();
+            $( "#create_ready" ).hide();
+        });
+
+    });
+    {{# is_teacher }}
+    require(['theme_cbe/publication'], function(publication) {
+        publication.initPublication('[data-region="create-ready"]', {{ courseid }});
+    });
+    {{/ is_teacher }}
+    require(['theme_cbe/comments'], function(comments) {
+        comments.initComments('[data-region="board-content"]');
+    });
+{{/js}}
+

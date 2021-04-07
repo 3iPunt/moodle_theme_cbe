@@ -83,4 +83,82 @@ class module  {
         return $this->cm;
     }
 
+    /**
+     * Get List Modules.
+     *
+     * @param int $course_id
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    static public function get_list_modules(int $course_id) {
+        return [
+            'activities' => self::get_list_activities($course_id),
+            'resources' => self::get_list_resources($course_id),
+        ];
+    }
+
+    /**
+     * Get List Activities.
+     *
+     * @param int $course_id
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    static public function get_list_activities(int $course_id): array {
+        $activities = [];
+        $activities[] = self::get_mod($course_id, 'assign');
+        $activities[] = self::get_mod($course_id, 'forum');
+        $activities[] = self::get_mod($course_id, 'quiz');
+        $activities[] = self::get_mod($course_id, 'feedback');
+        $activities[] = self::get_mod($course_id, 'bigbluebuttonbn');
+        return $activities;
+    }
+
+    /**
+     * Get List Resources.
+     *
+     * @param int $course_id
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    static public function get_list_resources(int $course_id): array {
+        $activities = [];
+        $activities[] = self::get_mod($course_id, 'tresipuntvideo');
+        $activities[] = self::get_mod($course_id, 'tresipuntaudio');
+        $activities[] = self::get_mod($course_id, 'resource');
+        $activities[] = self::get_mod($course_id, 'url');
+        return $activities;
+    }
+
+    /**
+     * Get Mod for creation.
+     *
+     * @param int $course_id
+     * @param string $modname
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    static public function get_mod(int $course_id, string $modname): array {
+        $params = [
+            'add' => $modname,
+            'type' => '',
+            'course' => $course_id,
+            'section' => 1,
+            'return' => 0,
+            'sr' => 0
+        ];
+        $url = new moodle_url('/course/modedit.php', $params);
+        return [
+            'mod_url' =>$url->out(false),
+            'modname' => $modname,
+            'modtitle' => get_string('pluginname', 'mod_' . $modname)
+        ];
+    }
+
+
+
 }

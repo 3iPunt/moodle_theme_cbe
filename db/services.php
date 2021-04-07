@@ -20,6 +20,7 @@
  */
 
 use theme_cbe\external\coursecard_external;
+use theme_cbe\external\module_external;
 use theme_cbe\external\section_external;
 
 defined('MOODLE_INTERNAL') || die();
@@ -49,12 +50,40 @@ $functions = [
         'ajax' => true,
         'loginrequired' => true
     ],
+    'theme_cbe_publication' => [
+        'classname' => module_external::class,
+        'methodname' => 'publication',
+        'description' => 'Publicate Tresipuntshare module',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_publication_delete' => [
+        'classname' => module_external::class,
+        'methodname' => 'publication_delete',
+        'description' => 'Publicate Tresipuntshare module Delete',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_publication_comment_send' => [
+        'classname' => module_external::class,
+        'methodname' => 'publication_comment_send',
+        'description' => 'Send comment in Tresipuntshare module',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
 ];
 $services = [
     'theme_cbe' => [
         'functions' => [
             'theme_cbe_coursecard_extra',
             'theme_cbe_coursecard_teachers',
+            'theme_cbe_section_create',
+            'theme_cbe_publication',
+            'theme_cbe_publication_delete',
+            'theme_cbe_publication_comment_send',
         ],
         'restrictedusers' => 0,
         'enabled' => 1
