@@ -31,18 +31,18 @@ body[data-theme='cbe'][data-role='user'] {
             height: 70px;
             width: 70px;
             border-radius: 35px;
-            border: 1px solid $grey-medium;
+            border: 3px solid white;
             margin-right: 20px;
           }
           .online {
-            height: 10px;
-            width: 10px;
-            border-radius: 5px;
+            height: 14px;
+            width: 14px;
+            border-radius: 7px;
             background-color: darkgrey;
-            border: 1px solid $grey-medium;
+            border: 2px solid white;
             position: absolute;
             right: 26px;
-            bottom: 4px;
+            bottom: 1px;
             &.connected {
               background-color: #0f9a0f;
             }
