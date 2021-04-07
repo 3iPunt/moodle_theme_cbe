@@ -152,7 +152,7 @@ class course_user  {
         $data = [];
         foreach (enrol_get_my_courses() as $enrolcourse) {
             $course = new stdClass();
-            $url = new moodle_url('/theme/cbe/view_board.php', [ 'id'=> $enrolcourse->id ]);
+            $url = new moodle_url('/' . course_navigation::PAGE_BOARD, [ 'id'=> $enrolcourse->id ]);
             $course->fullname = $enrolcourse->fullname;
             $course->view_url = $url->out(false);
             $data[] = $course;

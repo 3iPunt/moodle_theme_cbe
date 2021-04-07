@@ -342,7 +342,7 @@ class core_renderer extends \core_renderer {
                 $in_course = true;
                 $course_page = course_navigation::get_navigation_page();
                 $courseimage = $coursecbe->get_courseimage();
-                $teachers = $coursecbe->get_teachers();
+                $teachers = $coursecbe->get_users_by_role('editingteacher');
                 $coursename = $coursecbe->get_name();
                 $coursecategory = $coursecbe->get_category();
                 $is_teacher = has_capability('moodle/course:update', $coursecontext);
@@ -356,7 +356,7 @@ class core_renderer extends \core_renderer {
                 $in_course = true;
                 $course_page = course_navigation::get_navigation_page();
                 $courseimage = $coursecbe->get_courseimage();
-                $teachers = $coursecbe->get_teachers();
+                $teachers = $coursecbe->get_users_by_role('editingteacher');
                 $coursename = $coursecbe->get_name();
                 $coursecategory = $coursecbe->get_category();
                 $is_teacher = has_capability('moodle/course:update', $coursecontext);

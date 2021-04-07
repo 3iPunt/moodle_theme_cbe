@@ -72,21 +72,19 @@ class course  {
      * Get Name.
      *
      * @return string
-     * @throws dml_exception
      */
-    function get_name(): string {
-        return get_course($this->course_id)->fullname;
+    public function get_name(): string {
+        return $this->course->fullname;
     }
 
     /**
      * Get Category.
      *
      * @return string
-     * @throws dml_exception
      * @throws moodle_exception
      */
-    function get_category(): string {
-        $category_id = get_course($this->course_id)->category;
+    public function get_category(): string {
+        $category_id = $this->course->category;
         $category = core_course_category::get($category_id);
         return $category->get_formatted_name();
     }
@@ -97,66 +95,33 @@ class course  {
      * @return string
      * @throws dml_exception
      */
-    function get_courseimage(): string {
-        $course = get_course($this->course_id);
-        return course_summary_exporter::get_course_image($course);;
+    public function get_courseimage(): string {
+        return course_summary_exporter::get_course_image($this->course);
     }
 
     /**
-     * Get Teachers.
+     * Get Users by role.
      *
      * @return array
      * @throws dml_exception
      * @throws coding_exception
      */
-    public function get_teachers(): array {
+    public function get_users_by_role(string $role): array {
         global $PAGE, $DB;
-        $course = get_course($this->course_id);
-        $role = $DB->get_record('role', array('shortname' => 'editingteacher'));
-        $enrolmanager = new course_enrolment_manager($PAGE, $course, $instancefilter = null, $role->id,
+        $role = $DB->get_record('role', array('shortname' => $role));
+        $enrolmanager = new course_enrolment_manager($PAGE, $this->course, $instancefilter = null, $role->id,
             $searchfilter = '', $groupfilter = 0, $statusfilter = -1);
-        $teachers = $enrolmanager->get_users(
+        $users = $enrolmanager->get_users(
             'u.lastname', 'ASC', 0, 0
         );
         $data = [];
-        foreach ($teachers as $teacher) {
-            $userpicture = new user_picture($teacher);
+        foreach ($users as $item) {
+            $userpicture = new user_picture($item);
             $userpicture->size = 1;
             $pictureurl = $userpicture->get_url($PAGE)->out(false);
             $row = new stdClass();
-            $row->id = $teacher->id;
-            $row->fullname = fullname($teacher);
-            $row->picture = $pictureurl;
-            // TODO: If user has been connected less than 30 minutes ago
-            $row->is_connected = true;
-            $data[] = $row;
-        }
-        return $data;
-    }
-
-    /**
-     * Get Students.
-     *
-     * @return array
-     * @throws dml_exception
-     * @throws coding_exception
-     */
-    public function get_students(): array {
-        global $PAGE, $DB;
-        $role = $DB->get_record('role', array('shortname' => 'student'));
-        $enrolmanager = new course_enrolment_manager($PAGE, $this->course, $instancefilter = null, $role->id,
-            $searchfilter = '', $groupfilter = 0, $statusfilter = -1);
-        $students = $enrolmanager->get_users(
-            'u.firstname', 'ASC', 0, 0
-        );
-        $data = [];
-        foreach ($students as $student) {
-            $userpicture = new user_picture($student);
-            $userpicture->size = 1;
-            $pictureurl = $userpicture->get_url($PAGE)->out(false);
-            $row = new stdClass();
-            $row->id = $student->id;
-            $row->fullname = fullname($student);
+            $row->id = $item->id;
+            $row->fullname = fullname($item);
             $row->picture = $pictureurl;
             // TODO: If user has been connected less than 30 minutes ago
             $row->is_connected = true;
@@ -185,22 +150,19 @@ class course  {
     /**
      * Get Themes.
      *
-     * @throws dml_exception
      * @throws moodle_exception
      */
     public function get_themes(): array {
-
         $param = optional_param('section', null, PARAM_INT);
-
-        $course = get_course($this->course_id);
         /** @var course_modinfo $modinfo */
-        $modinfo = get_fast_modinfo($course->id);
+        $modinfo = get_fast_modinfo($this->course->id);
         $sections = $modinfo->get_section_info_all();
         $themes = array();
         foreach ($sections as $section) {
             if ($section->section > 0) {
                 if (is_null($section->name)) {
-                    $name = get_string('sectionname', 'format_'.$course->format) . ' ' . $section->section;
+                    $name = get_string('sectionname', 'format_'.
+                            $this->course->format) . ' ' . $section->section;
                 } else {
                     $name = $section->name;
                 }
@@ -225,15 +187,13 @@ class course  {
      * Get Pending Tasks.
      *
      * @return array
-     * @throws dml_exception
      * @throws coding_exception
      * @throws moodle_exception
      */
-    public function get_pending_tasks () {
+    public function get_pending_tasks (): array {
         global $CFG, $PAGE;
         require_once($CFG->dirroot.'/calendar/lib.php');
-        $course = get_course($this->course_id);
-        $calendar = \calendar_information::create(time(), $this->course_id, $course->category);
+        $calendar = \calendar_information::create(time(), $this->course_id, $this->course->category);
         list($data, $template) = calendar_get_view($calendar, 'upcoming_mini');
         $tasks = [];
         foreach ($data->events as $event) {
@@ -256,13 +216,11 @@ class course  {
      *
      * @return section_info
      * @throws coding_exception
-     * @throws dml_exception
      * @throws moodle_exception
      */
     public function get_section_zero(): section_info {
-        $course = get_course($this->course_id);
         /** @var course_modinfo $modinfo*/
-        $modinfo = get_fast_modinfo($course->id);
+        $modinfo = get_fast_modinfo($this->course->id);
         $sections = $modinfo->get_section_info_all();
         $section0 = null;
         foreach ($sections as $section) {
@@ -276,4 +234,5 @@ class course  {
             return $section0;
         }
     }
+
 }

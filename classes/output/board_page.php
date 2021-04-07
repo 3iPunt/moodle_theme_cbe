@@ -91,7 +91,7 @@ class board_page implements renderable, templatable {
         $data->is_teacher = has_capability('moodle/course:update', $coursecontext);
         $data->modules = $course_user->get_modules();
         $data->create = module::get_list_modules($this->course_id);
-        $data->students = $course_cbe->get_students();
+        $data->students = $course_cbe->get_users_by_role('student');
         $data->groups = $course_cbe->get_groups();;
         return $data;
     }

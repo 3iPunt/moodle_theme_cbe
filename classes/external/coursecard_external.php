@@ -131,7 +131,7 @@ class coursecard_external extends external_api {
         $PAGE->set_context($context);
         $course = new course($course_id);
 
-        $course_teachers = $course->get_teachers();
+        $course_teachers = $course->get_users_by_role('editingteacher');
         $teachers = [];
 
         foreach ($course_teachers as $course_teacher) {

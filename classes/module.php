@@ -26,18 +26,9 @@ namespace theme_cbe;
 
 use cm_info;
 use coding_exception;
-use core_availability\info_module;
-use core_course\external\course_summary_exporter;
-use core_course_category;
-use course_enrolment_manager;
-use course_modinfo;
-use dml_exception;
-use mod_assign\plugininfo\assignfeedback;
-use mod_quiz\plugininfo\quiz;
 use moodle_exception;
 use moodle_url;
 use stdClass;
-use user_picture;
 
 global $CFG;
 require_once($CFG->dirroot . '/enrol/locallib.php');
@@ -62,6 +53,12 @@ class module  {
 
     /** @var stdClass Course Moodle*/
     protected $coursemoodle;
+
+    /** @var string[] Activities */
+    static protected $activities = ['assign', 'forum', 'quiz', 'feedback', 'bigbluebuttonbn'];
+
+    /** @var string[] Resources */
+    static protected $resources = ['tresipuntvideo', 'tresipuntaudio', 'resource', 'url'];
 
     /**
      * constructor.
@@ -91,7 +88,7 @@ class module  {
      * @throws coding_exception
      * @throws moodle_exception
      */
-    static public function get_list_modules(int $course_id) {
+    static public function get_list_modules(int $course_id): array {
         return [
             'activities' => self::get_list_activities($course_id),
             'resources' => self::get_list_resources($course_id),
@@ -108,11 +105,9 @@ class module  {
      */
     static public function get_list_activities(int $course_id): array {
         $activities = [];
-        $activities[] = self::get_mod($course_id, 'assign');
-        $activities[] = self::get_mod($course_id, 'forum');
-        $activities[] = self::get_mod($course_id, 'quiz');
-        $activities[] = self::get_mod($course_id, 'feedback');
-        $activities[] = self::get_mod($course_id, 'bigbluebuttonbn');
+        foreach (self::$activities as $activity) {
+            $activities[] = self::get_mod($course_id, $activity);
+        }
         return $activities;
     }
 
@@ -125,12 +120,11 @@ class module  {
      * @throws moodle_exception
      */
     static public function get_list_resources(int $course_id): array {
-        $activities = [];
-        $activities[] = self::get_mod($course_id, 'tresipuntvideo');
-        $activities[] = self::get_mod($course_id, 'tresipuntaudio');
-        $activities[] = self::get_mod($course_id, 'resource');
-        $activities[] = self::get_mod($course_id, 'url');
-        return $activities;
+        $resources = [];
+        foreach (self::$resources as $resource) {
+            $resources[] = self::get_mod($course_id, $resource);
+        }
+        return $resources;
     }
 
     /**
