@@ -6,10 +6,10 @@ body[data-theme='cbe'][data-role='user'] {
       border: 1px solid $border-color;
       padding: 30px;
       div[role="main"] {
-        >h2 {
+        >h2,>h3 {
           font-size: 28px;
           font-family: $fontbold;
-          margin: 0 0 0 70px;
+          margin: 0 0 24px 70px;
           &:after {
             content: "";
             background-color: $primary-color;
@@ -19,8 +19,83 @@ body[data-theme='cbe'][data-role='user'] {
             left: 30px;
             top: 20px;
             border-radius: 29px;
+            background-size: 30px;
+            background-position: center;
+            background-repeat: no-repeat;
           }
         }
+      }
+    }
+  }
+
+  &#page-mod-assign-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_assign|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-forum-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_forum|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-quiz-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_quiz|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-feedback-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_feedback|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-bigbluebuttonbn-view {
+    div[role="main"]>h3 {
+      &:after {
+        background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-tresipuntvideo-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_tresipuntvideo|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-tresipuntaudio-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_tresipuntaudio|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-resource-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_resource|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-url-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_url|icon]]');
       }
     }
   }
