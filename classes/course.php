@@ -32,6 +32,7 @@ use course_modinfo;
 use dml_exception;
 use moodle_exception;
 use moodle_url;
+use section_info;
 use stdClass;
 use user_picture;
 
@@ -53,34 +54,37 @@ class course  {
     /** @var int Course ID */
     protected $course_id;
 
+    /** @var stdClass Course */
+    protected $course;
+
     /**
      * constructor.
      *
      * @param int $course_id
+     * @throws dml_exception
      */
     public function __construct(int $course_id) {
         $this->course_id = $course_id;
+        $this->course = get_course($this->course_id);
     }
 
     /**
      * Get Name.
      *
      * @return string
-     * @throws dml_exception
      */
-    function get_name(): string {
-        return get_course($this->course_id)->fullname;
+    public function get_name(): string {
+        return $this->course->fullname;
     }
 
     /**
      * Get Category.
      *
      * @return string
-     * @throws dml_exception
      * @throws moodle_exception
      */
-    function get_category(): string {
-        $category_id = get_course($this->course_id)->category;
+    public function get_category(): string {
+        $category_id = $this->course->category;
         $category = core_course_category::get($category_id);
         return $category->get_formatted_name();
     }
@@ -91,35 +95,33 @@ class course  {
      * @return string
      * @throws dml_exception
      */
-    function get_courseimage(): string {
-        $course = get_course($this->course_id);
-        return course_summary_exporter::get_course_image($course);;
+    public function get_courseimage(): string {
+        return course_summary_exporter::get_course_image($this->course);
     }
 
     /**
-     * Get Teachers.
+     * Get Users by role.
      *
      * @return array
      * @throws dml_exception
      * @throws coding_exception
      */
-    public function get_teachers(): array {
+    public function get_users_by_role(string $role): array {
         global $PAGE, $DB;
-        $course = get_course($this->course_id);
-        $role = $DB->get_record('role', array('shortname' => 'editingteacher'));
-        $enrolmanager = new course_enrolment_manager($PAGE, $course, $instancefilter = null, $role->id,
+        $role = $DB->get_record('role', array('shortname' => $role));
+        $enrolmanager = new course_enrolment_manager($PAGE, $this->course, $instancefilter = null, $role->id,
             $searchfilter = '', $groupfilter = 0, $statusfilter = -1);
-        $teachers = $enrolmanager->get_users(
+        $users = $enrolmanager->get_users(
             'u.lastname', 'ASC', 0, 0
         );
         $data = [];
-        foreach ($teachers as $teacher) {
-            $userpicture = new user_picture($teacher);
+        foreach ($users as $item) {
+            $userpicture = new user_picture($item);
             $userpicture->size = 1;
             $pictureurl = $userpicture->get_url($PAGE)->out(false);
             $row = new stdClass();
-            $row->id = $teacher->id;
-            $row->fullname = fullname($teacher);
+            $row->id = $item->id;
+            $row->fullname = fullname($item);
             $row->picture = $pictureurl;
             // TODO: If user has been connected less than 30 minutes ago
             $row->is_connected = true;
@@ -129,24 +131,38 @@ class course  {
     }
 
     /**
+     * Get Groups.
+     *
+     * @return array
+     */
+    public function get_groups(): array {
+        $groups = groups_get_all_groups($this->course_id);
+        $data = [];
+        foreach ($groups as $group) {
+            $row = new stdClass();
+            $row->id = $group->id;
+            $row->name = $group->name;
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    /**
      * Get Themes.
      *
-     * @throws dml_exception
      * @throws moodle_exception
      */
     public function get_themes(): array {
-
         $param = optional_param('section', null, PARAM_INT);
-
-        $course = get_course($this->course_id);
         /** @var course_modinfo $modinfo */
-        $modinfo = get_fast_modinfo($course->id);
+        $modinfo = get_fast_modinfo($this->course->id);
         $sections = $modinfo->get_section_info_all();
         $themes = array();
         foreach ($sections as $section) {
             if ($section->section > 0) {
                 if (is_null($section->name)) {
-                    $name = get_string('sectionname', 'format_'.$course->format) . ' ' . $section->section;
+                    $name = get_string('sectionname', 'format_'.
+                            $this->course->format) . ' ' . $section->section;
                 } else {
                     $name = $section->name;
                 }
@@ -171,15 +187,13 @@ class course  {
      * Get Pending Tasks.
      *
      * @return array
-     * @throws dml_exception
      * @throws coding_exception
      * @throws moodle_exception
      */
-    public function get_pending_tasks () {
+    public function get_pending_tasks (): array {
         global $CFG, $PAGE;
         require_once($CFG->dirroot.'/calendar/lib.php');
-        $course = get_course($this->course_id);
-        $calendar = \calendar_information::create(time(), $this->course_id, $course->category);
+        $calendar = \calendar_information::create(time(), $this->course_id, $this->course->category);
         list($data, $template) = calendar_get_view($calendar, 'upcoming_mini');
         $tasks = [];
         foreach ($data->events as $event) {
@@ -196,4 +210,29 @@ class course  {
         }
         return $tasks;
     }
+
+    /**
+     * Get Section 0.
+     *
+     * @return section_info
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    public function get_section_zero(): section_info {
+        /** @var course_modinfo $modinfo*/
+        $modinfo = get_fast_modinfo($this->course->id);
+        $sections = $modinfo->get_section_info_all();
+        $section0 = null;
+        foreach ($sections as $section) {
+            if ($section->section === 0) {
+                $section0 = $section;
+            }
+        }
+        if (is_null($section0)) {
+            throw new moodle_exception(get_string('section_zero_error', 'theme_cbe'));
+        } else {
+            return $section0;
+        }
+    }
+
 }

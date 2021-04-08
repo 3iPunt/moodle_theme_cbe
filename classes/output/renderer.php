@@ -25,6 +25,7 @@ namespace theme_cbe\output;
 
 defined('MOODLE_INTERNAL') || die;
 
+use theme_cbe\output\tasks_page;
 use moodle_exception;
 use plugin_renderer_base;
 
@@ -61,6 +62,71 @@ class renderer extends plugin_renderer_base {
     public function render_course_left_section_component(course_left_section_component $component): string {
         $data = $component->export_for_template($this);
         return parent::render_from_template('theme_cbe/course_left_section_component', $data);
+    }
+
+    /**
+     * Defer to template.
+     *
+     * @param participants_page $page
+     *
+     * @return string html for the page
+     * @throws moodle_exception
+     */
+    public function render_participants_page(participants_page $page): string {
+        $data = $page->export_for_template($this);
+        return parent::render_from_template('theme_cbe/participants_page', $data);
+    }
+
+    /**
+     * Defer to template.
+     *
+     * @param tasks_page $page
+     *
+     * @return string html for the page
+     * @throws moodle_exception
+     */
+    public function render_tasks_page(tasks_page $page): string {
+        $data = $page->export_for_template($this);
+        return parent::render_from_template('theme_cbe/tasks_page', $data);
+    }
+
+    /**
+     * User Component.
+     *
+     * @param user_component $component
+     *
+     * @return string html for the page
+     * @throws moodle_exception
+     */
+    public function render_user_component(user_component $component): string {
+        $data = $component->export_for_template($this);
+        return parent::render_from_template('theme_cbe/user_component', $data);
+    }
+
+    /**
+     * Module Component.
+     *
+     * @param user_component $component
+     *
+     * @return string html for the page
+     * @throws moodle_exception
+     */
+    public function render_module_component(module_component $component): string {
+        $data = $component->export_for_template($this);
+        return parent::render_from_template('theme_cbe/module_component', $data);
+    }
+
+    /**
+     * Defer to template.
+     *
+     * @param board_page $page
+     *
+     * @return string html for the page
+     * @throws moodle_exception
+     */
+    public function render_board_page(board_page $page): string {
+        $data = $page->export_for_template($this);
+        return parent::render_from_template('theme_cbe/board_page', $data);
     }
 
 }

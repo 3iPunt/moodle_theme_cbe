@@ -1,0 +1,80 @@
+<div class="item-mod">
+    <div class="mod">
+        <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ author_fullname }}">
+            <img class="picture" src="{{ author_picture }}" alt="">
+            <span class="online {{# author_is_connected }}connected{{/ author_is_connected }}"></span>
+        </button>
+    </div>
+    <div class="text">
+        <div class="name">{{ author_fullname }}</div>
+        <div class="added">{{ added }}</div>
+        <div class="publication">{{ comment }}</div>
+    </div>
+    {{# is_teacher }}
+    <button data-toggle="modal" data-target=".bd-deletemodule-modal-lg" class="edit-module action"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    {{/ is_teacher }}
+</div>
+
+<div class="to_comment" data-region="comments">
+    {{# has_comments }}
+        <div class="comments-block">
+            <div class="expand-comments">
+                <button class="expand-comments" data-comment="{{ id }}" data-action="expand">
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <button class="contract-comments" data-comment="{{ id }}" data-action="contract">
+                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="comments" data-comment="{{ id }}">
+                {{# comments }}
+                    <li class="comment">
+                        <div class="picture-current">
+                            <img src="{{ user_picture }}" alt="{{ fullname }}">
+                        </div>
+                        <div class="bocata">
+                            <p class="fullname">{{ fullname }}</p>
+                            <p class="date">{{ date }}</p>
+                            <p class="comment-text">{{{ text }}}</p>
+                            <div class="triangle"></div>
+                        </div>
+                    </li>
+                {{/ comments }}
+            </ul>
+        </div>
+    {{/ has_comments }}
+    <div class="action_comment" data-region="send">
+        <img class="picture-current" src="{{ user.picture }}" alt="">
+        <input data-text="comment" class="comment" type="text" placeholder="{{# str }} board_comment_placeholder, theme_cbe {{/ str }} …">
+        <button class="send" data-action="send-comment"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+    </div>
+</div>
+
+<div data-region="modal-delete" data-cmid="{{ id }}" class="modal fade bd-deletemodule-modal-lg" tabindex="-1" role="dialog" aria-labelledby="deleteModuleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg cbe-modal">
+        <div class="modal-content">
+            <header>
+                <h1>{{# str }} delete_post, theme_cbe {{/ str }}</h1>
+                <p>{{# str }} sure_delete, theme_cbe {{/ str }}</p>
+                <p>{{# str }} sure_delete_detail, theme_cbe {{/ str }}</p>
+            </header>
+            <footer class="modal-footer">
+                <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                <button class="btn btn-primary delete" data-action="delete" >
+                    {{# str }} confirm, theme_cbe {{/ str }}
+                </button>
+            </footer>
+        </div>
+    </div>
+</div>
+
+{{#js}}
+    {{# is_teacher }}
+        require(['theme_cbe/comment_delete'], function(commentdelete) {
+            commentdelete.initCommentDelete('[data-region="modal-delete"][data-cmid="{{ id }}"]', {{ id }});
+        });
+    {{/ is_teacher }}
+    require(['theme_cbe/comment_send'], function(commentsend) {
+        commentsend.initCommentSend('[data-region="send"]', {{ id }});
+    });
+{{/js}}

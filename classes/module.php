@@ -26,18 +26,9 @@ namespace theme_cbe;
 
 use cm_info;
 use coding_exception;
-use core_availability\info_module;
-use core_course\external\course_summary_exporter;
-use core_course_category;
-use course_enrolment_manager;
-use course_modinfo;
-use dml_exception;
-use mod_assign\plugininfo\assignfeedback;
-use mod_quiz\plugininfo\quiz;
 use moodle_exception;
 use moodle_url;
 use stdClass;
-use user_picture;
 
 global $CFG;
 require_once($CFG->dirroot . '/enrol/locallib.php');
@@ -63,6 +54,12 @@ class module  {
     /** @var stdClass Course Moodle*/
     protected $coursemoodle;
 
+    /** @var string[] Activities */
+    static protected $activities = ['assign', 'forum', 'quiz', 'feedback', 'bigbluebuttonbn'];
+
+    /** @var string[] Resources */
+    static protected $resources = ['tresipuntvideo', 'tresipuntaudio', 'resource', 'url'];
+
     /**
      * constructor.
      *
@@ -82,5 +79,80 @@ class module  {
     public function get_cm_info(): cm_info {
         return $this->cm;
     }
+
+    /**
+     * Get List Modules.
+     *
+     * @param int $course_id
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    static public function get_list_modules(int $course_id): array {
+        return [
+            'activities' => self::get_list_activities($course_id),
+            'resources' => self::get_list_resources($course_id),
+        ];
+    }
+
+    /**
+     * Get List Activities.
+     *
+     * @param int $course_id
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    static public function get_list_activities(int $course_id): array {
+        $activities = [];
+        foreach (self::$activities as $activity) {
+            $activities[] = self::get_mod($course_id, $activity);
+        }
+        return $activities;
+    }
+
+    /**
+     * Get List Resources.
+     *
+     * @param int $course_id
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    static public function get_list_resources(int $course_id): array {
+        $resources = [];
+        foreach (self::$resources as $resource) {
+            $resources[] = self::get_mod($course_id, $resource);
+        }
+        return $resources;
+    }
+
+    /**
+     * Get Mod for creation.
+     *
+     * @param int $course_id
+     * @param string $modname
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    static public function get_mod(int $course_id, string $modname): array {
+        $params = [
+            'add' => $modname,
+            'type' => '',
+            'course' => $course_id,
+            'section' => 1,
+            'return' => 0,
+            'sr' => 0
+        ];
+        $url = new moodle_url('/course/modedit.php', $params);
+        return [
+            'mod_url' =>$url->out(false),
+            'modname' => $modname,
+            'modtitle' => get_string('pluginname', 'mod_' . $modname)
+        ];
+    }
+
+
 
 }
