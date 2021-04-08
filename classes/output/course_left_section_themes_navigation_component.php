@@ -32,6 +32,7 @@ use stdClass;
 use templatable;
 use theme_cbe\course;
 use theme_cbe\course_navigation;
+use theme_cbe\course_user;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -64,13 +65,13 @@ class course_left_section_themes_navigation_component implements renderable, tem
      * @throws moodle_exception
      */
     public function export_for_template(renderer_base $output): stdClass {
-
         $course_cbe = new course($this->course_id);
-
         $data = new stdClass();
         $data->title = get_string('course_navigation', 'theme_cbe');
         $data->view_all = new moodle_url('/course/view.php', ['id'=> $this->course_id]);
         $data->themes = $course_cbe->get_themes();
+        $data->is_teacher = course_user::is_teacher($this->course_id);
+        $data->courseid = $this->course_id;
         return $data;
     }
 }

@@ -1,0 +1,20 @@
+<div class="item-mod">
+    <div class="mod" data-toggle="tooltip" data-placement="top" title="{{ modfullname }}">
+        <a class="icon" href="{{ view_href }}"></a>
+    </div>
+    <div class="text">
+        <div class="name"><a href="{{ view_href }}">{{ name }}</a></div>
+        <div class="added">{{ added }}</div>
+    </div>
+    {{# is_teacher }}
+        <a href="{{ edit_href }}" class="edit-module action"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+    {{/ is_teacher }}
+    {{^ is_teacher }}
+        <a href="{{ view_href }}" class="view-module action"><i class="fa fa-eye" aria-hidden="true"></i></a>
+    {{/ is_teacher }}
+</div>
+{{#js}}
+    require(['jquery'], function($) {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+{{/js}}

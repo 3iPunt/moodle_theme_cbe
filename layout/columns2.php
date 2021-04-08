@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
 
 user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
 
-global $CFG, $OUTPUT, $PAGE, $SITE;
+global $CFG, $OUTPUT, $PAGE, $SITE, $USER, $DB;
 
 require_once($CFG->libdir . '/behat/lib.php');
 
@@ -47,7 +47,21 @@ if ($navdraweropen) {
 switch ($PAGE->context->contextlevel) {
     case CONTEXT_COURSE:
         $in_course = true;
+        $in_course_module = false;
         $course_id = $PAGE->context->instanceid;
+        $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+        $nav_header_course_component = new course_header_navbar_component($course_id);
+        $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
+        $course_left_menu_component = new course_left_section_component($course_id);
+        $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
+        $course_page = course_navigation::get_navigation_page();
+        break;
+    case CONTEXT_MODULE:
+        $in_course = true;
+        $in_course_module = true;
+        $cmid = $PAGE->context->instanceid;
+        list($course, $cm) = get_course_and_cm_from_cmid($cmid);
+        $course_id = $course->id;
         $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
         $nav_header_course_component = new course_header_navbar_component($course_id);
         $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
@@ -57,17 +71,26 @@ switch ($PAGE->context->contextlevel) {
         break;
     default:
         $in_course = false;
+        $in_course_module = false;
         $nav_header_course = '';
         $course_page = '';
         $course_left_menu = false;
         $course_page = '';
 }
 
-if ($course_page === 'board' || $course_page === 'themes') {
+if ($course_page === 'board' ||
+    $course_page === 'themes' ||
+    $course_page === 'moreinfo' ||
+    $course_page === 'module') {
     $is_course_blocks = true;
 } else {
     $is_course_blocks = false;
 }
+
+$teacherrole = $DB->get_record('role', array('shortname' => 'editingteacher'));
+$is_teacher = user_has_role_assignment($USER->id, $teacherrole->id);
+
+$user_courses = \theme_cbe\course_user::user_get_courses();
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
@@ -90,6 +113,8 @@ $templatecontext = [
     'navbar_header_course'=> $nav_header_course,
     'is_course_blocks'=> $is_course_blocks,
     'course_page'=> $course_page,
+    'is_teacher'=> $is_teacher,
+    'user_courses'=> $user_courses,
 ];
 
 $nav = $PAGE->flatnav;

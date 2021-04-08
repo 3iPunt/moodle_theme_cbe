@@ -1,0 +1,103 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  #page-content.course #region-main-box {
+    #region-main.in_course[data-region="module"] {
+      background-color: white;
+      border: 1px solid $border-color;
+      padding: 30px;
+      div[role="main"] {
+        >h2,>h3 {
+          font-size: 28px;
+          font-family: $fontbold;
+          margin: 0 0 24px 70px;
+          &:after {
+            content: "";
+            background-color: $primary-color;
+            height: 58px;
+            width: 58px;
+            position: absolute;
+            left: 30px;
+            top: 20px;
+            border-radius: 29px;
+            background-size: 30px;
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+        }
+      }
+    }
+  }
+
+  &#page-mod-assign-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_assign|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-forum-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_forum|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-quiz-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_quiz|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-feedback-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_feedback|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-bigbluebuttonbn-view {
+    div[role="main"]>h3 {
+      &:after {
+        background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-tresipuntvideo-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_tresipuntvideo|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-tresipuntaudio-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_tresipuntaudio|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-resource-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_resource|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-url-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_url|icon]]');
+      }
+    }
+  }
+
+}

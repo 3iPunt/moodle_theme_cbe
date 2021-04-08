@@ -2,30 +2,92 @@ body[data-theme='cbe'][data-role='user'] {
 
   div[data-region='vclasses'] {
 
-    header.moreinfo-header {
-      background-color: #fff;
-      padding: 22px;
-      border: 1px solid $border-color;
-      box-shadow: $shadow-color 0 3px 6px;
-      border-radius: 0;
-      margin-top: 7px;
-      .title {
-        font-size: 44px;
-        font-weight: 600;
-        letter-spacing: 1px;
-      }
-      .subtitle {
-        font-size: 23px;
-        color: $grey-medium;
-        margin-bottom: 4px;
-      }
-    }
-
     main.contain {
       background-color: white;
       padding: 30px;
       border: 1px solid $border-color;
-      margin-top: 20px;
+      margin-top: 0;
+      .title_page {
+        font-size: 30px;
+        font-family: $fontbold;
+        color: $black-ligth;
+        margin-bottom: 20px;
+      }
+      .filters {
+        width: 100%;
+        position: relative;
+        i.fa.fa-search {
+          position: absolute;
+          top: 8px;
+          right: 11px;
+          font-size: 20px;
+          color: #d9d9d9;
+        }
+      }
+      .resettable a {
+        background-color: white;
+        border: 1px solid $primary-color;
+        padding: 4px 10px;
+        display: inline-flex;
+        margin-bottom: 10px;
+        &:hover {
+          text-decoration: none;
+          background-color: $primary-color;
+          color: white;
+        }
+      }
+      table.generaltable {
+        th {
+          position: relative;
+          a {
+            color: $black-ligth;
+            &:hover {
+              color: $primary-color !important;
+              text-decoration: none;
+            }
+          }
+          >i.icon {
+            color: $primary-color;
+            position: relative;
+            top: 9px;
+            left: 4px;
+            font-size: 24px;
+            &.fa-sort-desc {
+              top: 0;
+            }
+          }
+          .commands {
+            position: absolute;
+            top: 18px;
+            right: 11px;
+            >a {
+              color: #ccc;
+              border: 1px solid #ccc;
+              padding: 2px 2px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 20px;
+              &:hover {
+                border: 1px solid $primary-color;
+              }
+              >i.icon {
+                margin: 0;
+                font-size: 12px;
+                width: 12px;
+                height: 12px;
+              }
+            }
+          }
+        }
+        td {
+          color: $black-ligth;
+          vertical-align: middle;
+          .moderators {
+            display: flex;
+          }
+        }
+      }
     }
 
   }

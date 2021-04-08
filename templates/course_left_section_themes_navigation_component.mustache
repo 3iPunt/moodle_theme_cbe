@@ -2,12 +2,10 @@
 <h3 class="title">{{ title }}</h3>
 {{/ title }}
 <div class="themes-navigation">
-
     <a id="view_alls" href="{{ view_all }}">
         <i class="fa fa-eye" aria-hidden="true"></i>
         <span>{{# str }} course_navigation_view_all, theme_cbe {{/ str }}</span>
     </a>
-
     <ul class="themes">
         {{# themes }}
         <li class="theme {{# active }}active{{/ active }}">
@@ -15,14 +13,58 @@
         </li>
         {{/ themes }}
     </ul>
-
-
-    <a id="create_theme">
+    {{# is_teacher }}
+    <button id="create_theme" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target=".bd-createsection-modal-lg">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         <span>{{# str }} course_navigation_create_theme, theme_cbe {{/ str }}</span>
-    </a>
-
-
-
-
+    </button>
+    {{/ is_teacher }}
 </div>
+{{# is_teacher }}
+<div class="modal fade bd-createsection-modal-lg" tabindex="-1" role="dialog" aria-labelledby="createSectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg cbe-modal">
+        <div class="modal-content">
+            <header>
+                <h1>{{# str }} creation_theme, theme_cbe {{/ str }}</h1>
+                <p>{{# str }} create_theme_detail, theme_cbe {{/ str }}</p>
+            </header>
+            <main data-region="modal-create-section">
+                <label class="label-create" for="name">{{# str }} theme_name, theme_cbe {{/ str }}:</label>
+                <input class="input-create" type="text" id="section-name-input" data-txt="name" placeholder="{{# str }} write_name_theme, theme_cbe {{/ str }}">
+                <hr>
+                <label class="label-create" for="name">{{# str }} select_position, theme_cbe {{/ str }}:</label>
+                <ul class="themes-create" data-region="themes">
+                    {{# themes }}
+                        <li class="theme-create">
+                            <div class="position">
+                                <input type="radio" name="position" class="select-position" value="{{ section }}">
+                                <label class="here">{{# str }} here, theme_cbe {{/ str }}</label>
+                            </div>
+                            <span class="section-name-create">{{ name }}</span>
+                        </li>
+                    {{/ themes }}
+                    <div class="position last">
+                        <input type="radio" name="position" class="select-position" value="0" checked>
+                        <label class="here">{{# str }} here, theme_cbe {{/ str }}</label>
+                    </div>
+                </ul>
+                <hr>
+                <div class="action-buttons">
+                    <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                    <button class="btn btn-primary" data-action="createsection">
+                        {{# str }} create_theme, theme_cbe {{/ str }}
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{{/ is_teacher }}
+
+{{#js}}
+    {{# is_teacher }}
+        require(['theme_cbe/createsection'], function(createsection) {
+            createsection.initCreatesection('[data-region="modal-create-section"]', {{ courseid }});
+        });
+    {{/ is_teacher }}
+{{/js}}

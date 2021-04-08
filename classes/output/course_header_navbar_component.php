@@ -67,7 +67,7 @@ class course_header_navbar_component implements renderable, templatable {
         $url_board = new moodle_url('/' . course_navigation::PAGE_BOARD, ['id'=> $this->course_id]);
         $url_themes = new moodle_url('/' . course_navigation::PAGE_THEMES, ['id'=> $this->course_id]);
         $url_tasks = new moodle_url('/' . course_navigation::PAGE_TASKS, ['id'=> $this->course_id]);
-        $url_more_info = new moodle_url('/' . course_navigation::PAGE_MOREINFO, ['id'=> $this->course_id, 'section' => 0]);
+        $url_more_info = new moodle_url('/' . course_navigation::PAGE_MOREINFO, ['id'=> $this->course_id]);
 
         $data = new stdClass();
         $data->board = [
