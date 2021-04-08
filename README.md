@@ -2,6 +2,14 @@
 
 Tema para el proyecto del Consorci d'Educació de Barcelona.
 
+## Instalation
+
+Copy project inside Moodle folder
+
+```
+/theme/cbe/
+```
+
 ## License ##
 
 2021 Tresipunt
