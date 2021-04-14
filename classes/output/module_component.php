@@ -77,7 +77,7 @@ class module_component implements renderable, templatable {
         $data->modfullname = $this->cm->modfullname;
         $data->name = $this->cm->name;
         $data->view_url = new moodle_url('/mod/' . $this->cm->modname. '/view.php', ['id'=> $this->cm->id]);;
-        $data->sectionname = get_section_name(3, $this->cm->sectionnum);
+        $data->sectionname = get_section_name($this->course->id, $this->cm->sectionnum);
         return $data;
     }
 }
