@@ -123,7 +123,7 @@ class course  {
             $row->id = $item->id;
             $row->fullname = fullname($item);
             $row->picture = $pictureurl;
-            // TODO: If user has been connected less than 30 minutes ago
+            // TODO: If user has been connected less than 10 minutes ago
             $row->is_connected = true;
             $data[] = $row;
         }
