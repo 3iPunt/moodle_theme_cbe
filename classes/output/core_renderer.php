@@ -40,6 +40,7 @@ use pix_icon;
 use renderer_base;
 use stdClass;
 use theme_cbe\course;
+use theme_cbe\course_module_navigation;
 use theme_cbe\course_navigation;
 
 defined('MOODLE_INTERNAL') || die();
@@ -340,7 +341,7 @@ class core_renderer extends \core_renderer {
                 $coursecontext = context_course::instance($courseid);
                 $coursecbe = new course($courseid);
                 $in_course = true;
-                $course_page = course_navigation::get_navigation_page();
+                $cbe_page = course_navigation::get_navigation_page();
                 $courseimage = $coursecbe->get_courseimage();
                 $teachers = $coursecbe->get_users_by_role('editingteacher');
                 $coursename = $coursecbe->get_name();
@@ -354,7 +355,7 @@ class core_renderer extends \core_renderer {
                 $coursecontext = context_course::instance($courseid);
                 $coursecbe = new course($courseid);
                 $in_course = true;
-                $course_page = course_navigation::get_navigation_page();
+                $cbe_page = course_module_navigation::get_navigation_page();
                 $courseimage = $coursecbe->get_courseimage();
                 $teachers = $coursecbe->get_users_by_role('editingteacher');
                 $coursename = $coursecbe->get_name();
@@ -363,7 +364,7 @@ class core_renderer extends \core_renderer {
                 break;
             default:
                 $in_course = false;
-                $course_page = '';
+                $cbe_page = '';
                 $courseimage = '';
                 $is_teacher = false;
                 $teachers = [];
@@ -377,17 +378,17 @@ class core_renderer extends \core_renderer {
         $is_generic = false;
         $is_default = false;
 
-        if ($course_page === 'board') {
+        if ($cbe_page === 'board') {
             $is_board = true;
-        } else if ($course_page === 'themes') {
+        } else if ($cbe_page === 'themes') {
             $is_themes = true;
         } else if (
-            $course_page === 'tasks' ||
-            $course_page === 'vclasses' ||
-            $course_page === 'moreinfo' ||
-            $course_page === 'module') {
+            $cbe_page === 'tasks' ||
+            $cbe_page === 'vclasses' ||
+            $cbe_page === 'moreinfo' ||
+            $cbe_page === 'module') {
             $is_custom= true;
-        } else if ($course_page === 'generic') {
+        } else if ($cbe_page === 'generic') {
             $is_generic = true;
         } else {
             $is_default = true;

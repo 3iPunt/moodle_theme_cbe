@@ -22,6 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use theme_cbe\course_module_navigation;
 use theme_cbe\course_navigation;
 use theme_cbe\output\course_header_navbar_component;
 use theme_cbe\output\course_left_section_component;
@@ -67,9 +68,9 @@ switch ($PAGE->context->contextlevel) {
         $course_id = $course->id;
         $nav_header_course_component = new course_header_navbar_component($course_id);
         $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
-        $course_left_menu_component = new course_left_section_component($course_id);
+        $course_left_menu_component = new course_left_section_component($course_id, $cmid);
         $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
-        $course_page = course_navigation::get_navigation_page();
+        $course_page = course_module_navigation::get_navigation_page();
         break;
     default:
         $in_course = false;

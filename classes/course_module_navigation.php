@@ -15,65 +15,49 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class course_left_section_component
+ * Class course_module_navigation
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_cbe\output;
+namespace theme_cbe;
 
 use coding_exception;
-use renderable;
-use renderer_base;
 use stdClass;
-use templatable;
-use theme_cbe\course_module_navigation;
-use theme_cbe\course_navigation;
+use theme_cbe\output\course_left_section_menu_component;
+use theme_cbe\output\course_left_section_pending_tasks_component;
+use theme_cbe\output\course_left_section_themes_navigation_component;
 
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * Class course_left_section_component
+ * Class course_module_navigation
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class course_left_section_component implements renderable, templatable {
-
-    /** @var int Course ID */
-    protected $course_id;
-
-    /** @var int Course Module ID */
-    protected $cm_id;
+class course_module_navigation extends navigation {
 
     /**
-     * constructor.
-     *
-     * @param int $course_id
-     * @param int|null $cm_id
-     */
-    public function __construct(int $course_id, int $cm_id = null) {
-        $this->course_id = $course_id;
-        $this->cm_id = $cm_id;
+    * Get Navigation Page.
+    *
+    * @return string
+    */
+    static function get_navigation_page(): string {
+        return 'module';
     }
 
     /**
-     * Export for template.
+     * Left Section
      *
-     * @param renderer_base $output
-     * @return stdClass
+     * @param int $course_id
+     * @return array
      * @throws coding_exception
      */
-    public function export_for_template(renderer_base $output): stdClass {
-        $data = new stdClass();
-        if (empty($this->cm_id)) {
-            $data->sections = course_navigation::left_section($this->course_id);
-        } else {
-            $data->sections = course_module_navigation::left_section($this->course_id);
-        }
-        return $data;
+    static function left_section(int $course_id): array {
+        return self::left_section_themes($course_id);
     }
 }

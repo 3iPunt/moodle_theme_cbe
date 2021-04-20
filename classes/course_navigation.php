@@ -25,7 +25,6 @@
 namespace theme_cbe;
 
 use coding_exception;
-use stdClass;
 use theme_cbe\output\course_left_section_menu_component;
 use theme_cbe\output\course_left_section_pending_tasks_component;
 use theme_cbe\output\course_left_section_themes_navigation_component;
@@ -39,7 +38,7 @@ defined('MOODLE_INTERNAL') || die;
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class course_navigation  {
+class course_navigation extends navigation {
 
     const PAGE_BOARD = 'theme/cbe/view_board.php';
     const PAGE_THEMES = 'course/view.php';
@@ -65,8 +64,6 @@ class course_navigation  {
             return 'vclasses';
         } else if (strpos($path, self::PAGE_MOREINFO)) {
             return 'moreinfo';
-        } else if (strpos($path, 'mod/')) {
-            return 'module';
         } else if (strpos($path, 'grade') ||
                    strpos($path, 'user') ||
                    strpos($path, 'calendar') ||
@@ -112,83 +109,11 @@ class course_navigation  {
             return [];
         } else if (strpos($path, self::PAGE_MOREINFO)) {
             return self::left_section_themes($course_id);
-        } else if (strpos($path, 'mod/')) {
-            return self::left_section_board($course_id);
         } else if (strpos($path, 'grade')) {
             return [];
         } else {
             return [];
         }
-    }
-
-    /**
-     * Left Section Board in Course.
-     *
-     * @param int $course_id
-     * @return array
-     * @throws coding_exception
-     */
-    static function left_section_board(int $course_id): array {
-        $sections = [];
-        $sections[] = self::section_pending_tasks($course_id);
-        $sections[] = self::section_menu_left($course_id);
-        return $sections;
-    }
-
-    /**
-     * Left Section Themes in Course.
-     *
-     * @param int $course_id
-     * @return array
-     * @throws coding_exception
-     */
-    static function left_section_themes(int $course_id): array {
-        $sections = [];
-        $sections[] = self::section_themes_navigation($course_id);
-        $sections[] = self::section_menu_left($course_id);
-        return $sections;
-    }
-
-    /**
-     * Section Themes Navigation.
-     *
-     * @param int $course_id
-     * @return bool|string
-     * @throws coding_exception
-     */
-    static function section_themes_navigation(int $course_id){
-        global $PAGE;
-        $output = $PAGE->get_renderer('theme_cbe');
-        $renderer = new course_left_section_themes_navigation_component($course_id);
-        return $output->render($renderer);
-    }
-
-    /**
-     * Section Pending Tasks.
-     *
-     * @param int $course_id
-     * @return bool|string
-     * @throws coding_exception
-     */
-    static function section_pending_tasks(int $course_id){
-        global $PAGE;
-        $output = $PAGE->get_renderer('theme_cbe');
-        $renderer = new course_left_section_pending_tasks_component($course_id);
-        return $output->render($renderer);
-    }
-
-    /**
-     * Section Menu Left.
-     *
-     * @param int $course_id
-     * @return bool|string
-     * @throws coding_exception
-     */
-    static function section_menu_left(int $course_id) {
-        global $PAGE;
-        $output = $PAGE->get_renderer('theme_cbe');
-        $renderer = new course_left_section_menu_component($course_id);
-        return $output->render($renderer);
     }
 
 }
