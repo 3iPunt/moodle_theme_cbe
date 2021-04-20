@@ -1,0 +1,37 @@
+body[data-theme='cbe'][data-role='user'].pagelayout-admin {
+
+  #page-content.course {
+    #region-main-box {
+      #region-main.in_course[data-region="module"]  {
+        div[role="main"]>h2 {
+          margin: 0 0 24px 33px;
+          img.icon {
+            position: relative;
+            left: -18px;
+            font-size: 37px;
+            width: 30px;
+            height: 30px;
+            z-index: 20;
+          }
+          >i.icon {
+            position: relative;
+            left: -22px;
+            top: 1px;
+            font-size: 37px;
+            width: 30px;
+            height: 30px;
+            z-index: 20;
+            color: white;
+          }
+          >a.btn {
+            margin-left: 18px;
+            >i.icon {
+              font-size: 24px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

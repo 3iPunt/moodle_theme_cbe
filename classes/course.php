@@ -153,7 +153,18 @@ class course  {
      * @throws moodle_exception
      */
     public function get_themes(): array {
-        $param = optional_param('section', null, PARAM_INT);
+        global $PAGE;
+        $section_current = null;
+        switch ($PAGE->context->contextlevel) {
+            case CONTEXT_COURSE:
+                $section_current = optional_param('section', null, PARAM_INT);
+                break;
+            case CONTEXT_MODULE:
+                $cmid = $PAGE->context->instanceid;
+                list($course, $cm) = get_course_and_cm_from_cmid($cmid);
+                $section_current = intval($cm->sectionnum);
+                break;
+        }
         /** @var course_modinfo $modinfo */
         $modinfo = get_fast_modinfo($this->course->id);
         $sections = $modinfo->get_section_info_all();
@@ -176,7 +187,7 @@ class course  {
                 $theme->section = $section->section;
                 $theme->name = $name;
                 $theme->href = $href->out(false);
-                $theme->active = $param === $section->section;
+                $theme->active = $section_current === $section->section;
                 $themes[] = $theme;
             }
         }
@@ -191,7 +202,7 @@ class course  {
      * @throws moodle_exception
      */
     public function get_pending_tasks (): array {
-        global $CFG, $PAGE;
+        global $CFG;
         require_once($CFG->dirroot.'/calendar/lib.php');
         $calendar = \calendar_information::create(time(), $this->course_id, $this->course->category);
         list($data, $template) = calendar_get_view($calendar, 'upcoming_mini');

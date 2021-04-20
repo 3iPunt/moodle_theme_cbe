@@ -6,6 +6,11 @@ body[data-theme='cbe'][data-role='user'] {
         background-color: white;
         padding: 30px;
         border: 1px solid $border-color;
+        div[role="main"]>h2 {
+          font-size: 28px;
+          font-family: $fontbold;
+          margin-bottom: 24px;
+        }
       }
     }
   }
