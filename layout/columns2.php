@@ -25,6 +25,7 @@
 use theme_cbe\course_navigation;
 use theme_cbe\output\course_header_navbar_component;
 use theme_cbe\output\course_left_section_component;
+use theme_cbe\output\menu_apps_button;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -44,12 +45,14 @@ if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
 
+
+$output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+
 switch ($PAGE->context->contextlevel) {
     case CONTEXT_COURSE:
         $in_course = true;
         $in_course_module = false;
         $course_id = $PAGE->context->instanceid;
-        $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
         $nav_header_course_component = new course_header_navbar_component($course_id);
         $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
         $course_left_menu_component = new course_left_section_component($course_id);
@@ -62,7 +65,6 @@ switch ($PAGE->context->contextlevel) {
         $cmid = $PAGE->context->instanceid;
         list($course, $cm) = get_course_and_cm_from_cmid($cmid);
         $course_id = $course->id;
-        $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
         $nav_header_course_component = new course_header_navbar_component($course_id);
         $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
         $course_left_menu_component = new course_left_section_component($course_id);
@@ -87,10 +89,11 @@ if ($course_page === 'board' ||
     $is_course_blocks = false;
 }
 
+$menu_apps_button_component = new menu_apps_button();
+$menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
+
 $teacherrole = $DB->get_record('role', array('shortname' => 'editingteacher'));
 $is_teacher = user_has_role_assignment($USER->id, $teacherrole->id);
-
-$user_courses = \theme_cbe\course_user::user_get_courses();
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
@@ -114,7 +117,7 @@ $templatecontext = [
     'is_course_blocks'=> $is_course_blocks,
     'course_page'=> $course_page,
     'is_teacher'=> $is_teacher,
-    'user_courses'=> $user_courses,
+    'menu_apps_button'=> $menu_apps_button,
 ];
 
 $nav = $PAGE->flatnav;
