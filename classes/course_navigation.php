@@ -64,11 +64,12 @@ class course_navigation extends navigation {
             return 'vclasses';
         } else if (strpos($path, self::PAGE_MOREINFO)) {
             return 'moreinfo';
+        } else if (strpos($path, 'course/modedit')) {
+            return 'modedit';
         } else if (strpos($path, 'grade') ||
                    strpos($path, 'user') ||
                    strpos($path, 'calendar') ||
                    strpos($path, 'contentbank') ||
-                   strpos($path, 'course/modedit') ||
                    strpos($path, 'course/edit'
                    )) {
             return 'generic';
@@ -108,6 +109,8 @@ class course_navigation extends navigation {
         } else if (strpos($path, self::PAGE_VCLASSES)) {
             return [];
         } else if (strpos($path, self::PAGE_MOREINFO)) {
+            return self::left_section_themes($course_id);
+        } else if (strpos($path, 'course/modedit')) {
             return self::left_section_themes($course_id);
         } else if (strpos($path, 'grade')) {
             return [];

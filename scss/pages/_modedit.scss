@@ -2,10 +2,11 @@ body[data-theme='cbe'][data-role='user'].pagelayout-admin {
 
   #page-content.course {
     #region-main-box {
-      #region-main.in_course[data-region="module"]  {
+      #region-main.in_course[data-region="module"],
+      #region-main.in_course[data-region="modedit"]  {
         div[role="main"]>h2 {
           margin: 0 0 24px 33px;
-          img.icon {
+          >img.icon {
             position: relative;
             left: -18px;
             font-size: 37px;

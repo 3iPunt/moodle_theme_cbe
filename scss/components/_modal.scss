@@ -72,6 +72,9 @@ body[data-theme='cbe'][data-role="user"] {
                   &.bigbluebuttonbn {
                     background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
                   }
+                  &.page {
+                    background-image: url('[[pix:mod_page|icon]]');
+                  }
                 }
                 .text {
                   padding-left: 20px;

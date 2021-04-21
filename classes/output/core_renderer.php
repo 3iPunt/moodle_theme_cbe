@@ -386,6 +386,7 @@ class core_renderer extends \core_renderer {
             $cbe_page === 'tasks' ||
             $cbe_page === 'vclasses' ||
             $cbe_page === 'moreinfo' ||
+            $cbe_page === 'modedit' ||
             $cbe_page === 'module') {
             $is_custom= true;
         } else if ($cbe_page === 'generic') {

@@ -142,6 +142,9 @@ body[data-theme='cbe'][data-role="user"] {
     &.bigbluebuttonbn .mod .icon  {
       background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
     }
+    &.page .mod .icon  {
+      background-image: url('[[pix:mod_page|icon]]');
+    }
     .to_comment {
       bottom: -60px;
       background-color: white;

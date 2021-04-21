@@ -64,7 +64,7 @@ class module  {
     static protected $activities = ['assign', 'forum', 'quiz', 'feedback', 'bigbluebuttonbn'];
 
     /** @var string[] Resources */
-    static protected $resources = ['tresipuntvideo', 'tresipuntaudio', 'resource', 'url'];
+    static protected $resources = ['tresipuntvideo', 'tresipuntaudio', 'resource', 'url', 'page'];
 
     /**
      * constructor.
