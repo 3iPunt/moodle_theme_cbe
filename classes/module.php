@@ -195,13 +195,12 @@ class module  {
         $module->is_publication = true;
         $module->comment = $this->cm->name;
         $author_id = $publication->get_teacher();
-        $author = core_user::get_user($author_id);
-        $authorpicture = new user_picture($author);
-        $authorpicture->size = 1;
-        $author_picture = $authorpicture->get_url($PAGE)->out(false);
-        $module->author_fullname = fullname($author);
-        $module->author_picture = $author_picture;
-        $module->author_is_connected = true;
+        $author_cbe = new user($author_id);
+        $author = $author_cbe->export();
+        $module->author = $author;
+        //$module->author_fullname = fullname($author);
+        //$module->author_picture = $author_picture;
+        //$module->author_is_connected = true;
         $module->comments = $publication->get_comments();
         $module->has_comments = count($publication->get_comments()) > 0;
         if ($author_id === $USER->id) {

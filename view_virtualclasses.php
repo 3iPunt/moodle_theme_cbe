@@ -40,7 +40,7 @@ $course = get_course($id);
 
 if (isset($course)) {
     $PAGE->set_context(context_course::instance($id));
-    $PAGE->set_title($title);
+    $PAGE->set_title($course->fullname . ': '. $title);
     $PAGE->set_heading($title);
     $PAGE->set_url('/theme/cbe/view_virtualclasses.php', array('id' => $id ));
     $output = $PAGE->get_renderer('theme_cbe');

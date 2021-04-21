@@ -25,7 +25,6 @@
         <div id="create_on_hold">
             <button type="button" class="btn-tooltip picture" data-toggle="tooltip" data-placement="bottom" title="{{ user.fullname }}">
                 <img class="picture-current" src="{{ user.picture }}" alt="">
-                <div class="online {{# user.is_connected}}connected{{/ user.is_connected }}"></div>
             </button>
             <div class="text-action">{{# str }} board_publication, theme_cbe {{/ str }} ...</div>
             <div class="add-module action"><i class="fa fa-plus" aria-hidden="true"></i></div>

@@ -1,164 +1,182 @@
-#page-mod-tresipuntvideo-view[data-theme='cbe'][data-role="user"],
-#page-theme-cbe-view_board[data-theme='cbe'][data-role="user"] {
-  #region-main-box {
-    div[role="main"] {
-      padding: 0;
+#page-mod-tresipuntvideo-view[data-theme='cbe'][data-role="user"]  #region-main-box,
+#page-theme-cbe-view_board[data-theme='cbe'][data-role="user"]  #region-main-box .modulecbe.tresipuntvideo,
+#page-course-view-topics[data-theme='cbe'][data-role="user"] .activity.tresipuntvideo {
+
+  div[role="main"] {
+    padding: 0;
+  }
+  #videointro {
+    padding: 0;
+    margin: 0 20px 0;
+    p.videodetails {
+      display: none;
     }
-    #videointro {
-      padding: 0;
-      margin: 0 20px 0;
-      p.videodetails {
+  }
+  .resourcecontent {
+    margin: 60px 60px 30px;
+    border: 4px solid #929292;
+    .mediaplugin {
+      margin: 0;
+      > video.video-js {
         display: none;
       }
-    }
-    .resourcecontent {
-      margin: 60px;
-      border: 4px solid #929292;
-      .mediaplugin {
-        margin: 0;
-        > video.video-js {
-          display: none;
+      > div {
+        max-width: 100% !important;
+      }
+      .video-js {
+        height: 100%;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .vjs-tech {
+          position: relative;
         }
-        > div {
-          max-width: 100% !important;
-        }
-        .video-js {
+        .vjs-big-play-button {
+          position: absolute;
+          top: inherit;
+          left: inherit;
+          border: none;
+          background-color: transparent;
+          width: 100%;
           height: 100%;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          .vjs-tech {
-            position: relative;
-          }
-          .vjs-big-play-button {
-            position: absolute;
-            top: inherit;
-            left: inherit;
-            border: none;
-            width: 45px;
-            background-color: transparent;
-            .vjs-icon-placeholder {
-              &::before {
-                font-size: 90px;
-                color: grey;
-                content: '';
-                background: url("[[pix:theme_cbe|video_play_start]]") no-repeat 0/45px 45px;
-              }
+          overflow: hidden;
+          border-radius: 0;
+          .vjs-icon-placeholder {
+            background: rgb(146,146,146);
+            background: linear-gradient( 0deg, rgb(0 0 0 / 0%) -20%, rgb(0 0 0 / 32%) 50%, rgb(0 0 0 / 0%) 100% );
+            display: flex;
+            width: 100%;
+            height: 100%;
+            &::before {
+              font-size: 90px;
+              color: grey;
+              content: '';
+              background: url("[[pix:theme_cbe|video_play_start]]") no-repeat 0/75px 75px;
+              position: relative;
+              left: 44%;
             }
           }
-          .vjs-control-bar {
-            background-color: $grey-medium;
-            .vjs-volume-menu-button-horizontal {
-              &:focus {
-              }
+        }
+        .vjs-control-bar {
+          background-color: $grey-medium;
+          bottom: -1px;
+          .vjs-volume-menu-button-horizontal {
+            &:focus {
             }
-            .vjs-play-control {
-              &:hover {
-                &::before {
-                }
-              }
+          }
+          .vjs-play-control {
+            &:hover {
               &::before {
               }
             }
-            .vjs-paused {
-              &:hover {
-                &::before {
-                }
-              }
+            &::before {
+            }
+          }
+          .vjs-paused {
+            &:hover {
               &::before {
               }
             }
-            .vjs-volume-menu-button {
-              &:hover {
+            &::before {
+            }
+          }
+          .vjs-volume-menu-button {
+            &:hover {
+              &:before {
+              }
+            }
+            &.vjs-vol-0 {
+
+              &::before {
+              }
+            }
+            &.vjs-vol-1 {
+              &::before {
+              }
+            }
+            &.vjs-vol-2 {
+              &::before {
+              }
+            }
+            &.vjs-vol-3 {
+              &::before {
+              }
+            }
+            &:hover {
+              .vjs-menu-content {
+              }
+            }
+            &::before {
+            }
+            .vjs-menu {
+              .vjs-menu-content {
+                .vjs-volume-bar.vjs-slider-horizontal {
+                  background-color: rgb(66 66 66 / 50%);
+                  .vjs-volume-level {
+                  }
+                }
+              }
+            }
+          }
+          .vjs-remaining-time-display {
+          }
+          .vjs-current-time {
+          }
+          .vjs-time-divider {
+          }
+          .vjs-duration {
+          }
+          .vjs-progress-control {
+            &:hover {
+              .vjs-progress-holder {
+                background-color: rgb(224 224 224 / 50%);
+              }
+            }
+            .vjs-progress-holder {
+              background-color: rgb(224 224 224 / 50%);
+              .vjs-load-progress {
+                background: rgb(80 80 80 / 50%);
+                > div {
+                  background: rgb(93 93 93 / 75%);
+                }
+              }
+              .vjs-play-progress {
+                background-color: $primary-color;
                 &:before {
                 }
               }
-              &.vjs-vol-0 {
+            }
 
-                &::before {
-                }
-              }
-              &.vjs-vol-1 {
-                &::before {
-                }
-              }
-              &.vjs-vol-2 {
-                &::before {
-                }
-              }
-              &.vjs-vol-3 {
-                &::before {
-                }
-              }
-              &:hover {
-                .vjs-menu-content {
-                }
-              }
-              &::before {
-              }
-              .vjs-menu {
-                .vjs-menu-content {
-                  .vjs-volume-bar.vjs-slider-horizontal {
-                    background-color: rgb(66 66 66 / 50%);
-                    .vjs-volume-level {
-                    }
-                  }
-                }
-              }
+          }
+          .vjs-fullscreen-control {
+            &:hover {
             }
-            .vjs-remaining-time-display {
-            }
-            .vjs-current-time {
-            }
-            .vjs-time-divider {
-            }
-            .vjs-duration {
-            }
-            .vjs-progress-control {
-              &:hover {
-                .vjs-progress-holder {
-                  background-color: rgb(224 224 224 / 50%);
-                }
-              }
-              .vjs-progress-holder {
-                background-color: rgb(224 224 224 / 50%);
-                .vjs-load-progress {
-                  background: rgb(80 80 80 / 50%);
-                  > div {
-                    background: rgb(93 93 93 / 75%);
-                  }
-                }
-                .vjs-play-progress {
-                  background-color: $primary-color;
-                  &:before {
-                  }
-                }
-              }
-
-            }
-            .vjs-fullscreen-control {
-              &:hover {
-              }
-              &::before {
-              }
+            &::before {
             }
           }
-          .vjs-text-track-display {
-          }
-          &.vjs-fullscreen {
-            .vjs-fullscreen-control::before {
-            }
+        }
+        .vjs-text-track-display {
+        }
+        &.vjs-fullscreen {
+          .vjs-fullscreen-control::before {
           }
         }
       }
     }
   }
+
 }
 
-#page-theme-cbe-view_board[data-theme='cbe'][data-role="user"] {
+#page-theme-cbe-view_board[data-theme='cbe'][data-role="user"]  {
   .resourcecontent {
     margin: 30px 200px !important;
+  }
+}
+
+#page-course-view-topics[data-theme='cbe'][data-role="user"] .activity.tresipuntvideo {
+  .resourcecontent {
+    margin: 0 60px 22px !important;
   }
 }

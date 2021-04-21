@@ -31,10 +31,8 @@ use course_enrolment_manager;
 use course_modinfo;
 use dml_exception;
 use moodle_exception;
-use moodle_url;
 use section_info;
 use stdClass;
-use user_picture;
 
 global $CFG;
 require_once($CFG->dirroot . '/enrol/locallib.php');
@@ -93,7 +91,6 @@ class course  {
      * Get Courseimage.
      *
      * @return string
-     * @throws dml_exception
      */
     public function get_courseimage(): string {
         return course_summary_exporter::get_course_image($this->course);
@@ -102,9 +99,10 @@ class course  {
     /**
      * Get Users by role.
      *
+     * @param string $role
      * @return array
-     * @throws dml_exception
      * @throws coding_exception
+     * @throws dml_exception
      */
     public function get_users_by_role(string $role): array {
         global $PAGE, $DB;
@@ -116,16 +114,8 @@ class course  {
         );
         $data = [];
         foreach ($users as $item) {
-            $userpicture = new user_picture($item);
-            $userpicture->size = 1;
-            $pictureurl = $userpicture->get_url($PAGE)->out(false);
-            $row = new stdClass();
-            $row->id = $item->id;
-            $row->fullname = fullname($item);
-            $row->picture = $pictureurl;
-            // TODO: If user has been connected less than 10 minutes ago
-            $row->is_connected = true;
-            $data[] = $row;
+            $user_cbe = new user($item->id, $item);
+            $data[] = $user_cbe->export();
         }
         return $data;
     }
@@ -171,22 +161,8 @@ class course  {
         $themes = array();
         foreach ($sections as $section) {
             if ($section->section > 0) {
-                if (is_null($section->name)) {
-                    $name = get_string('sectionname', 'format_'.
-                            $this->course->format) . ' ' . $section->section;
-                } else {
-                    $name = $section->name;
-                }
-
-                $href = new moodle_url('/course/view.php', [
-                    'id'=> $this->course_id, 'section' => $section->section
-                ]);
-
-                $theme = new stdClass();
-                $theme->id = $section->id;
-                $theme->section = $section->section;
-                $theme->name = $name;
-                $theme->href = $href->out(false);
+                $theme_cbe = new theme($section, $this->course);
+                $theme = $theme_cbe->export();
                 $theme->active = $section_current === $section->section;
                 $themes[] = $theme;
             }

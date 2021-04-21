@@ -31,6 +31,7 @@ use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
+use theme_cbe\user;
 use user_picture;
 
 defined('MOODLE_INTERNAL') || die;
@@ -67,20 +68,12 @@ class user_component implements renderable, templatable {
      * @param renderer_base $output
      * @return stdClass
      * @throws coding_exception
+     * @throws dml_exception
      */
     public function export_for_template(renderer_base $output): stdClass {
-        global $PAGE;
-        $userpicture = new user_picture($this->user);
-        $userpicture->size = 1;
-        $pictureurl = $userpicture->get_url($PAGE)->out(false);
-        $now = time();
-        $lastaccess = $this->user->lastaccess;
-
         $data = new stdClass();
-        $data->fullname = fullname($this->user);
-        $data->isonline = $now - (int)$lastaccess < 900;
-        $data->userid = $this->user->id;
-        $data->pictureurl = $pictureurl;
+        $user_cbe = new user($this->user->id, $this->user);
+        $data->user = $user_cbe->export();
         $data->courseid = $this->course_id;
         return $data;
     }
