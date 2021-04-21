@@ -51,17 +51,18 @@ define([
          */
         function CommentDelete(region, cmid) {
             this.cmid = cmid;
-            this.node = $(region);
+            this.node = $(region + '[data-cmid="' + cmid +'"]');
             this.node.find(ACTION.DELETE_BUTTON).on('click', this.onDeleteButtonClick.bind(this));
         }
 
         CommentDelete.prototype.onDeleteButtonClick = function (e) {
-            var request = {
+            const request = {
                 methodname: SERVICES.PUBLICATION_DELETE,
                 args: {
                     cmid: this.cmid
                 }
             };
+            console.log(request);
             Ajax.call([request])[0].done(function(response) {
                 location.reload();
             }).fail(Notification.exception);

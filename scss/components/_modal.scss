@@ -159,4 +159,13 @@ body[data-theme='cbe'][data-role="user"] {
     }
   }
 
+  .bd-deletemodule-modal {
+    .modal-comment {
+      background-color: $grey-light;
+      border-radius: 20px;
+      padding: 20px;
+      font-style: italic;
+    }
+  }
+
 }

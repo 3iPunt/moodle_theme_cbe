@@ -12,7 +12,9 @@
     </div>
     {{# is_teacher }}
         {{# is_mine }}
-        <button data-toggle="modal" data-target=".bd-deletemodule-modal-lg" class="edit-module action"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <button data-toggle="modal" data-target=".bd-deletemodule-modal-lg-{{ id }}" class="edit-module action">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
         {{/ is_mine }}
     {{/ is_teacher }}
 </div>
@@ -52,23 +54,28 @@
     </div>
 </div>
 
-<div data-region="modal-delete" data-cmid="{{ id }}" class="modal fade bd-deletemodule-modal-lg" tabindex="-1" role="dialog" aria-labelledby="deleteModuleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg cbe-modal">
-        <div class="modal-content">
-            <header>
-                <h1>{{# str }} delete_post, theme_cbe {{/ str }}</h1>
-                <p>{{# str }} sure_delete, theme_cbe {{/ str }}</p>
-                <p>{{# str }} sure_delete_detail, theme_cbe {{/ str }}</p>
-            </header>
-            <footer class="modal-footer">
-                <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
-                <button class="btn btn-primary delete" data-action="delete" >
-                    {{# str }} confirm, theme_cbe {{/ str }}
-                </button>
-            </footer>
+{{# is_teacher }}
+    {{# is_mine }}
+    <div data-region="modal-delete" data-cmid="{{ id }}" class="modal fade bd-deletemodule-modal bd-deletemodule-modal-lg-{{ id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModuleModalLabel-{{ id }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg cbe-modal">
+            <div class="modal-content">
+                <header>
+                    <h1>{{# str }} delete_post, theme_cbe {{/ str }}</h1>
+                    <p>{{# str }} sure_delete, theme_cbe {{/ str }}</p>
+                    <p>{{# str }} sure_delete_detail, theme_cbe {{/ str }}</p>
+                    <p class="modal-comment">"{{{ comment }}}"</p>
+                </header>
+                <footer class="modal-footer">
+                    <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                    <button class="btn btn-primary delete" data-action="delete" >
+                        {{# str }} confirm, theme_cbe {{/ str }}
+                    </button>
+                </footer>
+            </div>
         </div>
     </div>
-</div>
+    {{/ is_mine }}
+{{/ is_teacher }}
 
 {{#js}}
     {{# is_teacher }}
