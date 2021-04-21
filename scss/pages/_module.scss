@@ -1,7 +1,8 @@
 body[data-theme='cbe'][data-role='user'] {
 
   #page-content.course #region-main-box {
-    #region-main.in_course[data-region="module"] {
+    #region-main.in_course[data-region="module"],
+    #region-main.in_course[data-region="modedit"]  {
       background-color: white;
       border: 1px solid $border-color;
       padding: 30px;
@@ -96,6 +97,14 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_url|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-page-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_page|icon]]');
       }
     }
   }

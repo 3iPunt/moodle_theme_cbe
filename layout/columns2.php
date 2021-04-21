@@ -84,6 +84,7 @@ switch ($PAGE->context->contextlevel) {
 if ($course_page === 'board' ||
     $course_page === 'themes' ||
     $course_page === 'moreinfo' ||
+    $course_page === 'modedit'  ||
     $course_page === 'module') {
     $is_course_blocks = true;
 } else {

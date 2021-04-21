@@ -88,6 +88,9 @@ body[data-theme='cbe'][data-role='user'] {
                   &.forum {
                     background-image: url('[[pix:mod_forum|icon]]');
                   }
+                  &.page {
+                    background-image: url('[[pix:mod_page|icon]]');
+                  }
                 }
                 .data {
                   display: flex;
