@@ -59,28 +59,31 @@ define([
         function CommentSend(region, cmid) {
             this.cmid = cmid;
             this.node = $(region);
-            this.node.find(TEXT.SEND_TEXT).on('keyup', this.onTextChange.bind(this));
-            this.node.find(ACTION.SEND_BUTTON).on('click', this.onSendButtonClick.bind(this));
+            this.text = TEXT.SEND_TEXT + '[data-cmid="' + cmid + '"]';
+            this.send_button = ACTION.SEND_BUTTON + '[data-cmid="' + cmid + '"]';
+            this.node.find(this.text).on('keyup', this.onTextChange.bind(this));
+            this.node.find(this.send_button).on('click', this.onSendButtonClick.bind(this));
         }
 
         CommentSend.prototype.onTextChange = function (e) {
-            if (this.node.find(TEXT.SEND_TEXT).val().trim() !== '') {
-                this.node.find(ACTION.SEND_BUTTON).show();
+            if (this.node.find(this.text).val().trim() !== '') {
+                this.node.find(this.send_button).show();
             } else {
-                this.node.find(ACTION.SEND_BUTTON).hide();
+                this.node.find(this.send_button).hide();
             }
         };
 
         CommentSend.prototype.onSendButtonClick = function (e) {
-            var comment = this.node.find(TEXT.SEND_TEXT).val();
-            this.node.find(ACTION.SEND_BUTTON).hide();
-            var request = {
+            const comment = this.node.find(this.text).val();
+            this.node.find(this.send_button).hide();
+            const request = {
                 methodname: SERVICES.PUBLICATION_SEND,
                 args: {
                     cmid: this.cmid,
                     comment: comment
                 }
             };
+            console.log(request);
             Ajax.call([request])[0].done(function(response) {
                 location.reload();
             }).fail(Notification.exception);
