@@ -5,11 +5,11 @@ body[data-theme='cbe'][data-role='user'].pagelayout-admin {
       #region-main.in_course[data-region="module"],
       #region-main.in_course[data-region="modedit"]  {
         div[role="main"]>h2 {
-          margin: 0 0 24px 33px;
+          margin: 0 0 24px 69px;
           >img.icon {
-            position: relative;
-            left: -18px;
-            font-size: 37px;
+            position: absolute;
+            left: 45px;
+            top: 34px;
             width: 30px;
             height: 30px;
             z-index: 20;
