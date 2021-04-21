@@ -20,7 +20,8 @@
 }}
 
 <div class="user-component-cbe">
-    <a href="{{config.wwwroot}}/user/view.php?id={{userid}}&amp;course={{courseid}}" class="d-inline-block aabtn">
-        <img src="{{ pictureurl }}" class="userpicture defaultuserpic" width="54" height="54" alt="{{ fullname }}" title="{{ fullname }}">
+    <a href="{{ config.wwwroot }}/user/view.php?id={{ user.id }}&amp;course={{ courseid }}" class="d-inline-block aabtn picturelink">
+        <img src="{{ user.picture }}" class="userpicture defaultuserpic" width="54" height="54" alt="{{ user.fullname }}" title="{{ user.fullname }}">
+        <span class="online {{# user.is_connected }}connected{{/ user.is_connected }}"></span>
      </a>
 </div>

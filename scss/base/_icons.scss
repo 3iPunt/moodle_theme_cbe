@@ -12,9 +12,10 @@ body[data-theme='cbe'] {
 
         img.iconlarge.activityicon {
           background-color: $primary-color;
-          padding: 8px;
-          width: 40px;
-          height: 40px;
+          padding: 10px;
+          width: 46px;
+          height: 46px;
+          border-radius: 18px;
         }
       }
       >.inplaceeditable {

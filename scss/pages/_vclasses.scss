@@ -85,6 +85,24 @@ body[data-theme='cbe'][data-role='user'] {
           vertical-align: middle;
           .moderators {
             display: flex;
+            .user-component-cbe {
+              .picturelink {
+                position: relative;
+                .online {
+                  height: 12px;
+                  width: 12px;
+                  border-radius: 7px;
+                  background-color: darkgrey;
+                  border: 2px solid white;
+                  position: absolute;
+                  right: 6px;
+                  bottom: 2px;
+                  &.connected {
+                    background-color: #0f9a0f;
+                  }
+                }
+              }
+            }
           }
         }
       }

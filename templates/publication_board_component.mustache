@@ -1,12 +1,12 @@
 <div class="item-mod">
     <div class="mod">
-        <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ author_fullname }}">
-            <img class="picture" src="{{ author_picture }}" alt="">
-            <span class="online {{# author_is_connected }}connected{{/ author_is_connected }}"></span>
+        <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ author.fullname }}">
+            <img class="picture" src="{{ author.picture }}" alt="">
+            <span class="online {{# author.is_connected }}connected{{/ author.is_connected }}"></span>
         </button>
     </div>
     <div class="text">
-        <div class="name">{{ author_fullname }}</div>
+        <div class="name">{{ author.fullname }}</div>
         <div class="added">{{ added }}</div>
         <div class="publication">{{ comment }}</div>
     </div>
@@ -33,8 +33,9 @@
             <ul class="comments" data-comment="{{ id }}">
                 {{# comments }}
                     <li class="comment">
-                        <div class="picture-current">
+                        <div class="picture">
                             <img src="{{ user_picture }}" alt="{{ fullname }}">
+                            <span class="online {{# user_is_connected }}connected{{/ user_is_connected }}"></span>
                         </div>
                         <div class="bocata">
                             <p class="fullname">{{ fullname }}</p>

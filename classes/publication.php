@@ -127,14 +127,13 @@ class publication  {
         $data = [];
 
         foreach ($comments as $comment) {
-            $author = core_user::get_user($comment->userid);
-            $authorpicture = new user_picture($author);
-            $authorpicture->size = 1;
-            $author_picture = $authorpicture->get_url($PAGE)->out(false);
+            $author_cbe = new user($comment->userid);
+            $author = $author_cbe->export();
 
             $comment = [
-                'user_picture' => $author_picture,
-                'fullname' => fullname($author),
+                'user_picture' => $author->picture,
+                'user_is_connected' => $author->is_connected,
+                'fullname' => $author->fullname,
                 'date' => userdate($comment->timecreated),
                 'text' => $comment->content
             ];
