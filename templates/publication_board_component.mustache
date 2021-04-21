@@ -45,8 +45,8 @@
     {{/ has_comments }}
     <div class="action_comment" data-region="send">
         <img class="picture-current" src="{{ user.picture }}" alt="">
-        <input data-text="comment" class="comment" type="text" placeholder="{{# str }} board_comment_placeholder, theme_cbe {{/ str }} …">
-        <button class="send" data-action="send-comment"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        <input data-text="comment" data-cmid="{{ id }}" class="comment" type="text" placeholder="{{# str }} board_comment_placeholder, theme_cbe {{/ str }} …">
+        <button class="send" data-action="send-comment" data-cmid="{{ id }}"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
     </div>
 </div>
 
@@ -76,8 +76,5 @@
     {{/ is_teacher }}
     require(['theme_cbe/comment_send'], function(commentsend) {
         commentsend.initCommentSend('[data-region="send"]', {{ id }});
-    });
-    require(['theme_cbe/comments'], function(comments) {
-        comments.initComments('[data-region="comments"]');
     });
 {{/js}}
