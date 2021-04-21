@@ -77,4 +77,7 @@
     require(['theme_cbe/comment_send'], function(commentsend) {
         commentsend.initCommentSend('[data-region="send"]', {{ id }});
     });
+    require(['theme_cbe/comments'], function(comments) {
+        comments.initComments('[data-region="comments"]');
+    });
 {{/js}}

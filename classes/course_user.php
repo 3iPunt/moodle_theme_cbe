@@ -79,7 +79,6 @@ class course_user  {
      * @throws moodle_exception
      */
     public function get_modules(section_info $section = null): array {
-        global $PAGE;
         $modinfo = get_fast_modinfo($this->course_id);
         $cms = $modinfo->get_cms();
 
@@ -95,31 +94,8 @@ class course_user  {
         foreach ($cms as $cm) {
             if ($cm->is_visible_on_course_page()) {
                 if (is_null($section) || $section->section == $cm->sectionnum) {
-                    $module = new stdClass();
-                    $module->id = $cm->id;
-                    $module->modname = $cm->modname;
-                    $module->modfullname = $cm->modfullname;
-                    $module->name = $cm->name;
-                    $module->added = userdate($cm->added);
-                    $module->is_publication = false;
-                    $module->view_href = new moodle_url('/mod/' . $cm->modname. '/view.php', ['id'=> $cm->id]);
-                    $module->edit_href = new moodle_url('/course/modedit.php', ['update'=> $cm->id]);
-                    if ($cm->modname === publication::MODULE_PUBLICATION) {
-                        $publication = new publication($cm->id);
-                        $module->is_publication = true;
-                        $module->comment = $cm->name;
-                        $author_id = $publication->get_teacher();
-                        $author = core_user::get_user($author_id);
-                        $authorpicture = new user_picture($author);
-                        $authorpicture->size = 1;
-                        $author_picture = $authorpicture->get_url($PAGE)->out(false);
-                        $module->author_fullname = fullname($author);
-                        $module->author_picture = $author_picture;
-                        $module->author_is_connected = true;
-                        $module->comments = $publication->get_comments();
-                        $module->has_comments = count($publication->get_comments()) > 0;
-                    }
-                    $modules[] = $module;
+                    $module = new module($cm->id);
+                    $modules[] = $module->export();
                 }
             }
         }

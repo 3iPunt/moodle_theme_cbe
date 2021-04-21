@@ -42,40 +42,43 @@ define([
          * @constructor
          * @param {String} region
          */
-        function Comments(region) {
+        function ViewMedia(region) {
             this.node = $(region);
             this.node.find(ACTION.EXPAND_BUTTON).on('click', this.onExpandButtonClick.bind(this));
             this.node.find(ACTION.CONTRACT_BUTTON).on('click', this.onContractButtonClick.bind(this));
         }
 
-        Comments.prototype.onExpandButtonClick = function (e) {
-            const cmid = $(e.currentTarget).data('comment');
-            const comment = this.node.find('.comments[data-comment="' + cmid + '"]');
-            const button_contract = this.node.find('.contract-comments[data-comment="' + cmid + '"]');
+        ViewMedia.prototype.onExpandButtonClick = function (e) {
+            const cmid = $(e.currentTarget).data('cmid');
+            console.log(cmid);
+            const media = this.node.find('.media-content[data-media="' + cmid + '"]');
+            const button_contract = this.node.find('.contract-media[data-cmid="' + cmid + '"]');
+            console.log(button_contract);
             $(e.currentTarget).hide();
             $(button_contract).show();
-            $(comment).show();
+            $(media).show();
         };
 
-        Comments.prototype.onContractButtonClick = function (e) {
-            const cmid = $(e.currentTarget).data('comment');
-            const comment = this.node.find('.comments[data-comment="' + cmid + '"]');
-            const button_expand = this.node.find('.expand-comments[data-comment="' + cmid + '"]');
+        ViewMedia.prototype.onContractButtonClick = function (e) {
+            const cmid = $(e.currentTarget).data('cmid');
+            const media = this.node.find('.media-content[data-media="' + cmid + '"]');
+            const button_expand = this.node.find('.expand-media[data-cmid="' + cmid + '"]');
             $(e.currentTarget).hide();
             $(button_expand).show();
-            $(comment).hide();
+            $(media).hide();
         };
 
         /** @type {jQuery} The jQuery node for the region. */
-        Comments.prototype.node = null;
+        ViewMedia.prototype.node = null;
 
         return {
             /**
              * @param {String} region
-             * @return {Comments}
+             *
+             * @return {ViewMedia}
              */
-            initComments: function (region) {
-                return new Comments(region);
+            initViewMedia: function (region) {
+                return new ViewMedia(region);
             }
         };
     }
