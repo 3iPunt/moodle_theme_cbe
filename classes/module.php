@@ -107,6 +107,7 @@ class module  {
         $module->view_blank = false;
         $module->edit_href = $this->get_edit_href();
         $module->is_media = false;
+        $module->is_mine = false;
         switch ($this->cm->modname) {
             case publication::MODULE_PUBLICATION:
                 $module = $this->set_publication($module);
@@ -189,7 +190,7 @@ class module  {
      * @throws moodle_exception
      */
     protected function set_publication($module) {
-        global $PAGE;
+        global $PAGE, $USER;
         $publication = new publication($this->cm->id);
         $module->is_publication = true;
         $module->comment = $this->cm->name;
@@ -203,6 +204,9 @@ class module  {
         $module->author_is_connected = true;
         $module->comments = $publication->get_comments();
         $module->has_comments = count($publication->get_comments()) > 0;
+        if ($author_id === $USER->id) {
+            $module->is_mine = true;
+        }
         return $module;
     }
 
