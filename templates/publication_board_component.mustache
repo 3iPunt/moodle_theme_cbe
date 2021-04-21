@@ -11,7 +11,9 @@
         <div class="publication">{{ comment }}</div>
     </div>
     {{# is_teacher }}
-    <button data-toggle="modal" data-target=".bd-deletemodule-modal-lg" class="edit-module action"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        {{# is_mine }}
+        <button data-toggle="modal" data-target=".bd-deletemodule-modal-lg" class="edit-module action"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        {{/ is_mine }}
     {{/ is_teacher }}
 </div>
 
@@ -70,9 +72,11 @@
 
 {{#js}}
     {{# is_teacher }}
+        {{# is_mine }}
         require(['theme_cbe/comment_delete'], function(commentdelete) {
             commentdelete.initCommentDelete('[data-region="modal-delete"][data-cmid="{{ id }}"]', {{ id }});
         });
+        {{/ is_mine }}
     {{/ is_teacher }}
     require(['theme_cbe/comment_send'], function(commentsend) {
         commentsend.initCommentSend('[data-region="send"]', {{ id }});
