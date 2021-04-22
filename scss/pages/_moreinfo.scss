@@ -12,15 +12,26 @@ body[data-theme='cbe'][data-role='user'] {
         font-family: $fontbold;
         position: relative;
         display: inline-flex;
-      }
-      .edit-section-zero {
-        position: absolute;
-        top: 1px;
-        right: -39px;
-        a.link {
-          i.icon {
+        .edit-section-zero {
+          position: absolute;
+          top: 1px;
+          right: -39px;
+          a.link {
+            i.icon {
 
+            }
           }
+        }
+      }
+
+      .modules {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        #create_mod_section_zero {
+          border: none;
+          margin-bottom: 15px;
+          align-self: flex-end;
         }
       }
     }

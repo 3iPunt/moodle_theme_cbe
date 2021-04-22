@@ -117,3 +117,6 @@ $string['configtitle'] = "CBE Configuration";
 $string['host'] = "Host";
 $string['host_desc'] = "Host of the server where it is hosted. It will be used to build the links of the APPs.";
 $string['edit_section_zero'] = "Edit More info";
+$string['delete_mod'] = 'Delete {$a}';
+$string['sure_delete_mod'] = "Are you sure to delete this item?";
+$string['sure_delete_mod_detail'] = 'If you delete this item, all data will be lost';

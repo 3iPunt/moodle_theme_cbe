@@ -10,12 +10,17 @@
         </div>
         <div class="added">{{ added }}</div>
     </div>
-    {{# is_teacher }}
-        <a href="{{ edit_href }}" class="edit-module action"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-    {{/ is_teacher }}
-    {{^ is_teacher }}
-        <a href="{{ view_href }}" class="view-module action"><i class="fa fa-eye" aria-hidden="true"></i></a>
-    {{/ is_teacher }}
+    <div class="action-mod">
+        {{# is_teacher }}
+            <button data-toggle="modal" data-target=".deletemod-modal-lg-{{ id }}" class="delete-module action">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+            <a href="{{ edit_href }}" class="edit-module action"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        {{/ is_teacher }}
+        {{^ is_teacher }}
+            <a href="{{ view_href }}" class="view-module action"><i class="fa fa-eye" aria-hidden="true"></i></a>
+        {{/ is_teacher }}
+    </div>
 </div>
 <div class="module_media" data-region="media">
     {{# is_media }}
@@ -34,3 +39,24 @@
         </div>
     {{/ is_media }}
 </div>
+{{# is_teacher }}
+        <div data-region="modal-mod-delete" data-cmid="{{ id }}" class="modal fade deletemodule-modal deletemod-modal-lg-{{ id }}" tabindex="-1" role="dialog" aria-labelledby="deletemod-modal-lg-{{ id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg cbe-modal">
+                <div class="modal-content">
+                    <header>
+                        <h1>{{# str }} delete_mod, theme_cbe, {{ modfullname }} {{/ str }}</h1>
+                        <p>{{# str }} sure_delete_mod, theme_cbe {{/ str }}</p>
+                        <p>{{# str }} sure_delete_mod_detail, theme_cbe {{/ str }}</p>
+                        <h3 class="modal-name"><strong>{{{ name }}}</strong></h3>
+                        <p class="modal-theme">{{ theme }}</p>
+                    </header>
+                    <footer class="modal-footer">
+                        <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                        <button class="btn btn-primary delete" data-action="delete" >
+                            {{# str }} confirm, theme_cbe {{/ str }}
+                        </button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+{{/ is_teacher }}

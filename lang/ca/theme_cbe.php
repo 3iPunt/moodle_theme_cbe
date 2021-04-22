@@ -117,3 +117,6 @@ $string['configtitle'] = "Configuració CBE";
 $string['host'] = "Host";
 $string['host_desc'] = "Host de l'servidor on s'allotja. S'utilitzarà per construir els enllaços de les APPs.";
 $string['edit_section_zero'] = "Editar Més infos";
+$string['delete_mod'] = 'Esborra {$a}';
+$string['sure_delete_mod'] = "Estàs segur d'esborrar aquest ítem?";
+$string['sure_delete_mod_detail'] = 'Si esborra aquest ítem, es perdran totes les dades';

@@ -123,6 +123,18 @@ body[data-theme='cbe'][data-role="user"] {
           margin-bottom: 25px;
         }
       }
+      .action-mod {
+        display: flex;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        margin-right: 20px;
+        >.action {
+          position: relative;
+          margin-right: 0;
+          margin-left: 5px;
+        }
+      }
     }
     &.forum .mod .icon {
       background-image: url('[[pix:mod_forum|icon]]');

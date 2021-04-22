@@ -105,6 +105,7 @@ class module  {
         $module->is_publication = false;
         $module->view_href = $this->get_view_href();
         $module->view_blank = false;
+        $module->theme = $this->get_theme();
         $module->edit_href = $this->get_edit_href();
         $module->is_media = false;
         $module->is_mine = false;
@@ -163,6 +164,15 @@ class module  {
     }
 
     /**
+     * Get Theme
+     *
+     * @return string
+     */
+    public function get_theme(): string {
+        return 'Esto es una prueba';
+    }
+
+    /**
      * Get View HRef
      *
      * @return string
@@ -198,9 +208,6 @@ class module  {
         $author_cbe = new user($author_id);
         $author = $author_cbe->export();
         $module->author = $author;
-        //$module->author_fullname = fullname($author);
-        //$module->author_picture = $author_picture;
-        //$module->author_is_connected = true;
         $module->comments = $publication->get_comments();
         $module->has_comments = count($publication->get_comments()) > 0;
         if ($author_id === $USER->id) {
