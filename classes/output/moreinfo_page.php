@@ -26,6 +26,7 @@ namespace theme_cbe\output;
 
 use coding_exception;
 use dml_exception;
+use moodle_url;
 use theme_cbe\course;
 use theme_cbe\course_user;
 use moodle_exception;
@@ -33,6 +34,7 @@ use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
+use theme_cbe\publication;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -70,9 +72,17 @@ class moreinfo_page implements renderable, templatable {
         $course = new course($this->course_id);
         $course_user = new course_user($this->course_id, $USER->id);
         $section = $course->get_section_zero();
+
         $data = new stdClass();
         $data->summary = $section->summary;
-        $data->mods = $course_user->get_modules($section);
+        $mods = $course_user->get_modules($section);
+        // Filter NOT Publication.
+        $mods = array_filter($mods, function(stdClass $mod) {
+            return $mod->modname != publication::MODULE_PUBLICATION;
+        }, ARRAY_FILTER_USE_BOTH);
+        $mods = array_values($mods);
+        $data->mods = $mods;
+        $data->href_edit_section_zero = new moodle_url('/course/editsection.php', ['id'=> $section->id]);
         $data->is_teacher = course_user::is_teacher($this->course_id);
         return $data;
     }
