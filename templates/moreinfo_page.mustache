@@ -96,6 +96,11 @@
         </div>
     </div>
 {{/ is_teacher }}
+{{#js}}
+    require(['theme_cbe/viewmedia'], function(viewmedia) {
+        viewmedia.initViewMedia('[data-region="media"]');
+    });
+{{/js}}
 
 
 

@@ -84,7 +84,7 @@ class moreinfo_page implements renderable, templatable {
         $mods = array_values($mods);
         $data->mods = $mods;
         $data->href_edit_section_zero = new moodle_url('/course/editsection.php', ['id'=> $section->id]);
-        $data->create = module::get_list_modules($this->course_id);
+        $data->create = module::get_list_modules($this->course_id, 0);
         $data->is_teacher = course_user::is_teacher($this->course_id);
         return $data;
     }

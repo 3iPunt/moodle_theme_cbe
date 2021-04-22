@@ -299,14 +299,15 @@ class module  {
      * Get List Modules.
      *
      * @param int $course_id
+     * @param int $in_section
      * @return array
      * @throws coding_exception
      * @throws moodle_exception
      */
-    static public function get_list_modules(int $course_id): array {
+    static public function get_list_modules(int $course_id, int $in_section = 1): array {
         return [
-            'activities' => self::get_list_activities($course_id),
-            'resources' => self::get_list_resources($course_id),
+            'activities' => self::get_list_activities($course_id, $in_section),
+            'resources' => self::get_list_resources($course_id, $in_section),
         ];
     }
 
@@ -314,14 +315,15 @@ class module  {
      * Get List Activities.
      *
      * @param int $course_id
+     * @param int $in_section
      * @return array
      * @throws coding_exception
      * @throws moodle_exception
      */
-    static public function get_list_activities(int $course_id): array {
+    static public function get_list_activities(int $course_id, int $in_section = 1): array {
         $activities = [];
         foreach (self::$activities as $activity) {
-            $activities[] = self::get_mod($course_id, $activity);
+            $activities[] = self::get_mod($course_id, $activity, $in_section);
         }
         return $activities;
     }
@@ -330,14 +332,15 @@ class module  {
      * Get List Resources.
      *
      * @param int $course_id
+     * @param int $in_section
      * @return array
      * @throws coding_exception
      * @throws moodle_exception
      */
-    static public function get_list_resources(int $course_id): array {
+    static public function get_list_resources(int $course_id, int $in_section = 1): array {
         $resources = [];
         foreach (self::$resources as $resource) {
-            $resources[] = self::get_mod($course_id, $resource);
+            $resources[] = self::get_mod($course_id, $resource, $in_section);
         }
         return $resources;
     }
@@ -351,12 +354,12 @@ class module  {
      * @throws coding_exception
      * @throws moodle_exception
      */
-    static public function get_mod(int $course_id, string $modname): array {
+    static public function get_mod(int $course_id, string $modname, int $in_section): array {
         $params = [
             'add' => $modname,
             'type' => '',
             'course' => $course_id,
-            'section' => 1,
+            'section' => $in_section,
             'return' => 0,
             'sr' => 0
         ];
