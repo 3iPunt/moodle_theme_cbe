@@ -116,3 +116,4 @@ $string['generalsettings'] = "Configuración General";
 $string['configtitle'] = "Configuración CBE";
 $string['host'] = "Host";
 $string['host_desc'] = "Host del servidor dónde se aloja. Se utilizará para construir los enlaces de las APPs.";
+$string['edit_section_zero'] = "Editar Más info";

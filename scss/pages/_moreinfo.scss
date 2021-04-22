@@ -1,6 +1,7 @@
 body[data-theme='cbe'][data-role='user'] {
 
   div[data-region='moreinfo'] {
+
     main.contain {
       background-color: white;
       padding: 30px;
@@ -9,6 +10,18 @@ body[data-theme='cbe'][data-role='user'] {
       h3.title {
         font-size: 28px;
         font-family: $fontbold;
+        position: relative;
+        display: inline-flex;
+      }
+      .edit-section-zero {
+        position: absolute;
+        top: 1px;
+        right: -39px;
+        a.link {
+          i.icon {
+
+          }
+        }
       }
     }
   }

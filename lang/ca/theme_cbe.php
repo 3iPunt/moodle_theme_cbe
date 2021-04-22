@@ -116,3 +116,4 @@ $string['generalsettings'] = "Configuració general";
 $string['configtitle'] = "Configuració CBE";
 $string['host'] = "Host";
 $string['host_desc'] = "Host de l'servidor on s'allotja. S'utilitzarà per construir els enllaços de les APPs.";
+$string['edit_section_zero'] = "Editar Més infos";
