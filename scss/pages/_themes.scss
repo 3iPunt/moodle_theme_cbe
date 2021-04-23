@@ -142,8 +142,13 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
-
-
-
-
+  &.editing {
+    .course-content {
+      .topics {
+        li#section-0 {
+          display: list-item !important;
+        }
+      }
+    }
+  }
 }
