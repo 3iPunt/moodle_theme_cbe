@@ -30,7 +30,6 @@ use dml_exception;
 use stdClass;
 use user_picture;
 
-
 defined('MOODLE_INTERNAL') || die;
 
 /**

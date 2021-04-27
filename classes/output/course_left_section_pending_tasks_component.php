@@ -25,13 +25,11 @@
 namespace theme_cbe\output;
 
 use moodle_exception;
-use moodle_url;
 use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
 use theme_cbe\course;
-use theme_cbe\course_navigation;
 
 defined('MOODLE_INTERNAL') || die;
 

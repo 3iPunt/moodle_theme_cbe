@@ -158,7 +158,6 @@ class tasks_table extends table_sql {
      *
      * @param stdClass $row Full data of the current row.
      * @return string
-     * @throws coding_exception
      */
     public function col_section(stdClass $row): string {
         return get_section_name($this->course_id, $row->section);

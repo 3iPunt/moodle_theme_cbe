@@ -23,17 +23,12 @@
 namespace theme_cbe\external;
 
 use coding_exception;
-use context_course;
-use course_enrolment_manager;
-use dml_exception;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
 use moodle_exception;
-use moodle_url;
-use theme_cbe\course;
 use theme_cbe\course_user;
 
 defined('MOODLE_INTERNAL') || die();
@@ -112,6 +107,4 @@ class section_external extends external_api {
             )
         );
     }
-
-
 }

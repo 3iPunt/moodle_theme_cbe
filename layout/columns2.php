@@ -22,8 +22,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use theme_cbe\course_module_navigation;
-use theme_cbe\course_navigation;
+use theme_cbe\navigation\course_module_navigation;
+use theme_cbe\navigation\course_navigation;
 use theme_cbe\output\course_header_navbar_component;
 use theme_cbe\output\course_left_section_component;
 use theme_cbe\output\menu_apps_button;

@@ -29,12 +29,10 @@ use coding_exception;
 use comment_exception;
 use context_module;
 use core_media_manager;
-use core_user;
 use dml_exception;
 use moodle_exception;
 use moodle_url;
 use stdClass;
-use user_picture;
 
 global $CFG;
 require_once($CFG->dirroot . '/enrol/locallib.php');
@@ -90,7 +88,6 @@ class module  {
      * Export module for render.
      *
      * @return stdClass
-     * @throws comment_exception
      * @throws dml_exception
      * @throws coding_exception
      * @throws moodle_exception
@@ -200,7 +197,7 @@ class module  {
      * @throws moodle_exception
      */
     protected function set_publication($module) {
-        global $PAGE, $USER;
+        global $USER;
         $publication = new publication($this->cm->id);
         $module->is_publication = true;
         $module->comment = $this->cm->name;
@@ -350,6 +347,7 @@ class module  {
      *
      * @param int $course_id
      * @param string $modname
+     * @param int $in_section
      * @return array
      * @throws coding_exception
      * @throws moodle_exception
@@ -370,7 +368,4 @@ class module  {
             'modtitle' => get_string('pluginname', 'mod_' . $modname)
         ];
     }
-
-
-
 }

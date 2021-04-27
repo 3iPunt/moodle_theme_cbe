@@ -54,12 +54,10 @@ class virtualclasses_table extends table_sql {
     protected $course_id;
 
     /**
-     * students_in_course_table constructor.
+     * virtualclasses_table constructor.
      *
      * @param int $course_id
-     * @param int $cm_id
-     * @param int $method
-     * @throws dml_exception
+     * @throws coding_exception
      * @throws moodle_exception
      */
     public function __construct(int $course_id) {
@@ -182,7 +180,6 @@ class virtualclasses_table extends table_sql {
      *
      * @param stdClass $row Full data of the current row.
      * @return string
-     * @throws coding_exception
      */
     public function col_openingtime(stdClass $row): string {
         return $row->openingtime ? userdate($row->openingtime,'%d %B %Y - %H:%M') : '-';
@@ -193,7 +190,6 @@ class virtualclasses_table extends table_sql {
      *
      * @param stdClass $row Full data of the current row.
      * @return string
-     * @throws coding_exception
      */
     public function col_closingtime(stdClass $row): string {
         return $row->closingtime ? userdate($row->closingtime,'%d %B %Y - %H:%M') : '-';
@@ -204,7 +200,6 @@ class virtualclasses_table extends table_sql {
      *
      * @param stdClass $row Full data of the current row.
      * @return string
-     * @throws coding_exception
      */
     public function col_timecreated(stdClass $row): string {
         return $row->timecreated ? userdate($row->timecreated,'%d %B %Y - %H:%M') : '-';

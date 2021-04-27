@@ -24,14 +24,15 @@
 
 namespace theme_cbe\tables;
 
+use coding_exception;
 use course_enrolment_manager;
 use dml_exception;
+use lang_string;
 use theme_cbe\output\user_component;
 use moodle_exception;
 use moodle_url;
 use stdClass;
 use table_sql;
-use user_picture;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -46,23 +47,19 @@ require_once($CFG->dirroot . '/enrol/themelib.php');
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class participants_table extends table_sql
-{
+class participants_table extends table_sql {
 
     /** @var int Course ID */
     protected $course_id;
 
     /**
-     * students_in_course_table constructor.
+     *
+     * participants_table constructor.
      *
      * @param int $course_id
-     * @param int $cm_id
-     * @param int $method
-     * @throws dml_exception
      * @throws moodle_exception
      */
-    public function __construct(int $course_id)
-    {
+    public function __construct(int $course_id) {
         $uniqueid = time();
         parent::__construct($uniqueid);
 
@@ -97,8 +94,7 @@ class participants_table extends table_sql
      * @param bool $useinitialsbar
      * @throws dml_exception
      */
-    public function query_db($pagesize, $useinitialsbar = true)
-    {
+    public function query_db($pagesize, $useinitialsbar = true) {
         $this->rawdata = $this->get_data();
     }
 
@@ -107,11 +103,9 @@ class participants_table extends table_sql
      *
      * @return array
      * @throws dml_exception
-     * @throws \coding_exception
      */
-    public function get_data(): array
-    {
-        global $PAGE, $DB, $OUTPUT;
+    public function get_data(): array {
+        global $PAGE, $DB;
         $course = get_course($this->course_id);
         $role = $DB->get_record('role', array('shortname' => 'student'));
         $enrolmanager = new course_enrolment_manager($PAGE, $course, $instancefilter = null, $role->id,
@@ -134,47 +128,44 @@ class participants_table extends table_sql
         return $data;
     }
 
-    public function get_role_name(string $role)
-    {
+    /**
+     * Get Role Name.
+     *
+     * @param string $role
+     * @return lang_string|string
+     * @throws coding_exception
+     */
+    public function get_role_name(string $role) {
         switch ($role) {
             case 'manager':
                 return get_string('manager', 'role');
-                break;
             case 'coursecreator':
                 return get_string('coursecreators');
-                break;
             case 'editingteacher':
                 return get_string('defaultcourseteacher');
-                break;
             case 'teacher':
                 return get_string('noneditingteacher');
-                break;
             case 'student':
                 return get_string('defaultcoursestudent');
-                break;
             case 'guest':
                 return get_string('guest');
-                break;
             case 'user':
                 return get_string('authenticateduser');
-                break;
             case 'frontpage':
                 return get_string('frontpageuser', 'role');
-                break;
             default:
                 return '';
-                break;
         }
     }
 
     /**
-     * Col Firstname
+     * Col Roles.
      *
-     * @param stdClass $row Full data of the current row.
+     * @param stdClass $row
      * @return string
+     * @throws coding_exception
      */
-    public function col_roles(stdClass $row): string
-    {
+    public function col_roles(stdClass $row): string {
         $context = \context_course::instance($this->course_id);
         $roles = get_user_roles($context, $row->id);
         $userroles = '';
@@ -192,12 +183,14 @@ class participants_table extends table_sql
     }
 
     /**
-     * Generate the display of the user's picture column.
-     * @param object $attempt the table row being output.
-     * @return string HTML content to go inside the td.
+     * Column Name.
+     *
+     * @param $row
+     * @return bool|string
+     * @throws coding_exception
+     * @throws dml_exception
      */
-    public function col_name($row)
-    {
+    public function col_name($row) {
         global $PAGE;
         $output = $PAGE->get_renderer('theme_cbe');
         $page = new user_component($row->id, $this->course_id);
@@ -211,19 +204,18 @@ class participants_table extends table_sql
      * @param stdClass $row Full data of the current row.
      * @return string
      */
-    public function col_email(stdClass $row): string
-    {
+    public function col_email(stdClass $row): string {
         return $row->email;
     }
 
     /**
      * Col Last Courseaccess
      *
-     * @param stdClass $row Full data of the current row.
+     * @param stdClass $row
      * @return string
+     * @throws coding_exception
      */
-    public function col_lastcourseaccess(stdClass $row): string
-    {
+    public function col_lastcourseaccess(stdClass $row): string {
         if (!empty($row->lastaccess)) {
             $lastaccess = time() - $row->lastaccess;
             if ($lastaccess < 900) {
@@ -235,8 +227,13 @@ class participants_table extends table_sql
         }
     }
 
-    public function col_groups(stdClass $row): string
-    {
+    /**
+     * Col Groups.
+     *
+     * @param stdClass $row
+     * @return string
+     */
+    public function col_groups(stdClass $row): string {
         $usergroupsids = groups_get_user_groups($this->course_id, $row->id)[0];
         $usergroupsnames = '';
         foreach ($usergroupsids as $usergroupid) {

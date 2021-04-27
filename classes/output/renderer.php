@@ -25,7 +25,6 @@ namespace theme_cbe\output;
 
 defined('MOODLE_INTERNAL') || die;
 
-use theme_cbe\output\tasks_page;
 use moodle_exception;
 use plugin_renderer_base;
 

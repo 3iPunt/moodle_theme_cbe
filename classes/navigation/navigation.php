@@ -22,7 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_cbe;
+namespace theme_cbe\navigation;
 
 use coding_exception;
 use theme_cbe\output\course_left_section_menu_component;

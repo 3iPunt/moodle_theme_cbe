@@ -40,8 +40,9 @@ use pix_icon;
 use renderer_base;
 use stdClass;
 use theme_cbe\course;
-use theme_cbe\course_module_navigation;
-use theme_cbe\course_navigation;
+use theme_cbe\navigation\course_module_navigation;
+use theme_cbe\navigation\course_navigation;
+use theme_cbe\navigation\user_navigation;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -336,7 +337,16 @@ class core_renderer extends \core_renderer {
         $courseid = null;
 
         switch ($PAGE->context->contextlevel) {
-            case CONTEXT_COURSE:
+            case CONTEXT_USER:
+                $cbe_page = user_navigation::get_navigation_page();
+                $in_course = false;
+                $courseimage = '';
+                $is_teacher = false;
+                $teachers = [];
+                $coursename = '';
+                $coursecategory = '';
+                break;
+           case CONTEXT_COURSE:
                 $courseid = $PAGE->context->instanceid;
                 $coursecontext = context_course::instance($courseid);
                 $coursecbe = new course($courseid);
@@ -388,8 +398,8 @@ class core_renderer extends \core_renderer {
             $cbe_page === 'moreinfo' ||
             $cbe_page === 'modedit' ||
             $cbe_page === 'module') {
-            $is_custom= true;
-        } else if ($cbe_page === 'generic') {
+            $is_custom = true;
+        } else if ($cbe_page === 'generic' and $cbe_page = 'user') {
             $is_generic = true;
         } else {
             $is_default = true;

@@ -31,7 +31,6 @@ use renderer_base;
 use stdClass;
 use templatable;
 use theme_cbe\course;
-use theme_cbe\course_navigation;
 use theme_cbe\course_user;
 
 defined('MOODLE_INTERNAL') || die;

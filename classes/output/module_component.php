@@ -25,8 +25,6 @@
 namespace theme_cbe\output;
 
 use cm_info;
-use dml_exception;
-use theme_cbe\tables\participants_table;
 use moodle_exception;
 use moodle_url;
 use renderable;
