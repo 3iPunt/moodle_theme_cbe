@@ -9,9 +9,9 @@
         </a>
     </li>
     <li class="link">
-        <a href="{{ links.vclasses }}">
+        <a href="{{ links.vclasses.href }}" {{# links.vclasses.blank }} target="_blank"{{/ links.vclasses.blank }}>
             <i class="fa fa-video-camera" aria-hidden="true"></i>
-            <span class="text">{{# str }} course_menu_virtuals, theme_cbe {{/ str }}</span>
+            <span class="text">{{ links.vclasses.name }}</span>
         </a>
     </li>
     <li class="link">
