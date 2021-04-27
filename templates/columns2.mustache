@@ -63,8 +63,8 @@
         <div id="page" class="container-fluid d-print-block">
             {{{ output.full_header }}}
 
-            <div id="page-content" class="row pb-3 d-print-block {{# in_course}}course{{/ in_course}}">
-                <div id="region-main-box" class="{{^ in_course}}col-12{{/ in_course}}{{# in_course}}col-9{{/ in_course}}">
+            <div id="page-content" class="row pb-3 d-print-block {{ nav_context }}">
+                <div id="region-main-box" class="{{^ contract }}col-12{{/ contract }}{{# contract }}col-9{{/ contract }}">
 
                     {{#hasregionmainsettingsmenu}}
                     <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
@@ -83,7 +83,7 @@
                             id="region-main"
                             {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}}
                             aria-label="{{#str}}content{{/str}}"
-                            data-region="{{ course_page }}">
+                            data-region="{{ nav_cbe }}">
                         {{#hasregionmainsettingsmenu}}
                             <div class="region_main_settings_menu_proxy"></div>
                         {{/hasregionmainsettingsmenu}}

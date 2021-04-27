@@ -91,6 +91,7 @@ class virtualclasses_table extends table_sql {
         //$this->sortable(true, 'timecreated', SORT_DESC);
 
         //$this->set_sortdata();
+        $this->is_collapsible = false;
 
         $this->no_sorting('moderators');
 

@@ -90,6 +90,19 @@ class renderer extends plugin_renderer_base {
     }
 
     /**
+     * Defer to template.
+     *
+     * @param resources_page $page
+     *
+     * @return string html for the page
+     * @throws moodle_exception
+     */
+    public function render_resources_page(resources_page $page): string {
+        $data = $page->export_for_template($this);
+        return parent::render_from_template('theme_cbe/resources_page', $data);
+    }
+
+    /**
      * User Component.
      *
      * @param user_component $component

@@ -28,6 +28,15 @@ body[data-theme='cbe'][data-role="user"] {
       &.assign .icon  {
         background-image: url('[[pix:mod_assign|icon]]');
       }
+      &.resource .icon  {
+        background-image: url('[[pix:mod_resource|icon]]');
+      }
+      &.tresipuntaudio .icon  {
+        background-image: url('[[pix:mod_tresipuntaudio|icon]]');
+      }
+      &.tresipuntvideo .icon  {
+        background-image: url('[[pix:mod_tresipuntvideo|icon]]');
+      }
       &.bigbluebuttonbn .icon  {
         background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
       }

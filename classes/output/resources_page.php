@@ -15,47 +15,61 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class user_navigation
+ * Class resources_page
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_cbe\navigation;
+namespace theme_cbe\output;
+
+use theme_cbe\tables\resources_table;
+use theme_cbe\tables\tasks_table;
+use moodle_exception;
+use renderable;
+use renderer_base;
+use stdClass;
+use templatable;
 
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * Class user_navigation
+ * Class resources_page
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class user_navigation extends navigation {
+class resources_page implements renderable, templatable {
+
+    /** @var int Course ID */
+    protected $course_id;
 
     /**
-    * Get Navigation Page.
-    *
-    * @return string
-    */
-    static function get_navigation_page(): string {
-        return 'user';
+     * charge_page constructor.
+     * @param int $course_id
+     */
+    public function __construct(int $course_id) {
+        $this->course_id = $course_id;
     }
 
     /**
-    * Is Contract.
-    *
-    * @return string
-    */
-    static function is_contract(): string {
-        global $PAGE;
-        $path = $PAGE->url->get_path();
-        if (strpos($path, 'my/')) {
-            return false;
-        } else {
-            return true;
-        }
+     * Export for template
+     *
+     * @param renderer_base $output
+     * @return false|stdClass|string
+     * @throws moodle_exception
+     */
+    public function export_for_template(renderer_base $output) {
+        global $USER;
+        $data = new stdClass();
+        $table = new resources_table($this->course_id, $USER->id);
+        ob_start();
+        $table->out(100, true);
+        $output = ob_get_contents();
+        ob_end_clean();
+        $data->table = $output;
+        return $data;
     }
 }

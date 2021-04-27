@@ -42,6 +42,7 @@ class course_navigation extends navigation {
     const PAGE_TASKS = 'theme/cbe/view_tasks.php';
     const PAGE_VCLASSES = 'theme/cbe/view_virtualclasses.php';
     const PAGE_MOREINFO = 'theme/cbe/view_moreinfo.php';
+    const PAGE_RESOURCES = 'theme/cbe/view_resources.php';
 
     /**
     * Get Navigation Page.

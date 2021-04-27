@@ -73,7 +73,7 @@ class course_left_section_menu_component implements renderable, templatable {
         }
 
         $links = [
-            'resource' => '',
+            'resource' => new moodle_url('/' . course_navigation::PAGE_RESOURCES, ['id'=> $this->course_id]),
             'vclasses' => new moodle_url('/' . course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]),
             'grades' => new moodle_url('/grade/report/index.php', ['id'=> $this->course_id]),
             'participants' => new moodle_url('/user/index.php', ['id'=> $this->course_id]),

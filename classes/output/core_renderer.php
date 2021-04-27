@@ -339,7 +339,8 @@ class core_renderer extends \core_renderer {
         switch ($PAGE->context->contextlevel) {
             case CONTEXT_USER:
                 $cbe_page = user_navigation::get_navigation_page();
-                $in_course = false;
+                $contract = true;
+                $nav_context = 'user';
                 $courseimage = '';
                 $is_teacher = false;
                 $teachers = [];
@@ -350,7 +351,8 @@ class core_renderer extends \core_renderer {
                 $courseid = $PAGE->context->instanceid;
                 $coursecontext = context_course::instance($courseid);
                 $coursecbe = new course($courseid);
-                $in_course = true;
+                $contract = true;
+                $nav_context = 'course';
                 $cbe_page = course_navigation::get_navigation_page();
                 $courseimage = $coursecbe->get_courseimage();
                 $teachers = $coursecbe->get_users_by_role('editingteacher');
@@ -364,7 +366,8 @@ class core_renderer extends \core_renderer {
                 $courseid = $course->id;
                 $coursecontext = context_course::instance($courseid);
                 $coursecbe = new course($courseid);
-                $in_course = true;
+                $contract = true;
+                $nav_context = 'course';
                 $cbe_page = course_module_navigation::get_navigation_page();
                 $courseimage = $coursecbe->get_courseimage();
                 $teachers = $coursecbe->get_users_by_role('editingteacher');
@@ -373,19 +376,21 @@ class core_renderer extends \core_renderer {
                 $is_teacher = has_capability('moodle/course:update', $coursecontext);
                 break;
             default:
-                $in_course = false;
+                $contract = false;
                 $cbe_page = '';
                 $courseimage = '';
                 $is_teacher = false;
                 $teachers = [];
                 $coursename = '';
                 $coursecategory = '';
+                $nav_context = '';
         }
 
         $is_board = false;
         $is_themes = false;
         $is_custom = false;
         $is_generic = false;
+        $is_user = false;
         $is_default = false;
 
         if ($cbe_page === 'board') {
@@ -399,8 +404,10 @@ class core_renderer extends \core_renderer {
             $cbe_page === 'modedit' ||
             $cbe_page === 'module') {
             $is_custom = true;
-        } else if ($cbe_page === 'generic' and $cbe_page = 'user') {
+        } else if ($cbe_page === 'generic') {
             $is_generic = true;
+        } else if ($cbe_page = 'user') {
+            $is_user = true;
         } else {
             $is_default = true;
         }
@@ -413,13 +420,16 @@ class core_renderer extends \core_renderer {
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
+        $header->nav_context = $nav_context;
+        $header->nav_cbe = $cbe_page;
         $header->is_board = $is_board ;
         $header->is_themes = $is_themes;
         $header->is_custom = $is_custom;
         $header->is_generic= $is_generic;
         $header->is_default = $is_default;
+        $header->is_user = $is_user;
         $header->courseimage = $courseimage;
-        $header->in_course = $in_course;
+        $header->contract = $contract;
         $header->teachers = $teachers;
         $header->is_teacher = $is_teacher;
         $header->coursename = $coursename;

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class tasks_table
+ * Class resources_table
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
@@ -26,7 +26,7 @@ namespace theme_cbe\tables;
 
 use cm_info;
 use coding_exception;
-use core_course\search\section;
+use core_filetypes;
 use dml_exception;
 use theme_cbe\output\module_component;
 use moodle_exception;
@@ -42,13 +42,13 @@ require_once($CFG->dirroot . '/enrol/locallib.php');
 require_once($CFG->dirroot . '/grade/querylib.php');
 
 /**
- * Class tasks_table
+ * Class resources_table
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class tasks_table extends table_sql {
+class resources_table extends table_sql {
 
     /** @var int Course ID */
     protected $course_id;
@@ -73,20 +73,19 @@ class tasks_table extends table_sql {
         $this->pageable(true);
         $this->collapsible(true);
         $this->sortable(true);
-        $url = '/theme/cbe/view_tasks.php';
+        $url = '/theme/cbe/view_resources.php';
         $params_url = ['id' => $course_id];
         $moodle_url = new moodle_url($url, $params_url);
         $this->define_baseurl($moodle_url);
 
         $this->define_columns([
-            'task', 'remaining', 'duedate', 'state', 'grade'
+            'name', 'filename', 'type', 'size'
         ]);
         $this->define_headers([
-            get_string('task_table_task', 'theme_cbe'),
-            get_string('task_table_remaining', 'theme_cbe'),
-            get_string('task_table_duedate', 'theme_cbe'),
-            get_string('task_table_state', 'theme_cbe'),
-            get_string('task_table_grade', 'theme_cbe')
+            get_string('course_left_resources', 'theme_cbe'),
+            get_string('filename', 'theme_cbe'),
+            get_string('type', 'theme_cbe'),
+            get_string('size', 'theme_cbe')
         ]);
 
         $this->is_downloadable(false);
@@ -94,11 +93,7 @@ class tasks_table extends table_sql {
 
         $this->sortable(true, 'duedate');
 
-        $this->column_style('task', 'text-align', 'left');
-        $this->column_style('remaining', 'text-align', 'left');
-        $this->column_style('duedate', 'text-align', 'left');
-        $this->column_style('state', 'text-align', 'left');
-        $this->column_style('grade', 'text-align', 'left');
+        $this->column_style('name', 'text-align', 'left');
     }
 
     /**
@@ -121,7 +116,6 @@ class tasks_table extends table_sql {
      * @throws moodle_exception
      */
     public function get_data(): array {
-        global $DB;
         $course = get_course($this->course_id);
         $data = [];
 
@@ -130,24 +124,27 @@ class tasks_table extends table_sql {
         $cms = $fastmodinfo ? $fastmodinfo->get_cms() : [];
 
         foreach ($cms as $cm) {
-            if ($cm->modname === 'assign') {
+            if ($cm->modname === 'resource' ||
+                $cm->modname === 'tresipuntvideo' ||
+                $cm->modname === 'tresipuntaudio') {
                 $row = new stdClass();
                 $row->id = $cm->id;
                 $row->section = $cm->sectionnum;
                 $row->name = $cm->name;
                 $row->modname = $cm->modname;
-                $instance = $DB->get_record(
-                    'assign', array('id' => $cm->instance), '*', MUST_EXIST);
-                $grades = assign_get_user_grades($instance, $this->user_id);
-                $grade = reset($grades);
-
-                if (!$grade || !$grade->rawgrade || $grade->rawgrade < 0) {
-                    $row->rawgrade = '';
-                } else {
-                    $row->rawgrade = round($grade->rawgrade, 2);
+                // Get File.
+                $fs = get_file_storage();
+                $files = $fs->get_area_files($cm->context->id, 'mod_' . $cm->modname, 'content');
+                foreach ($files as $file) {
+                    if (!empty($file->get_mimetype())) {
+                        $row->filename = $file->get_filename();
+                        $row->type = $file->get_mimetype();
+                        $row->size = $file->get_filesize();
+                        break;
+                    }
                 }
 
-                $row->duedate = $instance->duedate;
+
                 $data[] = $row;
             }
         }
@@ -165,14 +162,14 @@ class tasks_table extends table_sql {
     }
 
     /**
-     * Col task
+     * Col name
      *
      * @param stdClass $row Full data of the current row.
      * @return string
      * @throws coding_exception
      * @throws moodle_exception
      */
-    public function col_task(stdClass $row): string {
+    public function col_name(stdClass $row): string {
         global $PAGE;
         $output = $PAGE->get_renderer('theme_cbe');
         $page = new module_component($row->id);
@@ -181,73 +178,34 @@ class tasks_table extends table_sql {
     }
 
     /**
-     * Col remaining time
+     * Col filename
      *
      * @param stdClass $row Full data of the current row.
      * @return string
      */
-    public function col_remaining(stdClass $row): string {
-        $now = time();
-        if ($now < $row->duedate) {
-            $data = format_time($row->duedate - $now);
-        } else {
-            $data = '-';
-        }
-        return $data;
+    public function col_filename(stdClass $row): string {
+        return !empty($row->filename) ? $row->filename : '-';
     }
 
     /**
-     * Col duedate
+     * Col type
      *
      * @param stdClass $row Full data of the current row.
      * @return string
      * @throws coding_exception
      */
-    public function col_duedate(stdClass $row): string {
-        return userdate($row->duedate, get_string('strftimedayshort', 'core_langconfig'));
+    public function col_type(stdClass $row): string {
+        return !empty($row->type) ? core_filetypes::get_file_extension($row->type) : '-';
     }
 
     /**
-     * Col grade
+     * Col size
      *
      * @param stdClass $row Full data of the current row.
      * @return string
      */
-    public function col_grade(stdClass $row): string {
-        if ($row->rawgrade === '') {
-            return '-';
-        } else {
-            return $row->rawgrade;
-        }
+    public function col_size(stdClass $row): string {
+        return !empty($row->type) ? display_size($row->size) : '-';
     }
 
-    /**
-     * Col state
-     *
-     * @param stdClass $row
-     * @return string
-     * @throws coding_exception
-     * @throws dml_exception
-     */
-    public function col_state(stdClass $row): string {
-        global $DB;
-
-        if ($row->rawgrade) return get_string('graded', 'assign');
-
-        $submission = $DB->get_record('assign_submission',
-            array('assignment' => $row->id, 'userid' => $this->user_id), '*');
-
-        if ($submission->status === 'submitted') {
-            return get_string('submissionstatus_submitted', 'assign');
-        }
-
-        $now = time();
-        if ($now < $row->duedate) {
-            return get_string('submissionstatus_new', 'assign');
-        } else {
-            return get_string('task_submit_duedate_out', 'theme_cbe');
-        }
-
-
-    }
 }

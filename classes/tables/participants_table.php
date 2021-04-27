@@ -81,6 +81,7 @@ class participants_table extends table_sql {
         ]);
 
         $this->is_downloadable(false);
+        $this->is_collapsible = false;
 
         $this->sortable(true);
         $this->column_style('name', 'text-align', 'left');

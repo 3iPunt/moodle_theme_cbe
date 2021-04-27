@@ -110,4 +110,13 @@ class navigation  {
         return $output->render($renderer);
     }
 
+    /**
+     * Is Contract.
+     *
+     * @return string
+     */
+    static function is_contract(): string {
+        return true;
+    }
+
 }
