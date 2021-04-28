@@ -92,12 +92,12 @@ class course_left_section_menu_component implements renderable, templatable {
      * @throws moodle_exception
      */
     protected function get_vclasses_href (): stdClass {
-        global $DB;
+        $vc = new stdClass();
+        $vc->href = '#';
+        $vc->blank = false;
+        $vc->name = get_string('course_menu_virtual', 'theme_cbe');
+        $hasmain = false;
         if (get_config('theme_cbe', 'vclasses_direct')) {
-            $vc = new stdClass();
-            $vc->href = '#';
-            $vc->blank = false;
-            $vc->name = get_string('course_menu_virtual', 'theme_cbe');
             $modules = get_coursemodules_in_course('bigbluebuttonbn', $this->course_id);
             foreach ($modules as $mod) {
                 if ($mod->idnumber === 'MAIN') {
@@ -105,11 +105,12 @@ class course_left_section_menu_component implements renderable, templatable {
                         ['action'=> 'join', 'id' => $mod->id, 'bn' => $mod->instance]);
                     $vc->href = $href->out(false);
                     $vc->blank = true;
+                    $hasmain = true;
                     break;
                 }
             }
-        } else {
-            $vc = new stdClass();
+        }
+        if (!$hasmain) {
             $vc->href = new moodle_url('/' . course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]);
             $vc->blank = false;
             $vc->name = get_string('course_menu_virtuals', 'theme_cbe');
