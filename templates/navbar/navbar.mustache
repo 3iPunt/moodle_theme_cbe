@@ -61,6 +61,18 @@
             {{{ output.search_box }}}
         </div>
 
+        {{# can_create_courses }}
+        <button id="navbar-createcourse"
+                type="button"
+                class="btn btn-primary createcourse"
+                data-toggle="modal"
+                data-tooltip="createcourse"
+                data-target="#createCourseModalCenter"
+                title="Crear curso nuevo">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+        {{/ can_create_courses }}
+
         <!-- HIDDEN ? -->
         <ul id="navbar-lang" class="navbar-nav d-none d-md-flex menu-lang">
             <!-- custom_menu -->
@@ -84,3 +96,6 @@
             </li>
         </ul>
 </nav>
+{{# can_create_courses }}
+    {{> theme_cbe/modals/dashboard_createcourse }}
+{{/ can_create_courses }}

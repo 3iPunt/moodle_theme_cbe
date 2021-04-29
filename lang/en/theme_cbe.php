@@ -122,3 +122,5 @@ $string['type'] = "Type";
 $string['size'] = "Size";
 $string['vclasses_direct'] = "Direct virtual class";
 $string['vclasses_direct_desc'] = "If this option is active, the virtual class link will go to the virtual class with idnumber: MAIN";
+$string['selectacategory_help'] = "Select the category where you want to create this new course";
+$string['shortnamecourse_help'] = "The short name of the course is displayed in the navigation and is used in the subject line of course email messages";

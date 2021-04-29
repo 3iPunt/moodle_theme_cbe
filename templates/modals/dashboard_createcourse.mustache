@@ -1,0 +1,76 @@
+<div id="createCourseModalCenter" class="modal fade bd-createcourse-modal-lg" tabindex="-1" role="dialog" aria-labelledby="createCourseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg cbe-modal">
+        <div class="modal-content">
+            <header>
+                <h1>Crear curso nuevo</h1>
+                <p></p>
+            </header>
+            <hr>
+            <main data-region="create-course">
+                <form>
+                    <div class="form-group">
+                        <div>
+                            <label for="fullname">{{# str }} fullnamecourse {{/ str }}</label>
+                            <button type="button" class="btn btn-secondary helplabel" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{# str }} fullnamecourse_help {{/ str }}">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="verify-input">
+                            <input type="text" class="form-control validation-input" id="fullname" placeholder="Rellene el nombre completo del nuevo curso">
+                            <span id="verify-fullname" class="verify">
+                                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="shortname">{{# str }} shortnamecourse {{/ str }}</label>
+                            <button type="button" class="btn btn-secondary helplabel" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{# str }} shortnamecourse_help, theme_cbe {{/ str }}">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="verify-input">
+                            <input type="text" class="form-control validation-input" id="shortname"  placeholder="Rellene el nombre corto del curso">
+                            <span id="verify-shortname" class="verify">
+                                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="alert-msg" data-msg="msg-shortname"></div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="category">{{# str }} selectacategory {{/ str }}</label>
+                            <button type="button" class="btn btn-secondary helplabel" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{# str }} selectacategory_help, theme_cbe {{/ str }}">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <select class="form-control validation-input" id="category">
+                            {{# create_course.categories }}
+                            <option value="{{ id }}">{{ name }}</option>
+                            {{/ create_course.categories }}
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input validation-input" id="visible" checked>
+                        <label class="form-check-label" for="visible">{{# str }} coursevisibility {{/ str }}</label>
+                        <button type="button" class="btn btn-secondary helplabel" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{# str }} coursevisibility_help {{/ str }}">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </form>
+                <hr>
+                <footer class="modal-footer">
+                    <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                    <button class="btn btn-primary create" data-action="create" disabled >Crear curso</button>
+                </footer>
+            </main>
+        </div>
+    </div>
+</div>
+{{#js}}
+    require(['theme_cbe/createcourse'], function(createcourse) {
+        createcourse.initCreateCourse('[data-region="create-course"]');
+    });
+{{/js}}

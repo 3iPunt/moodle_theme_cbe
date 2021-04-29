@@ -71,7 +71,6 @@ class core_renderer extends \core_renderer {
      * @throws \moodle_exception
      */
     protected function render_custom_menu(custom_menu $menu): string {
-        global $CFG;
 
         $langs = get_string_manager()->get_list_of_translations();
         $haslangmenu = $this->lang_menu() != '';

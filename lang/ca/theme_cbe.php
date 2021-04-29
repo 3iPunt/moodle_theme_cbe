@@ -122,3 +122,5 @@ $string['type'] = "Tipus";
 $string['size'] = "Mida";
 $string['vclasses_direct'] = "Classe virtual directa";
 $string['vclasses_direct_desc'] = "Si aquesta opció està activa, l'enllaç de classes virtuals anirà a la classe virtual amb idnumber: MAIN";
+$string['selectacategory_help'] = "Seleccioneu la categoria on vulgueu crear aquest nou curs";
+$string['shortnamecourse_help'] = "El nom curt del curs es mostra a la navegació i s’utilitza a l’assumpte dels missatges de correu electrònic del curs";

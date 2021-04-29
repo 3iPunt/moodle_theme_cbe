@@ -25,10 +25,12 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use core_course_category;
 use moodle_exception;
 use moodle_url;
 use stdClass;
 use theme_cbe\output\menu_apps_button;
+use theme_cbe\user;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -107,9 +109,50 @@ class user_navigation extends navigation {
         $data['is_teacher'] = false;
         $data['menu_apps_button'] = $menu_apps_button;
         $data['nav_context'] = 'user';
+        $data['create_course'] = $this->is_dashboard() ? $this->get_data_createcourse() : [];
+        $data['can_create_courses'] = $this->is_dashboard() ? user::can_create_courses() : false;
         $data['nav_cbe'] = $this->get_page();
 
         return $data;
+    }
+
+    /**
+     * Get Data Createcourse
+     *
+     */
+    protected function get_data_createcourse(): array {
+        if ($this->is_dashboard()) {
+            $options = [];
+            $options['returnhidden'] = false;
+            $categories = core_course_category::get_all($options);
+            $cats = [];
+            foreach ($categories as $category) {
+                if (core_course_category::can_view_category($category)) {
+                    $cat = [];
+                    $cat['id'] = $category->id;
+                    $cat['name'] = $category->name;
+                    $cats[] = $cat;
+                }
+            }
+            return ['categories' => $cats];
+        } else {
+            return [];
+        }
+    }
+
+    /**
+     * Is Dashboard?
+     *
+     * @return false
+     */
+    protected function is_dashboard(): bool {
+        global $PAGE;
+        $path = $PAGE->url->get_path();
+        if (strpos($path, 'my/')) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -119,9 +162,7 @@ class user_navigation extends navigation {
     * @return bool
     */
     protected function is_contract(): bool {
-        global $PAGE;
-        $path = $PAGE->url->get_path();
-        if (strpos($path, 'my/')) {
+        if ($this->is_dashboard()) {
             return false;
         } else {
             return true;
