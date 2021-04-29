@@ -22,12 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use theme_cbe\navigation\course_module_navigation;
-use theme_cbe\navigation\course_navigation;
-use theme_cbe\navigation\user_navigation;
-use theme_cbe\output\course_header_navbar_component;
-use theme_cbe\output\course_left_section_component;
-use theme_cbe\output\menu_apps_button;
+use theme_cbe\navigation\layout;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -47,72 +42,6 @@ if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
 
-
-$output_theme_cbe = $PAGE->get_renderer('theme_cbe');
-
-switch ($PAGE->context->contextlevel) {
-    case CONTEXT_USER:
-        $nav_context = 'user';
-        $in_course = false;
-        $contract = true;
-        $in_course_module = false;
-        $nav_header_course = '';
-        $course_left_menu = false;
-        $cbe_page = user_navigation::get_navigation_page();
-        $contract = user_navigation::is_contract();
-        break;
-    case CONTEXT_COURSE:
-        $nav_context = 'course';
-        $in_course = true;
-        $in_course_module = false;
-        $course_id = $PAGE->context->instanceid;
-        $nav_header_course_component = new course_header_navbar_component($course_id);
-        $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
-        $course_left_menu_component = new course_left_section_component($course_id);
-        $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
-        $cbe_page = course_navigation::get_navigation_page();
-        $contract = course_navigation::is_contract();
-        break;
-    case CONTEXT_MODULE:
-        $nav_context = 'course';
-        $in_course = true;
-        $in_course_module = true;
-        $cmid = $PAGE->context->instanceid;
-        list($course, $cm) = get_course_and_cm_from_cmid($cmid);
-        $course_id = $course->id;
-        $nav_header_course_component = new course_header_navbar_component($course_id);
-        $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
-        $course_left_menu_component = new course_left_section_component($course_id, $cmid);
-        $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
-        $cbe_page = course_module_navigation::get_navigation_page();
-        $contract = course_module_navigation::is_contract();
-        break;
-    default:
-        $in_course = false;
-        $in_course_module = false;
-        $nav_header_course = '';
-        $cbe_page = '';
-        $contract = false;
-        $course_left_menu = false;
-        $nav_context = '';
-}
-
-if ($cbe_page === 'board' ||
-    $cbe_page === 'themes' ||
-    $cbe_page === 'moreinfo' ||
-    $cbe_page === 'modedit'  ||
-    $cbe_page === 'module') {
-    $is_course_blocks = true;
-} else {
-    $is_course_blocks = false;
-}
-
-$menu_apps_button_component = new menu_apps_button();
-$menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
-
-$teacherrole = $DB->get_record('role', array('shortname' => 'editingteacher'));
-$is_teacher = user_has_role_assignment($USER->id, $teacherrole->id);
-
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;
@@ -128,26 +57,14 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes,
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
-    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
-    'in_course' => $in_course,
-    'course_left_menu' => $course_left_menu,
-    'navbar_header_course'=> $nav_header_course,
-    'is_course_blocks'=> $is_course_blocks,
-    'is_teacher'=> $is_teacher,
-    'menu_apps_button'=> $menu_apps_button,
-    'nav_context' => $nav_context,
-    'nav_cbe' => $cbe_page,
-    'contract' => $contract
+    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
 ];
 
 $nav = $PAGE->flatnav;
 $templatecontext['flatnavigation'] = $nav;
 $templatecontext['firstcollectionlabel'] = $nav->get_collectionlabel();
 
-if (is_siteadmin()) {
-    echo $OUTPUT->render_from_template('theme_cbe/columns2_admin', $templatecontext);
-} else {
-    echo $OUTPUT->render_from_template('theme_cbe/columns2', $templatecontext);
-}
+$layout_cbe = new layout();
+$data = $layout_cbe->get_data($templatecontext);
 
-
+echo $OUTPUT->render_from_template($layout_cbe->get_template(), $data);

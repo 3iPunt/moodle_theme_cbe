@@ -25,6 +25,15 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use context_course;
+use moodle_exception;
+use moodle_url;
+use stdClass;
+use theme_cbe\course;
+use theme_cbe\course_user;
+use theme_cbe\output\course_header_navbar_component;
+use theme_cbe\output\course_left_section_component;
+use theme_cbe\output\menu_apps_button;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -37,13 +46,95 @@ defined('MOODLE_INTERNAL') || die;
  */
 class course_module_navigation extends navigation {
 
+    /** @var array Templates Header */
+    protected $templates_header = [
+        'module' => 'theme_cbe/header/custom'
+    ];
+
     /**
-    * Get Navigation Page.
+     * constructor.
+     */
+    public function __construct() {
+    }
+
+    /**
+     * Get Template Layout.
+     *
+     * @return string
+     */
+    public function get_template_layout(): string {
+        return 'theme_cbe/columns2/columns2_course';
+    }
+
+    /**
+    * Get Page.
     *
     * @return string
     */
-    static function get_navigation_page(): string {
+    protected function get_page(): string {
         return 'module';
+    }
+
+    /**
+     * Get Data Header.
+     *
+     * @param stdClass $data
+     * @return stdClass
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    public function get_data_header(stdClass $data): stdClass {
+        global $PAGE;
+        $cmid = $PAGE->context->instanceid;
+        list($course, $cm) = get_course_and_cm_from_cmid($cmid);
+        $courseid = $course->id;
+        $coursecontext = context_course::instance($courseid);
+        $coursecbe = new course($courseid);
+        $nav_context = 'course';
+        $coursename = $coursecbe->get_name();
+        $coursecategory = $coursecbe->get_category();
+        $is_teacher = has_capability('moodle/course:update', $coursecontext);
+        $data->nav_context = $nav_context;
+        $data->is_teacher = $is_teacher;
+        $data->coursename = $coursename;
+        $data->categoryname = $coursecategory;
+        $data->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
+        return $data;
+    }
+
+    /**
+     * Get Data Layout.
+     *
+     * @param array $data
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    public function get_data_layout(array $data): array {
+        global $PAGE;
+        $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+
+        $cmid = $PAGE->context->instanceid;
+        list($course, $cm) = get_course_and_cm_from_cmid($cmid);
+        $course_id = $course->id;
+
+        $nav_header_course_component = new course_header_navbar_component($course_id);
+        $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
+        $course_left_menu_component = new course_left_section_component($course_id, $cmid);
+        $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
+        $menu_apps_button_component = new menu_apps_button();
+        $menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
+
+        $data['in_course'] = true;
+        $data['course_left_menu'] = $course_left_menu;
+        $data['navbar_header_course'] =  $nav_header_course;
+        $data['is_course_blocks'] = true;
+        $data['is_teacher'] = course_user::is_teacher($course_id);
+        $data['menu_apps_button'] = $menu_apps_button;
+        $data['nav_context'] =  'course';
+        $data['nav_cbe'] = course_module_navigation::get_page();;
+
+        return $data;
     }
 
     /**

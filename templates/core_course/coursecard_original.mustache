@@ -36,13 +36,12 @@
 }}
 <div class="card dashboard-card" role="listitem"
     data-region="course-content"
-    data-course-id="{{{id}}}" data-theme='cbe'>
+    data-course-id="{{{id}}}">
     <a href="{{viewurl}}" tabindex="-1">
         <div class="card-img dashboard-card-img" style='background-image: url("{{{courseimage}}}");'>
             <span class="sr-only">{{#str}}aria:courseimage, core_course{{/str}}</span>
         </div>
     </a>
-    <div data-region="coursecard-teachers-{{id}}"></div>
     <div class="card-body pr-1 course-info-container" id="course-info-container-{{id}}-{{uniqid}}">
         <div class="d-flex align-items-start">
             <div class="w-100 text-truncate">
@@ -63,7 +62,7 @@
                     <span class="sr-only">
                             {{#str}}aria:coursename, core_course{{/str}}
                         </span>
-                    {{$coursename}}{{/coursename}} {{ totalcoursecount }} {{ user_id }}
+                    {{$coursename}}{{/coursename}}
                 </a>
                 {{^visible}}
                     <div class="d-flex flex-wrap">
@@ -71,15 +70,8 @@
                     </div>
                 {{/visible}}
             </div>
+            {{$menu}}{{/menu}}
         </div>
-        <div class="action-visibles">{{$menu}}{{/menu}}</div>
     </div>
-    <div data-region="coursecard-footer-{{ id }}"></div>
+    {{$progress}}{{/progress}}
 </div>
-
-{{#js}}
-    require(['theme_cbe/coursecard'], function(coursecard) {
-        coursecard.initCourseCard('[data-region="course-content"]', {{ id }});
-    });
-{{/js}}
-

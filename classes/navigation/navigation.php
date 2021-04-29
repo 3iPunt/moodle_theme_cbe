@@ -25,6 +25,7 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use stdClass;
 use theme_cbe\output\course_left_section_menu_component;
 use theme_cbe\output\course_left_section_pending_tasks_component;
 use theme_cbe\output\course_left_section_themes_navigation_component;
@@ -38,7 +39,65 @@ defined('MOODLE_INTERNAL') || die;
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class navigation  {
+abstract class navigation  {
+
+    const TEMPLATE_HEADER_DEFAULT = 'theme_cbe/header/header';
+    const TEMPLATE_LAYOUT_DEFAULT = 'theme_cbe/columns2/columns2_admin';
+
+    /** @var array Templates Header */
+    protected $templates_header = [];
+
+    /**
+     * Get Templates.
+     *
+     * @return array|mixed|string[]
+     */
+    protected function get_templates(): array {
+        return $this->templates_header;
+    }
+
+    /**
+     * Get Template Header.
+     *
+     * @return string
+     */
+    public function get_template_header(): string {
+        if (isset($this->get_templates()[$this->get_page()])) {
+            return $this->get_templates()[$this->get_page()];
+        } else {
+            return self::TEMPLATE_HEADER_DEFAULT;
+        }
+    }
+
+    /**
+     * Get Template Layout.
+     *
+     * @return string
+     */
+    abstract public function get_template_layout(): string;
+
+    /**
+     * Get Data Header.
+     *
+     * @param stdClass $data
+     * @return stdClass
+     */
+    abstract public function get_data_header(stdClass $data): stdClass;
+
+    /**
+     * Get Data Header.
+     *
+     * @param array $data
+     * @return array
+     */
+    abstract public function get_data_layout(array $data): array;
+
+    /**
+     * Get Navigation Page.
+     *
+     * @return string
+     */
+    abstract protected function get_page(): string;
 
     /**
      * Left Section Board in Course.
@@ -108,15 +167,6 @@ class navigation  {
         $output = $PAGE->get_renderer('theme_cbe');
         $renderer = new course_left_section_menu_component($course_id);
         return $output->render($renderer);
-    }
-
-    /**
-     * Is Contract.
-     *
-     * @return string
-     */
-    static function is_contract(): string {
-        return true;
     }
 
 }

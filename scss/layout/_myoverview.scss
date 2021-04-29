@@ -8,6 +8,9 @@ body[data-theme='cbe'][data-role='user'] {
         border-radius: 0;
         background-color: inherit;
         .card-body {
+          div[data-region="filter"] {
+            margin-right: 34px;
+          }
           h5.card-title {
             display: none !important;
           }
@@ -20,6 +23,7 @@ body[data-theme='cbe'][data-role='user'] {
                 border-radius: 0;
                 margin-right: 24px;
                 margin-bottom: 24px;
+                margin-top: 15px;
                 @media (min-width: 1600px) {
                   width: calc(33% - 1.8rem);
                 }

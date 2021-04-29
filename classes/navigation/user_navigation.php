@@ -24,6 +24,12 @@
 
 namespace theme_cbe\navigation;
 
+use coding_exception;
+use moodle_exception;
+use moodle_url;
+use stdClass;
+use theme_cbe\output\menu_apps_button;
+
 defined('MOODLE_INTERNAL') || die;
 
 /**
@@ -35,21 +41,84 @@ defined('MOODLE_INTERNAL') || die;
  */
 class user_navigation extends navigation {
 
+    /** @var array Templates Header */
+    protected $templates_header = [
+        'user' => 'theme_cbe/header/user'
+    ];
+
+    /**
+     * constructor.
+     */
+    public function __construct() {
+    }
+
+    /**
+     * Get Template Layout.
+     *
+     * @return string
+     */
+    public function get_template_layout(): string {
+        if ($this->is_contract()) {
+            return 'theme_cbe/columns2/columns2_user';
+        } else {
+            return 'theme_cbe/columns2/columns2';
+        }
+
+    }
+
     /**
     * Get Navigation Page.
     *
     * @return string
     */
-    static function get_navigation_page(): string {
+    protected function get_page(): string {
         return 'user';
     }
 
     /**
+     * Get Data Header.
+     *
+     * @param stdClass $data
+     * @return stdClass
+     */
+    public function get_data_header(stdClass $data): stdClass {
+        $data->nav_context = 'user';
+        return $data;
+    }
+
+    /**
+     * Get Data Layout.
+     *
+     * @param array $data
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    public function get_data_layout(array $data): array {
+        global $PAGE;
+        $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+        $menu_apps_button_component = new menu_apps_button();
+        $menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
+
+        $data['in_course'] = false;
+        $data['course_left_menu'] = false;
+        $data['navbar_header_course'] = '';
+        $data['is_course_blocks'] = false;
+        $data['is_teacher'] = false;
+        $data['menu_apps_button'] = $menu_apps_button;
+        $data['nav_context'] = 'user';
+        $data['nav_cbe'] = $this->get_page();
+
+        return $data;
+    }
+
+
+    /**
     * Is Contract.
     *
-    * @return string
+    * @return bool
     */
-    static function is_contract(): string {
+    protected function is_contract(): bool {
         global $PAGE;
         $path = $PAGE->url->get_path();
         if (strpos($path, 'my/')) {

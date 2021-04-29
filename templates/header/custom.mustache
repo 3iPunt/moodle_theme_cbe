@@ -1,0 +1,48 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core/full_header
+
+    This template renders the header.
+
+    Example context (json):
+    {
+        "contextheader": "context_header_html",
+        "settingsmenu": "settings_html",
+        "hasnavbar": false,
+        "navbar": "navbar_if_available",
+        "courseheader": "course_header_html"
+    }
+}}
+<header id="page-header" class="row {{ nav_context }}">
+    <div class="col-9 pt-3 pb-3 is_custom">
+        <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">
+            <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
+                <div class="text">
+                    <h2 class="subtitle">{{ categoryname }}</h2>
+                    <h1 class="title">{{ coursename }}</h1>
+                </div>
+                {{# is_teacher }}
+                    <a class="edition" href="{{ edit_course }}">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <div class="triangle"></div>
+                    </a>
+                {{/ is_teacher }}
+            </div>
+        </div>
+    </div>
+</header>

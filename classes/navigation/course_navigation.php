@@ -25,6 +25,15 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use context_course;
+use moodle_exception;
+use moodle_url;
+use stdClass;
+use theme_cbe\course;
+use theme_cbe\course_user;
+use theme_cbe\output\course_header_navbar_component;
+use theme_cbe\output\course_left_section_component;
+use theme_cbe\output\menu_apps_button;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -44,12 +53,39 @@ class course_navigation extends navigation {
     const PAGE_MOREINFO = 'theme/cbe/view_moreinfo.php';
     const PAGE_RESOURCES = 'theme/cbe/view_resources.php';
 
+    /** @var array Templates Header */
+    protected $templates_header = [
+        'board' => 'theme_cbe/header/board',
+        'themes' => 'theme_cbe/header/themes',
+        'tasks' => 'theme_cbe/header/custom',
+        'vclasses' => 'theme_cbe/header/custom',
+        'moreinfo' => 'theme_cbe/header/custom',
+        'modedit' => 'theme_cbe/header/custom',
+        'generic' => 'theme_cbe/header/generic',
+        'default' => 'theme_cbe/header/header',
+    ];
+
     /**
-    * Get Navigation Page.
-    *
-    * @return string
-    */
-    static function get_navigation_page(): string {
+     * constructor.
+     */
+    public function __construct() {
+    }
+
+    /**
+     * Get Template Layout.
+     *
+     * @return string
+     */
+    public function get_template_layout(): string {
+        return 'theme_cbe/columns2/columns2_course';
+    }
+
+    /**
+     * Get Page.
+     *
+     * @return string
+     */
+    protected function get_page(): string {
         global $PAGE;
         $path = $PAGE->url->get_path();
         if (strpos($path, self::PAGE_BOARD)) {
@@ -65,15 +101,85 @@ class course_navigation extends navigation {
         } else if (strpos($path, 'course/modedit')) {
             return 'modedit';
         } else if (strpos($path, 'grade') ||
-                   strpos($path, 'user') ||
-                   strpos($path, 'calendar') ||
-                   strpos($path, 'contentbank') ||
-                   strpos($path, 'course/edit'
-                   )) {
+            strpos($path, 'user') ||
+            strpos($path, 'calendar') ||
+            strpos($path, 'contentbank') ||
+            strpos($path, 'course/edit'
+            )) {
             return 'generic';
         } else {
             return '';
         }
+    }
+
+    /**
+     * Get Data Header.
+     *
+     * @param stdClass $data
+     * @return stdClass
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    public function get_data_header(stdClass $data): stdClass {
+        global $PAGE;
+        $courseid = $PAGE->context->instanceid;
+        $coursecbe = new course($courseid);
+        $nav_context = 'course';
+        $courseimage = $coursecbe->get_courseimage();
+        $teachers = $coursecbe->get_users_by_role('editingteacher');
+        $coursename = $coursecbe->get_name();
+        $coursecategory = $coursecbe->get_category();
+        $is_teacher = course_user::is_teacher($courseid);
+        $data->nav_context = $nav_context;
+        $data->courseimage = $courseimage;
+        $data->teachers = $teachers;
+        $data->is_teacher = $is_teacher;
+        $data->coursename = $coursename;
+        $data->categoryname = $coursecategory;
+        $data->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
+        return $data;
+    }
+
+    /**
+     * Get Data Layout.
+     *
+     * @param array $data
+     * @return array
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    public function get_data_layout(array $data): array {
+        global $PAGE;
+        $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+        $course_id = $PAGE->context->instanceid;
+        $nav_header_course_component = new course_header_navbar_component($course_id);
+        $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
+        $course_left_menu_component = new course_left_section_component($course_id);
+        $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
+        $menu_apps_button_component = new menu_apps_button();
+        $menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
+
+        $cbe_page = course_navigation::get_page();
+        if ($cbe_page === 'board' ||
+            $cbe_page === 'themes' ||
+            $cbe_page === 'moreinfo' ||
+            $cbe_page === 'modedit'  ||
+            $cbe_page === 'module') {
+            $is_course_blocks = true;
+        } else {
+            $is_course_blocks = false;
+        }
+
+        $data['in_course'] = true;
+        $data['course_left_menu'] = $course_left_menu;
+        $data['navbar_header_course'] =  $nav_header_course;
+        $data['is_course_blocks'] = $is_course_blocks;
+        $data['is_teacher'] = course_user::is_teacher($course_id);
+        $data['menu_apps_button'] = $menu_apps_button;
+        $data['nav_context'] = 'course';
+        $data['nav_cbe'] =  $cbe_page;
+
+        return $data;
     }
 
     /**
