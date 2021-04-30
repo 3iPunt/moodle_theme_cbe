@@ -50,7 +50,7 @@ class course_external extends external_api {
                 'fullname' => new external_value(PARAM_TEXT, 'Course Fullname', true),
                 'shortname' => new external_value(PARAM_TEXT, 'Course Shortname', true),
                 'category' => new external_value(PARAM_INT, 'Category ID', true),
-                'visible' => new external_value(PARAM_INT, 'Visibility: 0 hidden, 1 visible', true),
+                'visible' => new external_value(PARAM_BOOL, 'Visibility', true),
             )
         );
     }
@@ -59,12 +59,12 @@ class course_external extends external_api {
      * @param string $fullname
      * @param string $shortname
      * @param int $category
-     * @param int $visible
+     * @param bool $visible
      * @return array
      * @throws invalid_parameter_exception
      * @throws moodle_exception
      */
-    public static function create_course(string $fullname, string $shortname, int $category, int $visible): array {
+    public static function create_course(string $fullname, string $shortname, int $category, bool $visible): array {
         global $CFG, $DB, $USER;
         require_once($CFG->dirroot . '/course/lib.php');
         self::validate_parameters(
