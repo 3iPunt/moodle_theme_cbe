@@ -43,5 +43,14 @@ if ($ADMIN->fulltree) {
 
     $page->add($setting);
 
+    $setting = (new admin_setting_configcheckbox(
+        'theme_cbe/vclasses_direct',
+        get_string('vclasses_direct', 'theme_cbe'),
+        get_string('vclasses_direct_desc', 'theme_cbe'),
+        false
+    ));
+
+    $page->add($setting);
+
     $settings->add($page);
 }

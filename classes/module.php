@@ -29,12 +29,10 @@ use coding_exception;
 use comment_exception;
 use context_module;
 use core_media_manager;
-use core_user;
 use dml_exception;
 use moodle_exception;
 use moodle_url;
 use stdClass;
-use user_picture;
 
 global $CFG;
 require_once($CFG->dirroot . '/enrol/locallib.php');
@@ -90,7 +88,6 @@ class module  {
      * Export module for render.
      *
      * @return stdClass
-     * @throws comment_exception
      * @throws dml_exception
      * @throws coding_exception
      * @throws moodle_exception
@@ -105,9 +102,11 @@ class module  {
         $module->is_publication = false;
         $module->view_href = $this->get_view_href();
         $module->view_blank = false;
+        $module->theme = $this->get_theme();
         $module->edit_href = $this->get_edit_href();
         $module->is_media = false;
         $module->is_mine = false;
+        $module->sectionname = get_section_name($this->coursemoodle->id, $this->cm->sectionnum);
         switch ($this->cm->modname) {
             case publication::MODULE_PUBLICATION:
                 $module = $this->set_publication($module);
@@ -163,6 +162,15 @@ class module  {
     }
 
     /**
+     * Get Theme
+     *
+     * @return string
+     */
+    public function get_theme(): string {
+        return 'Esto es una prueba';
+    }
+
+    /**
      * Get View HRef
      *
      * @return string
@@ -190,7 +198,7 @@ class module  {
      * @throws moodle_exception
      */
     protected function set_publication($module) {
-        global $PAGE, $USER;
+        global $USER;
         $publication = new publication($this->cm->id);
         $module->is_publication = true;
         $module->comment = $this->cm->name;
@@ -198,9 +206,6 @@ class module  {
         $author_cbe = new user($author_id);
         $author = $author_cbe->export();
         $module->author = $author;
-        //$module->author_fullname = fullname($author);
-        //$module->author_picture = $author_picture;
-        //$module->author_is_connected = true;
         $module->comments = $publication->get_comments();
         $module->has_comments = count($publication->get_comments()) > 0;
         if ($author_id === $USER->id) {
@@ -292,14 +297,15 @@ class module  {
      * Get List Modules.
      *
      * @param int $course_id
+     * @param int $in_section
      * @return array
      * @throws coding_exception
      * @throws moodle_exception
      */
-    static public function get_list_modules(int $course_id): array {
+    static public function get_list_modules(int $course_id, int $in_section = 1): array {
         return [
-            'activities' => self::get_list_activities($course_id),
-            'resources' => self::get_list_resources($course_id),
+            'activities' => self::get_list_activities($course_id, $in_section),
+            'resources' => self::get_list_resources($course_id, $in_section),
         ];
     }
 
@@ -307,14 +313,15 @@ class module  {
      * Get List Activities.
      *
      * @param int $course_id
+     * @param int $in_section
      * @return array
      * @throws coding_exception
      * @throws moodle_exception
      */
-    static public function get_list_activities(int $course_id): array {
+    static public function get_list_activities(int $course_id, int $in_section = 1): array {
         $activities = [];
         foreach (self::$activities as $activity) {
-            $activities[] = self::get_mod($course_id, $activity);
+            $activities[] = self::get_mod($course_id, $activity, $in_section);
         }
         return $activities;
     }
@@ -323,14 +330,15 @@ class module  {
      * Get List Resources.
      *
      * @param int $course_id
+     * @param int $in_section
      * @return array
      * @throws coding_exception
      * @throws moodle_exception
      */
-    static public function get_list_resources(int $course_id): array {
+    static public function get_list_resources(int $course_id, int $in_section = 1): array {
         $resources = [];
         foreach (self::$resources as $resource) {
-            $resources[] = self::get_mod($course_id, $resource);
+            $resources[] = self::get_mod($course_id, $resource, $in_section);
         }
         return $resources;
     }
@@ -340,16 +348,17 @@ class module  {
      *
      * @param int $course_id
      * @param string $modname
+     * @param int $in_section
      * @return array
      * @throws coding_exception
      * @throws moodle_exception
      */
-    static public function get_mod(int $course_id, string $modname): array {
+    static public function get_mod(int $course_id, string $modname, int $in_section): array {
         $params = [
             'add' => $modname,
             'type' => '',
             'course' => $course_id,
-            'section' => 1,
+            'section' => $in_section,
             'return' => 0,
             'sr' => 0
         ];
@@ -360,7 +369,4 @@ class module  {
             'modtitle' => get_string('pluginname', 'mod_' . $modname)
         ];
     }
-
-
-
 }

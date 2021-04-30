@@ -29,8 +29,8 @@ use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
-use theme_cbe\course_module_navigation;
-use theme_cbe\course_navigation;
+use theme_cbe\navigation\course_module_navigation;
+use theme_cbe\navigation\course_navigation;
 
 defined('MOODLE_INTERNAL') || die;
 

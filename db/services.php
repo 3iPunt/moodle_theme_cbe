@@ -19,6 +19,7 @@
  * @copyright   3iPunt <https://www.tresipunt.com/>
  */
 
+use theme_cbe\external\course_external;
 use theme_cbe\external\coursecard_external;
 use theme_cbe\external\module_external;
 use theme_cbe\external\section_external;
@@ -74,6 +75,22 @@ $functions = [
         'ajax' => true,
         'loginrequired' => true
     ],
+    'theme_cbe_create_course' => [
+        'classname' => course_external::class,
+        'methodname' => 'create_course',
+        'description' => 'Create course',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_check_course_shortname' => [
+        'classname' => course_external::class,
+        'methodname' => 'check_course_shortname',
+        'description' => 'Check if exist shortname',
+        'type' => 'read',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
 ];
 $services = [
     'theme_cbe' => [
@@ -84,6 +101,8 @@ $services = [
             'theme_cbe_publication',
             'theme_cbe_publication_delete',
             'theme_cbe_publication_comment_send',
+            'theme_cbe_create_course',
+            'theme_cbe_check_course_shortname',
         ],
         'restrictedusers' => 0,
         'enabled' => 1

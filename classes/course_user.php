@@ -29,13 +29,12 @@ global $CFG;
 use coding_exception;
 use comment_exception;
 use context_course;
-use core_user;
 use dml_exception;
 use moodle_exception;
 use moodle_url;
 use section_info;
 use stdClass;
-use user_picture;
+use theme_cbe\navigation\course_navigation;
 
 require_once($CFG->dirroot . '/enrol/locallib.php');
 require_once($CFG->dirroot . '/lib/modinfolib.php');

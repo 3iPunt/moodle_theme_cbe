@@ -25,11 +25,11 @@
 namespace theme_cbe;
 
 use coding_exception;
+use context_system;
 use core_user;
 use dml_exception;
 use stdClass;
 use user_picture;
-
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -110,6 +110,17 @@ class user  {
         $now = time();
         $lastaccess = $this->user->lastaccess;
         return $now - (int)$lastaccess < 900;
+    }
+
+    /**
+     * Can course create?
+     *
+     * @return bool
+     * @throws coding_exception|dml_exception
+     */
+    static public function can_create_courses(): bool {
+        $context = context_system::instance();
+        return has_capability('moodle/course:create', $context);
     }
 
 }

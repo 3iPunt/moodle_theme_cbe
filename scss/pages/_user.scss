@@ -1,0 +1,13 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  header.user {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  #page-content.user {
+    display: flex;
+    justify-content: center;
+  }
+
+}

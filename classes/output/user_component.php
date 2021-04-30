@@ -32,7 +32,6 @@ use renderer_base;
 use stdClass;
 use templatable;
 use theme_cbe\user;
-use user_picture;
 
 defined('MOODLE_INTERNAL') || die;
 

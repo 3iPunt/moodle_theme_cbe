@@ -15,49 +15,61 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class course_module_navigation
+ * Class resources_page
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_cbe;
+namespace theme_cbe\output;
 
-use coding_exception;
+use theme_cbe\tables\resources_table;
+use theme_cbe\tables\tasks_table;
+use moodle_exception;
+use renderable;
+use renderer_base;
 use stdClass;
-use theme_cbe\output\course_left_section_menu_component;
-use theme_cbe\output\course_left_section_pending_tasks_component;
-use theme_cbe\output\course_left_section_themes_navigation_component;
+use templatable;
 
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * Class course_module_navigation
+ * Class resources_page
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class course_module_navigation extends navigation {
+class resources_page implements renderable, templatable {
+
+    /** @var int Course ID */
+    protected $course_id;
 
     /**
-    * Get Navigation Page.
-    *
-    * @return string
-    */
-    static function get_navigation_page(): string {
-        return 'module';
+     * charge_page constructor.
+     * @param int $course_id
+     */
+    public function __construct(int $course_id) {
+        $this->course_id = $course_id;
     }
 
     /**
-     * Left Section
+     * Export for template
      *
-     * @param int $course_id
-     * @return array
-     * @throws coding_exception
+     * @param renderer_base $output
+     * @return false|stdClass|string
+     * @throws moodle_exception
      */
-    static function left_section(int $course_id): array {
-        return self::left_section_themes($course_id);
+    public function export_for_template(renderer_base $output) {
+        global $USER;
+        $data = new stdClass();
+        $table = new resources_table($this->course_id, $USER->id);
+        ob_start();
+        $table->out(100, true);
+        $output = ob_get_contents();
+        ob_end_clean();
+        $data->table = $output;
+        return $data;
     }
 }

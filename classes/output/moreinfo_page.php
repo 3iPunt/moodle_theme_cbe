@@ -34,6 +34,7 @@ use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
+use theme_cbe\module;
 use theme_cbe\publication;
 
 defined('MOODLE_INTERNAL') || die;
@@ -83,6 +84,7 @@ class moreinfo_page implements renderable, templatable {
         $mods = array_values($mods);
         $data->mods = $mods;
         $data->href_edit_section_zero = new moodle_url('/course/editsection.php', ['id'=> $section->id]);
+        $data->create = module::get_list_modules($this->course_id, 0);
         $data->is_teacher = course_user::is_teacher($this->course_id);
         return $data;
     }

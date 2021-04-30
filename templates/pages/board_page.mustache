@@ -69,10 +69,10 @@
     {{# modules }}
         <div class="modulecbe {{ modname }}">
         {{# is_publication }}
-            {{> theme_cbe/publication_board_component }}
+            {{> theme_cbe/components/publication_board_component }}
         {{/ is_publication }}
         {{^ is_publication }}
-            {{> theme_cbe/module_board_component }}
+            {{> theme_cbe/components/module_board_component }}
         {{/ is_publication }}
         </div>
     {{/ modules }}

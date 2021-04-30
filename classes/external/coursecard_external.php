@@ -86,20 +86,29 @@ class coursecard_external extends external_api {
             $searchfilter = '', $groupfilter = 0, $statusfilter = -1);
         $students = $enrolmanager->get_users('id');
         $view_url = new moodle_url('/theme/cbe/view_board.php', ['id'=> $course_id]);
+        $notification_url = new moodle_url('/message/output/popup/notifications.php');
         return [
             'role' => $rolename,
             'rolename' => get_string($rolename, 'theme_cbe'),
             'view_url' => $view_url->out(false),
-            'students_num' => count($students)
+            'students_num' => count($students),
+            'notification_url' => $notification_url->out(false),
         ];
     }
 
     /**
      * @return external_single_structure
-     * TODO: RETURNS
      */
-    public static function getcourseextra_returns() {
-        return null;
+    public static function getcourseextra_returns(): external_single_structure {
+        return new external_single_structure(
+            array(
+                'role' => new external_value(PARAM_TEXT, 'Role'),
+                'rolename' => new external_value(PARAM_TEXT, 'Rolename'),
+                'view_url' => new external_value(PARAM_TEXT, 'URL View Course'),
+                'students_num' => new external_value(PARAM_INT, 'Students count'),
+                'notification_url' => new external_value(PARAM_TEXT, 'URL Notification'),
+            )
+        );
     }
 
     /**

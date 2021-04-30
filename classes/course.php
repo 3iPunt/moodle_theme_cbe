@@ -33,6 +33,7 @@ use dml_exception;
 use moodle_exception;
 use section_info;
 use stdClass;
+use theme_cbe\output\core_renderer;
 
 global $CFG;
 require_once($CFG->dirroot . '/enrol/locallib.php');
@@ -93,7 +94,12 @@ class course  {
      * @return string
      */
     public function get_courseimage(): string {
-        return course_summary_exporter::get_course_image($this->course);
+        global $OUTPUT;
+        $courseimage = course_summary_exporter::get_course_image($this->course);
+        if (!$courseimage) {
+            $courseimage = $OUTPUT->get_generated_image_for_id($this->course->id);
+        }
+        return $courseimage;
     }
 
     /**

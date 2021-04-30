@@ -90,6 +90,7 @@ class tasks_table extends table_sql {
         ]);
 
         $this->is_downloadable(false);
+        $this->is_collapsible = false;
 
         $this->sortable(true, 'duedate');
 
@@ -158,7 +159,6 @@ class tasks_table extends table_sql {
      *
      * @param stdClass $row Full data of the current row.
      * @return string
-     * @throws coding_exception
      */
     public function col_section(stdClass $row): string {
         return get_section_name($this->course_id, $row->section);

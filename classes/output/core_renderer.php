@@ -28,7 +28,6 @@ use action_menu;
 use action_menu_filler;
 use action_menu_link_secondary;
 use coding_exception;
-use context_course;
 use context_header;
 use core_text;
 use custom_menu;
@@ -40,8 +39,7 @@ use pix_icon;
 use renderer_base;
 use stdClass;
 use theme_cbe\course;
-use theme_cbe\course_module_navigation;
-use theme_cbe\course_navigation;
+use theme_cbe\navigation\header;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -73,7 +71,6 @@ class core_renderer extends \core_renderer {
      * @throws \moodle_exception
      */
     protected function render_custom_menu(custom_menu $menu): string {
-        global $CFG;
 
         $langs = get_string_manager()->get_list_of_translations();
         $haslangmenu = $this->lang_menu() != '';
@@ -319,8 +316,6 @@ class core_renderer extends \core_renderer {
      * @throws moodle_exception
      */
     public function full_header(): string {
-        global $PAGE;
-
         if ($this->page->include_region_main_settings_in_header_actions() &&
             !$this->page->blocks->is_block_present('settings')) {
             // Only include the region main settings if the page has requested it and it doesn't already have
@@ -332,95 +327,16 @@ class core_renderer extends \core_renderer {
                 ['id' => 'region-main-settings-menu']
             ));
         }
-
-        $courseid = null;
-
-        switch ($PAGE->context->contextlevel) {
-            case CONTEXT_COURSE:
-                $courseid = $PAGE->context->instanceid;
-                $coursecontext = context_course::instance($courseid);
-                $coursecbe = new course($courseid);
-                $in_course = true;
-                $cbe_page = course_navigation::get_navigation_page();
-                $courseimage = $coursecbe->get_courseimage();
-                $teachers = $coursecbe->get_users_by_role('editingteacher');
-                $coursename = $coursecbe->get_name();
-                $coursecategory = $coursecbe->get_category();
-                $is_teacher = has_capability('moodle/course:update', $coursecontext);
-                break;
-            case CONTEXT_MODULE:
-                $cmid = $PAGE->context->instanceid;
-                list($course, $cm) = get_course_and_cm_from_cmid($cmid);
-                $courseid = $course->id;
-                $coursecontext = context_course::instance($courseid);
-                $coursecbe = new course($courseid);
-                $in_course = true;
-                $cbe_page = course_module_navigation::get_navigation_page();
-                $courseimage = $coursecbe->get_courseimage();
-                $teachers = $coursecbe->get_users_by_role('editingteacher');
-                $coursename = $coursecbe->get_name();
-                $coursecategory = $coursecbe->get_category();
-                $is_teacher = has_capability('moodle/course:update', $coursecontext);
-                break;
-            default:
-                $in_course = false;
-                $cbe_page = '';
-                $courseimage = '';
-                $is_teacher = false;
-                $teachers = [];
-                $coursename = '';
-                $coursecategory = '';
-        }
-
-        $is_board = false;
-        $is_themes = false;
-        $is_custom = false;
-        $is_generic = false;
-        $is_default = false;
-
-        if ($cbe_page === 'board') {
-            $is_board = true;
-        } else if ($cbe_page === 'themes') {
-            $is_themes = true;
-        } else if (
-            $cbe_page === 'tasks' ||
-            $cbe_page === 'vclasses' ||
-            $cbe_page === 'moreinfo' ||
-            $cbe_page === 'modedit' ||
-            $cbe_page === 'module') {
-            $is_custom= true;
-        } else if ($cbe_page === 'generic') {
-            $is_generic = true;
-        } else {
-            $is_default = true;
-        }
-
-        $header = new stdClass();
-        $header->settingsmenu = $this->context_header_settings_menu();
-        $header->contextheader = $this->context_header();
-        $header->hasnavbar = empty($this->page->layout_options['nonavbar']);
-        $header->navbar = $this->navbar();
-        $header->pageheadingbutton = $this->page_heading_button();
-        $header->courseheader = $this->course_header();
-        $header->headeractions = $this->page->get_header_actions();
-        $header->is_board = $is_board ;
-        $header->is_themes = $is_themes;
-        $header->is_custom = $is_custom;
-        $header->is_generic= $is_generic;
-        $header->is_default = $is_default;
-        $header->courseimage = $courseimage;
-        $header->in_course = $in_course;
-        $header->teachers = $teachers;
-        $header->is_teacher = $is_teacher;
-        $header->coursename = $coursename;
-        $header->categoryname = $coursecategory;
-        $header->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
-
-        if (is_siteadmin()) {
-            return $this->render_from_template('core/full_header', $header);
-        } else {
-            return $this->render_from_template('theme_cbe/full_header', $header);
-        }
+        $data = new stdClass();
+        $data->settingsmenu = $this->context_header_settings_menu();
+        $data->contextheader = $this->context_header();
+        $data->hasnavbar = empty($this->page->layout_options['nonavbar']);
+        $data->navbar = $this->navbar();
+        $data->pageheadingbutton = $this->page_heading_button();
+        $data->courseheader = $this->course_header();
+        $data->headeractions = $this->page->get_header_actions();
+        $header_cbe = new header();
+        return $this->render_from_template($header_cbe->get_template(), $header_cbe->get_data($data));
     }
 
     /**

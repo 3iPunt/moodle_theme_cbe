@@ -9,6 +9,17 @@ body[data-theme='cbe'][data-role='user'] {
     color: white;
   }
 
+  .btn-outline-secondary {
+    color: $grey-medium2;
+    border-color:$grey-medium2;
+    background-color: $grey-light;
+    &:hover, &:active {
+      color: white;
+      background-color: $grey-medium2;
+      border-color: $grey-medium2;
+    }
+  }
+
   input::placeholder {
     color: $grey-medium;
   }

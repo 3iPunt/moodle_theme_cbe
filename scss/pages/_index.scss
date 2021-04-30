@@ -1,0 +1,50 @@
+body[data-theme='cbe'][data-role='user'][data-context="index"] {
+
+  header.index {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  #region-main {
+    width: 100%;
+    #frontpage-category-combo {
+      >h2 {
+        display: none;
+      }
+      .subcategories {
+        margin-top: 20px;
+        .categoryname {
+          border: 1px solid $grey-border;
+          padding: 7px 30px !important;
+          background-color: $grey-light;
+          background-position-x: 6px;
+          a {
+            color: $black-ligth;
+            font-weight: 600;
+          }
+          span.numberofcourse {
+            position: relative;
+            top: -3px;
+            left: 4px;
+          }
+        }
+        .coursebox>.info>.coursename a {
+          background-image: none;
+          font-size: 16px;
+          font-weight: 600;
+        }
+        .content {
+          padding-left: 16px;
+          display: flex;
+          flex-direction: column-reverse;
+        }
+
+      }
+      .course_category_tree .category.collapsed>.content {
+        display: none;
+      }
+
+    }
+  }
+
+}

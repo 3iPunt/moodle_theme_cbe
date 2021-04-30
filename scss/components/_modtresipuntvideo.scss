@@ -1,5 +1,6 @@
 #page-mod-tresipuntvideo-view[data-theme='cbe'][data-role="user"]  #region-main-box,
 #page-theme-cbe-view_board[data-theme='cbe'][data-role="user"]  #region-main-box .modulecbe.tresipuntvideo,
+#page-theme-cbe-view_moreinfo[data-theme='cbe'][data-role="user"] #region-main-box .modulecbe.tresipuntvideo,
 #page-course-view-topics[data-theme='cbe'][data-role="user"] .activity.tresipuntvideo {
 
   div[role="main"] {
@@ -169,7 +170,8 @@
 
 }
 
-#page-theme-cbe-view_board[data-theme='cbe'][data-role="user"]  {
+#page-theme-cbe-view_board[data-theme='cbe'][data-role="user"],
+#page-theme-cbe-view_moreinfo[data-theme='cbe'][data-role="user"]   {
   .resourcecontent {
     margin: 30px 200px !important;
   }

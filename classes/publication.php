@@ -29,11 +29,9 @@ use coding_exception;
 use comment;
 use comment_exception;
 use context_module;
-use core_user;
 use dml_exception;
 use moodle_exception;
 use stdClass;
-use user_picture;
 
 defined('MOODLE_INTERNAL') || die;
 

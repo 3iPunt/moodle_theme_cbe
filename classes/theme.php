@@ -25,14 +25,11 @@
 namespace theme_cbe;
 
 use coding_exception;
-use core_user;
 use dml_exception;
 use moodle_exception;
 use moodle_url;
 use section_info;
 use stdClass;
-use user_picture;
-
 
 defined('MOODLE_INTERNAL') || die;
 

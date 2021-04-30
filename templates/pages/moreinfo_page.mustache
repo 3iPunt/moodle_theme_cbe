@@ -39,14 +39,68 @@
         </div>
         <p class="summary">{{{ summary }}}</p>
         <div class="modules">
+            {{# is_teacher }}
+            <button id="create_mod_section_zero" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target=".createmodsectionzero-modal-lg">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <span>{{# str }} create_module, theme_cbe {{/ str }}</span>
+            </button>
+            {{/ is_teacher }}
             {{# mods }}
             <div class="modulecbe {{ modname }}">
-                {{> theme_cbe/module_board_component }}
+                {{> theme_cbe/components/module_board_component }}
             </div>
             {{/mods}}
         </div>
     </main>
 </div>
+
+{{# is_teacher }}
+    <div class="modal fade createmodsectionzero-modal-lg" tabindex="-1" role="dialog" aria-labelledby="createmodsectionzero-modal-lg" aria-hidden="true">
+        <div class="modal-dialog modal-lg cbe-modal">
+            <div class="modal-content">
+                <header>
+                    <h1>{{# str }} create_item, theme_cbe {{/ str }}</h1>
+                    <p>{{# str }} select_activity_resource, theme_cbe {{/ str }}</p>
+                </header>
+                <main>
+                    <div class="column">
+                        <h2>{{# str }} activities_upper, theme_cbe {{/ str }}</h2>
+                        <ul class="select-modules">
+                            {{# create.activities }}
+                                <li class="select-module">
+                                    <a href="{{ mod_url }}" class="create-mod">
+                                        <div class="mod-icon {{ modname }}"></div>
+                                        <div class="text">{{ modtitle }}</div>
+                                    </a>
+                                </li>
+                            {{/ create.activities}}
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h2>{{# str }} resources_upper, theme_cbe {{/ str }}</h2>
+                        <ul class="select-modules">
+                        <li class="select-module video">
+                            {{# create.resources }}
+                                <li class="select-module">
+                                    <a href="{{ mod_url }}" class="create-mod">
+                                        <div class="mod-icon {{ modname }}"></div>
+                                        <div class="text">{{ modtitle }}</div>
+                                    </a>
+                                </li>
+                            {{/ create.resources}}
+                            </li>
+                        </ul>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+{{/ is_teacher }}
+{{#js}}
+    require(['theme_cbe/viewmedia'], function(viewmedia) {
+        viewmedia.initViewMedia('[data-region="media"]');
+    });
+{{/js}}
 
 
 

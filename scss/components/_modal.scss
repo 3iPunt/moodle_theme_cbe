@@ -171,4 +171,46 @@ body[data-theme='cbe'][data-role="user"] {
     }
   }
 
+  #createCourseModalCenter {
+    .modal-content {
+      main {
+        display: flex;
+        flex-direction: column;
+        .helplabel {
+          background-color: transparent;
+          color: #51bbe4;
+          border: none;
+          margin: 0;
+          padding: 3px 4px 5px;
+        }
+        .verify-input {
+          display: flex;
+          flex-direction: row;
+          .verify {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+            i.fa {
+              display: none;
+              font-size: 18px;
+              &.fa-check-circle-o {
+                color: green;
+              }
+              &.fa-times-circle-o {
+                color: red;
+              }
+            }
+          }
+        }
+        .alert-msg {
+          font-size: 12px;
+          font-style: italic;
+          padding: 3px 12px;
+          color: red;
+        }
+      }
+    }
+  }
+
 }
