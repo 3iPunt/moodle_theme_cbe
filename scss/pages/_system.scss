@@ -1,0 +1,12 @@
+body[data-theme='cbe'][data-role='user'][data-context="system"] {
+
+  header.system {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  [data-region="blocks-column"] {
+    margin-top: 0;
+  }
+
+}

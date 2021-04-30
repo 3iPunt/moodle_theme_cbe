@@ -64,6 +64,7 @@ class course_navigation extends navigation {
         'modedit' => 'theme_cbe/header/custom',
         'generic' => 'theme_cbe/header/generic',
         'default' => 'theme_cbe/header/header',
+        'index' => 'theme_cbe/header/generic',
     ];
 
     /**
@@ -78,7 +79,11 @@ class course_navigation extends navigation {
      * @return string
      */
     public function get_template_layout(): string {
-        return 'theme_cbe/columns2/columns2_course';
+        if ($this->get_page() === 'index') {
+            return 'theme_cbe/columns2/columns2_index';
+        } else {
+            return 'theme_cbe/columns2/columns2_course';
+        }
     }
 
     /**
@@ -89,6 +94,7 @@ class course_navigation extends navigation {
     protected function get_page(): string {
         global $PAGE;
         $path = $PAGE->url->get_path();
+        $pagetype = $PAGE->pagetype;
         if (strpos($path, self::PAGE_BOARD)) {
             return 'board';
         } else if (strpos($path, self::PAGE_THEMES)) {
@@ -110,6 +116,8 @@ class course_navigation extends navigation {
             strpos($path, 'course/edit'
             )) {
             return 'generic';
+        } else if ($pagetype === 'site-index') {
+            return 'index';
         } else {
             return '';
         }

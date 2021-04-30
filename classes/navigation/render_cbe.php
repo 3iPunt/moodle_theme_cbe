@@ -59,8 +59,14 @@ abstract class render_cbe  {
             $this->navigation = null;
         } else {
             switch ($PAGE->context->contextlevel) {
+                case CONTEXT_SYSTEM:
+                    $this->navigation = new system_navigation();
+                    break;
                 case CONTEXT_USER:
                     $this->navigation = new user_navigation();
+                    break;
+                case CONTEXT_COURSECAT:
+                    $this->navigation = new category_navigation();
                     break;
                 case CONTEXT_COURSE:
                     $this->navigation = new course_navigation();
