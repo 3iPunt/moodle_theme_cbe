@@ -163,12 +163,16 @@ class course_navigation extends navigation {
         global $PAGE;
         $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
         $course_id = $PAGE->context->instanceid;
-        $nav_header_course_component = new course_header_navbar_component($course_id);
-        $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
+
         $course_left_menu_component = new course_left_section_component($course_id);
         $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
         $menu_apps_button_component = new menu_apps_button();
         $menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
+
+        if ($this->get_page() !== 'index') {
+            $nav_header_course_component = new course_header_navbar_component($course_id);
+            $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
+        }
 
         $cbe_page = course_navigation::get_page();
         if ($cbe_page === 'board' ||
