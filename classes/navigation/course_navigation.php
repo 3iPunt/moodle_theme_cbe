@@ -135,18 +135,12 @@ class course_navigation extends navigation {
         global $PAGE;
         $courseid = $PAGE->context->instanceid;
         $coursecbe = new course($courseid);
-        $nav_context = 'course';
-        $courseimage = $coursecbe->get_courseimage();
-        $teachers = $coursecbe->get_users_by_role('editingteacher');
-        $coursename = $coursecbe->get_name();
-        $coursecategory = $coursecbe->get_category();
-        $is_teacher = course_user::is_teacher($courseid);
-        $data->nav_context = $nav_context;
-        $data->courseimage = $courseimage;
-        $data->teachers = $teachers;
-        $data->is_teacher = $is_teacher;
-        $data->coursename = $coursename;
-        $data->categoryname = $coursecategory;
+        $data->nav_context = 'course';
+        $data->courseimage = $coursecbe->get_courseimage();
+        $data->teachers = $coursecbe->get_users_by_role('editingteacher');
+        $data->is_teacher = course_user::is_teacher($courseid);
+        $data->coursename = $coursecbe->get_name();
+        $data->categoryname = $coursecbe->get_category();
         $data->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
         return $data;
     }

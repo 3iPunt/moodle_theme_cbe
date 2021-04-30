@@ -28,20 +28,22 @@
         "courseheader": "course_header_html"
     }
 }}
-<header id="page-header" class="row {{ nav_context }}">
+<header id="page-header" class="row {{ nav_context }} custom">
     <div class="col-9 pt-3 pb-3 is_custom">
-        <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">
-            <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
-                <div class="text">
-                    <h2 class="subtitle">{{ categoryname }}</h2>
-                    <h1 class="title">{{ coursename }}</h1>
+        <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}} header" style='background-image: url("{{{ courseimage }}}");'>
+            <div class="degraded">
+                <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
+                    <div class="text">
+                        <h2 class="subtitle">{{ categoryname }}</h2>
+                        <h1 class="title">{{ coursename }}</h1>
+                    </div>
+                    {{# is_teacher }}
+                        <a class="edition" href="{{ edit_course }}">
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                            <div class="triangle"></div>
+                        </a>
+                    {{/ is_teacher }}
                 </div>
-                {{# is_teacher }}
-                    <a class="edition" href="{{ edit_course }}">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        <div class="triangle"></div>
-                    </a>
-                {{/ is_teacher }}
             </div>
         </div>
     </div>

@@ -88,16 +88,12 @@ class course_module_navigation extends navigation {
         $cmid = $PAGE->context->instanceid;
         list($course, $cm) = get_course_and_cm_from_cmid($cmid);
         $courseid = $course->id;
-        $coursecontext = context_course::instance($courseid);
         $coursecbe = new course($courseid);
-        $nav_context = 'course';
-        $coursename = $coursecbe->get_name();
-        $coursecategory = $coursecbe->get_category();
-        $is_teacher = has_capability('moodle/course:update', $coursecontext);
-        $data->nav_context = $nav_context;
-        $data->is_teacher = $is_teacher;
-        $data->coursename = $coursename;
-        $data->categoryname = $coursecategory;
+        $data->nav_context = 'course';
+        $data->is_teacher = course_user::is_teacher($courseid);
+        $data->coursename = $coursecbe->get_name();
+        $data->categoryname = $coursecbe->get_category();
+        $data->courseimage = $coursecbe->get_courseimage();
         $data->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
         return $data;
     }
