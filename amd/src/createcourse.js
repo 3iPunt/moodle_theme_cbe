@@ -130,7 +130,7 @@ define([
             const fullname = $(FORM.FULLNAME_INPUT).val().trim();
             const shortname = $(FORM.SHORTNAME_INPUT).val().trim();
             const category = $(FORM.CATEGORY_SELECT).val();
-            const visible = $(FORM.VISIBLE_CHECK).is(":checked");
+            const visible = $(FORM.VISIBLE_CHECK).is(":checked") ? 1 : 0;
             const request = {
                 methodname: SERVICES.CREATE_COURSE,
                 args: {
