@@ -59,6 +59,7 @@ class course_navigation extends navigation {
         'themes' => 'theme_cbe/header/themes',
         'tasks' => 'theme_cbe/header/custom',
         'vclasses' => 'theme_cbe/header/custom',
+        'resources' => 'theme_cbe/header/custom',
         'moreinfo' => 'theme_cbe/header/custom',
         'modedit' => 'theme_cbe/header/custom',
         'generic' => 'theme_cbe/header/generic',
@@ -94,6 +95,8 @@ class course_navigation extends navigation {
             return 'themes';
         } else if (strpos($path, self::PAGE_TASKS)) {
             return 'tasks';
+        } else if (strpos($path, self::PAGE_RESOURCES)) {
+            return 'resources';
         } else if (strpos($path, self::PAGE_VCLASSES)) {
             return 'vclasses';
         } else if (strpos($path, self::PAGE_MOREINFO)) {

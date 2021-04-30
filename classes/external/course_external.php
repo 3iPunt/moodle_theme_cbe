@@ -23,6 +23,7 @@
 namespace theme_cbe\external;
 
 use core_course_category;
+use core_user_external;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
@@ -30,7 +31,6 @@ use external_value;
 use invalid_parameter_exception;
 use moodle_exception;
 use moodle_url;
-use stdClass;
 use theme_cbe\user;
 
 defined('MOODLE_INTERNAL') || die();
@@ -67,6 +67,7 @@ class course_external extends external_api {
     public static function create_course(string $fullname, string $shortname, int $category, bool $visible): array {
         global $CFG, $DB, $USER;
         require_once($CFG->dirroot . '/course/lib.php');
+        require_once($CFG->dirroot . '/user/externallib.php');
         self::validate_parameters(
             self::create_course_parameters(), [
                 'fullname' => $fullname,
@@ -89,16 +90,26 @@ class course_external extends external_api {
                     $datacourse->fullname = $fullname;
                     $datacourse->visible = $visible;
                     $course = create_course($datacourse);
-                    $success = true;
-                    $error = '';
-                    $view_url = new moodle_url('/theme/cbe/view_board.php', ['id'=> $course->id]);
-                    $redirect = $view_url->out(false);
+                    // Hidden to user in dashboard:
+                    if (!$visible) {
+                        $prop = 'block_myoverview_hidden_course_' . $course->id;
+                        $props = array(array('type' => $prop, 'value' => true));
+                        core_user_external::update_user_preferences(
+                            $USER->id,
+                            null,
+                            $props);
+                    }
                     // Enrol teacher.
                     $plugin_instance = $DB->get_record("enrol",
                         array('courseid' => $course->id, 'enrol'=>'manual'));
                     $plugin = enrol_get_plugin('manual');
                     $roleid = $DB->get_field('role', 'id', array('shortname' => 'editingteacher'));
                     $plugin->enrol_user($plugin_instance, $USER->id, $roleid);
+                    // Response
+                    $success = true;
+                    $error = '';
+                    $view_url = new moodle_url('/theme/cbe/view_board.php', ['id'=> $course->id]);
+                    $redirect = $view_url->out(false);
                 } else {
                     $success = false;
                     $error = 'El usuario no puede crear cursos en esta categoría';
