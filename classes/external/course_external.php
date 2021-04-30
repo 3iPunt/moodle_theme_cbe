@@ -29,6 +29,7 @@ use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
 use moodle_exception;
+use moodle_url;
 use stdClass;
 use theme_cbe\user;
 
@@ -64,7 +65,7 @@ class course_external extends external_api {
      * @throws moodle_exception
      */
     public static function create_course(string $fullname, string $shortname, int $category, int $visible): array {
-        global $CFG;
+        global $CFG, $DB, $USER;
         require_once($CFG->dirroot . '/course/lib.php');
         self::validate_parameters(
             self::create_course_parameters(), [
@@ -75,7 +76,7 @@ class course_external extends external_api {
             ]
         );
 
-        $courseid = null;
+        $redirect = '';
 
         // Validamos que el usuario puede crear cursos.
         if (user::can_create_courses()) {
@@ -90,8 +91,14 @@ class course_external extends external_api {
                     $course = create_course($datacourse);
                     $success = true;
                     $error = '';
-                    $courseid = $course->id;
-                    // TODO. matricular al profesor.
+                    $view_url = new moodle_url('/theme/cbe/view_board.php', ['id'=> $course->id]);
+                    $redirect = $view_url->out(false);
+                    // Enrol teacher.
+                    $plugin_instance = $DB->get_record("enrol",
+                        array('courseid' => $course->id, 'enrol'=>'manual'));
+                    $plugin = enrol_get_plugin('manual');
+                    $roleid = $DB->get_field('role', 'id', array('shortname' => 'editingteacher'));
+                    $plugin->enrol_user($plugin_instance, $USER->id, $roleid);
                 } else {
                     $success = false;
                     $error = 'El usuario no puede crear cursos en esta categoría';
@@ -108,7 +115,7 @@ class course_external extends external_api {
         return [
             'success' => $success,
             'error' => $error,
-            'courseid' => $courseid
+            'redirect' => $redirect
         ];
     }
 
@@ -120,7 +127,7 @@ class course_external extends external_api {
             array(
                 'success' => new external_value(PARAM_BOOL, 'Was it a success?'),
                 'error' => new external_value(PARAM_TEXT, 'Error message'),
-                'courseid' => new external_value(PARAM_INT, 'Course ID new'),
+                'redirect' => new external_value(PARAM_TEXT, 'URL Course view board redirect'),
             )
         );
     }

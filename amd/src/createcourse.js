@@ -126,6 +126,7 @@ define([
         };
 
         CreateCourse.prototype.onCreateCourseButtonClick = function (e) {
+            $(ACTION.CREATE_BUTTON).prop( "disabled", true );
             const fullname = $(FORM.FULLNAME_INPUT).val().trim();
             const shortname = $(FORM.SHORTNAME_INPUT).val().trim();
             const category = $(FORM.CATEGORY_SELECT).val();
@@ -140,8 +141,11 @@ define([
                 }
             };
             Ajax.call([request])[0].done(function(response) {
-                console.log(response);
-                //location.reload();
+                if (response.success) {
+                    location.href = response.redirect;
+                } else {
+                    alert(response.error);
+                }
             }).fail(Notification.exception);
         };
 
