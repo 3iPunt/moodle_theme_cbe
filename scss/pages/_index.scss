@@ -38,6 +38,10 @@ body[data-theme='cbe'][data-role='user'][data-context="index"] {
           display: flex;
           flex-direction: column-reverse;
         }
+
+      }
+      .course_category_tree .category.collapsed>.content {
+        display: none;
       }
 
     }
