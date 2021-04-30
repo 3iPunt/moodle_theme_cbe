@@ -106,6 +106,7 @@ class module  {
         $module->edit_href = $this->get_edit_href();
         $module->is_media = false;
         $module->is_mine = false;
+        $module->sectionname = get_section_name($this->coursemoodle->id, $this->cm->sectionnum);
         switch ($this->cm->modname) {
             case publication::MODULE_PUBLICATION:
                 $module = $this->set_publication($module);
