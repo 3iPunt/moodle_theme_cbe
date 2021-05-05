@@ -159,10 +159,20 @@ class copycourse_form extends copy_form {
         $mform->addElement('hidden', 'userdata', 0 );
         $mform->setType('userdata', PARAM_INT);
 
-        $roleid = $DB->get_field('role', 'id', array('shortname' => 'editingteacher'));
+        // Keep manual enrolments.
+        // Only get roles actually used in this course.
+        $roles = role_fix_names(get_roles_used_in_context($coursecontext, false), $coursecontext);
 
-        $mform->addElement('hidden', 'rolearray', 'role_' . $roleid );
-        $mform->setType('userdata', PARAM_INT);
+        $rolearray = array();
+        foreach ($roles as $role) {
+            $roleid = 'role_' . $role->id;
+            $rolearray[] = $mform->createElement('advcheckbox', $roleid,
+                $role->localname, '', array('group' => 2), array(0, $role->id));
+        }
+
+        $mform->addGroup($rolearray, 'rolearray', get_string('keptroles', 'backup'), ' ', false);
+        $mform->addHelpButton('rolearray', 'keptroles', 'backup');
+        $this->add_checkbox_controller(2);
 
         $buttonarray = array();
         $buttonarray[] = $mform->createElement('submit', 'submitreturn', get_string('copyreturn', 'backup'));
