@@ -88,17 +88,4 @@ if (isset($course)) {
         echo $output->render($page);
         echo $OUTPUT->footer();
     }
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
