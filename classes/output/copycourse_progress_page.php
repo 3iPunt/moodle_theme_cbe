@@ -15,36 +15,36 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class board_page
- *
- * @package     theme_cbe
- * @copyright   2021 Tresipunt
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-namespace theme_cbe\output;
-
-use core_user;
-use theme_cbe\course;
-use theme_cbe\course_user;
-use theme_cbe\module;
-use moodle_exception;
-use renderable;
-use renderer_base;
-use stdClass;
-use templatable;
-use user_picture;
-
-defined('MOODLE_INTERNAL') || die;
-
-/**
- * Class board_page
+ * Class copycourse_progress_page
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class board_page implements renderable, templatable {
+
+namespace theme_cbe\output;
+
+use coding_exception;
+use core_backup_renderer;
+use dml_exception;
+use moodleform;
+use theme_cbe\course_user;
+use moodle_exception;
+use renderable;
+use renderer_base;
+use stdClass;
+use templatable;
+
+defined('MOODLE_INTERNAL') || die;
+
+/**
+ * Class copycourse_progress_page
+ *
+ * @package     theme_cbe
+ * @copyright   2021 Tresipunt
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class copycourse_progress_page implements renderable, templatable {
 
     /** @var int Course ID */
     protected $course_id;
@@ -61,35 +61,25 @@ class board_page implements renderable, templatable {
      * Export for template
      *
      * @param renderer_base $output
-     * @return false|stdClass|string
-     * @throws moodle_exception
+     * @return stdClass
+     * @throws coding_exception
      */
-    public function export_for_template(renderer_base $output) {
-        global $USER, $PAGE;
+    public function export_for_template(renderer_base $output): stdClass {
+        global $OUTPUT, $PAGE, $USER;
 
-        // Current User.
-        $user = core_user::get_user($USER->id);
-
-        $userpicture = new user_picture($user);
-        $userpicture->size = 1;
-        $pictureurl = $userpicture->get_url($PAGE)->out(false);
-
-        $user->fullname = fullname($user);
-        $user->picture = $pictureurl;
-        $user->is_connected = true;
-
-        $course_user = new course_user($this->course_id, $user->id);
-        $course_cbe = new course($this->course_id);
+        /** @var core_backup_renderer $renderer */
+        $renderer = $PAGE->get_renderer('core', 'backup');
 
         $data = new stdClass();
-        $data->courseid = $this->course_id;
-        $data->user = $user;
-        $data->is_teacher = course_user::is_teacher($this->course_id);
-        $data->modules = $course_user->get_modules();
-        $data->create = module::get_list_modules($this->course_id);
-        $data->students = $course_cbe->get_users_by_role('student');
-        $data->groups = $course_cbe->get_groups();
+        $data->heading = $OUTPUT->heading_with_help(
+            get_string('copyprogressheading', 'backup'), 'copyprogressheading', 'backup');
+        $data->viewer = $renderer->copy_progress_viewer($USER->id, $this->course_id);
+
+        //echo $OUTPUT->container_start();
+
+        //echo $OUTPUT->container_end();
+
+
         return $data;
     }
-
 }

@@ -1,0 +1,78 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  table.generaltable {
+
+    thead {
+      tr {
+        background-color: #F6F6F6 !important;
+      }
+    }
+
+    tbody {
+      tr:nth-of-type(odd) {
+        background-color: unset !important;
+      }
+      tr:hover {
+        background-color: rgba(0,0,0,.075) !important;
+      }
+    }
+
+    th {
+      position: relative;
+      a {
+        color: $black-ligth;
+        &:hover {
+          color: $primary-color !important;
+          text-decoration: none;
+        }
+      }
+      >i.icon {
+        color: $primary-color;
+        position: relative;
+        top: 9px;
+        left: 4px;
+        font-size: 24px;
+        &.fa-sort-desc {
+          top: 0;
+        }
+      }
+      .commands {
+        position: absolute;
+        top: 18px;
+        right: 11px;
+        >a {
+          color: #ccc;
+          border: 1px solid #ccc;
+          padding: 2px 2px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+          &:hover {
+            border: 1px solid $primary-color;
+          }
+          >i.icon {
+            margin: 0;
+            font-size: 12px;
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+    }
+
+    tr {
+      &.hide {
+        display: none !important;
+      }
+    }
+
+    td {
+      color: $black-ligth;
+      vertical-align: middle;
+    }
+
+  }
+
+}
+

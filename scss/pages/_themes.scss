@@ -29,7 +29,16 @@ body[data-theme='cbe'][data-role='user'] {
     }
     a#action-menu-toggle-2 {
       color: white;
-      text-shadow: 0 1px 0 #616161, 0 14px 10px rgb(0 0 0 / 15%), 0 6px 2px rgb(0 0 0 / 19%), 0 28px 25px rgb(0 0 0 / 10%);
+      background-color: $primary-color;
+      padding: 10px 12px;
+      position: relative;
+      right: -21px;
+      top: -9px;
+      border-radius: 10px 0 0 10px;
+      z-index: 2;
+      &:hover {
+        background-color: #e82373!important;
+      }
     }
   }
 

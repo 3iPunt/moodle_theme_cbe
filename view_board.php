@@ -29,10 +29,10 @@ require_once('../../config.php');
 
 global $PAGE, $OUTPUT;
 
-require_login();
-
 // Course_module ID, or
 $id = required_param('id', PARAM_INT);
+
+require_login($id);
 
 $title = get_string('course_menu_board', 'theme_cbe');
 
@@ -49,8 +49,4 @@ if (isset($course)) {
     echo $output->render($page);
     echo $OUTPUT->footer();
 }
-
-
-
-
 

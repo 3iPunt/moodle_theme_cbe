@@ -1,0 +1,22 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  div[data-region='copycourse_progress'] {
+
+    main.contain {
+      background-color: white;
+      padding: 30px;
+      border: 1px solid $border-color;
+      margin-top: 0;
+      h2 {
+        font-size: 28px;
+        font-family: $fontbold;
+        position: relative;
+        display: inline-flex;
+      }
+      .table-backup {
+        margin-top: 20px;
+      }
+    }
+  }
+
+}

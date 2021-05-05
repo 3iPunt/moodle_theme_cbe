@@ -209,6 +209,32 @@ class renderer extends plugin_renderer_base {
     /**
      * Defer to template.
      *
+     * @param copycourse_page $page
+     *
+     * @return string html for the page
+     * @throws moodle_exception
+     */
+    public function render_copycourse_page(copycourse_page $page): string {
+        $data = $page->export_for_template($this);
+        return parent::render_from_template('theme_cbe/pages/copycourse_page', $data);
+    }
+
+    /**
+     * Defer to template.
+     *
+     * @param copycourse_progress_page $page
+     *
+     * @return string html for the page
+     * @throws moodle_exception
+     */
+    public function render_copycourse_progress_page(copycourse_progress_page $page): string {
+        $data = $page->export_for_template($this);
+        return parent::render_from_template('theme_cbe/pages/copycourse_progress_page', $data);
+    }
+
+    /**
+     * Defer to template.
+     *
      * @param menu_apps_button $button
      *
      * @return string html for the page

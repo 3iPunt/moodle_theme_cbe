@@ -47,11 +47,21 @@
                     {{/ teachers}}
                 </ul>
                 {{# is_teacher }}
-                    <a class="edition" href="{{ edit_course }}">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
+                <div class="tool-tooltip edition" data-toggle="tooltip" data-placement="left" title="{{# str }} edit_course, theme_cbe {{/ str }}">
+                    <a class="tool-link" href="{{ edit_course }}">
+                        <i class="fa fa-wrench" aria-hidden="true"></i>
                         <div class="triangle"></div>
                     </a>
+                </div>
                 {{/ is_teacher }}
+                {{# can_create_courses }}
+                <div class="tool-tooltip copy" data-toggle="tooltip" data-placement="left" title="{{# str }} copy_course, theme_cbe {{/ str }}">
+                    <a class="tool-link" href="{{ copy_course }}">
+                        <i class="fa fa-files-o" aria-hidden="true"></i>
+                        <div class="triangle"></div>
+                    </a>
+                </div>
+                {{/ can_create_courses }}
             </div>
 
         </div>

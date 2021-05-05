@@ -34,6 +34,7 @@ use theme_cbe\course_user;
 use theme_cbe\output\course_header_navbar_component;
 use theme_cbe\output\course_left_section_component;
 use theme_cbe\output\menu_apps_button;
+use theme_cbe\user;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -52,6 +53,8 @@ class course_navigation extends navigation {
     const PAGE_VCLASSES = 'theme/cbe/view_virtualclasses.php';
     const PAGE_MOREINFO = 'theme/cbe/view_moreinfo.php';
     const PAGE_RESOURCES = 'theme/cbe/view_resources.php';
+    const PAGE_COPYCOURSE = 'theme/cbe/view_copycourse.php';
+    const PAGE_COPYCOURSE_PROGRESS = 'theme/cbe/view_copycourse_progress.php';
 
     /** @var array Templates Header */
     protected $templates_header = [
@@ -59,6 +62,7 @@ class course_navigation extends navigation {
         'themes' => 'theme_cbe/header/themes',
         'tasks' => 'theme_cbe/header/custom',
         'vclasses' => 'theme_cbe/header/custom',
+        'copycourse' => 'theme_cbe/header/custom',
         'resources' => 'theme_cbe/header/custom',
         'moreinfo' => 'theme_cbe/header/custom',
         'modedit' => 'theme_cbe/header/custom',
@@ -107,6 +111,10 @@ class course_navigation extends navigation {
             return 'vclasses';
         } else if (strpos($path, self::PAGE_MOREINFO)) {
             return 'moreinfo';
+        } else if (strpos($path, self::PAGE_COPYCOURSE)) {
+            return 'copycourse';
+        } else if (strpos($path, self::PAGE_COPYCOURSE_PROGRESS)) {
+            return 'copycourse';
         } else if (strpos($path, 'course/modedit')) {
             return 'modedit';
         } else if (strpos($path, 'grade') ||
@@ -139,9 +147,12 @@ class course_navigation extends navigation {
         $data->courseimage = $coursecbe->get_courseimage();
         $data->teachers = $coursecbe->get_users_by_role('editingteacher');
         $data->is_teacher = course_user::is_teacher($courseid);
+        $data->can_create_courses = user::can_create_courses();
         $data->coursename = $coursecbe->get_name();
         $data->categoryname = $coursecbe->get_category();
         $data->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
+        $data->copy_course = 'http://localhost/consorci/backup/copy.php?id=3&returnurl=http://localhost/consorci/theme/cbe/view_board.php?id=3';
+        $data->copy_course = new moodle_url('/theme/cbe/view_copycourse.php', ['id'=> $courseid]);
         return $data;
     }
 

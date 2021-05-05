@@ -15,81 +15,65 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class board_page
- *
- * @package     theme_cbe
- * @copyright   2021 Tresipunt
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-namespace theme_cbe\output;
-
-use core_user;
-use theme_cbe\course;
-use theme_cbe\course_user;
-use theme_cbe\module;
-use moodle_exception;
-use renderable;
-use renderer_base;
-use stdClass;
-use templatable;
-use user_picture;
-
-defined('MOODLE_INTERNAL') || die;
-
-/**
- * Class board_page
+ * Class copycourse_page
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class board_page implements renderable, templatable {
+
+namespace theme_cbe\output;
+
+use coding_exception;
+use dml_exception;
+use moodleform;
+use theme_cbe\course_user;
+use moodle_exception;
+use renderable;
+use renderer_base;
+use stdClass;
+use templatable;
+
+defined('MOODLE_INTERNAL') || die;
+
+/**
+ * Class copycourse_page
+ *
+ * @package     theme_cbe
+ * @copyright   2021 Tresipunt
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class copycourse_page implements renderable, templatable {
 
     /** @var int Course ID */
     protected $course_id;
 
+    /** @var moodleform Form */
+    protected $mform;
+
     /**
      * charge_page constructor.
      * @param int $course_id
+     * @param moodleform $mform
      */
-    public function __construct(int $course_id) {
+    public function __construct(int $course_id, moodleform $mform) {
         $this->course_id = $course_id;
+        $this->mform = $mform;
     }
 
     /**
      * Export for template
      *
      * @param renderer_base $output
-     * @return false|stdClass|string
+     * @return stdClass
+     * @throws coding_exception
+     * @throws dml_exception
      * @throws moodle_exception
      */
-    public function export_for_template(renderer_base $output) {
-        global $USER, $PAGE;
-
-        // Current User.
-        $user = core_user::get_user($USER->id);
-
-        $userpicture = new user_picture($user);
-        $userpicture->size = 1;
-        $pictureurl = $userpicture->get_url($PAGE)->out(false);
-
-        $user->fullname = fullname($user);
-        $user->picture = $pictureurl;
-        $user->is_connected = true;
-
-        $course_user = new course_user($this->course_id, $user->id);
-        $course_cbe = new course($this->course_id);
-
+    public function export_for_template(renderer_base $output): stdClass {
         $data = new stdClass();
-        $data->courseid = $this->course_id;
-        $data->user = $user;
         $data->is_teacher = course_user::is_teacher($this->course_id);
-        $data->modules = $course_user->get_modules();
-        $data->create = module::get_list_modules($this->course_id);
-        $data->students = $course_cbe->get_users_by_role('student');
-        $data->groups = $course_cbe->get_groups();
+        $data->mform = $this->mform->render();
         return $data;
     }
-
 }

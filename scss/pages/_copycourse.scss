@@ -1,0 +1,19 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  div[data-region='copycourse'] {
+
+    main.contain {
+      background-color: white;
+      padding: 30px;
+      border: 1px solid $border-color;
+      margin-top: 0;
+      h3.title {
+        font-size: 28px;
+        font-family: $fontbold;
+        position: relative;
+        display: inline-flex;
+      }
+    }
+  }
+
+}

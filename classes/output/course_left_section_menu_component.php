@@ -25,6 +25,7 @@
 namespace theme_cbe\output;
 
 use context_course;
+use mod_bigbluebuttonbn\locallib\bigbluebutton;
 use moodle_exception;
 use moodle_url;
 use renderable;
@@ -92,6 +93,7 @@ class course_left_section_menu_component implements renderable, templatable {
      * @throws moodle_exception
      */
     protected function get_vclasses_href (): stdClass {
+        global $PAGE;
         $vc = new stdClass();
         $vc->href = '#';
         $vc->blank = false;
@@ -106,9 +108,17 @@ class course_left_section_menu_component implements renderable, templatable {
                     $vc->href = $href->out(false);
                     $vc->blank = true;
                     $hasmain = true;
+                    $course = get_course($this->course_id);
+                    // Additional info related to the course.
+                    $bbbsession['course'] = $this->course_id;
+                    $bbbsession['coursename'] = $course->fullname;
+                    $bbbsession['cm'] = $mod->id;
+                    $bbbsession['bigbluebuttonbn'] = $mod->instance;
+                    bigbluebutton::view_bbbsession_set($PAGE->context, $bbbsession);
                     break;
                 }
             }
+
         }
         if (!$hasmain) {
             $vc->href = new moodle_url('/' . course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]);
