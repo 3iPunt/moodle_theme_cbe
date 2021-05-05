@@ -54,6 +54,7 @@
                     </a>
                 </div>
                 {{/ is_teacher }}
+                {{# is_teacher }}
                 {{# can_create_courses }}
                 <div class="tool-tooltip copy" data-toggle="tooltip" data-placement="left" title="{{# str }} copy_course, theme_cbe {{/ str }}">
                     <a class="tool-link" href="{{ copy_course }}">
@@ -62,6 +63,7 @@
                     </a>
                 </div>
                 {{/ can_create_courses }}
+                {{/ is_teacher }}
             </div>
 
         </div>

@@ -43,7 +43,9 @@
                         {{#settingsmenu}}
                             <div class="context-header-settings-menu">
                                 {{{settingsmenu}}}
+                                {{# is_teacher }}
                                 <div class="tri triangle-config"></div>
+                                {{/ is_teacher }}
                             </div>
                         {{/settingsmenu}}
                         <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
@@ -55,7 +57,9 @@
                     <div class="d-flex flex-wrap">
                         <div class="ml-auto d-flex">
                             {{{pageheadingbutton}}}
+                            {{# is_teacher }}
                             <div class="tri triangle-edit"></div>
+                            {{/ is_teacher }}
                         </div>
                         <div id="course-header">
                             {{{courseheader}}}
