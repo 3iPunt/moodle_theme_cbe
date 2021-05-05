@@ -158,12 +158,12 @@ class copycourse_form extends copy_form {
 
         $mform->addElement('hidden', 'userdata', 0 );
         $mform->setType('userdata', PARAM_INT);
-
+        /*
         $roleid = $DB->get_field('role', 'id', array('shortname' => 'editingteacher'));
 
         $mform->addElement('hidden', 'rolearray', 'role_' . $roleid );
         $mform->setType('userdata', PARAM_INT);
-
+        */
         $buttonarray = array();
         $buttonarray[] = $mform->createElement('submit', 'submitreturn', get_string('copyreturn', 'backup'));
         $buttonarray[] = $mform->createElement('submit', 'submitdisplay', get_string('copyview', 'backup'));
