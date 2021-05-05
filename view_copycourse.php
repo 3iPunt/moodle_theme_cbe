@@ -46,6 +46,8 @@ $url = new moodle_url('/theme/cbe/view_copycourse.php', array('id' => $id));
 
 if (isset($course)) {
 
+    require_capability('moodle/course:update', context_course::instance($id));
+
     $PAGE->set_context(context_course::instance($id));
     $PAGE->set_title($course->fullname . ': '. $title);
     $PAGE->set_heading($title);

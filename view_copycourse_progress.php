@@ -43,6 +43,8 @@ require_login($course, false);
 $copycaps = array('moodle/backup:backupcourse', 'moodle/restore:restorecourse', 'moodle/course:create');
 require_all_capabilities($copycaps, $coursecontext);
 
+require_capability('moodle/course:update', context_course::instance($courseid));
+
 // Setup the page.
 $title = get_string('copyprogresstitle', 'backup');
 $PAGE->set_url($url);
