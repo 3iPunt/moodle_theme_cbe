@@ -22,17 +22,16 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 use theme_cbe\output\tasks_page;
 
 require_once('../../config.php');
 
 global $PAGE, $OUTPUT;
 
-require_login();
-
 // Course_module ID, or
 $id = required_param('id', PARAM_INT);
+
+require_login($id);
 
 $title = get_string('tasks_page', 'theme_cbe');
 

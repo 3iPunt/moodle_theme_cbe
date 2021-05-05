@@ -31,6 +31,7 @@ use course_enrolment_manager;
 use course_modinfo;
 use dml_exception;
 use moodle_exception;
+use moodle_url;
 use section_info;
 use stdClass;
 use theme_cbe\output\core_renderer;
@@ -198,7 +199,7 @@ class course  {
                 $event->timeusermidnight,
                 get_string('strftimedatefullshort', 'core_langconfig'));
             $event->timeusermidnight;
-            $task->view_href = $event->viewurl;
+            $task->view_href = $module->get_view_href();
             $tasks[] = $task;
         }
         return $tasks;

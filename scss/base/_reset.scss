@@ -58,33 +58,6 @@ body[data-theme='cbe'][data-role='admin'] {
 }
 
 
-/* TODO: MOVER A OTRO SITIO */
-#page-theme-cbe-view_participants .generaltable tbody tr:nth-of-type(odd),
-#page-theme-cbe-view_tasks .generaltable tbody tr:nth-of-type(odd),
-#page-theme-cbe-view_virtualclasses .generaltable tbody tr:nth-of-type(odd) {
-  background-color: unset !important;
-}
-
-#page-theme-cbe-view_participants .generaltable thead tr,
-#page-theme-cbe-view_tasks .generaltable thead tr,
-#page-theme-cbe-view_virtualclasses .generaltable thead tr
-{
-  background-color: #F6F6F6 !important;
-}
-
-#page-theme-cbe-view_participants .generaltable tbody tr:hover,
-#page-theme-cbe-view_tasks .generaltable tbody tr:hover,
-#page-theme-cbe-view_virtualclasses .generaltable tbody tr:hover
-{
-  background-color: rgba(0,0,0,.075) !important;
-}
-
-#page-theme-cbe-view_participants .generaltable tr.hide,
-#page-theme-cbe-view_tasks .generaltable tr.hide,
-#page-theme-cbe-view_virtualclasses .generaltable tr.hide {
-  display: none !important;
-}
-
 #page-theme-cbe-view_tasks .module-component .icon {
   width: 32px;
   height: 32px;
