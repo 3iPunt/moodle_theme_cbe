@@ -110,7 +110,7 @@ body[data-theme='cbe'][data-role="user"] {
         }
       }
       .text {
-        margin: 25px 130px 20px 15px;
+        margin: 25px 130px 20px 0;
         .name {
           font-family: $fontbold;
           font-size: 18px;
@@ -321,30 +321,43 @@ body[data-theme='cbe'][data-role="user"] {
         }
       }
     }
-
   }
 
   .module_media {
     .media-content {
       display: none;
     }
-    .expand-media {
+    .expand {
       width: 100%;
       text-align: center;
       position: absolute;
-      top: 37px;
+      bottom: 0;
       right: 0;
-      button {
+      overflow: hidden;
+      button.action-media {
         border: none;
-        background-color: inherit;
-        color: #b7b7b7;
+        position: relative;
+        bottom: -17px;
+        z-index: 2;
+        background-color: $grey-border;
+        border-radius: 21px;
+        height: 35px;
+        width: 35px;
+        &[data-action="expand"] {
+          z-index: 2;
+        }
         &[data-action="contract"] {
           display: none;
-          position: relative;
-          top: 37px;
+          bottom: -17px;
+          z-index: 3;
         }
         &:hover {
-          color: $primary-color;
+          background-color: $primary-color;
+        }
+        i.fa {
+          color: white;
+          position: relative;
+          top: -7px;
         }
       }
     }

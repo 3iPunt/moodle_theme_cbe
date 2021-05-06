@@ -9,7 +9,7 @@
     <ul class="themes">
         {{# themes }}
         <li class="theme {{# active }}active{{/ active }}">
-            <a href="{{ href }}">{{ name }}</a>
+            <a href="{{ href }}">{{# shortentext }} 90, {{ name }} {{/ shortentext }}</a>
         </li>
         {{/ themes }}
     </ul>

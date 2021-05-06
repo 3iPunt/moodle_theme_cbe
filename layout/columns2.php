@@ -59,10 +59,15 @@ $templatecontext = [
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
 ];
-
+/** @var flat_navigation $nav */
 $nav = $PAGE->flatnav;
+
+$nav->remove('contentbank');
+$nav->remove('privatefiles');
+
 $templatecontext['flatnavigation'] = $nav;
 $templatecontext['firstcollectionlabel'] = $nav->get_collectionlabel();
+
 
 $layout_cbe = new layout();
 $data = $layout_cbe->get_data($templatecontext);
