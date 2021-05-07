@@ -25,6 +25,8 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use flat_navigation;
+use flat_navigation_node;
 use stdClass;
 use theme_cbe\output\course_left_section_menu_component;
 use theme_cbe\output\course_left_section_pending_tasks_component;
@@ -167,6 +169,35 @@ abstract class navigation  {
         $output = $PAGE->get_renderer('theme_cbe');
         $renderer = new course_left_section_menu_component($course_id);
         return $output->render($renderer);
+    }
+
+    /**
+     * Get Flatnav.
+     *
+     * @return flat_navigation
+     */
+    static function get_flatnav(): flat_navigation {
+        global $PAGE;
+
+        /** @var flat_navigation $nav */
+        $nav = $PAGE->flatnav;
+
+        $nav->remove('contentbank');
+        $nav->remove('privatefiles');
+
+        //echo "<pre>";
+
+        //foreach ($nav->getIterator() as $item) {
+        //    /** @var flat_navigation_node $item */
+        //    $item = $item;
+        //    if ($item->key === 'coursehome') {
+        //        var_dump($item);die();
+        //    }
+        //}
+
+        //var_dump($nav->get_key_list());die();
+
+        return $nav;
     }
 
 }

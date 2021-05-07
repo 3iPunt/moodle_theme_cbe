@@ -2,7 +2,8 @@ body[data-theme='cbe'][data-role='user'] {
 
   #nav-drawer {
     nav.list-group {
-
+      border-bottom: 1px solid #d9d9d9;
+      padding-bottom: 12px;
       .list-group-item-action:hover,
       .list-group-item-action:focus {
         color: $primary-color;
@@ -16,10 +17,10 @@ body[data-theme='cbe'][data-role='user'] {
         padding: .5rem 1.25rem;
         &[data-key="mycourses"] {
           border-top: 1px solid $grey-border !important;
-          margin-top: 13px;
-          padding-top: 20px;
+          margin-top: 10px;
+          padding-top: 14px;
           font-size: 16px;
-          padding-bottom: 18px;
+          padding-bottom: 12px;
           font-family: $fontbold;
           .media-left {
             display: none;
@@ -34,6 +35,15 @@ body[data-theme='cbe'][data-role='user'] {
             top: 0;
           }
         }
+        &[data-key="coursehome"] {
+          .media-left {
+            display: none;
+          }
+          .media-body {
+            color: black;
+            margin-bottom: 7px;
+          }
+        }
         &[data-parent-key="mycourses"] {
           .media-left {
             display: none;
@@ -43,9 +53,6 @@ body[data-theme='cbe'][data-role='user'] {
           }
         }
         &[data-key="sitesettings"] {
-          border-top: 1px solid $grey-border !important;
-          margin-top: 12px;
-          padding-top: 20px !important;
           .media .media-body {
             top: 3px;
           }

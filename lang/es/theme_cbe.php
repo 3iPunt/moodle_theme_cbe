@@ -125,5 +125,5 @@ $string['vclasses_direct_desc'] = "Si esta opción está activa, el enlace de cl
 $string['selectacategory_help'] = "Seleccione la categoría donde quiere crear este nuevo curso";
 $string['shortnamecourse_help'] = "El nombre corto del curso se muestra en la navegación y se usa en la línea de asunto de los mensajes de correo electrónico del curso.";
 $string['edit_course'] = "Editar curso";
-$string['copy_course'] = "Archivar curso";
+$string['copy_course'] = "Duplicar curso";
 $string['copy_course_desc'] = "Rellene los datos para realizar una copia completa de este curso sin incluir los usuarios.";

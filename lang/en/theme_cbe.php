@@ -125,5 +125,5 @@ $string['vclasses_direct_desc'] = "If this option is active, the virtual class l
 $string['selectacategory_help'] = "Select the category where you want to create this new course";
 $string['shortnamecourse_help'] = "The short name of the course is displayed in the navigation and is used in the subject line of course email messages";
 $string['edit_course'] = "Edit course";
-$string['copy_course'] = "Store course";
+$string['copy_course'] = "Duplicate course";
 $string['copy_course_desc'] = "Fill in the details to make a complete copy of this course excluding users.";
