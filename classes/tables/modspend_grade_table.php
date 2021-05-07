@@ -157,7 +157,7 @@ class modspend_grade_table extends table_sql {
                             array('assignment' => $cm->instance, 'userid' => $student->id), '*');
                         if ($submission->status === 'submitted') {
                             $grades = assign_get_user_grades($instance, $student->id);
-                            if (empty($grades)) {
+                            if (count($grades) === 0) {
                                 $pending_graded ++;
                             }
                             $submitted ++;
