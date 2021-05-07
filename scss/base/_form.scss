@@ -7,6 +7,16 @@ body[data-theme='cbe'][data-role='user'] {
   .btn-secondary {
     background-color: $grey-medium;
     color: white;
+    border: none;
+  }
+
+  .btn-secondary:hover,
+  .btn-secondary:not(:disabled):not(.disabled):active,
+  .btn-secondary:not(:disabled):not(.disabled).active,
+  .show>.btn-secondary.dropdown-toggle {
+    color: white;
+    background-color: $grey-medium2;
+    border-color: $grey-medium2;
   }
 
   .btn-outline-secondary {

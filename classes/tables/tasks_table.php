@@ -28,6 +28,7 @@ use cm_info;
 use coding_exception;
 use core_course\search\section;
 use dml_exception;
+use theme_cbe\course_user;
 use theme_cbe\output\module_component;
 use moodle_exception;
 use moodle_url;
@@ -133,6 +134,7 @@ class tasks_table extends table_sql {
             if ($cm->modname === 'assign') {
                 $row = new stdClass();
                 $row->id = $cm->id;
+                $row->instance = $cm->instance;
                 $row->section = $cm->sectionnum;
                 $row->name = $cm->name;
                 $row->modname = $cm->modname;
@@ -176,7 +178,6 @@ class tasks_table extends table_sql {
         global $PAGE;
         $output = $PAGE->get_renderer('theme_cbe');
         $page = new module_component($row->id);
-
         return $output->render($page);
     }
 
@@ -204,7 +205,8 @@ class tasks_table extends table_sql {
      * @throws coding_exception
      */
     public function col_duedate(stdClass $row): string {
-        return userdate($row->duedate, get_string('strftimedayshort', 'core_langconfig'));
+        return !empty($row->duedate) ? userdate(
+            $row->duedate, get_string('strftimedaydatetime', 'core_langconfig')) : '-';
     }
 
     /**
@@ -212,13 +214,19 @@ class tasks_table extends table_sql {
      *
      * @param stdClass $row Full data of the current row.
      * @return string
+     * @throws coding_exception
+     * @throws moodle_exception
      */
     public function col_grade(stdClass $row): string {
-        if ($row->rawgrade === '') {
-            return '-';
+        if (course_user::is_teacher($this->course_id)) {
+            $view_url = new moodle_url('/mod/assign/view.php', ['id'=> $row->id, 'action' => 'grading']);
+            return '<a href="' . $view_url . '" target="_blank">'
+                . get_string('course_left_grades', 'theme_cbe')
+                . '</a>';
         } else {
-            return $row->rawgrade;
+            return $row->rawgrade === '' ? '-' : $row->rawgrade;
         }
+
     }
 
     /**
@@ -232,22 +240,37 @@ class tasks_table extends table_sql {
     public function col_state(stdClass $row): string {
         global $DB;
 
-        if ($row->rawgrade) return get_string('graded', 'assign');
-
-        $submission = $DB->get_record('assign_submission',
-            array('assignment' => $row->id, 'userid' => $this->user_id), '*');
-
-        if ($submission->status === 'submitted') {
-            return get_string('submissionstatus_submitted', 'assign');
-        }
-
-        $now = time();
-        if ($now < $row->duedate) {
-            return get_string('submissionstatus_new', 'assign');
+        if (course_user::is_teacher($this->course_id)) {
+            if (time() > $row->duedate ) {
+                $state = get_string('task_submit_duedate_out', 'theme_cbe');
+            } else {
+                $state = get_string('task_submit_duedate_in', 'theme_cbe');
+            }
+            return $state;
         } else {
-            return get_string('task_submit_duedate_out', 'theme_cbe');
+            if ($row->rawgrade) return get_string('graded', 'assign');
+
+            $submission = $DB->get_record('assign_submission',
+                array('assignment' => $row->instance, 'userid' => $this->user_id), '*');
+
+            $state = '-';
+
+            if ($submission->status === 'submitted') {
+                $state = get_string('submissionstatus_submitted', 'assign');
+            }
+
+            if (time() > $row->duedate && $submission->status !== 'submitted') {
+                $state = get_string('task_submit_duedate_out', 'theme_cbe');
+            } else if (time() < $row->duedate && $submission->status !== 'submitted') {
+                if ($submission->status === 'draft') {
+                    $state = get_string('submissionstatus_draft', 'assign');
+                } else if ($submission->status === 'reopened') {
+                    $state = get_string('submissionstatus_reopened', 'theme_cbe');
+                }   else {
+                    $state = get_string('task_submit_duedate_in', 'theme_cbe');
+                }
+            }
+            return $state;
         }
-
-
     }
 }

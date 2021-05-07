@@ -21,12 +21,19 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
-  div[data-region='tasks'] {
+  div[data-region='tasks'],
+  div[data-region='modspend'] {
     main.contain {
       background-color: white;
       padding: 30px;
       border: 1px solid $border-color;
       margin-top: 0;
+      >h2 {
+        text-align: center;
+        font-size: 20px;
+        margin-top: 40px;
+        color: $grey-medium2;
+      }
       .title_page {
         font-size: 30px;
         font-family: $fontbold;
@@ -56,9 +63,14 @@ body[data-theme='cbe'][data-role='user'] {
           color: white;
         }
       }
-
     }
 
+  }
+
+  div[data-region='modspend'] {
+    main.contain {
+      border: none;
+    }
   }
 
 
