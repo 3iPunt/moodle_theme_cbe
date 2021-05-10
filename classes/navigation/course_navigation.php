@@ -100,7 +100,6 @@ class course_navigation extends navigation {
         global $PAGE;
         $path = $PAGE->url->get_path();
         $pagetype = $PAGE->pagetype;
-        //var_dump($pagetype);die();
         if ($pagetype === 'theme-cbe-view_board') {
             return 'board';
         } else if ($pagetype === 'course-view-topics') {
@@ -123,15 +122,31 @@ class course_navigation extends navigation {
             return 'copycourse';
         } else if (strpos($pagetype, 'grade-') === 0) {
             return 'generic';
-        } else if ($pagetype === 'course-edit') {
+        } else if ($pagetype === 'course-edit' ||
+            $pagetype === 'course-admin' ||
+            $pagetype === 'backup-backup' ||
+            $pagetype === 'backup-import' ||
+            $pagetype === 'backup-copy' ||
+            $pagetype === 'course-reset' ||
+            $pagetype === 'admin-tool-recyclebin-index' ||
+            $pagetype === 'course-completion' ||
+            $pagetype === 'course-bulkcompletion' ||
+            $pagetype === 'filter-manage' ||
+            $pagetype === 'backup-restorefile') {
             return 'generic';
-        } else if ($pagetype === 'enrol-instances' || $pagetype === 'enrol-editinstance') {
+        } else if ($pagetype === 'enrol-instances' ||
+            $pagetype === 'enrol-editinstance') {
             return 'generic';
-        } else if ($pagetype === 'group-index' || $pagetype === 'group-groupings' || $pagetype === 'group-overview') {
+        } else if ($pagetype === 'group-index' ||
+            $pagetype === 'group-groupings' || 
+            $pagetype === 'group-overview') {
             return 'generic';
-        } else if ($pagetype === 'admin-roles-permissions' || $pagetype === 'enrol-otherusers') {
+        } else if ($pagetype === 'admin-roles-permissions' ||
+            $pagetype === 'enrol-otherusers') {
             return 'generic';
-        } else if ($pagetype === 'calendar-view' || $pagetype === 'calendar-export' || $pagetype === 'calendar-managesubscriptions') {
+        } else if ($pagetype === 'calendar-view' ||
+            $pagetype === 'calendar-export' ||
+            $pagetype === 'calendar-managesubscriptions') {
             return 'calendar';
         } else if ($pagetype === 'site-index') {
             return 'index';
