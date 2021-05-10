@@ -66,9 +66,10 @@ class course_navigation extends navigation {
         'resources' => 'theme_cbe/header/custom',
         'moreinfo' => 'theme_cbe/header/custom',
         'modedit' => 'theme_cbe/header/custom',
-        'generic' => 'theme_cbe/header/generic',
+        'generic' => 'theme_cbe/header/custom',
         'default' => 'theme_cbe/header/header',
-        'index' => 'theme_cbe/header/generic',
+        'index' => 'theme_cbe/header/custom',
+        'calendar' => 'theme_cbe/header/custom',
     ];
 
     /**
@@ -83,7 +84,7 @@ class course_navigation extends navigation {
      * @return string
      */
     public function get_template_layout(): string {
-        if ($this->get_page() === 'index') {
+        if ($this->get_page() === 'index' || $this->get_page() === 'calendar') {
             return 'theme_cbe/columns2/columns2_index';
         } else {
             return 'theme_cbe/columns2/columns2_course';
@@ -99,31 +100,34 @@ class course_navigation extends navigation {
         global $PAGE;
         $path = $PAGE->url->get_path();
         $pagetype = $PAGE->pagetype;
-        if (strpos($path, self::PAGE_BOARD)) {
+        if ($pagetype === 'theme-cbe-view_board') {
             return 'board';
-        } else if (strpos($path, self::PAGE_THEMES)) {
-            return 'themes';
-        } else if (strpos($path, self::PAGE_TASKS)) {
+        } else if ($pagetype === 'course-view-topics') {
+            if (strpos($path, 'user')) {
+                return 'generic';
+            } else {
+                return 'themes';
+            }
+        } else if ($pagetype === 'theme-cbe-view_tasks') {
             return 'tasks';
-        } else if (strpos($path, self::PAGE_RESOURCES)) {
+        } else if ($pagetype === 'theme-cbe-view_resources') {
             return 'resources';
-        } else if (strpos($path, self::PAGE_VCLASSES)) {
+        } else if ($pagetype === 'theme-cbe-view_virtualclasses') {
             return 'vclasses';
-        } else if (strpos($path, self::PAGE_MOREINFO)) {
+        } else if ($pagetype === 'theme-cbe-view_moreinfo') {
             return 'moreinfo';
-        } else if (strpos($path, self::PAGE_COPYCOURSE)) {
+        } else if ($pagetype === 'theme-cbe-view_copycourse') {
             return 'copycourse';
-        } else if (strpos($path, self::PAGE_COPYCOURSE_PROGRESS)) {
+        } else if ($pagetype === 'theme-cbe-view_copycourse_progress') {
             return 'copycourse';
         } else if (strpos($path, 'course/modedit')) {
             return 'modedit';
-        } else if (strpos($path, 'grade') ||
-            strpos($path, 'user') ||
-            strpos($path, 'calendar') ||
-            strpos($path, 'contentbank') ||
-            strpos($path, 'course/edit'
-            )) {
+        } else if ($pagetype === 'grade-report-grader-index') {
             return 'generic';
+        } else if ($pagetype === 'course-edit') {
+            return 'generic';
+        } else if ($pagetype === 'calendar-view') {
+            return 'calendar';
         } else if ($pagetype === 'site-index') {
             return 'index';
         } else {

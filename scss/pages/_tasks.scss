@@ -1,5 +1,6 @@
 body[data-theme='cbe'][data-role='user'] {
 
+
   #page-header.course.custom {
     .card.header {
       background-position: center;
@@ -61,6 +62,33 @@ body[data-theme='cbe'][data-role='user'] {
           text-decoration: none;
           background-color: $primary-color;
           color: white;
+        }
+      }
+    }
+
+    .generaltable {
+      td {
+        .fa {
+          font-size: 20px;
+          margin-left: 7px;
+          &.graded {
+            color: dodgerblue;
+          }
+          &.submitted {
+            color: seagreen;
+          }
+          &.out {
+            color: #962121;
+          }
+          &.draft {
+            color: #676767;
+          }
+          &.reopened {
+            color: #676767;
+          }
+          &.not_delivery {
+            color: #676767;
+          }
         }
       }
     }

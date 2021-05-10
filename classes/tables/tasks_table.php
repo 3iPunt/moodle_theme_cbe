@@ -99,7 +99,7 @@ class tasks_table extends table_sql {
         $this->column_style('remaining', 'text-align', 'left');
         $this->column_style('duedate', 'text-align', 'left');
         $this->column_style('state', 'text-align', 'left');
-        $this->column_style('grade', 'text-align', 'left');
+        $this->column_style('grade', 'text-align', 'center');
     }
 
     /**
@@ -153,6 +153,11 @@ class tasks_table extends table_sql {
                 $data[] = $row;
             }
         }
+
+        usort($data, function($a, $b) {
+            return $a->duedate < $b->duedate ? 1 : -1;
+        });
+
         return $data;
     }
 
@@ -206,7 +211,7 @@ class tasks_table extends table_sql {
      */
     public function col_duedate(stdClass $row): string {
         return !empty($row->duedate) ? userdate(
-            $row->duedate, get_string('strftimedaydatetime', 'core_langconfig')) : '-';
+            $row->duedate, get_string('strftimedaydate', 'core_langconfig')) : '-';
     }
 
     /**
@@ -224,7 +229,7 @@ class tasks_table extends table_sql {
                 . get_string('course_left_grades', 'theme_cbe')
                 . '</a>';
         } else {
-            return $row->rawgrade === '' ? '-' : $row->rawgrade;
+            return $row->rawgrade === '' ? '-' : '<strong>' . $row->rawgrade . '</strong>';
         }
 
     }
@@ -248,7 +253,8 @@ class tasks_table extends table_sql {
             }
             return $state;
         } else {
-            if ($row->rawgrade) return get_string('graded', 'assign');
+            if ($row->rawgrade) return get_string('graded', 'assign') .
+                '<i class="fa fa-pencil graded" aria-hidden="true"></i>';
 
             $submission = $DB->get_record('assign_submission',
                 array('assignment' => $row->instance, 'userid' => $this->user_id), '*');
@@ -256,18 +262,23 @@ class tasks_table extends table_sql {
             $state = '-';
 
             if ($submission->status === 'submitted') {
-                $state = get_string('submissionstatus_submitted', 'assign');
+                $state = get_string('submissionstatus_submitted', 'assign') .
+                '<i class="fa fa-archive submitted" aria-hidden="true"></i>';
             }
 
             if (time() > $row->duedate && $submission->status !== 'submitted') {
-                $state = get_string('task_submit_duedate_out', 'theme_cbe');
+                $state = get_string('task_submit_duedate_out', 'theme_cbe') .
+                    '<i class="fa fa-calendar-times-o out" aria-hidden="true"></i>';;
             } else if (time() < $row->duedate && $submission->status !== 'submitted') {
                 if ($submission->status === 'draft') {
-                    $state = get_string('submissionstatus_draft', 'assign');
+                    $state = get_string('submissionstatus_draft', 'assign') .
+                        '<i class="fa fa-eraser draft" aria-hidden="true"></i>';
                 } else if ($submission->status === 'reopened') {
-                    $state = get_string('submissionstatus_reopened', 'theme_cbe');
+                    $state = get_string('submissionstatus_reopened', 'theme_cbe') .
+                        '<i class="fa fa-folder-open reopened" aria-hidden="true"></i>';;
                 }   else {
-                    $state = get_string('task_submit_duedate_in', 'theme_cbe');
+                    $state = get_string('task_not_delivery', 'theme_cbe') .
+                        '<i class="fa fa-times not_delivery" aria-hidden="true"></i>';;
                 }
             }
             return $state;

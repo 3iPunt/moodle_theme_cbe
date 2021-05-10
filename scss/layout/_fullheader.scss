@@ -53,4 +53,38 @@ body[data-theme='cbe'][data-role='user'] {
 
     }
   }
+
+  #page-header.system {
+    .card.header {
+      background-blend-mode: luminosity;
+    }
+    .card-body {
+      padding: 0;
+      .degraded {
+        background: linear-gradient(180deg,rgba(0,0,0,0.5) 40%,rgba(0,0,0,0) 100%);
+        padding: 1.25rem;
+      }
+      .text {
+        .title {
+          font-size: 44px;
+          font-weight: 600;
+          letter-spacing: 1px;
+          margin-bottom: 5px;
+          color: white;
+          span.postitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-left: 10px;
+            color: $grey-medium2;
+          }
+        }
+        .subtitle {
+          font-size: 23px;
+          color: $grey-medium2;
+          margin-bottom: 4px;
+        }
+      }
+    }
+
+  }
 }

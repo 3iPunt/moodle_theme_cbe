@@ -5,8 +5,14 @@ body[data-theme='cbe'][data-role='user'][data-context="index"] {
     margin-bottom: 10px;
   }
 
+  #region-main-box {
+    >section[data-region="blocks-column"] {
+      margin-top: 0;
+      margin-left: 15px;
+    }
+  }
+
   #region-main {
-    width: 100%;
     #frontpage-category-combo {
       >h2 {
         display: none;

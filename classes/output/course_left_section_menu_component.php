@@ -73,11 +73,14 @@ class course_left_section_menu_component implements renderable, templatable {
             $settings = false;
         }
 
+        $cal = new moodle_url('/calendar/view.php', ['course'=> $this->course_id, 'view' => 'month']);
+
         $links = [
             'resource' => new moodle_url('/' . course_navigation::PAGE_RESOURCES, ['id'=> $this->course_id]),
             'vclasses' => $this->get_vclasses_href(),
             'grades' => new moodle_url('/grade/report/index.php', ['id'=> $this->course_id]),
             'participants' => new moodle_url('/user/index.php', ['id'=> $this->course_id]),
+            'calendar' => $cal->out(false),
             'settings' => $settings
         ];
         $data = new stdClass();

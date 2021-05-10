@@ -25,12 +25,9 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
-use core_course_category;
 use moodle_exception;
-use moodle_url;
 use stdClass;
 use theme_cbe\output\menu_apps_button;
-use theme_cbe\user;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -45,7 +42,7 @@ class system_navigation extends navigation {
 
     /** @var array Templates Header */
     protected $templates_header = [
-        'system' => 'theme_cbe/header/generic'
+        'system' => 'theme_cbe/header/system'
     ];
 
     /**
@@ -79,7 +76,18 @@ class system_navigation extends navigation {
      * @return stdClass
      */
     public function get_data_header(stdClass $data): stdClass {
+        global $PAGE, $SITE, $OUTPUT;
         $data->nav_context = 'system';
+        $data->site = $SITE->fullname;
+        $title = str_replace($SITE->shortname . ': ', '', $PAGE->title);
+        $pos = strpos($title, ':');
+        if ($pos) {
+            $main = substr($title, 0, $pos);
+            $last = trim(str_replace(':', '', substr($title, $pos)));
+            $title = $main . '<span class="postitle">' . $last . '</span>';
+        }
+        $data->title = $title;
+        $data->courseimage = $OUTPUT->get_generated_image_for_id(2);
         return $data;
     }
 
