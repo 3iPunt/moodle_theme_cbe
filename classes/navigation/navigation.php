@@ -46,6 +46,8 @@ abstract class navigation  {
     const TEMPLATE_HEADER_DEFAULT = 'theme_cbe/header/header';
     const TEMPLATE_LAYOUT_DEFAULT = 'theme_cbe/columns2/columns2_admin';
 
+    const IMAGE_DEFAULT_SITE = 8;
+
     /** @var array Templates Header */
     protected $templates_header = [];
 
@@ -185,19 +187,24 @@ abstract class navigation  {
         $nav->remove('contentbank');
         $nav->remove('privatefiles');
 
-        //echo "<pre>";
-
-        //foreach ($nav->getIterator() as $item) {
-        //    /** @var flat_navigation_node $item */
-        //    $item = $item;
-        //    if ($item->key === 'coursehome') {
-        //        var_dump($item);die();
-        //    }
-        //}
-
-        //var_dump($nav->get_key_list());die();
-
         return $nav;
+    }
+
+    /**
+     * Get Clean Title.
+     *
+     * @return string|string[]
+     */
+    protected function get_clean_title() {
+        global $SITE, $PAGE;
+        $title = str_replace($SITE->shortname . ': ', '', $PAGE->title);
+        $pos = strpos($title, ':');
+        if ($pos) {
+            $main = substr($title, 0, $pos);
+            $last = trim(str_replace(':', '', substr($title, $pos)));
+            $title = $main . '<span class="postitle">' . $last . '</span>';
+        }
+        return $title;
     }
 
 }

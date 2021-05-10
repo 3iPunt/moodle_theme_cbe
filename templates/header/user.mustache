@@ -30,32 +30,35 @@
 }}
 <header id="page-header" class="row {{ nav_context }}">
     <div class="col-9 pt-3 pb-3">
-        <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">
+        <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}} header" style='background-image: url("{{{ courseimage }}}");'>
             <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
-                <div class="d-sm-flex align-items-center">
-                    {{#contextheader}}
-                        <div class="mr-auto">
-                            {{{contextheader}}}
-                        </div>
-                    {{/contextheader}}
+                <div class="degraded">
+                    <div class="d-sm-flex align-items-center">
+                        {{#contextheader}}
+                            <div class="mr-auto">
+                                {{{contextheader}}}
+                            </div>
+                        {{/contextheader}}
 
-                    {{#settingsmenu}}
-                        <div class="context-header-settings-menu">
-                            {{{settingsmenu}}}
+                        {{#settingsmenu}}
+                            <div class="context-header-settings-menu">
+                                {{{settingsmenu}}}
+                            </div>
+                            <div class="tri triangle-edit"></div>
+                        {{/settingsmenu}}
+                        <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
+                            {{#headeractions}}
+                                <div class="header-action ml-2">{{{.}}}</div>
+                            {{/headeractions}}
                         </div>
-                    {{/settingsmenu}}
-                    <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
-                        {{#headeractions}}
-                            <div class="header-action ml-2">{{{.}}}</div>
-                        {{/headeractions}}
                     </div>
-                </div>
-                <div class="d-flex flex-wrap">
-                    <div class="ml-auto d-flex">
-                        {{{pageheadingbutton}}}
-                    </div>
-                    <div id="course-header">
-                        {{{courseheader}}}
+                    <div class="d-flex flex-wrap">
+                        <div class="ml-auto d-flex">
+                            {{{pageheadingbutton}}}
+                        </div>
+                        <div id="course-header">
+                            {{{courseheader}}}
+                        </div>
                     </div>
                 </div>
             </div>

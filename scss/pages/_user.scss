@@ -3,11 +3,57 @@ body[data-theme='cbe'][data-role='user'] {
   header.user {
     justify-content: center;
     margin-bottom: 10px;
+    .context-header-settings-menu {
+      .dropdown, .dropleft {
+        top: -43px;
+        a#action-menu-toggle-2 {
+          color: #fff;
+          background-color: #d5045c;
+          padding: 10px 12px;
+          position: relative;
+          right: -28px;
+          top: -9px;
+          border-radius: 10px 0 0 10px;
+          z-index: 2;
+        }
+      }
+      .tri.triangle-edit {
+        width: 0;
+        height: 0;
+        border-top: 10px solid #861949;
+        border-right: 10px solid transparent;
+        position: absolute;
+        top: 64px;
+        right: -10px;
+      }
+    }
   }
 
   #page-content.user {
     display: flex;
     justify-content: center;
+
+    .userprofile {
+      section.node_category {
+        box-shadow: none !important;
+        border: 1px dashed $border-color;
+      }
+    }
+
+    [role="main"] {
+      padding: 0 40px 20px;
+      h3 {
+        font-size: 28px;
+        font-family: $fontbold;
+        margin: 18px 0 10px;
+      }
+      .container-fluid {
+        .card {
+          box-shadow: none !important;
+          border: 1px dashed $border-color;
+        }
+      }
+    }
   }
 
 }

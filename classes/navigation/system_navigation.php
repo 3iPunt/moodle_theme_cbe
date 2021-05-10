@@ -76,18 +76,11 @@ class system_navigation extends navigation {
      * @return stdClass
      */
     public function get_data_header(stdClass $data): stdClass {
-        global $PAGE, $SITE, $OUTPUT;
+        global $SITE, $OUTPUT;
         $data->nav_context = 'system';
         $data->site = $SITE->fullname;
-        $title = str_replace($SITE->shortname . ': ', '', $PAGE->title);
-        $pos = strpos($title, ':');
-        if ($pos) {
-            $main = substr($title, 0, $pos);
-            $last = trim(str_replace(':', '', substr($title, $pos)));
-            $title = $main . '<span class="postitle">' . $last . '</span>';
-        }
-        $data->title = $title;
-        $data->courseimage = $OUTPUT->get_generated_image_for_id(2);
+        $data->title = $this->get_clean_title();
+        $data->courseimage = $OUTPUT->get_generated_image_for_id(self::IMAGE_DEFAULT_SITE);
         return $data;
     }
 

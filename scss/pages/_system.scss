@@ -9,4 +9,14 @@ body[data-theme='cbe'][data-role='user'][data-context="system"] {
     margin-top: 0;
   }
 
+  #page-content {
+    #region-main-box {
+      [role="main"] {
+        >h2 {
+          display: none;
+        }
+      }
+    }
+  }
+
 }

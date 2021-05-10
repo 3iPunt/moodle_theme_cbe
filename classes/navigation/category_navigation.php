@@ -45,7 +45,7 @@ class category_navigation extends navigation {
 
     /** @var array Templates Header */
     protected $templates_header = [
-        'category' => 'theme_cbe/header/generic'
+        'category' => 'theme_cbe/header/system'
     ];
 
     /**
@@ -79,7 +79,11 @@ class category_navigation extends navigation {
      * @return stdClass
      */
     public function get_data_header(stdClass $data): stdClass {
+        global $OUTPUT, $SITE, $PAGE;
         $data->nav_context = 'category';
+        $data->site = $SITE->fullname;
+        $data->title = $this->get_clean_title();
+        $data->courseimage = $OUTPUT->get_generated_image_for_id(self::IMAGE_DEFAULT_SITE);
         return $data;
     }
 

@@ -36,6 +36,9 @@ body[data-theme='cbe'][data-role='user'] {
   .form-control {
     background-color: white;
     border: 1px solid $grey-border;
+    &:disabled {
+      background: #e2e2e2;
+    }
   }
 
 }

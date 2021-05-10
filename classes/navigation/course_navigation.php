@@ -68,7 +68,7 @@ class course_navigation extends navigation {
         'modedit' => 'theme_cbe/header/custom',
         'generic' => 'theme_cbe/header/custom',
         'default' => 'theme_cbe/header/header',
-        'index' => 'theme_cbe/header/custom',
+        'index' => 'theme_cbe/header/system',
         'calendar' => 'theme_cbe/header/custom',
     ];
 
@@ -100,6 +100,7 @@ class course_navigation extends navigation {
         global $PAGE;
         $path = $PAGE->url->get_path();
         $pagetype = $PAGE->pagetype;
+        //var_dump($pagetype);die();
         if ($pagetype === 'theme-cbe-view_board') {
             return 'board';
         } else if ($pagetype === 'course-view-topics') {
@@ -122,7 +123,7 @@ class course_navigation extends navigation {
             return 'copycourse';
         } else if (strpos($path, 'course/modedit')) {
             return 'modedit';
-        } else if ($pagetype === 'grade-report-grader-index') {
+        } else if (strpos($pagetype, 'grade-') === 0) {
             return 'generic';
         } else if ($pagetype === 'course-edit') {
             return 'generic';
@@ -144,11 +145,17 @@ class course_navigation extends navigation {
      * @throws moodle_exception
      */
     public function get_data_header(stdClass $data): stdClass {
-        global $PAGE;
+        global $PAGE, $OUTPUT, $SITE;
         $courseid = $PAGE->context->instanceid;
         $coursecbe = new course($courseid);
         $data->nav_context = 'course';
-        $data->courseimage = $coursecbe->get_courseimage();
+        if ($this->get_page() === 'index') {
+            $data->courseimage = $OUTPUT->get_generated_image_for_id(self::IMAGE_DEFAULT_SITE);
+            $data->site = $SITE->fullname;
+            $data->title = get_string('sitehome');
+        } else {
+            $data->courseimage = $coursecbe->get_courseimage();
+        }
         $data->teachers = $coursecbe->get_users_by_role('editingteacher');
         $data->is_teacher = course_user::is_teacher($courseid);
         $data->can_create_courses = user::can_create_courses();

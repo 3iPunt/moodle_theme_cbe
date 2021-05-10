@@ -54,6 +54,27 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
+  #page-header.user {
+    .card.header {
+      background-blend-mode: luminosity;
+    }
+    .card-body {
+      padding: 0;
+      .degraded {
+        background: linear-gradient(180deg,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 80%);
+        padding: 24px;
+      }
+    }
+    .page-header-headings {
+      >h1 {
+        color: white;
+      }
+      >h2 {
+        color: $grey-medium2;
+      }
+    }
+  }
+
   #page-header.system {
     .card.header {
       background-blend-mode: luminosity;
@@ -61,8 +82,8 @@ body[data-theme='cbe'][data-role='user'] {
     .card-body {
       padding: 0;
       .degraded {
-        background: linear-gradient(180deg,rgba(0,0,0,0.5) 40%,rgba(0,0,0,0) 100%);
-        padding: 1.25rem;
+        background: linear-gradient(180deg,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 110%);
+        padding: 24px;
       }
       .text {
         .title {
@@ -75,7 +96,7 @@ body[data-theme='cbe'][data-role='user'] {
             font-size: 24px;
             font-weight: 300;
             margin-left: 10px;
-            color: $grey-medium2;
+            color: white;
           }
         }
         .subtitle {
