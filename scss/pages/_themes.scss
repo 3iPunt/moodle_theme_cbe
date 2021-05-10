@@ -1,6 +1,7 @@
-body[data-theme='cbe'][data-role='user'] {
+body[data-theme='cbe'][data-role='user']#page-course-view-topics{
 
   #page-header.course.themes {
+
     .card.header {
       background-position: center;
       background-size: cover;
@@ -15,6 +16,7 @@ body[data-theme='cbe'][data-role='user'] {
             font-weight: 600;
             letter-spacing: 1px;
             color: white;
+            margin-bottom: 18px;
           }
           h2 {
             font-size: 23px;
@@ -22,7 +24,42 @@ body[data-theme='cbe'][data-role='user'] {
             margin-bottom: 4px;
           }
         }
-        .d-flex.flex-wrap {
+        .tool-tooltip.edition {
+          position: absolute;
+          right: -10px;
+          top: 15px;
+          .tool-link {
+            background-color: $primary-color;
+            height: 45px;
+            width: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 9px 0 0 10px;
+            cursor: pointer;
+            i {
+              color: white;
+              font-size: 25px;
+            }
+            .triangle {
+              width: 0;
+              height: 0;
+              border-top: 10px solid #861949;
+              border-right: 10px solid transparent;
+              position: absolute;
+              bottom: -10px;
+              right: 0;
+            }
+            &:hover, &:focus {
+              background-color: #e82373 !important;
+              text-decoration: none;
+            }
+          }
+        }
+        .mode-edition {
+          position: fixed;
+          top: 76px;
+          right: 0;
           height: 10px;
         }
       }

@@ -121,11 +121,15 @@ class course_navigation extends navigation {
             return 'copycourse';
         } else if ($pagetype === 'theme-cbe-view_copycourse_progress') {
             return 'copycourse';
-        } else if (strpos($path, 'course/modedit')) {
-            return 'modedit';
         } else if (strpos($pagetype, 'grade-') === 0) {
             return 'generic';
         } else if ($pagetype === 'course-edit') {
+            return 'generic';
+        } else if ($pagetype === 'enrol-instances' || $pagetype === 'enrol-editinstance') {
+            return 'generic';
+        } else if ($pagetype === 'group-index' || $pagetype === 'group-groupings' || $pagetype === 'group-overview') {
+            return 'generic';
+        } else if ($pagetype === 'admin-roles-permissions' || $pagetype === 'enrol-otherusers') {
             return 'generic';
         } else if ($pagetype === 'calendar-view') {
             return 'calendar';

@@ -39,7 +39,9 @@ use pix_icon;
 use renderer_base;
 use stdClass;
 use theme_cbe\course;
+use theme_cbe\navigation\course_module_navigation;
 use theme_cbe\navigation\header;
+use theme_cbe\navigation\navigation;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -428,5 +430,6 @@ class core_renderer extends \core_renderer {
 
         return $html;
     }
+
 
 }

@@ -195,7 +195,7 @@ abstract class navigation  {
      *
      * @return string|string[]
      */
-    protected function get_clean_title() {
+    public function get_clean_title() {
         global $SITE, $PAGE;
         $title = str_replace($SITE->shortname . ': ', '', $PAGE->title);
         $pos = strpos($title, ':');

@@ -1,5 +1,11 @@
 body[data-theme='cbe'][data-role='user'] {
 
+  #page-header {
+    .card.header, .card.header-board {
+      box-shadow: $shadow-color 0 3px 6px;
+    }
+  }
+
   #page-header.row.course {
     margin-bottom: 10px;
     .is_custom {

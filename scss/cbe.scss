@@ -24,7 +24,9 @@
 @import "pages/login";
 @import "pages/dashboard";
 @import "pages/course";
-@import "pages/coursegrades";
+@import "pages/course_grades";
+@import "pages/course_users";
+@import "pages/course_groups";
 @import "pages/category";
 @import "pages/system";
 @import "pages/index";
@@ -40,3 +42,4 @@
 @import "pages/vclasses";
 @import "pages/generic";
 @import "pages/modedit";
+@import "pages/calendar";

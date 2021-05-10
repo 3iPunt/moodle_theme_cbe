@@ -2,35 +2,41 @@ body[data-theme='cbe'][data-role='user'].path-grade {
 
   #page-content.course {
     .grade-navigation {
-      border: 1px solid $grey-border;
-      border-bottom: none;
       padding-top: 16px;
-      ul.nav.nav-tabs {
-        margin: -1px;
-        margin-bottom: 0!important;
-        margin-top: 20px !important;
-        a.nav-link {
-          opacity: 0.7;
-          color: $grey-medium;
-          &.active {
-            color: $black-ligth;
-            opacity: 1;
-            font-weight: 600;
-          }
-          &:hover, &:focus {
-            opacity: 1;
+      .nav-tabs {
+        border: none;
+        margin: 0 0 30px !important;
+        font-size: 13px;
+        .nav-item {
+          margin-right: 12px;
+          a.nav-link {
+            border: 1px solid #e8e8e8;
+            background-color: #f1f1f1;
+            color: $grey-medium2;
+            &.active {
+              color: white;
+              background-color: grey;
+            }
           }
         }
         &:first-child {
-          margin-top: 0 !important;
+          font-size: 15px;
+          margin: 0 0 10px !important;
+          .nav-item {
+            a.nav-link {
+              &.active {
+                font-weight: 600;
+                background-color: $primary-color;
+              }
+            }
+          }
+
         }
       }
     }
     div[role="main"] {
       >form {
-        border: 1px solid $grey-border;
-        border-top: none;
-        padding: 40px 20px 20px;
+        padding: 20px;
         h3 {
           font-size: 20px;
           font-weight: 700;
@@ -48,10 +54,8 @@ body[data-theme='cbe'][data-role='user'].path-grade {
         }
       }
       >.gradetreebox, >.generalbox {
-        border: 1px solid $grey-border;
         padding: 15px;
         margin-bottom: 15px;
-        border-top: none;
       }
       table.setup-grades, table.user-grade {
         .level2 img.icon.itemicon {
@@ -73,50 +77,37 @@ body[data-theme='cbe'][data-role='user'].path-grade {
         }
       }
       >h3.main {
-        border: 1px solid $grey-border;
         margin: 0;
-        border-bottom: none;
-        border-top: none;
-        padding: 20px;
+        padding: 20px 0;
         font-size: 22px;
         font-weight: 600;
       }
       >.centerpara, >.mdl-align {
-        border: 1px solid  $grey-border;
         padding-top: 30px !important;
-        border-top: none;
-        border-bottom: none;
       }
       >.generaltable {
-        border: 1px solid $grey-border;
         margin: 0 !important;
       }
       >#graded_users_selector {
-        border: 1px solid $grey-border;
-        border-top: none;
-        border-bottom: none;
-        padding: 30px;
-        width: 100%;
+        padding: 25px 0 0;
         margin-bottom: 0;
       }
       >.view_users_selector {
         width: 100%;
         padding: 20px;
-        border: 1px solid $grey-border;
-        border-top: none;
-        border-bottom: none;
         margin: 0;
       }
       >p {
         display: none;
       }
       >.no-overflow, >.reporttable {
-        border: 1px solid $grey-border;
-        padding: 30px;
-        border-top: none;
+        padding: 10px 0;
       }
       >.itemnav {
         padding: 20px;
+      }
+      >.buttons {
+        margin: 20px 10px;
       }
     }
   }
