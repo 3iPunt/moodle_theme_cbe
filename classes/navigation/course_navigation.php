@@ -131,7 +131,7 @@ class course_navigation extends navigation {
             return 'generic';
         } else if ($pagetype === 'admin-roles-permissions' || $pagetype === 'enrol-otherusers') {
             return 'generic';
-        } else if ($pagetype === 'calendar-view') {
+        } else if ($pagetype === 'calendar-view' || $pagetype === 'calendar-export' || $pagetype === 'calendar-managesubscriptions') {
             return 'calendar';
         } else if ($pagetype === 'site-index') {
             return 'index';
