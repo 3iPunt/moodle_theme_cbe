@@ -11,7 +11,12 @@
     </div>
     <div class="notification">
         <a type="button" class="btn-tooltip" href="{{ view_url }}" data-toggle="tooltip" data-placement="bottom" title="{{ not_nums }} {{# str }} notifications, theme_cbe {{/ str }}">
+            {{# has_notifications }}
             <i class="fa fa-bell" aria-hidden="true"></i>
+            {{/ has_notifications }}
+            {{^ has_notifications }}
+                <i class="fa fa-bell-slash" aria-hidden="true"></i>
+            {{/ has_notifications }}
         </a>
         {{# has_notifications }}
         <span class="not_nums">{{ not_nums }}</span>
