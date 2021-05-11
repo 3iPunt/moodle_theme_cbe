@@ -100,6 +100,7 @@ class course_navigation extends navigation {
         global $PAGE;
         $path = $PAGE->url->get_path();
         $pagetype = $PAGE->pagetype;
+        //var_dump($pagetype);die();
         if ($pagetype === 'theme-cbe-view_board') {
             return 'board';
         } else if ($pagetype === 'course-view-topics') {
@@ -122,6 +123,10 @@ class course_navigation extends navigation {
             return 'copycourse';
         } else if (strpos($pagetype, 'grade-') === 0) {
             return 'generic';
+        } else if (strpos($pagetype, 'question-') === 0) {
+            return 'generic';
+        } else if (strpos($pagetype, 'report-') === 0) {
+            return 'generic';
         } else if (strpos($path, 'modedit.php') ) {
             return 'modedit';
         } else if ($pagetype === 'course-edit' ||
@@ -131,6 +136,8 @@ class course_navigation extends navigation {
             $pagetype === 'backup-copy' ||
             $pagetype === 'course-reset' ||
             $pagetype === 'admin-tool-recyclebin-index' ||
+            $pagetype === 'admin-roles-assign' ||
+            $pagetype === 'admin-roles-check' ||
             $pagetype === 'course-completion' ||
             $pagetype === 'course-bulkcompletion' ||
             $pagetype === 'filter-manage' ||
