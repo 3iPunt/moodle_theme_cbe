@@ -194,15 +194,17 @@ class course  {
         $tasks = [];
         foreach ($data->events as $event) {
             $task = new stdClass();
-            $module = new module($event->instance);
-            $task->modname = $module->get_cm_info()->modname;
-            $task->name = $module->get_cm_info()->name;
-            $task->deadline = userdate(
-                $event->timeusermidnight,
-                get_string('strftimedatefullshort', 'core_langconfig'));
-            $event->timeusermidnight;
-            $task->view_href = $module->get_view_href();
-            $tasks[] = $task;
+            if (isset($event->instance)) {
+                $module = new module($event->instance);
+                $task->modname = $module->get_cm_info()->modname;
+                $task->name = $module->get_cm_info()->name;
+                $task->deadline = userdate(
+                    $event->timeusermidnight,
+                    get_string('strftimedatefullshort', 'core_langconfig'));
+                $event->timeusermidnight;
+                $task->view_href = $module->get_view_href();
+                $tasks[] = $task;
+            }
         }
         return $tasks;
     }
