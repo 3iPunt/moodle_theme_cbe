@@ -2,26 +2,6 @@ body[data-theme='cbe'][data-role='user'].path-group {
 
   #page-content.course {
 
-    .groupdisplay {
-      .nav-tabs {
-        border: none;
-        margin-left: 14px;
-        .nav-item {
-          margin-right: 12px;
-          a.nav-link {
-            border: 1px solid #e8e8e8;
-            background-color: #f1f1f1;
-            color: $grey-medium2;
-            &.active {
-              font-weight: 600;
-              color: white;
-              background-color: $primary-color;
-            }
-          }
-        }
-      }
-    }
-
     h3 {
       font-size: 28px;
       font-family: $fontbold;

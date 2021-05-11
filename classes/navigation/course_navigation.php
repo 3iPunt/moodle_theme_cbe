@@ -100,7 +100,6 @@ class course_navigation extends navigation {
         global $PAGE;
         $path = $PAGE->url->get_path();
         $pagetype = $PAGE->pagetype;
-        //var_dump($pagetype);die();
         if ($pagetype === 'theme-cbe-view_board') {
             return 'board';
         } else if ($pagetype === 'course-view-topics') {
@@ -121,9 +120,10 @@ class course_navigation extends navigation {
             return 'copycourse';
         } else if ($pagetype === 'theme-cbe-view_copycourse_progress') {
             return 'copycourse';
-        } else if (strpos($pagetype, 'grade-') === 0 ||
-                   strpos($path, 'modedit.php') ) {
+        } else if (strpos($pagetype, 'grade-') === 0) {
             return 'generic';
+        } else if (strpos($path, 'modedit.php') ) {
+            return 'modedit';
         } else if ($pagetype === 'course-edit' ||
             $pagetype === 'course-admin' ||
             $pagetype === 'backup-backup' ||
