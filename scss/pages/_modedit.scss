@@ -1,4 +1,5 @@
-body[data-theme='cbe'][data-role='user'].pagelayout-admin {
+body[data-theme='cbe'][data-role='user'].pagelayout-admin,
+body[data-theme='cbe'][data-role='user']#page-course-editsection {
 
   #page-content.course {
     #region-main-box {
@@ -83,6 +84,12 @@ body[data-theme='cbe'][data-role='user'].pagelayout-admin {
               }
             }
 
+            .fdefaultcustom {
+              display: flex;
+              align-items: center;
+              flex-direction: row-reverse;
+            }
+
           }
           .fdescription.required {
             text-align: center;
@@ -94,6 +101,26 @@ body[data-theme='cbe'][data-role='user'].pagelayout-admin {
         }
       }
 
+    }
+  }
+
+}
+
+body[data-theme='cbe'][data-role='user']#page-mod-bigbluebuttonbn-mod {
+
+  #page-content.course {
+    #region-main-box {
+      #region-main.in_course[data-region="module"] {
+        div[role="main"] {
+          > h2 {
+            margin: -9px 0 24px 32px;
+
+            > i.icon {
+              top: 10px;
+            }
+          }
+        }
+      }
     }
   }
 

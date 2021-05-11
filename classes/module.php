@@ -107,10 +107,12 @@ class module  {
         $module = new stdClass();
         $module->id = $this->cm_id;
         $module->modname = $this->get_modname();
+        $module->icon = $this->get_icon();
         $module->modfullname = $this->get_modfullname();
         $module->name = $this->get_name();
         $module->added = $this->get_added();
         $module->updated = $this->get_updated();
+        $module->is_hidden = $this->is_hidden();
         $module->is_publication = false;
         $module->view_href = $this->get_view_href();
         $module->view_blank = false;
@@ -147,12 +149,30 @@ class module  {
     }
 
     /**
+     * Get Name
+     *
+     * @return string
+     */
+    public function is_hidden(): string {
+        return !$this->cm->visible;
+    }
+
+    /**
      * Get Modname
      *
      * @return string
      */
     public function get_modname(): string {
         return $this->cm->modname;
+    }
+
+    /**
+     * Get Icon
+     *
+     * @return string
+     */
+    public function get_icon(): string {
+        return $this->cm->get_icon_url();
     }
 
     /**

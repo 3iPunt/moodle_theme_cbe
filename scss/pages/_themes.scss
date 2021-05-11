@@ -175,6 +175,28 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
           top: 16px;
         }
       }
+      &.current {
+        .sectionname {
+          &:after {
+            color: $primary-color;
+            content: "\f111";
+            font-size: 28px;
+            font-family: FontAwesome, serif;
+            margin-left: 10px;
+          }
+        }
+      }
+      &.hidden {
+        opacity: 0.5;
+        .content {
+          position: relative;
+          .section_availability {
+            position: absolute;
+            right: 0;
+            top: -24px;
+          }
+        }
+      }
     }
 
     li.activity {

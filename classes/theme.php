@@ -74,6 +74,7 @@ class theme  {
     public function export(): stdClass {
         $section = new stdClass();
         $section->id = $this->section->id;
+        $section->is_hidden = !$this->section->visible;
         $section->section = $this->section->section;
         $section->name = $this->get_name();
         $section->href = $this->get_href();

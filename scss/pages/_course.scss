@@ -126,6 +126,9 @@ body[data-theme='cbe'][data-role='user'] {
                   cursor: pointer;
                   font-size: 18px;
                   font-weight: 600;
+                  &.is_hidden {
+                    opacity: 0.4;
+                  }
                   &.active {
                     font-size: 18px;
                     font-family: $fontbold;

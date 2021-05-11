@@ -8,7 +8,7 @@
     </a>
     <ul class="themes">
         {{# themes }}
-        <li class="theme {{# active }}active{{/ active }}">
+        <li class="theme {{# active }}active{{/ active }} {{# is_hidden }}is_hidden{{/ is_hidden }}">
             <a href="{{ href }}">{{# shortentext }} 90, {{ name }} {{/ shortentext }}</a>
         </li>
         {{/ themes }}

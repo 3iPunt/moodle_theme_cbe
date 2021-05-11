@@ -152,6 +152,8 @@ class course_navigation extends navigation {
             return 'calendar';
         } else if ($pagetype === 'site-index') {
             return 'index';
+        } else if ($pagetype === 'course-editsection') {
+            return 'generic';
         } else {
             return '';
         }

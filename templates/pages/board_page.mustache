@@ -67,7 +67,7 @@
     </div>
     {{/ is_teacher }}
     {{# modules }}
-        <div class="modulecbe {{ modname }}">
+        <div class="modulecbe {{ modname }} {{# is_hidden }}is_hidden{{/ is_hidden }}">
         {{# is_publication }}
             {{> theme_cbe/components/publication_board_component }}
         {{/ is_publication }}

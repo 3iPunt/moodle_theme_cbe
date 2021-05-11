@@ -1,6 +1,11 @@
 <div class="item-mod">
+    {{# is_hidden }}
+        <span class="is_hidden_msg">No mostrado a los estudiantes</span>
+    {{/ is_hidden }}
     <div class="mod" data-toggle="tooltip" data-placement="top" title="{{ modfullname }}">
-        <a class="icon" href="{{ view_href }}" {{# view_blank }}target="_blank"{{/ view_blank }}></a>
+        <a class="icon" href="{{ view_href }}" {{# view_blank }}target="_blank"{{/ view_blank }}>
+            <img src="{{{ icon }}}" alt="">
+        </a>
     </div>
     <div class="text">
         <div class="name">

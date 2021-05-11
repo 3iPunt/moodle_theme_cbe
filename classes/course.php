@@ -168,10 +168,12 @@ class course  {
         $themes = array();
         foreach ($sections as $section) {
             if ($section->section > 0) {
-                $theme_cbe = new theme($section, $this->course);
-                $theme = $theme_cbe->export();
-                $theme->active = $section_current === $section->section;
-                $themes[] = $theme;
+                if ($section->uservisible) {
+                    $theme_cbe = new theme($section, $this->course);
+                    $theme = $theme_cbe->export();
+                    $theme->active = $section_current === $section->section;
+                    $themes[] = $theme;
+                }
             }
         }
         return $themes;
