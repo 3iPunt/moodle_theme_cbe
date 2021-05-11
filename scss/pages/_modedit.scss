@@ -1,5 +1,9 @@
 body[data-theme='cbe'][data-role='user'].pagelayout-admin,
-body[data-theme='cbe'][data-role='user']#page-course-editsection {
+body[data-theme='cbe'][data-role='user']#page-course-editsection,
+body[data-theme='cbe'][data-role='user']#page-mod-assign-grading,
+body[data-theme='cbe'][data-role='user']#page-mod-feedback-edit,
+body[data-theme='cbe'][data-role='user']#page-mod-feedback-import,
+body[data-theme='cbe'][data-role='user']#page-mod-assign-grantextension {
 
   #page-content.course {
     #region-main-box {
@@ -124,4 +128,50 @@ body[data-theme='cbe'][data-role='user']#page-mod-bigbluebuttonbn-mod {
     }
   }
 
+}
+
+body[data-theme='cbe'][data-role='user']#page-mod-assign-grading,
+body[data-theme='cbe'][data-role='user']#page-mod-assign-grantextension {
+  #page-content.course {
+    #region-main-box {
+      #region-main.in_course[data-region="module"] {
+        div[role="main"] {
+          > h2 {
+            &:after {
+              background-image: url('[[pix:mod_assign|icon]]');
+            }
+          }
+          .gradingtable {
+            .initialbar {
+              li.page-item {
+                a.page-link {
+                  color: $grey-medium;
+                }
+                &.active {
+                  a.page-link {
+                    color: white;
+                  }
+                }
+              }
+            }
+            .generaltable {
+              margin-top: 20px;
+              font-size: 12px;
+              a {
+                font-size: 12px !important;
+              }
+              img.userpicture {
+                width: 50px;
+                height: 50px;
+              }
+              th {
+                text-align: left;
+                padding: 10px 4px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

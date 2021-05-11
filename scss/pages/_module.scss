@@ -11,14 +11,15 @@ body[data-theme='cbe'][data-role='user'] {
           font-size: 28px;
           font-family: $fontbold;
           margin: 0 0 24px 70px;
+          position: relative;
           &:after {
             content: "";
             background-color: $primary-color;
             height: 58px;
             width: 58px;
             position: absolute;
-            left: 30px;
-            top: 20px;
+            left: -68px;
+            top: -13px;
             border-radius: 29px;
             background-size: 30px;
             background-position: center;
@@ -29,7 +30,37 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
-  &#page-mod-assign-view {
+  &#page-admin-roles-assign,
+  &#page-admin-roles-check,
+  &#page-backup-restorefile,
+  &#page-grade-grading-manage,
+  &#page-filter-manage,
+  &#page-question-category,
+  &#page-question-import,
+  &#page-question-export,
+  &#page-admin-roles-permissions {
+    div[role="main"] {
+      >h2 {
+        font-size: 28px;
+        font-family: $fontbold;
+        margin: 0 0 24px 0 !important;
+        &:after {
+          content: inherit !important;
+        }
+      }
+      >h3 {
+        font-size: 22px!important;
+        font-family: $font!important;
+        margin: 0 0 24px 0 !important;
+        &:after {
+          content: inherit !important;
+        }
+      }
+    }
+  }
+
+  &#page-mod-assign-view,
+  &#page-mod-assign-overrides {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_assign|icon]]');
@@ -37,7 +68,10 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
-  &#page-mod-forum-view {
+  &#page-mod-forum-view,
+  &#page-mod-forum-report-summary-index,
+  &#page-mod-forum-subscribers,
+  &#page-mod-forum-export {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_forum|icon]]');
@@ -45,7 +79,9 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
-  &#page-mod-quiz-view {
+  &#page-mod-quiz-view,
+  &#page-mod-quiz-overrides,
+  &#page-mod-quiz-report {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_quiz|icon]]');
@@ -53,10 +89,28 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
-  &#page-mod-feedback-view {
+  &#page-mod-feedback-view,
+  &#page-mod-feedback-import,
+  &#page-mod-feedback-edit,
+  &#page-mod-feedback-analysis,
+  &#page-mod-feedback-show_entries,
+  &#page-mod-feedback-edit {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_feedback|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-feedback-view,
+  &#page-mod-feedback-import {
+    div[role="main"] {
+      >h3 {
+        font-size: 22px!important;
+        margin: 30px 0 24px 0 !important;
+        &:after {
+          content: inherit !important;
+        }
       }
     }
   }
