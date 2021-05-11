@@ -68,6 +68,9 @@ define([
         CommentSend.prototype.onTextChange = function (e) {
             if (this.node.find(this.text).val().trim() !== '') {
                 this.node.find(this.send_button).show();
+                if (e.keyCode === 13) {
+                    this.onSendButtonClick(this);
+                }
             } else {
                 this.node.find(this.send_button).hide();
             }
@@ -75,6 +78,7 @@ define([
 
         CommentSend.prototype.onSendButtonClick = function (e) {
             const comment = this.node.find(this.text).val();
+            this.node.find(this.text).val('');
             this.node.find(this.send_button).hide();
             const request = {
                 methodname: SERVICES.PUBLICATION_SEND,
@@ -83,9 +87,13 @@ define([
                     comment: comment
                 }
             };
-            console.log(request);
             Ajax.call([request])[0].done(function(response) {
-                location.reload();
+                if (response.success) {
+                    location.href = response.url;
+                    setTimeout(function(){ window.location.reload(true); }, 1000);
+                } else {
+                    alert(response.error);
+                }
             }).fail(Notification.exception);
         };
 

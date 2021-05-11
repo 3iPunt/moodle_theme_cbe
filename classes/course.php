@@ -228,5 +228,4 @@ class course  {
             return $section0;
         }
     }
-
 }

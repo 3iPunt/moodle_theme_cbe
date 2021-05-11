@@ -31,6 +31,7 @@ global $PAGE, $OUTPUT;
 
 // Course_module ID, or
 $id = required_param('id', PARAM_INT);
+$pub = optional_param('pub', null, PARAM_INT);
 
 require_login($id);
 
@@ -45,8 +46,9 @@ if (isset($course)) {
     $PAGE->set_url('/theme/cbe/view_board.php', array('id' => $id ));
     $output = $PAGE->get_renderer('theme_cbe');
     echo $OUTPUT->header();
-    $page = new board_page($id);
+    $page = new board_page($id, $pub);
     echo $output->render($page);
+    course_view(context_course::instance($course->id));
     echo $OUTPUT->footer();
 }
 

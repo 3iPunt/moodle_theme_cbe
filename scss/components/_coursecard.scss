@@ -12,6 +12,9 @@ body[data-theme='cbe'][data-role="user"]  {
       top: 118px;
       right: 12px;
       display: flex;
+      max-width: 250px;
+      overflow: scroll;
+      padding-bottom: 7px;
       .teacher {
         height: 50px;
         width: 50px;
@@ -38,11 +41,31 @@ body[data-theme='cbe'][data-role="user"]  {
       width: 32px;
       height: 32px;
     }
-    .notification i {
-      color: #929292;
-      font-size: 27px;
+    .notification {
+      position: relative;
+      i {
+        color: #929292;
+        font-size: 31px;
+      }
+      .not_nums {
+        position: absolute;
+        top: 2px;
+        left: 17px;
+        text-align: center;
+        background-color: red;
+        color: white;
+        border-radius: 22px;
+        padding: 0px 4px;
+        font-size: 12px;
+        min-width: 19px;
+      }
     }
     .students {
+      >a.btn-tooltip {
+        &:hover {
+          text-decoration: none;
+        }
+      }
       span {
         font-size: 21px;
         font-family: $fontbold;
@@ -52,6 +75,14 @@ body[data-theme='cbe'][data-role="user"]  {
       i.fa-users {
         font-size: 26px;
         color: $grey-medium;
+      }
+    }
+    .user-role {
+      a.btn.aula {
+        &:hover {
+          background-color: $primary-color;
+          color: white;
+        }
       }
     }
   }

@@ -1,0 +1,56 @@
+body[data-theme='cbe'][data-role="user"]  {
+
+  .block_timeline {
+    [data-region="timeline-view-dates"] {
+      [data-region="paged-content-page"] {
+        h5 {
+          color: $grey-medium;
+        }
+        .list-group-item {
+          .icon-size-4 {
+            background-color: $primary-color;
+            padding: 9px;
+            height: 32px;
+            width: 32px;
+            margin: 3px 5px 0 0;
+            border-radius: 16px;
+            align-items: center;
+            justify-content: center;
+            img.icon {
+              height: 16px!important;
+              width: 16px!important;
+              font-size: 16px!important;
+              margin: 0;
+            }
+          }
+          .event-name-container {
+            h6.event-name {
+              color: black;
+              font-weight: 600;
+              &:hover {
+                text-decoration: none;
+                color: $primary-color;
+              }
+            }
+            >h6 {
+              padding-bottom: 2px;
+              a.list-group-item-action {
+                border: 1px solid $grey-medium2;
+                padding: 2px 8px;
+                font-size: 12px;
+                background-color: white;
+                color: $grey-medium2;
+                &:hover {
+                  background-color: $primary-color;
+                  color: white;
+                  border: 1px solid $primary-color;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

@@ -76,6 +76,17 @@ class module  {
     }
 
     /**
+     * Get List Modname.
+     *
+     * @return string[]
+     */
+    static public function get_list_modname(): array {
+        $merge = array_merge(self::$activities, self::$resources);
+        array_push($merge, publication::MODULE_PUBLICATION);
+        return $merge;
+    }
+
+    /**
      * Get CM Info.
      *
      * @return cm_info
@@ -99,6 +110,7 @@ class module  {
         $module->modfullname = $this->get_modfullname();
         $module->name = $this->get_name();
         $module->added = $this->get_added();
+        $module->updated = $this->get_updated();
         $module->is_publication = false;
         $module->view_href = $this->get_view_href();
         $module->view_blank = false;
@@ -159,6 +171,15 @@ class module  {
      */
     public function get_added(): string {
         return userdate($this->cm->added);
+    }
+
+    /**
+     * Get Updated
+     *
+     * @return string
+     */
+    public function get_updated(): string {
+        return $this->cm->added;
     }
 
     /**

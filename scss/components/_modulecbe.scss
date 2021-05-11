@@ -201,6 +201,9 @@ body[data-theme='cbe'][data-role="user"] {
           list-style: none;
           display: none;
           margin: 15px 20px 5px 55px;
+          &.expand {
+            display: block;
+          }
           li.comment {
             display: flex;
             margin-bottom: 10px;

@@ -22,6 +22,12 @@ body[data-theme='cbe'][data-role='user'] {
     font-size: $font-size-sm;
   }
 
+  .anchorcbe {
+    display:block;
+    padding-top:90px;
+    margin-top:-74px;
+  }
+
   #navbar-logo:focus {
     background-color: transparent !important;
   }
@@ -48,6 +54,11 @@ body[data-theme='cbe'][data-role='user'] {
     position: relative;
   }
 
+}
+
+.userloggedinas .usermenu .userbutton .avatars .avatar.current {
+  bottom: 5px;
+  right: 5px;
 }
 
 body[data-theme='cbe'][data-role='admin'] {

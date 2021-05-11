@@ -49,12 +49,17 @@ class board_page implements renderable, templatable {
     /** @var int Course ID */
     protected $course_id;
 
+    /** @var int Pub ID in URL */
+    protected $pub;
+
     /**
      * charge_page constructor.
      * @param int $course_id
+     * @param int|null $pub
      */
-    public function __construct(int $course_id) {
+    public function __construct(int $course_id, int $pub = null) {
         $this->course_id = $course_id;
+        $this->pub = $pub;
     }
 
     /**
@@ -81,11 +86,21 @@ class board_page implements renderable, templatable {
         $course_user = new course_user($this->course_id, $user->id);
         $course_cbe = new course($this->course_id);
 
+        $mods = $course_user->get_modules();
+
+        if (isset($this->pub)) {
+            foreach ($mods as $mod) {
+                if ($mod->id === $this->pub) {
+                    $mod->is_expand = true;
+                }
+            }
+        }
+
         $data = new stdClass();
         $data->courseid = $this->course_id;
         $data->user = $user;
         $data->is_teacher = course_user::is_teacher($this->course_id);
-        $data->modules = $course_user->get_modules();
+        $data->modules = $mods;
         $data->create = module::get_list_modules($this->course_id);
         $data->students = $course_cbe->get_users_by_role('student');
         $data->groups = $course_cbe->get_groups();

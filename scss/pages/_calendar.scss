@@ -1,6 +1,9 @@
-body[data-theme='cbe'][data-role='user']#page-calendar-view {
+body[data-theme='cbe'][data-role='user']#page-calendar-view,
+body[data-theme='cbe'][data-role='user']#page-my-index {
 
-  .calendarmonth, .popover-body  {
+  .calendarmonth,
+  .popover-body,
+  .minicalendar.calendartable{
     img.icon {
       background-color: $primary-color;
       padding: 2px;
@@ -11,3 +14,6 @@ body[data-theme='cbe'][data-role='user']#page-calendar-view {
 
 
 }
+
+
+

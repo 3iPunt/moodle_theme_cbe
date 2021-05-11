@@ -34,6 +34,8 @@ use invalid_parameter_exception;
 use moodle_exception;
 use moodle_url;
 use theme_cbe\course;
+use theme_cbe\course_user;
+use theme_cbe\navigation\course_navigation;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -63,7 +65,7 @@ class coursecard_external extends external_api {
      */
     public static function getcourseextra(string $course_id): array {
 
-        global $PAGE, $DB, $CFG;
+        global $PAGE, $DB, $CFG, $USER;
         require_once($CFG->dirroot . '/enrol/locallib.php');
 
         self::validate_parameters(
@@ -73,6 +75,8 @@ class coursecard_external extends external_api {
         );
 
         $coursecontext = context_course::instance($course_id);
+
+        $PAGE->set_context($coursecontext);
         $course = get_course($course_id);
 
         if (has_capability('moodle/course:update', $coursecontext)) {
@@ -81,18 +85,26 @@ class coursecard_external extends external_api {
             $rolename = 'student';
         }
 
+        $course_user = new course_user($course_id, $USER->id);
+
         $role = $DB->get_record('role', array('shortname' => 'student'));
         $enrolmanager = new course_enrolment_manager($PAGE, $course, $instancefilter = null, $role->id,
             $searchfilter = '', $groupfilter = 0, $statusfilter = -1);
         $students = $enrolmanager->get_users('id');
         $view_url = new moodle_url('/theme/cbe/view_board.php', ['id'=> $course_id]);
-        $notification_url = new moodle_url('/message/output/popup/notifications.php');
+        $notification_url = new moodle_url('/' . course_navigation::PAGE_THEMES, ['id'=> $course_id]);
+        $participants_url = new moodle_url('/user/index.php', ['id' => $course_id]);
+        $not_nums = $course_user->get_notifications_num();
+        $has_notifications = $not_nums > 0;
         return [
             'role' => $rolename,
             'rolename' => get_string($rolename, 'theme_cbe'),
             'view_url' => $view_url->out(false),
             'students_num' => count($students),
             'notification_url' => $notification_url->out(false),
+            'participants_url' => $participants_url->out(false),
+            'not_nums' => $not_nums,
+            'has_notifications' => $has_notifications,
         ];
     }
 
@@ -107,6 +119,9 @@ class coursecard_external extends external_api {
                 'view_url' => new external_value(PARAM_TEXT, 'URL View Course'),
                 'students_num' => new external_value(PARAM_INT, 'Students count'),
                 'notification_url' => new external_value(PARAM_TEXT, 'URL Notification'),
+                'participants_url' => new external_value(PARAM_TEXT, 'URL Participants'),
+                'not_nums' => new external_value(PARAM_INT, 'Notifications nums'),
+                'has_notifications' => new external_value(PARAM_BOOL, 'Has notifications?'),
             )
         );
     }

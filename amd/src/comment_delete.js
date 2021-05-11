@@ -56,6 +56,9 @@ define([
         }
 
         CommentDelete.prototype.onDeleteButtonClick = function (e) {
+
+            $(ACTION.DELETE_BUTTON).prop( "disabled", true );
+
             const request = {
                 methodname: SERVICES.PUBLICATION_DELETE,
                 args: {

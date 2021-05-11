@@ -35,6 +35,10 @@ use stdClass;
 
 defined('MOODLE_INTERNAL') || die;
 
+global $CFG;
+
+require_once($CFG->dirroot . '/comment/lib.php');
+
 /**
  * Class publication
  *
@@ -108,9 +112,7 @@ class publication  {
      * @throws dml_exception
      * @throws comment_exception
      */
-    function get_comments(): array {
-        global $PAGE;
-
+    public function get_comments(): array {
         $args = new stdClass();
         $args->context = context_module::instance($this->cm_id);
         $args->courseid = $this->coursemoodle->id;
@@ -129,10 +131,12 @@ class publication  {
             $author = $author_cbe->export();
 
             $comment = [
+                'id' => $comment->id,
                 'user_picture' => $author->picture,
                 'user_is_connected' => $author->is_connected,
                 'fullname' => $author->fullname,
                 'date' => userdate($comment->timecreated),
+                'timecreated' => $comment->timecreated,
                 'text' => $comment->content
             ];
 
