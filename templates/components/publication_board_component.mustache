@@ -30,9 +30,9 @@
                     <i class="fa fa-chevron-up" aria-hidden="true"></i>
                 </button>
             </div>
-            <ul class="comments" data-comment="{{ id }}">
+            <ul class="comments {{# is_expand }} expand {{/ is_expand }}" data-comment="{{ id }}">
                 {{# comments }}
-                    <li class="comment">
+                    <li class="comment anchorcbe" id="comm-{{ id }}">
                         <div class="picture">
                             <img src="{{ user_picture }}" alt="{{ fullname }}">
                             <span class="online {{# user_is_connected }}connected{{/ user_is_connected }}"></span>
@@ -48,7 +48,7 @@
             </ul>
         </div>
     {{/ has_comments }}
-    <div class="action_comment" data-region="send">
+    <div class="action_comment" data-region="send" >
         <img class="picture-current" src="{{ user.picture }}" alt="">
         <input data-text="comment" data-cmid="{{ id }}" class="comment" type="text" placeholder="{{# str }} board_comment_placeholder, theme_cbe {{/ str }} …">
         <button class="send" data-action="send-comment" data-cmid="{{ id }}"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>

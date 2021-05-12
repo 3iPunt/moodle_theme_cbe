@@ -25,7 +25,6 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
-use context_course;
 use moodle_exception;
 use moodle_url;
 use stdClass;
@@ -140,7 +139,7 @@ class course_module_navigation extends navigation {
      * @return array
      * @throws coding_exception
      */
-    static function left_section(int $course_id): array {
+    static public function left_section(int $course_id): array {
         return self::left_section_themes($course_id);
     }
 }

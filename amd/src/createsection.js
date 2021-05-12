@@ -71,6 +71,8 @@ define([
         }
 
         Createsection.prototype.onCreateButtonClick = function (e) {
+
+            $(ACTION.CREATEBUTTON).prop( "disabled", true );
             var name = this.node.find(INPUT.NAME_TEXT).val();
             var position = $(INPUT.POSITION_RADIO_CHECKED).val();
             var request = {

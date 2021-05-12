@@ -1,12 +1,22 @@
 body[data-theme='cbe'][data-role='user'][data-context="index"] {
 
-  header.index {
+  header.system {
     justify-content: center;
     margin-bottom: 10px;
   }
 
+  #region-main-box {
+    >section[data-region="blocks-column"] {
+      margin-top: 0;
+      margin-left: 15px;
+    }
+  }
+
+  #page-content.course #region-main-box {
+    display: inline-block;
+  }
+
   #region-main {
-    width: 100%;
     #frontpage-category-combo {
       >h2 {
         display: none;

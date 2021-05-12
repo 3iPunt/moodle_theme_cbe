@@ -66,9 +66,10 @@ class course_navigation extends navigation {
         'resources' => 'theme_cbe/header/custom',
         'moreinfo' => 'theme_cbe/header/custom',
         'modedit' => 'theme_cbe/header/custom',
-        'generic' => 'theme_cbe/header/generic',
+        'generic' => 'theme_cbe/header/custom',
         'default' => 'theme_cbe/header/header',
-        'index' => 'theme_cbe/header/generic',
+        'index' => 'theme_cbe/header/system',
+        'calendar' => 'theme_cbe/header/custom',
     ];
 
     /**
@@ -83,7 +84,7 @@ class course_navigation extends navigation {
      * @return string
      */
     public function get_template_layout(): string {
-        if ($this->get_page() === 'index') {
+        if ($this->get_page() === 'index' || $this->get_page() === 'calendar') {
             return 'theme_cbe/columns2/columns2_index';
         } else {
             return 'theme_cbe/columns2/columns2_course';
@@ -99,33 +100,67 @@ class course_navigation extends navigation {
         global $PAGE;
         $path = $PAGE->url->get_path();
         $pagetype = $PAGE->pagetype;
-        if (strpos($path, self::PAGE_BOARD)) {
+        //var_dump($pagetype);die();
+        if ($pagetype === 'theme-cbe-view_board') {
             return 'board';
-        } else if (strpos($path, self::PAGE_THEMES)) {
-            return 'themes';
-        } else if (strpos($path, self::PAGE_TASKS)) {
+        } else if ($pagetype === 'course-view-topics') {
+            if (strpos($path, 'user')) {
+                return 'generic';
+            } else {
+                return 'themes';
+            }
+        } else if ($pagetype === 'theme-cbe-view_tasks') {
             return 'tasks';
-        } else if (strpos($path, self::PAGE_RESOURCES)) {
+        } else if ($pagetype === 'theme-cbe-view_resources') {
             return 'resources';
-        } else if (strpos($path, self::PAGE_VCLASSES)) {
+        } else if ($pagetype === 'theme-cbe-view_virtualclasses') {
             return 'vclasses';
-        } else if (strpos($path, self::PAGE_MOREINFO)) {
+        } else if ($pagetype === 'theme-cbe-view_moreinfo') {
             return 'moreinfo';
-        } else if (strpos($path, self::PAGE_COPYCOURSE)) {
+        } else if ($pagetype === 'theme-cbe-view_copycourse') {
             return 'copycourse';
-        } else if (strpos($path, self::PAGE_COPYCOURSE_PROGRESS)) {
+        } else if ($pagetype === 'theme-cbe-view_copycourse_progress') {
             return 'copycourse';
-        } else if (strpos($path, 'course/modedit')) {
-            return 'modedit';
-        } else if (strpos($path, 'grade') ||
-            strpos($path, 'user') ||
-            strpos($path, 'calendar') ||
-            strpos($path, 'contentbank') ||
-            strpos($path, 'course/edit'
-            )) {
+        } else if (strpos($pagetype, 'grade-') === 0) {
             return 'generic';
+        } else if (strpos($pagetype, 'question-') === 0) {
+            return 'generic';
+        } else if (strpos($pagetype, 'report-') === 0) {
+            return 'generic';
+        } else if (strpos($path, 'modedit.php') ) {
+            return 'modedit';
+        } else if ($pagetype === 'course-edit' ||
+            $pagetype === 'course-admin' ||
+            $pagetype === 'backup-backup' ||
+            $pagetype === 'backup-import' ||
+            $pagetype === 'backup-copy' ||
+            $pagetype === 'course-reset' ||
+            $pagetype === 'admin-tool-recyclebin-index' ||
+            $pagetype === 'admin-roles-assign' ||
+            $pagetype === 'admin-roles-check' ||
+            $pagetype === 'course-completion' ||
+            $pagetype === 'course-bulkcompletion' ||
+            $pagetype === 'filter-manage' ||
+            $pagetype === 'backup-restorefile') {
+            return 'generic';
+        } else if ($pagetype === 'enrol-instances' ||
+            $pagetype === 'enrol-editinstance') {
+            return 'generic';
+        } else if ($pagetype === 'group-index' ||
+            $pagetype === 'group-groupings' ||
+            $pagetype === 'group-overview') {
+            return 'generic';
+        } else if ($pagetype === 'admin-roles-permissions' ||
+            $pagetype === 'enrol-otherusers') {
+            return 'generic';
+        } else if ($pagetype === 'calendar-view' ||
+            $pagetype === 'calendar-export' ||
+            $pagetype === 'calendar-managesubscriptions') {
+            return 'calendar';
         } else if ($pagetype === 'site-index') {
             return 'index';
+        } else if ($pagetype === 'course-editsection') {
+            return 'generic';
         } else {
             return '';
         }
@@ -140,11 +175,17 @@ class course_navigation extends navigation {
      * @throws moodle_exception
      */
     public function get_data_header(stdClass $data): stdClass {
-        global $PAGE;
+        global $PAGE, $OUTPUT, $SITE;
         $courseid = $PAGE->context->instanceid;
         $coursecbe = new course($courseid);
         $data->nav_context = 'course';
-        $data->courseimage = $coursecbe->get_courseimage();
+        if ($this->get_page() === 'index') {
+            $data->courseimage = $OUTPUT->get_generated_image_for_id(self::IMAGE_DEFAULT_SITE);
+            $data->site = $SITE->fullname;
+            $data->title = get_string('sitehome');
+        } else {
+            $data->courseimage = $coursecbe->get_courseimage();
+        }
         $data->teachers = $coursecbe->get_users_by_role('editingteacher');
         $data->is_teacher = course_user::is_teacher($courseid);
         $data->can_create_courses = user::can_create_courses();

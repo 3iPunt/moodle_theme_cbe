@@ -64,6 +64,19 @@ body[data-theme='cbe'][data-role="user"] {
     align-items: normal;
     margin-bottom: 15px;
     position: relative;
+    .is_hidden_msg {
+      color: #212529;
+      background-color: #5bc0de;
+      font-size: 10px;
+      position: absolute;
+      padding: 1px 4px;
+      right: 4px;
+      top: 6px;
+    }
+    &.is_hidden {
+      opacity: 0.5;
+      border: 2px dashed $grey-border;
+    }
     .item-mod {
       display: flex;
       .mod {
@@ -89,6 +102,9 @@ body[data-theme='cbe'][data-role="user"] {
           &:hover {
             opacity: 90%;
           }
+          >img {
+            width: 30px;
+          }
         }
         img.picture {
           width: 62px;
@@ -110,7 +126,7 @@ body[data-theme='cbe'][data-role="user"] {
         }
       }
       .text {
-        margin: 25px 130px 20px 15px;
+        margin: 25px 130px 20px 0;
         .name {
           font-family: $fontbold;
           font-size: 18px;
@@ -148,39 +164,6 @@ body[data-theme='cbe'][data-role="user"] {
         }
       }
     }
-    &.forum .mod .icon {
-      background-image: url('[[pix:mod_forum|icon]]');
-    }
-    &.assign .mod .icon  {
-      background-image: url('[[pix:mod_assign|icon]]');
-    }
-    &.resource .mod .icon  {
-      background-image: url('[[pix:mod_resource|icon]]');
-    }
-    &.quiz .mod .icon  {
-      background-image: url('[[pix:mod_quiz|icon]]');
-    }
-    &.url .mod .icon  {
-      background-image: url('[[pix:mod_url|icon]]');
-    }
-    &.tresipuntaudio .mod .icon  {
-      background-image: url('[[pix:mod_tresipuntaudio|icon]]');
-    }
-    &.tresipuntvideo .mod .icon  {
-      background-image: url('[[pix:mod_tresipuntvideo|icon]]');
-    }
-    &.tresipuntshare .mod .icon  {
-      background-image: url('[[pix:mod_tresipuntshare|icon]]');
-    }
-    &.feedback .mod .icon  {
-      background-image: url('[[pix:mod_feedback|icon]]');
-    }
-    &.bigbluebuttonbn .mod .icon  {
-      background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
-    }
-    &.page .mod .icon  {
-      background-image: url('[[pix:mod_page|icon]]');
-    }
     .to_comment {
       bottom: -60px;
       background-color: white;
@@ -201,6 +184,9 @@ body[data-theme='cbe'][data-role="user"] {
           list-style: none;
           display: none;
           margin: 15px 20px 5px 55px;
+          &.expand {
+            display: block;
+          }
           li.comment {
             display: flex;
             margin-bottom: 10px;
@@ -321,30 +307,43 @@ body[data-theme='cbe'][data-role="user"] {
         }
       }
     }
-
   }
 
   .module_media {
     .media-content {
       display: none;
     }
-    .expand-media {
+    .expand {
       width: 100%;
       text-align: center;
       position: absolute;
-      top: 37px;
+      bottom: 0;
       right: 0;
-      button {
+      overflow: hidden;
+      button.action-media {
         border: none;
-        background-color: inherit;
-        color: #b7b7b7;
+        position: relative;
+        bottom: -17px;
+        z-index: 2;
+        background-color: $grey-border;
+        border-radius: 21px;
+        height: 35px;
+        width: 35px;
+        &[data-action="expand"] {
+          z-index: 2;
+        }
         &[data-action="contract"] {
           display: none;
-          position: relative;
-          top: 37px;
+          bottom: -17px;
+          z-index: 3;
         }
         &:hover {
-          color: $primary-color;
+          background-color: $primary-color;
+        }
+        i.fa {
+          color: white;
+          position: relative;
+          top: -7px;
         }
       }
     }

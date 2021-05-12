@@ -1,0 +1,91 @@
+body[data-theme='cbe'][data-role='user'].path-grade {
+
+  #page-content.course {
+    .grade-navigation {
+      padding-top: 16px;
+    }
+    div[role="main"] {
+      >form {
+        padding: 20px;
+        h3 {
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 16px;
+        }
+        li.page-item {
+          a.page-link {
+            color: $grey-medium;
+          }
+          &.active {
+            a.page-link {
+              color: white;
+            }
+          }
+        }
+      }
+      >.gradetreebox, >.generalbox {
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+      table.setup-grades, table.user-grade {
+        .level2 img.icon.itemicon {
+          background-color: $primary-color;
+          padding: 8px;
+        }
+        .item {
+          input.form-control {
+            margin-left: 8px;
+          }
+        }
+        th>i.fa-folder,
+        td i.fa-folder {
+          color: $grey-medium;
+          position: relative;
+          top: 3px;
+          left: -4px;
+          font-size: 24px;
+        }
+      }
+      >h3.main {
+        margin: 0;
+        padding: 20px 0;
+        font-size: 22px;
+        font-weight: 600;
+      }
+      >.centerpara, >.mdl-align {
+        padding-top: 30px !important;
+      }
+      >.generaltable {
+        margin: 0 !important;
+      }
+      >#graded_users_selector {
+        padding: 25px 0 0;
+        margin-bottom: 0;
+      }
+      >.view_users_selector {
+        width: 100%;
+        padding: 20px;
+        margin: 0;
+      }
+      >p {
+        display: none;
+      }
+      >.no-overflow, >.reporttable {
+        padding: 10px 0;
+      }
+      >.itemnav {
+        padding: 20px;
+      }
+      >.buttons {
+        margin: 20px 10px;
+      }
+    }
+  }
+
+  &.path-grade-report-grader .gradeparent {
+    position: relative;
+    overflow-x: scroll;
+    margin-top: 20px;
+  }
+
+}

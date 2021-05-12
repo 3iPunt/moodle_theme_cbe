@@ -25,6 +25,8 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use flat_navigation;
+use flat_navigation_node;
 use stdClass;
 use theme_cbe\output\course_left_section_menu_component;
 use theme_cbe\output\course_left_section_pending_tasks_component;
@@ -43,6 +45,8 @@ abstract class navigation  {
 
     const TEMPLATE_HEADER_DEFAULT = 'theme_cbe/header/header';
     const TEMPLATE_LAYOUT_DEFAULT = 'theme_cbe/columns2/columns2_admin';
+
+    const IMAGE_DEFAULT_SITE = 8;
 
     /** @var array Templates Header */
     protected $templates_header = [];
@@ -167,6 +171,40 @@ abstract class navigation  {
         $output = $PAGE->get_renderer('theme_cbe');
         $renderer = new course_left_section_menu_component($course_id);
         return $output->render($renderer);
+    }
+
+    /**
+     * Get Flatnav.
+     *
+     * @return flat_navigation
+     */
+    static function get_flatnav(): flat_navigation {
+        global $PAGE;
+
+        /** @var flat_navigation $nav */
+        $nav = $PAGE->flatnav;
+
+        $nav->remove('contentbank');
+        $nav->remove('privatefiles');
+
+        return $nav;
+    }
+
+    /**
+     * Get Clean Title.
+     *
+     * @return string|string[]
+     */
+    public function get_clean_title() {
+        global $SITE, $PAGE;
+        $title = str_replace($SITE->shortname . ': ', '', $PAGE->title);
+        $pos = strpos($title, ':');
+        if ($pos) {
+            $main = substr($title, 0, $pos);
+            $last = trim(str_replace(':', '', substr($title, $pos)));
+            $title = $main . '<span class="postitle">' . $last . '</span>';
+        }
+        return $title;
     }
 
 }

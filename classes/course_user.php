@@ -27,8 +27,9 @@ namespace theme_cbe;
 global $CFG;
 
 use coding_exception;
-use comment_exception;
 use context_course;
+use core\event\course_viewed;
+use core\log\sql_reader;
 use dml_exception;
 use moodle_exception;
 use moodle_url;
@@ -72,7 +73,6 @@ class course_user  {
      *
      * @param section_info|null $section
      * @return array
-     * @throws comment_exception
      * @throws dml_exception
      * @throws coding_exception
      * @throws moodle_exception
@@ -89,9 +89,8 @@ class course_user  {
         }
 
         $modules = [];
-
         foreach ($cms as $cm) {
-            if ($cm->is_visible_on_course_page()) {
+            if ($cm->uservisible && in_array($cm->modname, module::get_list_modname())) {
                 if (is_null($section) || $section->section == $cm->sectionnum) {
                     $module = new module($cm->id);
                     $modules[] = $module->export();
@@ -133,6 +132,60 @@ class course_user  {
             $data[] = $course;
         }
         return $data;
+    }
+
+    /**
+     * Get Notifications nums.
+     *
+     * @return int
+     * @throws coding_exception
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    public function get_notifications_num(): int {
+        global $USER;
+        $lastaccesincourse = 0;
+
+        // Log Manager
+        $logmanager = get_log_manager();
+        $readers = $logmanager->get_readers('\core\log\sql_reader');
+        /** @var sql_reader $reader */
+        $reader = reset($readers);
+
+        // Recuperamos los logs de acceso al curso.
+        $select = "courseid = :courseid AND userid = :userid AND eventname = :eventname";
+        $params = array(
+            'courseid' => $this->course_id,
+            'userid' => $USER->id,
+            'eventname' => '\core\event\course_viewed'
+        );
+        /** @var course_viewed[] $logs */
+        $logs_viewed = $reader->get_events_select($select, $params, 'timecreated DESC', 0, 0);
+        if (count($logs_viewed) > 0) {
+            $lastaccesincourse = current($logs_viewed)->timecreated;;
+        }
+
+        $nums = 0;
+        foreach ($this->get_modules() as $mod) {
+            if ($mod->modname === publication::MODULE_PUBLICATION) {
+                if ($lastaccesincourse < $mod->updated ) {
+                    $nums ++;
+                } else {
+                    $pub = new publication($mod->id);
+                    foreach ($pub->get_comments() as $comment) {
+                        if ($lastaccesincourse < $comment['timecreated']) {
+                            $nums ++;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                if ($lastaccesincourse < $mod->updated ) {
+                    $nums ++;
+                }
+            }
+        }
+        return $nums;
     }
 
 }

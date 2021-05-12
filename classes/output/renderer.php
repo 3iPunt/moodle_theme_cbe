@@ -235,6 +235,19 @@ class renderer extends plugin_renderer_base {
     /**
      * Defer to template.
      *
+     * @param modspend_page $page
+     *
+     * @return string html for the page
+     * @throws moodle_exception
+     */
+    public function render_modspend_page(modspend_page $page): string {
+        $data = $page->export_for_template($this);
+        return parent::render_from_template('theme_cbe/pages/modspend_page', $data);
+    }
+
+    /**
+     * Defer to template.
+     *
      * @param menu_apps_button $button
      *
      * @return string html for the page

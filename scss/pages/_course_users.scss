@@ -1,0 +1,38 @@
+body[data-theme='cbe'][data-role='user'].path-user {
+
+  #page-content.course {
+    .userlist {
+      padding: 20px;
+      #participantsform {
+        p[data-region="participant-count"] {
+          font-weight: 600;
+        }
+        .table-dynamic {
+          padding: 10px 0;
+          .initialbar {
+            li.page-item {
+              a.page-link {
+                color: $grey-medium;
+              }
+              &.active {
+                a.page-link {
+                  color: white;
+                }
+              }
+            }
+          }
+          #participants {
+            margin-top: 20px;
+            font-size: 13px;
+            th {
+              text-align: left;
+              padding: 10px 4px;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+}

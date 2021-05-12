@@ -1,0 +1,88 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  #nav-drawer {
+    nav.list-group {
+      border-bottom: 1px solid $border-color;
+      padding-bottom: 10px;
+      padding-top: 5px;
+      .list-group-item-action:hover,
+      .list-group-item-action:focus {
+        color: $primary-color;
+        background-color: $grey-light;
+        span.media-left {
+          background-color: $primary-color;
+        }
+      }
+
+      .list-group-item {
+        padding: .5rem 1.25rem;
+        &[data-key="mycourses"] {
+          border-top: 1px solid $grey-border !important;
+          margin-top: 10px;
+          padding-top: 14px;
+          font-size: 16px;
+          padding-bottom: 12px;
+          font-family: $fontbold;
+          .media-left {
+            display: none;
+          }
+        }
+        &[data-key="courseindexpage"] {
+          margin-top: 13px;
+          .media-left {
+            display: none;
+          }
+          .media-body {
+            top: 0;
+          }
+        }
+        &[data-key="coursehome"] {
+          .media-left {
+            display: none;
+          }
+          .media-body {
+            color: $black-ligth;
+            margin-bottom: 7px;
+            font-weight: 700;
+          }
+        }
+        &[data-parent-key="mycourses"] {
+          .media-left {
+            display: none;
+          }
+          .media-body {
+            top: 1px;
+          }
+        }
+        &[data-key="sitesettings"] {
+          .media .media-body {
+            top: 3px;
+          }
+        }
+      }
+      .media {
+        span.media-left {
+          background-color: $grey-medium2;
+          border-radius: 15px;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          left: -7px;
+          i.icon {
+            color: white;
+            margin-right: 0;
+            font-size: 14px;
+          }
+        }
+        .media-body {
+          position: relative;
+          top: 5px;
+        }
+      }
+    }
+  }
+
+}

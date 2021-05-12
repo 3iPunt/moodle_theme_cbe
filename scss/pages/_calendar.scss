@@ -1,0 +1,19 @@
+body[data-theme='cbe'][data-role='user']#page-calendar-view,
+body[data-theme='cbe'][data-role='user']#page-my-index {
+
+  .calendarmonth,
+  .popover-body,
+  .minicalendar.calendartable{
+    img.icon {
+      background-color: $primary-color;
+      padding: 2px;
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+
+}
+
+
+

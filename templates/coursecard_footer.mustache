@@ -5,14 +5,22 @@
         </button>
     </div>
     <div class="students">
-        <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ students_num }} {{# str }} students {{/ str }}">
+        <a type="button" href="{{ participants_url }}" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ students_num }} {{# str }} students {{/ str }}">
             <i class="fa fa-users" aria-hidden="true"></i><span>{{ students_num }}</span>
-        </button>
+        </a>
     </div>
     <div class="notification">
-        <a type="button" class="btn-tooltip" href="{{ notification_url }}" data-toggle="tooltip" data-placement="bottom" title="{{# str }} notifications, theme_cbe {{/ str }}">
+        <a type="button" class="btn-tooltip" href="{{ view_url }}" data-toggle="tooltip" data-placement="bottom" title="{{ not_nums }} {{# str }} notifications, theme_cbe {{/ str }}">
+            {{# has_notifications }}
             <i class="fa fa-bell" aria-hidden="true"></i>
+            {{/ has_notifications }}
+            {{^ has_notifications }}
+                <i class="fa fa-bell-slash" aria-hidden="true"></i>
+            {{/ has_notifications }}
         </a>
+        {{# has_notifications }}
+        <span class="not_nums">{{ not_nums }}</span>
+        {{/ has_notifications }}
     </div>
     <div class="user-role">
         <a href="{{ view_url }}" class="btn btn-secondary aula">{{# str }} view_course, theme_cbe {{/ str }}</a>

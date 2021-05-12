@@ -14,6 +14,7 @@ body[data-theme='cbe'][data-role='user'] {
           padding: 24px;
           h3.category {
             font-size: 23px;
+            margin-bottom: 4px;
           }
           h2.coursename {
             font-size: 44px;
@@ -174,7 +175,8 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
-  .action {
+  [data-region="board-content"] .action,
+  [data-region="moreinfo"] .action {
     font-size: 20px;
     color: white;
     margin-right: 20px;

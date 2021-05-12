@@ -84,7 +84,9 @@ class user_navigation extends navigation {
      * @return stdClass
      */
     public function get_data_header(stdClass $data): stdClass {
+        global $OUTPUT;
         $data->nav_context = 'user';
+        $data->courseimage = $OUTPUT->get_generated_image_for_id(self::IMAGE_DEFAULT_SITE);
         return $data;
     }
 

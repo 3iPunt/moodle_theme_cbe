@@ -5,6 +5,7 @@
 @import "base/reset";
 @import "base/form";
 @import "base/icons";
+@import "base/navs";
 
 @import "components/modal";
 @import "components/coursecard";
@@ -12,8 +13,11 @@
 @import "components/modtresipuntaudio";
 @import "components/modulecbe";
 @import "components/table";
+@import "components/block_tresipuntmodspend";
+@import "components/block_timeline";
 
 @import "layout/navbar";
+@import "layout/flatnav";
 @import "layout/footer";
 @import "layout/myoverview";
 @import "layout/editionmode";
@@ -22,6 +26,11 @@
 @import "pages/login";
 @import "pages/dashboard";
 @import "pages/course";
+@import "pages/course_grades";
+@import "pages/course_report";
+@import "pages/course_question";
+@import "pages/course_users";
+@import "pages/course_groups";
 @import "pages/category";
 @import "pages/system";
 @import "pages/index";
@@ -37,3 +46,4 @@
 @import "pages/vclasses";
 @import "pages/generic";
 @import "pages/modedit";
+@import "pages/calendar";

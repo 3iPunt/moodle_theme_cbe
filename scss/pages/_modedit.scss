@@ -1,4 +1,9 @@
-body[data-theme='cbe'][data-role='user'].pagelayout-admin {
+body[data-theme='cbe'][data-role='user'].pagelayout-admin,
+body[data-theme='cbe'][data-role='user']#page-course-editsection,
+body[data-theme='cbe'][data-role='user']#page-mod-assign-grading,
+body[data-theme='cbe'][data-role='user']#page-mod-feedback-edit,
+body[data-theme='cbe'][data-role='user']#page-mod-feedback-import,
+body[data-theme='cbe'][data-role='user']#page-mod-assign-grantextension {
 
   #page-content.course {
     #region-main-box {
@@ -32,7 +37,141 @@ body[data-theme='cbe'][data-role='user'].pagelayout-admin {
           }
         }
       }
+
+      section.in_course {
+        form.mform {
+          padding-right: 15px;
+          fieldset {
+            padding-top: 0;
+            padding-bottom: 15px;
+            margin-top: 20px;
+            margin-bottom: 22px;
+            border-bottom: 1px dashed #eaeaea;
+            legend a.fheader {
+              color: $grey-medium;
+              font-family: $fontbold;
+              font-size: 22px;
+              font-weight: 700;
+            }
+          }
+          .form-group.row.fitem {
+            display: flex;
+            flex-direction: column;
+            .col-form-label {
+              font-weight: 600;
+              >div {
+                margin-left: 5px !important;
+              }
+            }
+            .form-control {
+              width: 100%;
+            }
+            div.col-md-9,
+            div.col-md-3 {
+              flex: inherit;
+              max-width: 100%;
+            }
+            .felement {
+              select {
+                width: 100%;
+              }
+            }
+            .filemanager {
+              position: relative;
+              margin-top: 6px;
+              .fp-restrictions {
+                position: absolute;
+                top: -21px;
+                right: 0;
+                font-size: 12px;
+                color: grey;
+              }
+            }
+
+            .fdefaultcustom {
+              display: flex;
+              align-items: center;
+              flex-direction: row-reverse;
+            }
+
+          }
+          .fdescription.required {
+            text-align: center;
+            margin-top: 35px;
+            font-size: 14px;
+            color: grey;
+            padding: 10px;
+          }
+        }
+      }
+
     }
   }
 
+}
+
+body[data-theme='cbe'][data-role='user']#page-mod-bigbluebuttonbn-mod {
+
+  #page-content.course {
+    #region-main-box {
+      #region-main.in_course[data-region="module"] {
+        div[role="main"] {
+          > h2 {
+            margin: -9px 0 24px 32px;
+
+            > i.icon {
+              top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+body[data-theme='cbe'][data-role='user']#page-mod-assign-grading,
+body[data-theme='cbe'][data-role='user']#page-mod-assign-grantextension {
+  #page-content.course {
+    #region-main-box {
+      #region-main.in_course[data-region="module"] {
+        div[role="main"] {
+          > h2 {
+            &:after {
+              background-image: url('[[pix:mod_assign|icon]]');
+            }
+          }
+          .gradingtable {
+            .initialbar {
+              li.page-item {
+                a.page-link {
+                  color: $grey-medium;
+                }
+                &.active {
+                  a.page-link {
+                    color: white;
+                  }
+                }
+              }
+            }
+            .generaltable {
+              margin-top: 20px;
+              font-size: 12px;
+              a {
+                font-size: 12px !important;
+              }
+              img.userpicture {
+                width: 50px;
+                height: 50px;
+              }
+              th {
+                text-align: left;
+                padding: 10px 4px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

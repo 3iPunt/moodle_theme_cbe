@@ -23,6 +23,7 @@
  */
 
 use theme_cbe\navigation\layout;
+use theme_cbe\navigation\navigation;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -60,9 +61,8 @@ $templatecontext = [
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
 ];
 
-$nav = $PAGE->flatnav;
-$templatecontext['flatnavigation'] = $nav;
-$templatecontext['firstcollectionlabel'] = $nav->get_collectionlabel();
+$templatecontext['flatnavigation'] = navigation::get_flatnav();
+$templatecontext['firstcollectionlabel'] = navigation::get_flatnav()->get_collectionlabel();
 
 $layout_cbe = new layout();
 $data = $layout_cbe->get_data($templatecontext);

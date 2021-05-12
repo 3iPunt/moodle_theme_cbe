@@ -22,6 +22,12 @@ body[data-theme='cbe'][data-role='user'] {
     font-size: $font-size-sm;
   }
 
+  .anchorcbe {
+    display:block;
+    padding-top:90px;
+    margin-top:-74px;
+  }
+
   #navbar-logo:focus {
     background-color: transparent !important;
   }
@@ -33,7 +39,6 @@ body[data-theme='cbe'][data-role='user'] {
 
   .card {
     border: 1px solid $grey-border;
-    box-shadow: $shadow-color 0 3px 6px;
     border-radius: 0;
   }
 
@@ -51,6 +56,11 @@ body[data-theme='cbe'][data-role='user'] {
 
 }
 
+.userloggedinas .usermenu .userbutton .avatars .avatar.current {
+  bottom: 5px;
+  right: 5px;
+}
+
 body[data-theme='cbe'][data-role='admin'] {
   #page-wrapper #page {
     margin-top: $nav-height;
@@ -62,3 +72,30 @@ body[data-theme='cbe'][data-role='admin'] {
   width: 32px;
   height: 32px;
 }
+
+/* ScrollBar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $grey-border;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #C2C2C2;
+  width: 6px;
+}
+/* ScrollBar */

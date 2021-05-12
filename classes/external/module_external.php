@@ -23,6 +23,7 @@
 namespace theme_cbe\external;
 
 use comment;
+use context;
 use context_course;
 use context_module;
 use external_api;
@@ -30,6 +31,8 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
+use moodle_url;
+use theme_cbe\navigation\course_navigation;
 use theme_cbe\publication;
 use moodle_exception;
 use stdClass;
@@ -211,6 +214,7 @@ class module_external extends external_api {
         $PAGE->set_context(context_module::instance($cmid));
 
         $error = '';
+        $url = '';
 
         $publication = new publication($cmid);
 
@@ -226,8 +230,11 @@ class module_external extends external_api {
             $args->component = 'mod_tresipuntshare';
             $manager_comment = new comment($args);
             if ($manager_comment->can_post()) {
-                $manager_comment->add(trim($comment));
+                $newcom = $manager_comment->add(trim($comment));
                 $success = true;
+                $url = new moodle_url('/' . course_navigation::PAGE_BOARD,
+                    ['id'=> $publication->get_course()->id, 'pub' => $cmid ], 'comm-' . $newcom->id);
+                $url = $url->out(false);
             } else {
                 $success = false;
                 $error = 'El usuario no puede crear comentarios.';
@@ -239,6 +246,7 @@ class module_external extends external_api {
         }
         return [
             'success' => $success,
+            'url' => $url,
             'error' => $error
         ];
     }
@@ -250,6 +258,7 @@ class module_external extends external_api {
         return new external_single_structure(
             array(
                 'success' => new external_value(PARAM_BOOL, 'Was it a success?'),
+                'url' => new external_value(PARAM_URL, 'URL board with publication expand'),
                 'error' => new external_value(PARAM_TEXT, 'Error message'),
             )
         );
