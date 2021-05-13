@@ -8,7 +8,7 @@ body[data-theme='cbe'][data-role='user'] {
         top: -43px;
         a#action-menu-toggle-2 {
           color: #fff;
-          background-color: #d5045c;
+          background-color: $primary-color;
           padding: 10px 12px;
           position: relative;
           right: -28px;
@@ -20,7 +20,7 @@ body[data-theme='cbe'][data-role='user'] {
       .tri.triangle-edit {
         width: 0;
         height: 0;
-        border-top: 10px solid #861949;
+        border-top: 10px solid $primary-color-hard;
         border-right: 10px solid transparent;
         position: absolute;
         top: 64px;

@@ -25,9 +25,11 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use dml_exception;
 use flat_navigation;
-use flat_navigation_node;
+use pix_icon;
 use stdClass;
+use theme_cbe\api\header_api;
 use theme_cbe\output\course_left_section_menu_component;
 use theme_cbe\output\course_left_section_pending_tasks_component;
 use theme_cbe\output\course_left_section_themes_navigation_component;
@@ -50,6 +52,17 @@ abstract class navigation  {
 
     /** @var array Templates Header */
     protected $templates_header = [];
+
+    /** @var header_api Header API */
+    protected $header_api;
+
+    /**
+     * constructor.
+     * @param header_api|null $header_api $header_api
+     */
+    public function __construct(header_api $header_api = null) {
+        $this->header_api = $header_api;
+    }
 
     /**
      * Get Templates.
@@ -205,6 +218,57 @@ abstract class navigation  {
             $title = $main . '<span class="postitle">' . $last . '</span>';
         }
         return $title;
+    }
+
+    /**
+     * Get Logo.
+     *
+     * @return string
+     * @throws dml_exception
+     */
+    protected function get_logo(): string {
+        global $OUTPUT;
+        if ($this->header_api) {
+            $logo_url = $this->header_api->get_response()->data->logo;
+            // TODO. quitar esto.
+            $logo_url = 'https://api.' . get_config('theme_cbe', 'host') . '/img/logo.png';
+            if (!empty($logo_url)) {
+                if (@getimagesize($logo_url)) {
+                    return '<img class="icon " alt="Logotipo" title="Logotipo" src="' . $logo_url . '">';
+                } else {
+                    $logo = new pix_icon('logo_default', 'Logotipo', 'theme_cbe');
+                    return $OUTPUT->render($logo);
+                }
+            }
+        }
+        $logo = new pix_icon('logo', 'Logotipo', 'theme_cbe');
+        return $OUTPUT->render($logo);
+    }
+
+    /**
+     * Get Colors.
+     *
+     * @return stdClass
+     */
+    protected function get_colors(): stdClass {
+
+        // TODO. VAMOS CON ELLO!
+
+        $primary = '';
+        $secondary = '';
+        $background = '';
+
+        if ($this->header_api) {
+            $primary = $this->header_api->get_response()->data->colours->primary;
+            $secondary = $this->header_api->get_response()->data->colours->secondary;
+            $background = $this->header_api->get_response()->data->colours->background;
+        }
+
+        $data = new stdClass();
+        $data->primary = $primary;
+        $data->secondary = $secondary;
+        $data->background = $background;
+        return $data;
     }
 
 }

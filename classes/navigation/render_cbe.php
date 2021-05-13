@@ -24,7 +24,9 @@
 
 namespace theme_cbe\navigation;
 
+use dml_exception;
 use stdClass;
+use theme_cbe\api\header_api;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -46,33 +48,43 @@ abstract class render_cbe  {
     /** @var array|stdClass Data */
     protected $data;
 
+    /** @var header_api Header API */
+    protected $header_api;
+
     /**
      * constructor.
+     * @throws dml_exception
      */
     public function __construct() {
         $this->set_navigation();
     }
 
+    /**
+     * Se
+     *
+     * @throws dml_exception
+     */
     protected function set_navigation() {
         global $PAGE;
         if (is_siteadmin()) {
             $this->navigation = null;
         } else {
+            $this->header_api = get_config('theme_cbe', 'header_api') ? new header_api() : null;
             switch ($PAGE->context->contextlevel) {
                 case CONTEXT_SYSTEM:
-                    $this->navigation = new system_navigation();
+                    $this->navigation = new system_navigation($this->header_api);
                     break;
                 case CONTEXT_USER:
-                    $this->navigation = new user_navigation();
+                    $this->navigation = new user_navigation($this->header_api);
                     break;
                 case CONTEXT_COURSECAT:
-                    $this->navigation = new category_navigation();
+                    $this->navigation = new category_navigation($this->header_api);
                     break;
                 case CONTEXT_COURSE:
-                    $this->navigation = new course_navigation();
+                    $this->navigation = new course_navigation($this->header_api);
                     break;
                 case CONTEXT_MODULE:
-                    $this->navigation = new course_module_navigation();
+                    $this->navigation = new course_module_navigation($this->header_api);
                     break;
                 default:
                     $this->navigation = null;

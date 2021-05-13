@@ -29,8 +29,8 @@ use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
-use theme_cbe\app;
-use theme_cbe\course_user;
+use theme_cbe\api\app;
+use theme_cbe\api\header_api;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -43,11 +43,15 @@ defined('MOODLE_INTERNAL') || die;
  */
 class menu_apps_button implements renderable, templatable {
 
+    /** @var header_api Header API */
+    protected $header_api;
+
     /**
      * constructor.
-     *
+     * @param header_api|null $header_api
      */
-    public function __construct() {
+    public function __construct(header_api $header_api = null) {
+        $this->header_api = $header_api;
     }
 
     /**
@@ -55,22 +59,61 @@ class menu_apps_button implements renderable, templatable {
      *
      * @param renderer_base $output
      * @return stdClass
-     * @throws moodle_exception
      */
     public function export_for_template(renderer_base $output): stdClass {
         $data = new stdClass();
-        $data->apps = $this->get_apps();
-        $data->externals = $this->get_externals();
-        $data->user_courses = course_user::user_get_courses();
+        $data->active = $this->is_active();
+        $data->apps = isset($this->header_api) ? $this->get_apps_api() : $this->get_apps();
         return $data;
     }
 
     /**
-     * Get Apps.
+     * Is Active?
+     *
+     * @return bool
+     */
+    protected function is_active (): bool {
+        if (isset($this->header_api)) {
+            if ($this->header_api->get_response()->success) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Get Apps by API.
+     *
+     * @return stdClass
+     */
+    protected function get_apps_api(): stdClass {
+        $apps = new stdClass();
+        $apps->internals = $this->header_api->get_response()->data->apps_internal;
+        $apps->externals = $this->header_api->get_response()->data->apps_external;
+        return $apps;
+    }
+
+    /**
+     * Get Apps by API.
+     *
+     * @return stdClass
+     */
+    protected function get_apps(): stdClass {
+        $apps = new stdClass();
+        $apps->internals = $this->get_internal();
+        $apps->externals = $this->get_externals();
+        return $apps;
+    }
+
+    /**
+     * Get Apps (FAKE).
      *
      * @return app[]
      */
-    protected function get_apps(): array {
+    protected function get_internal(): array {
         $cloud = new app('cloud','fa-cloud', 'https://nextcloud.XXX/', false);
         $email = new app('email','fa-envelope-o', 'https://nextcloud.XXX/apps/mail/setup', false);
         $pads = new app('pads','fa-file-text-o', 'https://pad.XXX/', false);
@@ -79,7 +122,7 @@ class menu_apps_button implements renderable, templatable {
         $feedback = new app('feedback','fa-bar-chart', 'https://nextcloud.XXX/apps/polls', false);
         $chat = new app('chat','fa-commenting-o', 'https://nextcloud.XXX/apps/spreed', false);
         $meets_bbb = new app('meets_bbb','fa-video-camera', 'https://nextcloud.XXX/apps/bbb', false);
-        $blogs = new app('blogs','fa-rss', 'https://wp.XXX/wp-login.php?saml_sso', false);
+        $webs = new app('webs','fa-rss', 'https://wp.XXX/wp-login.php?saml_sso', false);
         $schedule = new app('schedule','fa-calendar', 'https://nextcloud.XXX/apps/calendar', false);
         $photos = new app('photos','fa-file-image-o', 'https://nextcloud.XXX/apps/photos', false);
         $maps = new app('maps','fa-map-marker', 'https://nextcloud.XXX/apps/map', false);
@@ -92,7 +135,7 @@ class menu_apps_button implements renderable, templatable {
         $apps[] =  $feedback->get();
         $apps[] =  $chat->get();
         $apps[] =  $meets_bbb->get();
-        $apps[] =  $blogs->get();
+        $apps[] =  $webs->get();
         $apps[] =  $schedule->get();
         $apps[] =  $photos->get();
         $apps[] =  $maps->get();
@@ -100,14 +143,14 @@ class menu_apps_button implements renderable, templatable {
     }
 
     /**
-     * Get Externals.
+     * Get Externals (FAKE).
      *
      * @return app[]
      */
     protected function get_externals(): array {
         $youtube = new app('youtube','fa-youtube-play', 'https://youtube.com/', true);
-        $dict = new app('dict','fa-book', 'https://www.wordreference.com/', true);
-        $meets_jitsi = new app('meets_jitsi','fa-video-camera', 'http://meet.jit.si/', true);
+        $dict = new app('diccionari','fa-book', 'https://www.wordreference.com/', true);
+        $meets_jitsi = new app('jitsi','fa-video-camera', 'http://meet.jit.si/', true);
         $search = new app('search','fa-search', '#', true);
         $apps = [];
         $apps[] =  $youtube->get();

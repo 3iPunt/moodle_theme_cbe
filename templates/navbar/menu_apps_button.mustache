@@ -13,8 +13,9 @@
         </svg>
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" >
+        {{# active }}
         <ul id="app-apps" class="apps">
-            {{# apps }}
+            {{# apps.internals }}
             <li class="app {{ shortname }}">
                 <a href="{{ href }}" class="app-link" {{# is_external }}target="_blank"{{/ is_external }}>
                     <div class="icon">
@@ -23,10 +24,10 @@
                     <div class="text">{{ name }}</div>
                 </a>
             </li>
-            {{/ apps }}
+            {{/ apps.internals }}
         </ul>
         <ul id="app-external" class="external-links">
-            {{# externals }}
+            {{# apps.externals }}
             <li class="app {{ shortname }}">
                 <a href="{{ href }}" class="app-link" {{# is_external }}target="_blank"{{/ is_external }}>
                     <div class="icon">
@@ -35,7 +36,8 @@
                     <div class="text">{{ name }}</div>
                 </a>
             </li>
-            {{/ externals }}
+            {{/ apps.externals }}
         </ul>
+        {{/active}}
     </div>
 </div>

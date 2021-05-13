@@ -25,10 +25,11 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
-use context_course;
 use moodle_exception;
 use moodle_url;
+use pix_icon;
 use stdClass;
+use theme_cbe\api\header_api;
 use theme_cbe\course;
 use theme_cbe\course_user;
 use theme_cbe\output\course_header_navbar_component;
@@ -74,8 +75,10 @@ class course_navigation extends navigation {
 
     /**
      * constructor.
+     * @param header_api|null $header_api $header_api
      */
-    public function __construct() {
+    public function __construct(header_api $header_api = null) {
+        parent::__construct($header_api);
     }
 
     /**
@@ -212,7 +215,7 @@ class course_navigation extends navigation {
 
         $course_left_menu_component = new course_left_section_component($course_id);
         $course_left_menu = $output_theme_cbe->render($course_left_menu_component);
-        $menu_apps_button_component = new menu_apps_button();
+        $menu_apps_button_component = new menu_apps_button($this->header_api);
         $menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
 
         if ($this->get_page() !== 'index') {
@@ -239,6 +242,7 @@ class course_navigation extends navigation {
         $data['menu_apps_button'] = $menu_apps_button;
         $data['nav_context'] = 'course';
         $data['nav_cbe'] =  $cbe_page;
+        $data['logo'] = $this->get_logo();
 
         return $data;
     }

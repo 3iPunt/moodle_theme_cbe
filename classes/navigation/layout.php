@@ -25,6 +25,7 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use pix_icon;
 use stdClass;
 use theme_cbe\output\menu_apps_button;
 
@@ -61,8 +62,9 @@ class layout extends render_cbe {
         if (isset($this->navigation)) {
             $this->data = $this->navigation->get_data_layout($data);
         } else {
+            // TODO. Revisar esto, hay que quitarlo, meterlo en navigation.
             $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
-            $menu_apps_button_component = new menu_apps_button();
+            $menu_apps_button_component = new menu_apps_button($this->header_api);
             $menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
             $data['in_course'] = false;
             $data['course_left_menu'] = false;
