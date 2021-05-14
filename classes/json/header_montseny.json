@@ -1,0 +1,116 @@
+{
+  "apps_external": [
+    {
+      "href": "https://agora.xtec.cat/ceipmontseny-barcelona/",
+      "icon": "fa fa-university",
+      "name": "Escola Web",
+      "shortname": "web"
+    },
+    {
+      "href": "https://youtube.com/",
+      "icon": "fa fa-youtube-play",
+      "name": "Youtube",
+      "shortname": "youtube"
+    },
+    {
+      "href": "https://www.wordreference.com/",
+      "icon": "fa fa-book",
+      "name": "Diccionari",
+      "shortname": "diccionari"
+    },
+    {
+      "href": "http://meet.jit.si/",
+      "icon": "fa fa-video-camera",
+      "name": "Reunions Jitsi",
+      "shortname": "jitsi"
+    },
+    {
+      "href": "https://www.google.es/",
+      "icon": "fa fa-search",
+      "name": "Cercar",
+      "shortname": "search"
+    },
+    {
+      "href": "https://www.google.es/maps/preview",
+      "icon": "fa fa-map-marker",
+      "name": "Maps",
+      "shortname": "maps"
+    }
+  ],
+  "apps_internal": [
+    {
+      "href": "https://nextcloud.montseny.digitaldemocratic.net/",
+      "icon": "fa fa-cloud",
+      "name": "Núvol + crear arxius",
+      "shortname": "cloud"
+    },
+    {
+      "href": "https://nextcloud.montseny.digitaldemocratic.net/apps/mail/setup",
+      "icon": "fa fa-envelope-o",
+      "name": "Correu",
+      "shortname": "email"
+    },
+    {
+      "href": "https://pad.montseny.digitaldemocratic.net/",
+      "icon": "fa fa-file-text-o",
+      "name": "Pads",
+      "shortname": "pads"
+    },
+    {
+      "href": "https://nextcloud.montseny.digitaldemocratic.net/apps/forms",
+      "icon": "fa fa-check-square-o",
+      "name": "Formularis",
+      "shortname": "forms"
+    },
+    {
+      "href": "https://nextcloud.montseny.digitaldemocratic.net/apps/polls",
+      "icon": "fa fa-bar-chart",
+      "name": "Enquestes",
+      "shortname": "feedback"
+    },
+    {
+      "href": "https://nextcloud.montseny.digitaldemocratic.net/apps/spreed",
+      "icon": "fa fa-commenting-o",
+      "name": "Xat",
+      "shortname": "chat"
+    },
+    {
+      "href": "https://nextcloud.montseny.digitaldemocratic.net/apps/calendar",
+      "icon": "fa fa-calendar",
+      "name": "Calendari",
+      "shortname": "schedule"
+    },
+    {
+      "href": "https://wp.montseny.digitaldemocratic.net/wp-login.php?saml_sso",
+      "icon": "fa fa-rss",
+      "name": "Webs",
+      "shortname": "webs"
+    },
+    {
+      "href": "https://nextcloud.montseny.digitaldemocratic.net/apps/bbb",
+      "icon": "fa fa-video-camera",
+      "name": "Reunions BBB",
+      "shortname": "meets_bbb"
+    },
+    {
+      "href": "https://nextcloud.montseny.digitaldemocratic.net/apps/photos",
+      "icon": "fa fa-file-image-o",
+      "name": "Fotos",
+      "shortname": "photos"
+    }
+  ],
+  "backgroud_login": "https://api.montseny.digitaldemocratic.net/img/backgroupd.png",
+  "colours": {
+    "background": "#F0F0F0",
+    "primary": "#92AE01",
+    "secondary": "#FFFFFF"
+  },
+  "css": "https://api.montseny.digitaldemocratic.net/css/",
+  "html": "<h1>HTML</h1>",
+  "logo": "https://api.montseny.digitaldemocratic.net/img/logo.png",
+  "user": {
+    "account": "https://api.montseny.digitaldemocratic.net/auth/realms/master/account",
+    "avatar": "https://api.montseny.digitaldemocratic.net/auth/realms/master/avatar-provider",
+    "password": "https://api.montseny.digitaldemocratic.net/auth/realms/master/password"
+  }
+}

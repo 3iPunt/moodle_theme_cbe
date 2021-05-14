@@ -25,9 +25,11 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use dml_exception;
 use flat_navigation;
-use flat_navigation_node;
+use pix_icon;
 use stdClass;
+use theme_cbe\api\header_api;
 use theme_cbe\output\course_left_section_menu_component;
 use theme_cbe\output\course_left_section_pending_tasks_component;
 use theme_cbe\output\course_left_section_themes_navigation_component;
@@ -50,6 +52,17 @@ abstract class navigation  {
 
     /** @var array Templates Header */
     protected $templates_header = [];
+
+    /** @var header_api Header API */
+    protected $header_api;
+
+    /**
+     * constructor.
+     * @param header_api|null $header_api $header_api
+     */
+    public function __construct(header_api $header_api = null) {
+        $this->header_api = $header_api;
+    }
 
     /**
      * Get Templates.

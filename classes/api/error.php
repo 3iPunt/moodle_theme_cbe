@@ -14,30 +14,42 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-use theme_cbe\navigation\render_cbe;
+/**
+ * Error Response
+ *
+ * @package    theme_cbe
+ * @copyright  2021 Tresipunt
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+namespace theme_cbe\api;
 
 defined('MOODLE_INTERNAL') || die();
 
+
 /**
- * A login page layout for the CBE theme.
+ * Error Response
  *
- * @package     theme_cbe
- * @copyright   2021 Tresipunt
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    theme_cbe
+ * @copyright  2021 Tresipunt
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+class error {
 
-global $OUTPUT, $SITE;
+    /** @var int Error Code */
+    public $code;
 
-$bodyattributes = $OUTPUT->body_attributes();
+    /** @var string Error Message */
+    public $message;
 
-$templatecontext = [
-    'sitename' => format_string($SITE->shortname, true,
-        ['context' => context_course::instance(SITEID), "escape" => false]),
-    'output' => $OUTPUT,
-    'bodyattributes' => $bodyattributes,
-    'logo' => render_cbe::get_logo(),
-    'loginbackground' => render_cbe::get_loginbackground()
-];
+    /**
+     * Error constructor.
+     * @param int $code
+     * @param string $message
+     */
+    public function __construct(int $code, string $message) {
+        $this->code = $code;
+        $this->message = $message;
+    }
 
-echo $OUTPUT->render_from_template('theme_cbe/login', $templatecontext);
-
+}

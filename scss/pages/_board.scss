@@ -77,14 +77,14 @@ body[data-theme='cbe'][data-role='user'] {
             .triangle {
               width: 0;
               height: 0;
-              border-top: 10px solid #861949;
+              border-top: 10px solid $primary-color-hard;
               border-right: 10px solid transparent;
               position: absolute;
               bottom: -10px;
               right: 0;
             }
             &:hover, &:focus {
-              background-color: #e82373 !important;
+              background-color: $primary-color-light !important;
               text-decoration: none;
             }
           }

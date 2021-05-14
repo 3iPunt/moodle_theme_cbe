@@ -156,6 +156,7 @@ class modspend_delivery_table extends table_sql {
                             'assign', array('id' => $cm->instance), '*', MUST_EXIST);
                         $row->duedate = $instance->duedate;
                         if (time() < $instance->duedate) {
+                            // TODO: Revisar qué fecha utilizar.
                             $data[] = $row;
                         }
 

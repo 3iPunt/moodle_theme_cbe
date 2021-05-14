@@ -3,10 +3,6 @@ body[data-theme='cbe'][data-region='login'] {
   font-family: $font;
 
   #page {
-    background:
-            linear-gradient(rgb(255 255 255 / 40%),
-            rgb(255 255 255 / 40%)),
-            url('[[pix:theme|login_background]]');
     #region-main-box {
       display: flex;
       section#region-main-login {

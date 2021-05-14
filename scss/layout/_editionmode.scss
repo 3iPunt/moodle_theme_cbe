@@ -4,7 +4,7 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics {
     .card-body .tri {
       width: 0;
       height: 0;
-      border-top: 10px solid #861949;
+      border-top: 10px solid $primary-color-hard;
       border-right: 10px solid transparent;
       position: absolute;
       bottom: 54px;

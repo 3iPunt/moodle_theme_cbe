@@ -24,7 +24,12 @@
 
 namespace theme_cbe\navigation;
 
+use dml_exception;
+use moodle_exception;
+use moodle_url;
+use pix_icon;
 use stdClass;
+use theme_cbe\api\header_api;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -46,38 +51,87 @@ abstract class render_cbe  {
     /** @var array|stdClass Data */
     protected $data;
 
+    /** @var header_api Header API */
+    protected $header_api;
+
     /**
      * constructor.
+     * @throws dml_exception
      */
     public function __construct() {
         $this->set_navigation();
     }
 
+    /**
+     * Se
+     *
+     * @throws dml_exception
+     */
     protected function set_navigation() {
         global $PAGE;
         if (is_siteadmin()) {
             $this->navigation = null;
         } else {
+            $this->header_api = get_config('theme_cbe', 'header_api') ? new header_api() : null;
             switch ($PAGE->context->contextlevel) {
                 case CONTEXT_SYSTEM:
-                    $this->navigation = new system_navigation();
+                    $this->navigation = new system_navigation($this->header_api);
                     break;
                 case CONTEXT_USER:
-                    $this->navigation = new user_navigation();
+                    $this->navigation = new user_navigation($this->header_api);
                     break;
                 case CONTEXT_COURSECAT:
-                    $this->navigation = new category_navigation();
+                    $this->navigation = new category_navigation($this->header_api);
                     break;
                 case CONTEXT_COURSE:
-                    $this->navigation = new course_navigation();
+                    $this->navigation = new course_navigation($this->header_api);
                     break;
                 case CONTEXT_MODULE:
-                    $this->navigation = new course_module_navigation();
+                    $this->navigation = new course_module_navigation($this->header_api);
                     break;
                 default:
                     $this->navigation = null;
             }
         }
+    }
+
+    /**
+     * Get Logo.
+     *
+     * @return string
+     * @throws dml_exception
+     */
+    static public function get_logo(): string {
+        global $OUTPUT;
+        $url_logo = get_config('theme_cbe', 'logourl');
+        if (!empty($url_logo)) {
+            return '<img class="icon " alt="Logotipo" title="Logotipo" src="' . $url_logo . '">';
+        }
+        if (get_config('theme_cbe', 'header_api')) {
+            $logo = new pix_icon('logo_default', 'Logotipo', 'theme_cbe');
+        } else {
+            $logo = new pix_icon('logo', 'Logotipo', 'theme_cbe');
+        }
+        return $OUTPUT->render($logo);
+    }
+
+    /**
+     * Get Logo.
+     *
+     * @return string
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    static public function get_loginbackground(): string {
+        $url_loginback = '/theme/cbe/pix/login_background.png';
+        $header_api = get_config('theme_cbe', 'header_api') ? new header_api() : null;
+        if (isset($header_api)) {
+            if ($header_api->get_response()->success) {
+                $url_loginback = $header_api->get_response()->data->background_login;
+            }
+        }
+        $url = new moodle_url($url_loginback);
+        return $url->out(false);
     }
 
     /**

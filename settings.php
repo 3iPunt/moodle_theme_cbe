@@ -42,6 +42,23 @@ if ($ADMIN->fulltree) {
     ));
 
     $page->add($setting);
+    $setting = (new admin_setting_configtext(
+        'theme_cbe/logourl',
+        get_string('logourl', 'theme_cbe'),
+        get_string('logourl_desc', 'theme_cbe'),
+        false
+    ));
+
+    $page->add($setting);
+
+    $setting = (new admin_setting_configcheckbox(
+        'theme_cbe/header_api',
+        get_string('header_api', 'theme_cbe'),
+        get_string('header_api_desc', 'theme_cbe'),
+        false
+    ));
+
+    $page->add($setting);
 
     $setting = (new admin_setting_configcheckbox(
         'theme_cbe/vclasses_direct',
@@ -50,6 +67,58 @@ if ($ADMIN->fulltree) {
         false
     ));
 
+    $page->add($setting);
+
+    $settings->add($page);
+
+
+    // Advanced settings.
+    $page = new admin_settingpage('theme_cbe_colours', get_string('colourssettings', 'theme_cbe'));
+
+    $name = 'theme_cbe/brandcolor';
+    $title = get_string('brandcolor', 'theme_boost');
+    $description = get_string('brandcolor_desc', 'theme_boost');
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '#d5045c');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_cbe/secondarycolor';
+    $title = get_string('secondarycolor', 'theme_cbe');
+    $description = '';
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '#FFFFFF');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_cbe/backboardcolor';
+    $title = get_string('backboardcolor', 'theme_cbe');
+    $description = '';
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '#F0F0F0');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $setting = (new admin_setting_configcheckbox(
+        'theme_cbe/flipcolor',
+        get_string('flipcolor', 'theme_cbe'),
+        '',
+        false
+    ));
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+    $settings->add($page);
+
+    // Advanced settings.
+    $page = new admin_settingpage('theme_cbe_advanced', get_string('advancedsettings', 'theme_boost'));
+
+    // Raw SCSS to include before the content.
+    $setting = new admin_setting_scsscode('theme_cbe/scsspre',
+        get_string('rawscsspre', 'theme_boost'), get_string('rawscsspre_desc', 'theme_boost'), '', PARAM_RAW);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Raw SCSS to include after the content.
+    $setting = new admin_setting_scsscode('theme_cbe/scss', get_string('rawscss', 'theme_boost'),
+        get_string('rawscss_desc', 'theme_boost'), '', PARAM_RAW);
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
     $settings->add($page);

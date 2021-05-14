@@ -1,6 +1,8 @@
-body[data-theme='cbe'][data-role='user'].path-grade {
+body[data-theme='cbe'][data-role='user'].path-grade,
+body[data-theme='cbe'][data-role='user']#page-course-user {
 
-  #page-content.course {
+  #page-content.course,
+  #page-content.user {
     .grade-navigation {
       padding-top: 16px;
     }

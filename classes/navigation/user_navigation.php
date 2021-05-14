@@ -27,8 +27,9 @@ namespace theme_cbe\navigation;
 use coding_exception;
 use core_course_category;
 use moodle_exception;
-use moodle_url;
+use pix_icon;
 use stdClass;
+use theme_cbe\api\header_api;
 use theme_cbe\output\menu_apps_button;
 use theme_cbe\user;
 
@@ -50,8 +51,10 @@ class user_navigation extends navigation {
 
     /**
      * constructor.
+     * @param header_api|null $header_api $header_api
      */
-    public function __construct() {
+    public function __construct(header_api $header_api = null) {
+        parent::__construct($header_api);
     }
 
     /**
@@ -101,7 +104,7 @@ class user_navigation extends navigation {
     public function get_data_layout(array $data): array {
         global $PAGE;
         $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
-        $menu_apps_button_component = new menu_apps_button();
+        $menu_apps_button_component = new menu_apps_button($this->header_api);
         $menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
 
         $data['in_course'] = false;

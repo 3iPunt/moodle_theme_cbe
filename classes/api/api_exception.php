@@ -14,30 +14,35 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-use theme_cbe\navigation\render_cbe;
-
-defined('MOODLE_INTERNAL') || die();
-
 /**
- * A login page layout for the CBE theme.
+ * Class api_exception
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+namespace theme_cbe\api;
 
-global $OUTPUT, $SITE;
+use moodle_exception;
 
-$bodyattributes = $OUTPUT->body_attributes();
+defined('MOODLE_INTERNAL') || die();
 
-$templatecontext = [
-    'sitename' => format_string($SITE->shortname, true,
-        ['context' => context_course::instance(SITEID), "escape" => false]),
-    'output' => $OUTPUT,
-    'bodyattributes' => $bodyattributes,
-    'logo' => render_cbe::get_logo(),
-    'loginbackground' => render_cbe::get_loginbackground()
-];
+/**
+ * Class api_exception
+ *
+ * @package     theme_cbe
+ * @copyright   2021 Tresipunt
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class api_exception extends moodle_exception {
 
-echo $OUTPUT->render_from_template('theme_cbe/login', $templatecontext);
+    /**
+     * api_exception constructor.
+     *
+     * @param string $error
+     */
+    public function __construct(string $error) {
+        parent::__construct($error);
+    }
 
+}

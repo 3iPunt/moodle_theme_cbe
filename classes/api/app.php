@@ -22,7 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_cbe;
+namespace theme_cbe\api;
 
 use coding_exception;
 use dml_exception;

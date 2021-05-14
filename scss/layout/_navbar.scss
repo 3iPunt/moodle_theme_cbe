@@ -132,6 +132,8 @@ body[data-theme='cbe'] {
     z-index: 1020;
     padding-top: 90px;
     height: 100%;
+    scrollbar-color: $grey-border transparent;
+    scrollbar-width: thin;
     .list-group-item {
       border: none;
       color: $black-ligth;
@@ -191,13 +193,15 @@ body[data-theme='cbe'] {
             padding: 10px;
             max-height: 500px;
             overflow-y: scroll;
+            scrollbar-color: $grey-border transparent;
+            scrollbar-width: thin;
             ul.apps, ul#app-my-courses, ul#app-admin, ul#app-external {
               list-style: none;
               display: grid;
               flex-wrap: wrap;
               padding: 15px 2px 0 0;
               margin-bottom: 0;
-              grid-template-columns: 82px 82px 82px;
+              grid-template-columns: 84px 84px 84px;
               grid-gap: 12px 2px;
               li.app {
                 a.app-link {
