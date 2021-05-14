@@ -143,7 +143,7 @@ class modspend_grade_table extends table_sql {
             $cms = $fastmodinfo ? $fastmodinfo->get_cms() : [];
 
             foreach ($cms as $cm) {
-                if ($cm->modname === 'assign') {
+                if ($cm->modname === 'assign' && $cm->uservisible) {
                     $instance = $DB->get_record(
                         'assign', array('id' => $cm->instance), '*', MUST_EXIST);
 
@@ -159,6 +159,11 @@ class modspend_grade_table extends table_sql {
                             $grades = assign_get_user_grades($instance, $student->id);
                             if (count($grades) === 0) {
                                 $pending_graded ++;
+                            } else {
+                                $grade = current($grades);
+                                if ($grade->usermodified < 0) {
+                                    $pending_graded ++;
+                                }
                             }
                             $submitted ++;
                         }

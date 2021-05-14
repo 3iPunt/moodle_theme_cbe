@@ -140,7 +140,7 @@ class modspend_delivery_table extends table_sql {
             $cms = $fastmodinfo ? $fastmodinfo->get_cms() : [];
 
             foreach ($cms as $cm) {
-                if ($cm->modname === 'assign') {
+                if ($cm->modname === 'assign' && $cm->uservisible ) {
                     $submission = $DB->get_record('assign_submission',
                         array('assignment' => $cm->instance, 'userid' => $this->user_id), '*');
 
