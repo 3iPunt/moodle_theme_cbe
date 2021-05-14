@@ -11,7 +11,7 @@ $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
-$blue:    #D5045C !default;
+$blue:    #0f6fc5 !default;
 $indigo:  #6610f2 !default;
 $purple:  #613d7c !default;
 $pink:    #e83e8c !default;
@@ -28,6 +28,11 @@ $info:          $cyan !default;
 $warning:       $orange !default;
 $danger:        $red !default;
 $secondary:     $gray-400 !default;
+
+$backboard:      #F0F0F0 !default;
+$secondarycolor: #FFFFFF !default;
+$backbutton:     $blue !default;
+$colorbutton:    #FFFFFF !default;
 
 $info-outline:    #1f7e9a;
 $warning-outline: #a6670e;

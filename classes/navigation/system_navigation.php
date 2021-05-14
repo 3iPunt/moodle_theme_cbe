@@ -112,7 +112,6 @@ class system_navigation extends navigation {
         $data['create_course'] = false;
         $data['can_create_courses'] = false;
         $data['nav_cbe'] = $this->get_page();
-        $data['logo'] = $this->get_logo();
 
         return $data;
     }

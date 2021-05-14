@@ -24,7 +24,6 @@
 
 namespace theme_cbe\api;
 
-
 use curl;
 use dml_exception;
 use moodle_exception;
@@ -77,6 +76,8 @@ class header_api  {
 
             if (count($result)) {
                 $this->response = $this->validate($result);
+                // Set Colours
+                $this->set_colors();
             } else {
                 $this->response = new response(false, null,
                     new error(1001, 'Error en la petición :' . json_encode($curl->getResponse())));
@@ -102,6 +103,37 @@ class header_api  {
         } catch (moodle_exception $e) {
             return new response(false, null,
                 new error(1002, $e->getMessage()));
+        }
+    }
+
+    /**
+     * Set colors.
+     * @throws dml_exception
+     */
+    protected function set_colors() {
+        $update = false;
+        // Primary Color
+        $primary = $this->response->data->colours->primary;
+        if (get_config('theme_cbe', 'brandcolor') !== $primary) {
+            set_config('brandcolor', $primary, 'theme_cbe');
+            $update = true;
+        }
+        // Secondary Color
+        $secondary = $this->response->data->colours->secondary;
+        if (get_config('theme_cbe', 'secondarycolor') !== $secondary) {
+            set_config('secondarycolor', $secondary, 'theme_cbe');
+            var_dump('sec color');
+            $update = true;
+        }
+        // Background Color
+        $background = $this->response->data->colours->background;
+        if (get_config('theme_cbe', 'backboardcolor') !== $background) {
+            set_config('backboardcolor', $background, 'theme_cbe');
+            var_dump('back color');
+            $update = true;
+        }
+        if ($update) {
+            theme_reset_all_caches();
         }
     }
 

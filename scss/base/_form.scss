@@ -4,6 +4,12 @@ body[data-theme='cbe'][data-role='user'] {
     border-radius: 0;
   }
 
+  .btn-primary {
+    background-color: $backbutton;
+    color: $colorbutton;
+    border-color: $backbutton;
+  }
+
   .btn-secondary {
     background-color: $grey-medium;
     color: white;

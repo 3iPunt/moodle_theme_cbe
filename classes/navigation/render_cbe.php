@@ -25,6 +25,9 @@
 namespace theme_cbe\navigation;
 
 use dml_exception;
+use moodle_exception;
+use moodle_url;
+use pix_icon;
 use stdClass;
 use theme_cbe\api\header_api;
 
@@ -90,6 +93,45 @@ abstract class render_cbe  {
                     $this->navigation = null;
             }
         }
+    }
+
+    /**
+     * Get Logo.
+     *
+     * @return string
+     * @throws dml_exception
+     */
+    static public function get_logo(): string {
+        global $OUTPUT;
+        $url_logo = get_config('theme_cbe', 'logourl');
+        if (!empty($url_logo)) {
+            return '<img class="icon " alt="Logotipo" title="Logotipo" src="' . $url_logo . '">';
+        }
+        if (get_config('theme_cbe', 'header_api')) {
+            $logo = new pix_icon('logo_default', 'Logotipo', 'theme_cbe');
+        } else {
+            $logo = new pix_icon('logo', 'Logotipo', 'theme_cbe');
+        }
+        return $OUTPUT->render($logo);
+    }
+
+    /**
+     * Get Logo.
+     *
+     * @return string
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    static public function get_loginbackground(): string {
+        $url_loginback = '/theme/cbe/pix/login_background.png';
+        $header_api = get_config('theme_cbe', 'header_api') ? new header_api() : null;
+        if (isset($header_api)) {
+            if ($header_api->get_response()->success) {
+                $url_loginback = $header_api->get_response()->data->background_login;
+            }
+        }
+        $url = new moodle_url($url_loginback);
+        return $url->out(false);
     }
 
     /**

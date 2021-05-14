@@ -52,18 +52,6 @@ function theme_cbe_get_main_scss_content($theme): string {
 }
 
 /**
- * Get Pre SCSS
- *
- * @return array|string
- * @throws coding_exception
- */
-function theme_cbe_get_pre_scss() {
-    $theme = theme_config::load('boost');
-    return theme_boost_get_pre_scss($theme);
-}
-
-
-/**
  * Get Extra SCSS
  *
  * @return string
@@ -72,4 +60,50 @@ function theme_cbe_get_pre_scss() {
 function theme_cbe_get_extra_scss(): string {
     $theme = theme_config::load('boost');
     return theme_boost_get_extra_scss($theme);
+}
+
+/**
+ * Get SCSS to prepend.
+ *
+ * @param theme_config $theme The theme config object.
+ * @return string
+ * @throws dml_exception
+ */
+function theme_cbe_get_pre_scss(theme_config $theme): string {
+    global $CFG;
+
+    $scss = '';
+
+    if (get_config('theme_cbe', 'flipcolor')) {
+        $configurable = [
+            'brandcolor' => ['primary', 'colorbutton'],
+            'secondarycolor' => ['secondarycolor', 'backbutton'],
+            'backboardcolor' => ['backboard'],
+        ];
+    } else {
+        $configurable = [
+            'brandcolor' => ['primary', 'backbutton'],
+            'secondarycolor' => ['secondarycolor', 'colorbutton'],
+            'backboardcolor' => ['backboard'],
+        ];
+    }
+
+
+    // Prepend variables first.
+    foreach ($configurable as $configkey => $targets) {
+        $value = isset($theme->settings->{$configkey}) ? $theme->settings->{$configkey} : null;
+        if (empty($value)) {
+            continue;
+        }
+        array_map(function($target) use (&$scss, $value) {
+            $scss .= '$' . $target . ': ' . $value . ";\n";
+        }, (array) $targets);
+    }
+
+    // Prepend pre-scss.
+    if (!empty($theme->settings->scsspre)) {
+        $scss .= $theme->settings->scsspre;
+    }
+
+    return $scss;
 }

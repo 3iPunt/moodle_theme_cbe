@@ -131,8 +131,7 @@ class course_module_navigation extends navigation {
         $data['is_teacher'] = course_user::is_teacher($course_id);
         $data['menu_apps_button'] = $menu_apps_button;
         $data['nav_context'] =  'course';
-        $data['nav_cbe'] = course_module_navigation::get_page();;
-        $data['logo'] = $this->get_logo();
+        $data['nav_cbe'] = course_module_navigation::get_page();
 
         return $data;
     }

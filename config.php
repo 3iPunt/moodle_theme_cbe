@@ -146,7 +146,7 @@ $THEME->requiredblocks = '';
 $THEME->addblockposition = BLOCK_ADDBLOCK_POSITION_FLATNAV;
 
 $THEME->extrascsscallback = 'theme_boost_get_extra_scss';
-$THEME->prescsscallback = 'theme_boost_get_pre_scss';
+$THEME->prescsscallback = 'theme_cbe_get_pre_scss';
 
 $THEME->scss = function($theme) {
     return theme_cbe_get_main_scss_content($theme);

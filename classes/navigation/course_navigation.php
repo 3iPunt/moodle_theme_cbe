@@ -242,7 +242,6 @@ class course_navigation extends navigation {
         $data['menu_apps_button'] = $menu_apps_button;
         $data['nav_context'] = 'course';
         $data['nav_cbe'] =  $cbe_page;
-        $data['logo'] = $this->get_logo();
 
         return $data;
     }

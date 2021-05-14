@@ -24,6 +24,7 @@
 
 use theme_cbe\navigation\layout;
 use theme_cbe\navigation\navigation;
+use theme_cbe\navigation\render_cbe;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -58,7 +59,8 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes,
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
-    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
+    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
+    'logo' => render_cbe::get_logo()
 ];
 
 $templatecontext['flatnavigation'] = navigation::get_flatnav();
