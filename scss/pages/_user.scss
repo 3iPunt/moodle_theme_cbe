@@ -3,6 +3,12 @@ body[data-theme='cbe'][data-role='user'] {
   header.user {
     justify-content: center;
     margin-bottom: 10px;
+    .header-button-group {
+      .btn {
+        border-radius: 0;
+        color: white;
+      }
+    }
     .context-header-settings-menu {
       .dropdown, .dropleft {
         top: -43px;
@@ -42,7 +48,7 @@ body[data-theme='cbe'][data-role='user'] {
 
     [role="main"] {
       padding: 0 40px 20px;
-      h3 {
+      >h3, >h2, .no-overflow>h3 {
         font-size: 28px;
         font-family: $fontbold;
         margin: 18px 0 10px;

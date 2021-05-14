@@ -103,7 +103,6 @@ class course_navigation extends navigation {
         global $PAGE;
         $path = $PAGE->url->get_path();
         $pagetype = $PAGE->pagetype;
-        //var_dump($pagetype);die();
         if ($pagetype === 'theme-cbe-view_board') {
             return 'board';
         } else if ($pagetype === 'course-view-topics') {
@@ -137,6 +136,8 @@ class course_navigation extends navigation {
             $pagetype === 'backup-backup' ||
             $pagetype === 'backup-import' ||
             $pagetype === 'backup-copy' ||
+            $pagetype === 'notes-index' ||
+            $pagetype === 'notes-edit' ||
             $pagetype === 'course-reset' ||
             $pagetype === 'admin-tool-recyclebin-index' ||
             $pagetype === 'admin-roles-assign' ||

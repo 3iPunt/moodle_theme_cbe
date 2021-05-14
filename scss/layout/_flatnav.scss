@@ -37,6 +37,9 @@ body[data-theme='cbe'][data-role='user'] {
           }
         }
         &[data-key="coursehome"] {
+          border-bottom: 1px solid $grey-border !important;
+          padding-bottom: 10px;
+          margin-bottom: 7px;
           .media-left {
             display: none;
           }
@@ -54,9 +57,25 @@ body[data-theme='cbe'][data-role='user'] {
             top: 1px;
           }
         }
+        &[data-key="grades"] {
+          border-bottom: 1px solid $grey-border !important;
+          padding-bottom: 19px;
+          margin-bottom: 7px;
+        }
         &[data-key="sitesettings"] {
           .media .media-body {
             top: 3px;
+          }
+        }
+        &[data-type="30"] {
+          .media-left {
+            display: none;
+          }
+          .media .media-body {
+            top: 0;
+            padding-left: 29px;
+            font-size: 13px;
+            margin-top: 4px;
           }
         }
       }

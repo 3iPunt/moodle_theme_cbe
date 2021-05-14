@@ -132,6 +132,8 @@ body[data-theme='cbe'] {
     z-index: 1020;
     padding-top: 90px;
     height: 100%;
+    scrollbar-color: $grey-border transparent;
+    scrollbar-width: thin;
     .list-group-item {
       border: none;
       color: $black-ligth;
@@ -191,6 +193,8 @@ body[data-theme='cbe'] {
             padding: 10px;
             max-height: 500px;
             overflow-y: scroll;
+            scrollbar-color: $grey-border transparent;
+            scrollbar-width: thin;
             ul.apps, ul#app-my-courses, ul#app-admin, ul#app-external {
               list-style: none;
               display: grid;

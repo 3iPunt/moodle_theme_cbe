@@ -13,8 +13,10 @@ body[data-theme='cbe'][data-role="user"]  {
       right: 12px;
       display: flex;
       max-width: 250px;
-      overflow: scroll;
       padding-bottom: 7px;
+      overflow-x: scroll;
+      scrollbar-color: $grey-border transparent;
+      scrollbar-width: thin;
       .teacher {
         height: 50px;
         width: 50px;
