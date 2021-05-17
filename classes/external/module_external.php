@@ -26,6 +26,7 @@ use comment;
 use context;
 use context_course;
 use context_module;
+use core\event\course_module_deleted;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
@@ -259,6 +260,79 @@ class module_external extends external_api {
             array(
                 'success' => new external_value(PARAM_BOOL, 'Was it a success?'),
                 'url' => new external_value(PARAM_URL, 'URL board with publication expand'),
+                'error' => new external_value(PARAM_TEXT, 'Error message'),
+            )
+        );
+    }
+
+
+
+
+    /**
+     * @return external_function_parameters
+     */
+    public static function course_module_delete_parameters(): external_function_parameters {
+        return new external_function_parameters(
+            array(
+                'cmid' => new external_value(PARAM_INT, 'Course Module ID')
+            )
+        );
+    }
+
+    /**
+     * @param string $cmid
+     * @return array
+     * @throws invalid_parameter_exception
+     * @throws moodle_exception
+     */
+    public static function course_module_delete(string $cmid): array {
+        global $USER;
+
+        self::validate_parameters(
+            self::course_module_delete_parameters(), [
+                'cmid' => $cmid
+            ]
+        );
+
+        list($course, $cm) = get_course_and_cm_from_cmid($cmid);
+
+        // Is teacher in the course?
+        $isteacher_in_course = false;
+        $context_course = context_course::instance($course->id);
+        $roles = get_user_roles($context_course, $USER->id);
+        foreach ($roles as $role) {
+            if ($role->shortname = 'teacher') {
+                $isteacher_in_course = true;
+            }
+        }
+
+        if ($isteacher_in_course) {
+            try {
+                course_delete_module($cmid);
+                $success = true;
+                $error = '';
+            } catch (moodle_exception $e) {
+                $success = false;
+                $error = $e->getMessage();
+            }
+        } else {
+            $success = false;
+            $error = 'El usuario no puede borrar el módulo';
+        }
+
+        return [
+            'success' => $success,
+            'error' => $error
+        ];
+    }
+
+    /**
+     * @return external_single_structure
+     */
+    public static function course_module_delete_returns(): external_single_structure {
+        return new external_single_structure(
+            array(
+                'success' => new external_value(PARAM_BOOL, 'Was it a success?'),
                 'error' => new external_value(PARAM_TEXT, 'Error message'),
             )
         );

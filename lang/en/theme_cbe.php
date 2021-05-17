@@ -143,3 +143,4 @@ $string['flipcolor'] = 'Invert colors in buttons';
 $string['colourssettings'] = 'Colors Settings';
 $string['logourl'] = 'URL Logo';
 $string['logourl_desc'] = 'Logo from external URL, if it is empty the default one is used';
+$string['create_module_theme'] = 'Choose the topic where the item will be created';

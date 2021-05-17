@@ -143,3 +143,4 @@ $string['flipcolor'] = 'Invertir colors en botons';
 $string['colourssettings'] = 'Configuració de colors';
 $string['logourl'] = 'Logo URL';
 $string['logourl_desc'] = "Logotip des d'URL extern, si està buit, s'utilitza per defecte";
+$string['create_module_theme'] = "Elecció el tema en on es crearà l'ítem";

@@ -91,6 +91,14 @@ $functions = [
         'ajax' => true,
         'loginrequired' => true
     ],
+    'theme_cbe_course_module_delete' => [
+        'classname' => module_external::class,
+        'methodname' => 'course_module_delete',
+        'description' => 'Delete course module',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
 ];
 $services = [
     'theme_cbe' => [
@@ -103,6 +111,7 @@ $services = [
             'theme_cbe_publication_comment_send',
             'theme_cbe_create_course',
             'theme_cbe_check_course_shortname',
+            'theme_cbe_course_module_delete',
         ],
         'restrictedusers' => 0,
         'enabled' => 1

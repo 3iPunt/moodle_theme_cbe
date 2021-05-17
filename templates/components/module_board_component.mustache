@@ -65,3 +65,10 @@
             </div>
         </div>
 {{/ is_teacher }}
+{{#js}}
+    {{# is_teacher }}
+        require(['theme_cbe/module_delete'], function(moduledelete) {
+            moduledelete.initModuleDelete('[data-region="modal-mod-delete"][data-cmid="{{ id }}"]', {{ id }});
+        });
+    {{/ is_teacher }}
+{{/js}}

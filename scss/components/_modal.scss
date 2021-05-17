@@ -12,7 +12,26 @@ body[data-theme='cbe'][data-role="user"] {
       main {
         display: flex;
         width: 100%;
-        flex-direction: row;
+        flex-direction: column;
+        &.create_mod {
+          .mods {
+            display: flex;
+            flex-direction: row;
+          }
+          .sections {
+            label {
+              text-align: center;
+              width: 100%;
+              margin-bottom: 10px;
+            }
+            select#selsection {
+              width: 100%;
+              margin: 10px 45px;
+              max-width: 633px;
+              padding: 5px;
+            }
+          }
+        }
         .column {
           width: 100%;
           margin: 10px;

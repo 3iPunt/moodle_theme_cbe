@@ -143,3 +143,4 @@ $string['flipcolor'] = 'Invertir colores en botones';
 $string['colourssettings'] = 'Configuración colores';
 $string['logourl'] = 'Logo URL';
 $string['logourl_desc'] = 'Logo desde URL externa, si está vacio se utiliza el de por defecto';
+$string['create_module_theme'] = 'Seleccione el tema en donde se creará el ítem';

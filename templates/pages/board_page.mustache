@@ -78,30 +78,31 @@
     {{/ modules }}
 </div>
 {{# is_teacher }}
-<div class="modal fade bd-createmodule-modal-lg" tabindex="-1" role="dialog" aria-labelledby="createModuleModalLabel" aria-hidden="true">
+<div class="modal fade bd-createmodule-modal-lg" data-region="create-module" tabindex="-1" role="dialog" aria-labelledby="createModuleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg cbe-modal">
         <div class="modal-content">
             <header>
                 <h1>{{# str }} create_item, theme_cbe {{/ str }}</h1>
                 <p>{{# str }} select_activity_resource, theme_cbe {{/ str }}</p>
             </header>
-            <main>
-                <div class="column">
-                    <h2>{{# str }} activities_upper, theme_cbe {{/ str }}</h2>
+            <main class="create_mod">
+                <div class="mods">
+                    <div class="column">
+                        <h2>{{# str }} activities_upper, theme_cbe {{/ str }}</h2>
                         <ul class="select-modules">
                             {{# create.activities }}
-                            <li class="select-module">
-                                <a href="{{ mod_url }}" class="create-mod">
-                                    <div class="mod-icon {{ modname }}"></div>
-                                    <div class="text">{{ modtitle }}</div>
-                                </a>
-                            </li>
+                                <li class="select-module">
+                                    <a href="{{ mod_url }}" class="create-mod">
+                                        <div class="mod-icon {{ modname }}"></div>
+                                        <div class="text">{{ modtitle }}</div>
+                                    </a>
+                                </li>
                             {{/ create.activities}}
                         </ul>
-                </div>
-                <div class="column">
-                    <h2>{{# str }} resources_upper, theme_cbe {{/ str }}</h2>
-                    <ul class="select-modules">
+                    </div>
+                    <div class="column">
+                        <h2>{{# str }} resources_upper, theme_cbe {{/ str }}</h2>
+                        <ul class="select-modules">
                         <li class="select-module video">
                             {{# create.resources }}
                                 <li class="select-module">
@@ -111,8 +112,17 @@
                                     </a>
                                 </li>
                             {{/ create.resources}}
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sections">
+                    <label for="selsection">Seleccione el tema donde irá el ítem</label>
+                    <select name="section" id="selsection" class="form-control" data-action="select-section">
+                        {{# themes }}
+                            <option value="{{ section }}">{{ name }}</option>
+                        {{/ themes }}
+                    </select>
                 </div>
             </main>
         </div>
@@ -134,9 +144,12 @@
 
     });
     {{# is_teacher }}
-    require(['theme_cbe/publication'], function(publication) {
-        publication.initPublication('[data-region="create-ready"]', {{ courseid }});
-    });
+        require(['theme_cbe/publication'], function(publication) {
+            publication.initPublication('[data-region="create-ready"]', {{ courseid }});
+        });
+        require(['theme_cbe/module_create'], function(modulecreate) {
+            modulecreate.initModuleCreate('[data-region="create-module"]');
+        });
     {{/ is_teacher }}
     require(['theme_cbe/comments'], function(comments) {
         comments.initComments('[data-region="board-content"]');
