@@ -47,7 +47,6 @@ body[data-theme='cbe'][data-role='user'] {
     }
 
     [role="main"] {
-      padding: 0 40px 20px;
       >h3, >h2, .no-overflow>h3 {
         font-size: 28px;
         font-family: $fontbold;
@@ -61,5 +60,34 @@ body[data-theme='cbe'][data-role='user'] {
       }
     }
   }
-
 }
+
+body[data-theme='cbe'][data-role='user'].path-user {
+  #page-content.user {
+    [role="main"] {
+      padding: 30px 40px;
+    }
+  }
+}
+
+body[data-theme='cbe'][data-role='user'].path-grade,
+body[data-theme='cbe'][data-role='user'].path-blog,
+body[data-theme='cbe'][data-role='user'].path-report,
+body[data-theme='cbe'][data-role='user'].path-mod {
+  #page-content.user {
+    [role="main"] {
+      padding: 0 40px 20px;
+    }
+  }
+}
+
+
+body[data-theme='cbe'][data-role='user'].path-course,
+body[data-theme='cbe'][data-role='user'].path-admin {
+  #page-content.user {
+    [role="main"] {
+      padding: 20px;
+    }
+  }
+}
+

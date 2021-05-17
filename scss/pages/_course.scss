@@ -50,6 +50,9 @@ body[data-theme='cbe'][data-role='user'] {
                   &:hover {
                     text-decoration: none;
                     color: $primary-color;
+                    i {
+                      background-color: $primary-color;
+                    }
                   }
                 }
               }

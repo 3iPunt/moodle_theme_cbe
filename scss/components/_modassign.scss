@@ -1,0 +1,51 @@
+body#page-mod-assign-grader {
+
+  font-family: $font;
+  color: $black-ligth;
+
+  [data-region="grading-navigation"] {
+    [data-region="user-info"]{
+      h4>a {
+        color: $black-ligth;
+        font-family: $fontbold;
+        small {
+          color: $black-ligth;
+          font-size: 14px;
+          position: relative;
+          top: -8px;
+          right: -2px;
+        }
+      }
+      .img-rounded {
+        border-radius: 20px;
+      }
+    }
+  }
+  .path-mod-assign [data-region="grade-panel"] {
+    background-color: $backboard-color;
+  }
+
+  #page-content {
+    [data-region="grade"] {
+      background-color: white;
+      padding: 20px;
+      border: 1px solid $border-color;
+      .submissionstatustable {
+        >h3 {
+          font-family: $fontbold;
+          font-size: 28px;
+        }
+      }
+      .fileuploadsubmission {
+        img.icon {
+          background-color: $primary-color;
+          padding: 4px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+
+
+}

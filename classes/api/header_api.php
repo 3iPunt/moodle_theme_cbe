@@ -24,6 +24,7 @@
 
 namespace theme_cbe\api;
 
+use admin_setting_configcolourpicker;
 use curl;
 use dml_exception;
 use moodle_exception;
@@ -114,24 +115,31 @@ class header_api  {
         $update = false;
         // Primary Color
         $primary = $this->response->data->colours->primary;
-        if (get_config('theme_cbe', 'brandcolor') !== $primary) {
-            set_config('brandcolor', $primary, 'theme_cbe');
-            $update = true;
+        if ($primary = $this->validateColor($primary)) {
+            if (get_config('theme_cbe', 'brandcolor') !== $primary) {
+                set_config('brandcolor', $primary, 'theme_cbe');
+                $update = true;
+            }
         }
+
         // Secondary Color
         $secondary = $this->response->data->colours->secondary;
-        if (get_config('theme_cbe', 'secondarycolor') !== $secondary) {
-            set_config('secondarycolor', $secondary, 'theme_cbe');
-            var_dump('sec color');
-            $update = true;
+        if ($secondary = $this->validateColor($secondary)) {
+            if (get_config('theme_cbe', 'secondarycolor') !== $secondary) {
+                set_config('secondarycolor', $secondary, 'theme_cbe');
+                $update = true;
+            }
         }
+
         // Background Color
         $background = $this->response->data->colours->background;
-        if (get_config('theme_cbe', 'backboardcolor') !== $background) {
-            set_config('backboardcolor', $background, 'theme_cbe');
-            var_dump('back color');
-            $update = true;
+        if ($background = $this->validateColor($background)) {
+            if (get_config('theme_cbe', 'backboardcolor') !== $background) {
+                set_config('backboardcolor', $background, 'theme_cbe');
+                $update = true;
+            }
         }
+
         if ($update) {
             theme_reset_all_caches();
         }
@@ -144,6 +152,73 @@ class header_api  {
      */
     public function get_response(): response {
         return $this->response;
+    }
+
+    /**
+     * Validates the colour that was entered by the user
+     *
+     * @param $color
+     * @return string|false
+     */
+    protected function validateColor($color) {
+
+        /**
+         * List of valid HTML colour names
+         *
+         * @var array
+         */
+        $colornames = array(
+            'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure',
+            'beige', 'bisque', 'black', 'blanchedalmond', 'blue',
+            'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse',
+            'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson',
+            'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray',
+            'darkgrey', 'darkgreen', 'darkkhaki', 'darkmagenta',
+            'darkolivegreen', 'darkorange', 'darkorchid', 'darkred',
+            'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray',
+            'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink',
+            'deepskyblue', 'dimgray', 'dimgrey', 'dodgerblue', 'firebrick',
+            'floralwhite', 'forestgreen', 'fuchsia', 'gainsboro',
+            'ghostwhite', 'gold', 'goldenrod', 'gray', 'grey', 'green',
+            'greenyellow', 'honeydew', 'hotpink', 'indianred', 'indigo',
+            'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen',
+            'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan',
+            'lightgoldenrodyellow', 'lightgray', 'lightgrey', 'lightgreen',
+            'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue',
+            'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow',
+            'lime', 'limegreen', 'linen', 'magenta', 'maroon',
+            'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple',
+            'mediumseagreen', 'mediumslateblue', 'mediumspringgreen',
+            'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream',
+            'mistyrose', 'moccasin', 'navajowhite', 'navy', 'oldlace', 'olive',
+            'olivedrab', 'orange', 'orangered', 'orchid', 'palegoldenrod',
+            'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip',
+            'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'purple', 'red',
+            'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown',
+            'seagreen', 'seashell', 'sienna', 'silver', 'skyblue', 'slateblue',
+            'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue', 'tan',
+            'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat', 'white',
+            'whitesmoke', 'yellow', 'yellowgreen'
+        );
+
+        if (preg_match('/^#?([[:xdigit:]]{3}){1,2}$/', $color)) {
+            if (strpos($color, '#')!==0) {
+                $color = '#'.$color;
+            }
+            return $color;
+        } else if (in_array(strtolower($color), $colornames)) {
+            return $color;
+        } else if (preg_match('/rgb\(\d{0,3}%?\, ?\d{0,3}%?, ?\d{0,3}%?\)/i', $color)) {
+            return $color;
+        } else if (preg_match('/rgba\(\d{0,3}%?\, ?\d{0,3}%?, ?\d{0,3}%?\, ?\d(\.\d)?\)/i', $color)) {
+            return $color;
+        } else if (preg_match('/hsl\(\d{0,3}\, ?\d{0,3}%, ?\d{0,3}%\)/i', $color)) {
+            return $color;
+        } else if (preg_match('/hsla\(\d{0,3}\, ?\d{0,3}%,\d{0,3}%\, ?\d(\.\d)?\)/i', $color)) {
+            return $color;
+        } else {
+            return false;
+        }
     }
 
 }

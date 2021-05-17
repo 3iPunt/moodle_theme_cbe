@@ -103,6 +103,7 @@ class course_navigation extends navigation {
         global $PAGE;
         $path = $PAGE->url->get_path();
         $pagetype = $PAGE->pagetype;
+        //var_dump($pagetype);die();
         if ($pagetype === 'theme-cbe-view_board') {
             return 'board';
         } else if ($pagetype === 'course-view-topics') {
@@ -196,7 +197,6 @@ class course_navigation extends navigation {
         $data->coursename = $coursecbe->get_name();
         $data->categoryname = $coursecbe->get_category();
         $data->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
-        $data->copy_course = 'http://localhost/consorci/backup/copy.php?id=3&returnurl=http://localhost/consorci/theme/cbe/view_board.php?id=3';
         $data->copy_course = new moodle_url('/theme/cbe/view_copycourse.php', ['id'=> $courseid]);
         return $data;
     }

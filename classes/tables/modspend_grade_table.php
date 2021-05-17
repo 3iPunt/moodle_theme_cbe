@@ -134,16 +134,14 @@ class modspend_grade_table extends table_sql {
                 }
             }
         }
-
         $data = [];
         foreach ($courses_as as $course) {
             $course_cbe = new course($course->id);
             $fastmodinfo = get_fast_modinfo($course);
             /** @var cm_info[] $cms */
             $cms = $fastmodinfo ? $fastmodinfo->get_cms() : [];
-
             foreach ($cms as $cm) {
-                if ($cm->modname === 'assign') {
+                if ($cm->modname === 'assign' && $cm->uservisible) {
                     $instance = $DB->get_record(
                         'assign', array('id' => $cm->instance), '*', MUST_EXIST);
 
@@ -159,6 +157,12 @@ class modspend_grade_table extends table_sql {
                             $grades = assign_get_user_grades($instance, $student->id);
                             if (count($grades) === 0) {
                                 $pending_graded ++;
+                            } else {
+                                $grade = current($grades);
+                                $rawgradeint = intval($grade->rawgrade);
+                                if ($rawgradeint < 0 || is_null($grade->rawgrade)) {
+                                    $pending_graded ++;
+                                }
                             }
                             $submitted ++;
                         }
@@ -200,7 +204,7 @@ class modspend_grade_table extends table_sql {
     public function col_course(stdClass $row): string {
         $course = get_course($row->course);
         $view_url = new moodle_url('/theme/cbe/view_board.php', ['id'=> $course->id]);
-        return '<a href="' . $view_url . '" target="_blank">' . $course->shortname . '</a>';
+        return '<a href="' . $view_url . '" target="_blank">' . $course->fullname . '</a>';
     }
 
     /**
@@ -228,7 +232,7 @@ class modspend_grade_table extends table_sql {
      */
     public function col_gradingduedate(stdClass $row): string {
         return !empty($row->gradingduedate) ? userdate(
-            $row->gradingduedate, get_string('strftimedaydatetime', 'core_langconfig')) : '-';
+            $row->gradingduedate, get_string('strftimedaydate', 'core_langconfig')) : '-';
     }
 
     /**

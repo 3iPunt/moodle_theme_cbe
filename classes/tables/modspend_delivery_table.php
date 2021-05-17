@@ -78,7 +78,8 @@ class modspend_delivery_table extends table_sql {
         $this->define_baseurl($moodle_url);
 
         $this->define_columns([
-            'task', 'course', 'duedate', 'status'
+            'task', 'course', 'duedate',
+            //'status'
         ]);
 
         $this->define_headers([
@@ -140,7 +141,7 @@ class modspend_delivery_table extends table_sql {
             $cms = $fastmodinfo ? $fastmodinfo->get_cms() : [];
 
             foreach ($cms as $cm) {
-                if ($cm->modname === 'assign') {
+                if ($cm->modname === 'assign' && $cm->uservisible ) {
                     $submission = $DB->get_record('assign_submission',
                         array('assignment' => $cm->instance, 'userid' => $this->user_id), '*');
 
@@ -183,7 +184,7 @@ class modspend_delivery_table extends table_sql {
     public function col_course(stdClass $row): string {
         $course = get_course($row->course);
         $view_url = new moodle_url('/theme/cbe/view_board.php', ['id'=> $course->id]);
-        return '<a href="' . $view_url . '" target="_blank">' . $course->shortname . '</a>';
+        return '<a href="' . $view_url . '" target="_blank">' . $course->fullname . '</a>';
     }
 
     /**
