@@ -1,5 +1,59 @@
 body[data-theme='cbe'][data-role="user"] {
 
+  .modal-dialog.modchooser {
+    .modal-header {
+      border-bottom: none;
+      .modal-title {
+        width: 100%;
+        text-align: center;
+        font-weight: 600;
+        font-size: 2.3rem;
+      }
+    }
+    .modal-body {
+      .nav-tabs {
+        border: none !important;
+        margin-bottom: 20px;
+        .nav-item {
+          border: 1px solid #e8e8e8;
+          background-color: #f1f1f1;
+          color: $grey-medium2;
+          margin-right: 10px;
+          &.active {
+            color: white;
+            font-weight: 600;
+            background-color: $primary-color;
+          }
+        }
+      }
+      .tab-content, .searchresultitemscontainer-wrapper {
+        border: none !important;
+        background-color: white !important;
+      }
+      .optionscontainer, .searchresultitemscontainer {
+        [role="menuitem"][data-internal="bigbluebuttonbn"] {
+          >.optioninfo {
+            >a {
+              align-items: center;
+              .optionicon {
+                width: 46px;
+                height: 46px;
+                background-color: $primary-color;
+                background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+                background-size: 30px 30px;
+                background-repeat: no-repeat;
+                background-position: 50%;
+                .icon-bigbluebutton {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   .cbe-modal {
     .modal-content {
       padding: 30px;

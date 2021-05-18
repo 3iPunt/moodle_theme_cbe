@@ -124,50 +124,16 @@ class course_navigation extends navigation {
             return 'copycourse';
         } else if ($pagetype === 'theme-cbe-view_copycourse_progress') {
             return 'copycourse';
-        } else if (strpos($pagetype, 'grade-') === 0) {
-            return 'generic';
-        } else if (strpos($pagetype, 'question-') === 0) {
-            return 'generic';
-        } else if (strpos($pagetype, 'report-') === 0) {
-            return 'generic';
+        } else if ($pagetype === 'site-index') {
+            return 'index';
         } else if (strpos($path, 'modedit.php') ) {
             return 'modedit';
-        } else if ($pagetype === 'course-edit' ||
-            $pagetype === 'course-admin' ||
-            $pagetype === 'backup-backup' ||
-            $pagetype === 'backup-import' ||
-            $pagetype === 'backup-copy' ||
-            $pagetype === 'notes-index' ||
-            $pagetype === 'notes-edit' ||
-            $pagetype === 'course-reset' ||
-            $pagetype === 'admin-tool-recyclebin-index' ||
-            $pagetype === 'admin-roles-assign' ||
-            $pagetype === 'admin-roles-check' ||
-            $pagetype === 'course-completion' ||
-            $pagetype === 'course-bulkcompletion' ||
-            $pagetype === 'filter-manage' ||
-            $pagetype === 'backup-restorefile') {
-            return 'generic';
-        } else if ($pagetype === 'enrol-instances' ||
-            $pagetype === 'enrol-editinstance') {
-            return 'generic';
-        } else if ($pagetype === 'group-index' ||
-            $pagetype === 'group-groupings' ||
-            $pagetype === 'group-overview') {
-            return 'generic';
-        } else if ($pagetype === 'admin-roles-permissions' ||
-            $pagetype === 'enrol-otherusers') {
-            return 'generic';
         } else if ($pagetype === 'calendar-view' ||
             $pagetype === 'calendar-export' ||
             $pagetype === 'calendar-managesubscriptions') {
             return 'calendar';
-        } else if ($pagetype === 'site-index') {
-            return 'index';
-        } else if ($pagetype === 'course-editsection') {
-            return 'generic';
         } else {
-            return '';
+            return 'generic';
         }
     }
 

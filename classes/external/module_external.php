@@ -27,6 +27,9 @@ use context;
 use context_course;
 use context_module;
 use core\event\course_module_deleted;
+use core_user;
+use core_user\search\user;
+use course_modinfo;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
@@ -37,12 +40,14 @@ use theme_cbe\navigation\course_navigation;
 use theme_cbe\publication;
 use moodle_exception;
 use stdClass;
+use tool_uploaduser\local\text_progress_tracker;
 
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->libdir . '/externallib.php');
 require_once($CFG->dirroot . '/webservice/lib.php');
+require_once($CFG->dirroot . '/group/lib.php');
 
 class module_external extends external_api {
 
@@ -54,6 +59,8 @@ class module_external extends external_api {
             array(
                 'course_id' => new external_value(PARAM_INT, 'Course ID'),
                 'comment' => new external_value(PARAM_TEXT, 'Teacher comment'),
+                'mode' => new external_value(PARAM_TEXT, 'Mode: {all, student, group}'),
+                'item' => new external_value(PARAM_INT, 'Item ID: {student ID, group ID}'),
             )
         );
     }
@@ -61,33 +68,88 @@ class module_external extends external_api {
     /**
      * @param string $course_id
      * @param string $comment
+     * @param string $mode
+     * @param string $item
      * @return array
      * @throws invalid_parameter_exception
      * @throws moodle_exception
      */
-    public static function publication(string $course_id, string $comment): array {
-        global $CFG, $USER;
+    public static function publication(string $course_id, string $comment, string $mode, string $item): array {
+        global $CFG, $USER, $DB;
 
         require_once($CFG->dirroot . '/course/lib.php');
 
         self::validate_parameters(
             self::publication_parameters(), [
                 'course_id' => $course_id,
-                'comment' => $comment
+                'comment' => $comment,
+                'mode' => $mode,
+                'item' => $item
             ]
         );
 
-        $moduleinfo = new stdClass();
-        $moduleinfo->modulename = 'tresipuntshare';
-        $moduleinfo->section = 0;
-        $moduleinfo->course = $course_id;
-        $moduleinfo->teacher = $USER->id;
-        $moduleinfo->name = trim($comment);
-        $moduleinfo->visible = true;
-        $cm = create_module($moduleinfo);
+        $course = get_course($course_id);
+
+        // Is teacher in the course?
+        $isteacher_in_course = false;
+        $context_course = context_course::instance($course_id);
+        $roles = get_user_roles($context_course, $USER->id);
+        foreach ($roles as $role) {
+            if ($role->shortname = 'teacher') {
+                $isteacher_in_course = true;
+            }
+        }
+
+        if ($isteacher_in_course) {
+
+            $moduleinfo = new stdClass();
+            $moduleinfo->modulename = 'tresipuntshare';
+            $moduleinfo->section = 0;
+            $moduleinfo->course = $course_id;
+            $moduleinfo->teacher = $USER->id;
+            $moduleinfo->name = trim($comment);
+            $moduleinfo->visible = true;
+            $cm = create_module($moduleinfo);
+
+            $has_availability = false;
+
+            if ($mode === 'student') {
+                $user = core_user::get_user($item);
+                $email = $user->email;
+                if (!empty($email)) {
+                    $availability = '{"op":"&","c":[{"type":"profile","sf":"email","op":"isequalto","v":"' . $email .'"}],"showc":[true]}';
+                    $has_availability = true;
+                }
+            } else if ($mode === 'group') {
+                $group = groups_get_group($item);
+                if (isset($group)) {
+                    $availability = '{"op":"&","c":[{"type":"group","id":'. $group->id .'}],"showc":[true]}';
+                    $has_availability = true;
+                }
+            }
+
+            if ($has_availability) {
+                $tree = new \core_availability\tree(json_decode($availability));
+                $tree->is_empty();
+                $cm->id = $cm->coursemodule;
+                $cm->availability = $availability;
+                $DB->update_record('course_modules', $cm);
+                course_modinfo::clear_instance_cache($course);
+                rebuild_course_cache($course->id);
+            }
+
+
+
+            $success = true;
+            $error = '';
+        } else {
+            $success = false;
+            $error = 'El usuario no puede crear comentarios.';
+        }
 
         return [
-            'cmid' => $cm->id
+            'success' => $success,
+            'error' => $error
         ];
     }
 
@@ -97,7 +159,8 @@ class module_external extends external_api {
     public static function publication_returns(): external_single_structure {
         return new external_single_structure(
             array(
-                'cmid' => new external_value(PARAM_INT, 'course module id'),
+                'success' => new external_value(PARAM_BOOL, 'Was it a success?'),
+                'error' => new external_value(PARAM_TEXT, 'Error message'),
             )
         );
     }

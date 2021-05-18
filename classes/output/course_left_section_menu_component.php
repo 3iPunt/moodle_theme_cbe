@@ -32,6 +32,7 @@ use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
+use theme_cbe\course_user;
 use theme_cbe\navigation\course_navigation;
 
 defined('MOODLE_INTERNAL') || die;
@@ -80,12 +81,14 @@ class course_left_section_menu_component implements renderable, templatable {
             'vclasses' => $this->get_vclasses_href(),
             'grades' => new moodle_url('/grade/report/index.php', ['id'=> $this->course_id]),
             'participants' => new moodle_url('/user/index.php', ['id'=> $this->course_id]),
+            'groups' => new moodle_url('/group/index.php', ['id'=> $this->course_id]),
             'calendar' => $cal->out(false),
             'settings' => $settings
         ];
         $data = new stdClass();
         $data->title = null;
         $data->links = $links;
+        $data->is_teacher = course_user::is_teacher($this->course_id);
         return $data;
     }
 

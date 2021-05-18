@@ -249,10 +249,57 @@ class module  {
         $module->author = $author;
         $module->comments = $publication->get_comments();
         $module->has_comments = count($publication->get_comments()) > 0;
+        $module->moderestriction = $this->get_restriction()->mode;
+        $module->msgrestriction = $this->get_restriction()->msg;
         if ($author_id === $USER->id) {
             $module->is_mine = true;
         }
         return $module;
+    }
+
+    /**
+     * Get Restriction.
+     *
+     * @return stdClass
+     * @throws coding_exception
+     * @throws dml_exception
+     */
+    protected function get_restriction(): stdClass {
+        $availability = $this->cm->availability;
+        $mode = '';
+        $msg = '';
+        if (empty($availability)) {
+            $mode = 'all';
+            $msg = get_string('rest_all_student', 'theme_cbe');
+        } else {
+            $availability = json_decode($availability);
+            if (isset($availability->c)) {
+                $c = current($availability->c);
+                if ($c->type === 'group') {
+                    $group = groups_get_group($c->id);
+                    if ($group) {
+                        $mode = 'group';
+                        $msg = get_string('rest_group', 'theme_cbe') . ' ' . $group->name;
+                    }
+                } else if ($c->type === 'profile') {
+                    if ($c->sf === 'email') {
+                        $user = \core_user::get_user_by_email($c->v);
+                        if ($user) {
+                            $mode = 'student';
+                            if (course_user::is_teacher($this->coursemoodle->id)) {
+                                $msg = get_string('rest_student', 'theme_cbe') . ' ' . fullname($user);
+                            } else {
+                                $msg = get_string('rest_student_my', 'theme_cbe');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        $rest = new stdClass();
+        $rest->mode = $mode;
+        $rest->msg = $msg;
+        return $rest;
     }
 
     /**

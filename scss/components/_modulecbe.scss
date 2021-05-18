@@ -137,6 +137,34 @@ body[data-theme='cbe'][data-role="user"] {
               color: dimgrey;
             }
           }
+          span.msgrestriction {
+            background-color: #afafaf;
+            color: white;
+            font-size: 12px;
+            font-weight: 300;
+            font-family: $font;
+            padding: 2px 5px;
+            position: relative;
+            top: -2px;
+            left: 4px;
+            &:before {
+              visibility: visible;
+              font: normal normal normal 14px/1 FontAwesome;
+              margin-right: 8px;
+            }
+            &.group {
+              background-color: #ef9641;
+              &:before {
+                content: "\f0c0";
+              }
+            }
+            &.student {
+              background-color: #4a70b1;
+              &:before {
+                content: "\f007";
+              }
+            }
+          }
         }
         .added {
           font-size: 16px;

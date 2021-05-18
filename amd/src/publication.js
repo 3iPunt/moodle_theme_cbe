@@ -35,6 +35,8 @@ define([
          */
         let ACTION = {
             PUBLICATION_BUTTON: '[data-action="publicate"]',
+            ALUMN_SELECT: '[data-action="alumn"]',
+            GROUP_SELECT: '[data-action="group"]',
         };
 
         let TEXT = {
@@ -56,16 +58,41 @@ define([
         function Publication(region, courseId) {
             this.courseid = courseId;
             this.node = $(region);
+            this.node.find(ACTION.ALUMN_SELECT).on('change', this.onAlumnSelectChange.bind(this));
+            this.node.find(ACTION.GROUP_SELECT).on('change', this.onGroupSelectChange.bind(this));
             this.node.find(ACTION.PUBLICATION_BUTTON).on('click', this.onPublicationButtonClick.bind(this));
         }
 
+        Publication.prototype.onAlumnSelectChange = function (e) {
+            this.node.find(ACTION.GROUP_SELECT).val(0);
+        };
+
+        Publication.prototype.onGroupSelectChange = function (e) {
+            this.node.find(ACTION.ALUMN_SELECT).val(0);
+        };
+
         Publication.prototype.onPublicationButtonClick = function (e) {
+            $(ACTION.PUBLICATION_BUTTON).prop( "disabled", true );
             var comment = $(TEXT.COMMENT_TEXT).val();
+            var student = this.node.find(ACTION.ALUMN_SELECT).val();
+            var group = this.node.find(ACTION.GROUP_SELECT).val();
+            var mode = 'all';
+            var item = 0;
+            if (student > 0) {
+                mode = 'student';
+                item = parseInt(student);
+            }
+            if (group > 0) {
+                mode = 'group';
+                item = parseInt(group);
+            }
             var request = {
                 methodname: SERVICES.MODULE_PUBLICATION,
                 args: {
                     course_id: this.courseid,
-                    comment: comment
+                    comment: comment,
+                    mode: mode,
+                    item: item
                 }
             };
             Ajax.call([request])[0].done(function(response) {

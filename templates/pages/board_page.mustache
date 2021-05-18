@@ -33,13 +33,13 @@
             <p>{{# str }} share_with, theme_cbe {{/ str }}</p>
             <div class="form-create">
                 <div class="select_type">
-                    <select name="" class="alumn">
+                    <select name="" class="alumn" data-action="alumn">
                         <option value="0">{{# str }} all_students, theme_cbe {{/ str }}</option>
                         {{# students }}
                         <option value="{{ id }}">{{ fullname }}</option>
                         {{/ students }}
                     </select>
-                    <select name="" class="group">
+                    <select name="" class="group" data-action="group">>
                         <option value="0">{{# str }} all_groups, theme_cbe {{/ str }}</option>
                         {{# groups }}
                             <option value="{{ id }}">{{ name }}</option>

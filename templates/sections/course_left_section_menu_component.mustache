@@ -26,6 +26,14 @@
             <span class="text">{{# str }} course_left_participants, theme_cbe {{/ str }}</span>
         </a>
     </li>
+    {{# is_teacher }}
+    <li class="link">
+        <a href="{{ links.groups }}">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span class="text">{{# str }} course_left_groups, theme_cbe {{/ str }}</span>
+        </a>
+    </li>
+    {{/ is_teacher }}
     <li class="link">
         <a href="{{ links.calendar }}">
             <i class="fa fa-calendar" aria-hidden="true"></i>
