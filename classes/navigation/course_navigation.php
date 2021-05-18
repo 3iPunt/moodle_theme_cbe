@@ -208,7 +208,7 @@ class course_navigation extends navigation {
         $data['is_teacher'] = course_user::is_teacher($course_id);
         $data['menu_apps_button'] = $menu_apps_button;
         $data['nav_context'] = 'course';
-        $data['nav_cbe'] =  $cbe_page;
+        $data['nav_cbe'] = $cbe_page;
 
         return $data;
     }

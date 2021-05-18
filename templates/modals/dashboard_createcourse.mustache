@@ -8,6 +8,7 @@
             <hr>
             <main data-region="create-course">
                 <form>
+                    {{^ has_uniquename }}
                     <div class="form-group">
                         <div>
                             <label for="fullname">{{# str }} fullnamecourse {{/ str }}</label>
@@ -39,6 +40,25 @@
                         </div>
                         <div class="alert-msg" data-msg="msg-shortname"></div>
                     </div>
+                    {{/ has_uniquename }}
+                    {{# has_uniquename }}
+                        <div class="form-group">
+                            <div>
+                                <label for="shortname">{{# str }} uniquenamecourse, theme_cbe {{/ str }}</label>
+                                <button type="button" class="btn btn-secondary helplabel" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{# str }} shortnamecourse_help, theme_cbe {{/ str }} ({{# str }} uniquenamecourse_setting_desc, theme_cbe {{/ str }})">
+                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="verify-input">
+                                <input type="text" class="form-control validation-input" id="shortname"  placeholder="Rellene el nombre corto del curso">
+                                <span id="verify-shortname" class="verify">
+                                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                            </span>
+                            </div>
+                            <div class="alert-msg" data-msg="msg-shortname"></div>
+                        </div>
+                    {{/ has_uniquename }}
                     <div class="form-group">
                         <div>
                             <label for="category">{{# str }} selectacategory {{/ str }}</label>
@@ -71,6 +91,6 @@
 </div>
 {{#js}}
     require(['theme_cbe/createcourse'], function(createcourse) {
-        createcourse.initCreateCourse('[data-region="create-course"]');
+        createcourse.initCreateCourse('[data-region="create-course"]', {{# has_uniquename }}true{{/ has_uniquename }}{{^ has_uniquename }}false{{/ has_uniquename }});
     });
 {{/js}}

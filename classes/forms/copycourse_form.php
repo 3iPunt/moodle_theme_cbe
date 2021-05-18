@@ -47,6 +47,8 @@ class copycourse_form extends copy_form {
      * Build form for the course copy settings.
      *
      * {@inheritDoc}
+     * @throws \dml_exception
+     * @throws \coding_exception
      * @see \moodleform::definition()
      */
     public function definition() {
@@ -89,15 +91,20 @@ class copycourse_form extends copy_form {
         // Form heading.
         $mform->addElement('html', \html_writer::div(get_string('copycoursedesc', 'backup'), 'form-description mb-3'));
 
+        $current_course = $this->_customdata['course'];
+
         // Course fullname.
         $mform->addElement('text', 'fullname', get_string('fullnamecourse'), 'maxlength="254" size="50"');
         $mform->addHelpButton('fullname', 'fullnamecourse');
+        $mform->setDefault('fullname', $current_course->fullname . ' - ' . get_string('copy', 'theme_cbe'));
         $mform->addRule('fullname', get_string('missingfullname'), 'required', null, 'client');
         $mform->setType('fullname', PARAM_TEXT);
+
 
         // Course shortname.
         $mform->addElement('text', 'shortname', get_string('shortnamecourse'), 'maxlength="100" size="20"');
         $mform->addHelpButton('shortname', 'shortnamecourse');
+        $mform->setDefault('shortname', $current_course->shortname . ' - ' . get_string('copy', 'theme_cbe'));
         $mform->addRule('shortname', get_string('missingshortname'), 'required', null, 'client');
         $mform->setType('shortname', PARAM_TEXT);
 

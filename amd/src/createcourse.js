@@ -66,13 +66,19 @@ define([
         /**
          * @constructor
          * @param {String} region
+         * @param {boolean} has_uniquename
          */
-        function CreateCourse(region) {
+        function CreateCourse(region, has_uniquename) {
             this.node = $(region);
+            this.has_uniquename = has_uniquename;
             this.fullname = FORM.FULLNAME_INPUT;
             this.shortname = FORM.SHORTNAME_INPUT;
             this.all_inputs = FORM.ALL_INPUTS;
-            this.node.find(this.fullname).on('keyup', this.onFullnameChange.bind(this));
+            if (!this.has_uniquename) {
+                this.node.find(this.fullname).on('keyup', this.onFullnameChange.bind(this));
+            } else {
+                VALIDATION.fullname = true;
+            }
             this.node.find(this.shortname).on('focusout', this.onShortnameFocusOut.bind(this));
             this.node.find(this.all_inputs).on('focusout', this.onAllInputsFocusOut.bind(this));
             this.node.find(ACTION.CREATE_BUTTON).on('click', this.onCreateCourseButtonClick.bind(this));
@@ -127,7 +133,12 @@ define([
 
         CreateCourse.prototype.onCreateCourseButtonClick = function (e) {
             $(ACTION.CREATE_BUTTON).prop( "disabled", true );
-            const fullname = $(FORM.FULLNAME_INPUT).val().trim();
+            let fullname = '';
+            if (!this.has_uniquename) {
+                fullname = $(FORM.FULLNAME_INPUT).val().trim();
+            } else {
+                fullname = $(FORM.SHORTNAME_INPUT).val().trim();
+            }
             const shortname = $(FORM.SHORTNAME_INPUT).val().trim();
             const category = $(FORM.CATEGORY_SELECT).val();
             const visible = $(FORM.VISIBLE_CHECK).is(":checked") ? 1 : 0;
@@ -155,10 +166,11 @@ define([
         return {
             /**
              * @param {String} region
+             * @param {boolean} has_uniquename
              * @return {CreateCourse}
              */
-            initCreateCourse: function (region) {
-                return new CreateCourse(region);
+            initCreateCourse: function (region, has_uniquename) {
+                return new CreateCourse(region, has_uniquename);
             }
         };
     }
