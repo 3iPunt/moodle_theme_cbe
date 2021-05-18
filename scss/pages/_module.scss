@@ -123,6 +123,15 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
+  &#page-mod-bigbluebuttonbn-mod {
+    div[role="main"]>h2 {
+      &:after {
+        left: -32px !important;
+        top: -2px !important;
+      }
+    }
+  }
+
   &#page-mod-tresipuntvideo-view {
     div[role="main"]>h2 {
       &:after {

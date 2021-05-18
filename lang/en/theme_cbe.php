@@ -154,3 +154,4 @@ $string['uniquenamecourse'] = 'Unique Name';
 $string['uniquenamecourse_setting'] = 'Use Unique Name';
 $string['uniquenamecourse_setting_desc'] = 'In the course creation and duplicate forms, only the short name will be used (the long name will be the same)';
 $string['copy'] = 'Copy';
+$string['bbb_main'] = 'Main virtual class';
