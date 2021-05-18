@@ -99,7 +99,6 @@ class course_left_section_menu_component implements renderable, templatable {
      * @throws moodle_exception
      */
     protected function get_vclasses_href (): stdClass {
-        global $PAGE;
         $vc = new stdClass();
         $vc->href = '#';
         $vc->blank = false;
@@ -109,18 +108,11 @@ class course_left_section_menu_component implements renderable, templatable {
             $modules = get_coursemodules_in_course('bigbluebuttonbn', $this->course_id);
             foreach ($modules as $mod) {
                 if ($mod->idnumber === 'MAIN') {
-                    $href = new moodle_url('/mod/bigbluebuttonbn/bbb_view.php',
-                        ['action'=> 'join', 'id' => $mod->id, 'bn' => $mod->instance]);
+                    $href = new moodle_url('/mod/bigbluebuttonbn/view.php',
+                        ['id' => $mod->id] );
                     $vc->href = $href->out(false);
                     $vc->blank = true;
                     $hasmain = true;
-                    $course = get_course($this->course_id);
-                    // Additional info related to the course.
-                    $bbbsession['course'] = $this->course_id;
-                    $bbbsession['coursename'] = $course->fullname;
-                    $bbbsession['cm'] = $mod->id;
-                    $bbbsession['bigbluebuttonbn'] = $mod->instance;
-                    bigbluebutton::view_bbbsession_set($PAGE->context, $bbbsession);
                     break;
                 }
             }
