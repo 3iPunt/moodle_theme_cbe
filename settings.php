@@ -64,7 +64,7 @@ if ($ADMIN->fulltree) {
     $settings->add($page);
 
     // Funcionality settings.
-    $page = new admin_settingpage('theme_cbe_colours', get_string('funcionalitiesssettings', 'theme_cbe'));
+    $page = new admin_settingpage('theme_cbe_funcionalities', get_string('funcionalitiesssettings', 'theme_cbe'));
 
 
     $setting = (new admin_setting_configcheckbox(

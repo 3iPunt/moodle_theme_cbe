@@ -2,6 +2,7 @@ body[data-theme='cbe'][data-role='user'].pagelayout-admin,
 body[data-theme='cbe'][data-role='user']#page-course-editsection,
 body[data-theme='cbe'][data-role='user']#page-course-edit,
 body[data-theme='cbe'][data-role='user']#page-mod-assign-grading,
+body[data-theme='cbe'][data-role='user']#page-mod-assign-editsubmission,
 body[data-theme='cbe'][data-role='user']#page-mod-feedback-edit,
 body[data-theme='cbe'][data-role='user']#page-mod-feedback-import,
 body[data-theme='cbe'][data-role='user']#page-mod-assign-grantextension {
@@ -38,6 +39,14 @@ body[data-theme='cbe'][data-role='user']#page-mod-assign-grantextension {
               font-size: 24px;
             }
           }
+        }
+      }
+      .fileuploadsubmission {
+        img.icon {
+          background-color: $primary-color;
+          padding: 4px;
+          width: 22px;
+          height: 22px;
         }
       }
       form.mform {
