@@ -74,13 +74,12 @@ body[data-theme='cbe'][data-role="user"] {
           }
           .sections {
             label {
-              text-align: center;
-              width: 100%;
-              margin-bottom: 10px;
+              margin: 20px 47px 0;
+              font-weight: 600;
             }
             select#selsection {
               width: 100%;
-              margin: 10px 45px;
+              margin: 2px 45px 18px;
               max-width: 633px;
               padding: 5px;
             }

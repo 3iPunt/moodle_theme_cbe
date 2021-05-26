@@ -86,6 +86,14 @@
                 <p>{{# str }} select_activity_resource, theme_cbe {{/ str }}</p>
             </header>
             <main class="create_mod">
+                <div class="sections">
+                    <label for="selsection">Seleccione el tema donde irá el ítem</label>
+                    <select name="section" id="selsection" class="form-control" data-action="select-section">
+                        {{# themes }}
+                            <option value="{{ section }}">{{ name }}</option>
+                        {{/ themes }}
+                    </select>
+                </div>
                 <div class="mods">
                     <div class="column">
                         <h2>{{# str }} activities_upper, theme_cbe {{/ str }}</h2>
@@ -115,14 +123,6 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div class="sections">
-                    <label for="selsection">Seleccione el tema donde irá el ítem</label>
-                    <select name="section" id="selsection" class="form-control" data-action="select-section">
-                        {{# themes }}
-                            <option value="{{ section }}">{{ name }}</option>
-                        {{/ themes }}
-                    </select>
                 </div>
             </main>
         </div>

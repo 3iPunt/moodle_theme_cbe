@@ -208,7 +208,11 @@ class module  {
      * @return string
      */
     public function get_theme(): string {
-        return 'Esto es una prueba';
+        if (!empty($this->cm->get_section_info()->name)) {
+            return $this->cm->get_section_info()->name;
+        } else {
+            return '';
+        }
     }
 
     /**
