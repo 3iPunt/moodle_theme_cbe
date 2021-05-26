@@ -147,6 +147,9 @@ body[data-theme='cbe'][data-role="user"] {
                   &.page {
                     background-image: url('[[pix:mod_page|icon]]');
                   }
+                  &.folder {
+                    background-image: url('[[pix:mod_folder|icon]]');
+                  }
                 }
                 .text {
                   padding-left: 20px;

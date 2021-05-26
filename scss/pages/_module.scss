@@ -105,6 +105,14 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
+  &#page-mod-folder-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_folder|icon]]');
+      }
+    }
+  }
+
   &#page-mod-feedback-view,
   &#page-mod-feedback-import {
     div[role="main"] {
