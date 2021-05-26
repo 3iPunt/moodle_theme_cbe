@@ -53,10 +53,13 @@ class publication  {
     /** @var int CM ID */
     protected $cm_id;
 
-    /** @var cm_info Course Module Moodle*/
+    /** @var cm_info Course Module Moodle */
     protected $cm;
 
-    /** @var stdClass Course Moodle*/
+    /** @var stdClass Publication instance */
+    protected $instance;
+
+    /** @var stdClass Course Moodle */
     protected $coursemoodle;
 
     /**
@@ -89,18 +92,57 @@ class publication  {
     }
 
     /**
+     * Get Intro.
+     *
+     * @return string
+     * @throws dml_exception
+     */
+    public function get_intro(): string {
+        if (isset($this->get_instance()->intro)) {
+            $intro = $this->get_instance()->intro;
+            return str_replace(array("\r\n", "\n\r", "\r", "\n"), "<br />", $intro);
+        } else {
+            return '';
+        }
+    }
+
+    /**
      * Get Teacher.
      *
      * @return string
      * @throws dml_exception
      */
     public function get_teacher(): string {
-        global $DB;
-        $share_module = $DB->get_record(self::MODULE_PUBLICATION, array('id'=>$this->cm->instance));
-        if ($share_module) {
-            return $share_module->teacher;
+        if (isset($this->get_instance()->teacher)) {
+            return $this->get_instance()->teacher;
         } else {
             return '';
+        }
+    }
+
+
+    /**
+     * Get Instance.
+     * @return stdClass|null
+     * @throws dml_exception
+     */
+    protected function get_instance(): ?stdClass {
+        if (empty($this->instance)) {
+            $this->set_instance();
+        }
+        return $this->instance ? $this->instance : null;
+    }
+
+    /**
+     * Set Instance.
+     *
+     * @throws dml_exception
+     */
+    protected function set_instance() {
+        global $DB;
+        $res = $DB->get_record(self::MODULE_PUBLICATION, array('id'=>$this->cm->instance));
+        if ($res) {
+            $this->instance = $res;
         }
     }
 

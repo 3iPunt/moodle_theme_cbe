@@ -40,6 +40,9 @@ body[data-theme='cbe'][data-role="user"] {
       &.bigbluebuttonbn .icon  {
         background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
       }
+      &.folder .icon  {
+        background-image: url('[[pix:mod_folder|icon]]');
+      }
     }
     .data {
       >a.title {

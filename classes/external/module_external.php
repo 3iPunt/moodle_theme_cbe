@@ -58,7 +58,7 @@ class module_external extends external_api {
         return new external_function_parameters(
             array(
                 'course_id' => new external_value(PARAM_INT, 'Course ID'),
-                'comment' => new external_value(PARAM_TEXT, 'Teacher comment'),
+                'comment' => new external_value(PARAM_RAW, 'Teacher comment'),
                 'mode' => new external_value(PARAM_TEXT, 'Mode: {all, student, group}'),
                 'item' => new external_value(PARAM_INT, 'Item ID: {student ID, group ID}'),
             )
@@ -101,13 +101,18 @@ class module_external extends external_api {
         }
 
         if ($isteacher_in_course) {
+            $comment_name = preg_replace("/[\r\n|\n|\r]+/", " ", $comment);
+            $name = fullname($USER) . ': ' . substr(trim($comment_name), 0, 200);
+            $draftid_editor = file_get_submitted_draft_itemid('introeditor');
 
             $moduleinfo = new stdClass();
             $moduleinfo->modulename = 'tresipuntshare';
             $moduleinfo->section = 0;
             $moduleinfo->course = $course_id;
             $moduleinfo->teacher = $USER->id;
-            $moduleinfo->name = trim($comment);
+            $moduleinfo->name = $name;
+            $moduleinfo->intro = $comment;
+            $moduleinfo->introeditor = array('text'=> $comment, 'format'=> FORMAT_HTML, 'itemid'=>$draftid_editor);;
             $moduleinfo->visible = true;
             $cm = create_module($moduleinfo);
 

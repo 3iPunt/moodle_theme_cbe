@@ -26,7 +26,6 @@ namespace theme_cbe\tables;
 
 use cm_info;
 use coding_exception;
-use core_course\search\section;
 use dml_exception;
 use theme_cbe\course_user;
 use theme_cbe\output\module_component;
@@ -90,10 +89,9 @@ class tasks_table extends table_sql {
             get_string('task_table_grade', 'theme_cbe')
         ]);
 
-        $this->is_downloadable(false);
         $this->is_collapsible = false;
 
-        $this->sortable(true, 'duedate');
+        $this->sortable(true, 'duedate', SORT_DESC);
 
         $this->column_style('task', 'text-align', 'left');
         $this->column_style('remaining', 'text-align', 'left');
@@ -137,6 +135,7 @@ class tasks_table extends table_sql {
                 $row->instance = $cm->instance;
                 $row->section = $cm->sectionnum;
                 $row->name = $cm->name;
+                $row->task = $cm->name;
                 $row->modname = $cm->modname;
                 $instance = $DB->get_record(
                     'assign', array('id' => $cm->instance), '*', MUST_EXIST);
@@ -150,14 +149,40 @@ class tasks_table extends table_sql {
                 }
 
                 $row->duedate = $instance->duedate;
+                $row->remaining = $instance->duedate;
+                $row->state = '';
+                $row->grade = $row->rawgrade;
                 $data[] = $row;
             }
         }
 
-        usort($data, function($a, $b) {
-            return $a->duedate < $b->duedate ? 1 : -1;
-        });
+        $data = $this->data_sort_columns($data);
 
+        return $data;
+    }
+
+    /**
+     * Data Sort Columns.
+     *
+     * @param $data
+     * @return mixed
+     * @throws coding_exception
+     */
+    protected function data_sort_columns($data) {
+        $columns = array_reverse($this->get_sort_columns());
+        foreach ($columns as $k => $v) {
+            usort($data, function($a, $b) use ($k, $v){
+                if (isset($a->{$k})) {
+                    if ($v === 3) {
+                        return $a->{$k} < $b->{$k} ? 1 : -1;
+                    } else {
+                        return $a->{$k} < $b->{$k} ? -1 : 1;
+                    }
+                } else {
+                    return true;
+                }
+            });
+        }
         return $data;
     }
 

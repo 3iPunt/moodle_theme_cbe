@@ -246,11 +246,13 @@ class module  {
         global $USER;
         $publication = new publication($this->cm->id);
         $module->is_publication = true;
-        $module->comment = $this->cm->name;
+        $module->comment = $publication->get_intro();
         $author_id = $publication->get_teacher();
-        $author_cbe = new user($author_id);
-        $author = $author_cbe->export();
-        $module->author = $author;
+        if (!empty($author_id)) {
+            $author_cbe = new user($author_id);
+            $author = $author_cbe->export();
+            $module->author = $author;
+        }
         $module->comments = $publication->get_comments();
         $module->has_comments = count($publication->get_comments()) > 0;
         $module->moderestriction = $this->get_restriction()->mode;

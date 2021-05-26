@@ -25,6 +25,7 @@
 namespace theme_cbe\output;
 
 use coding_exception;
+use context_course;
 use dml_exception;
 use moodle_url;
 use theme_cbe\course;
@@ -73,9 +74,10 @@ class moreinfo_page implements renderable, templatable {
         $course = new course($this->course_id);
         $course_user = new course_user($this->course_id, $USER->id);
         $section = $course->get_section_zero();
+        $context = context_course::instance($this->course_id, IGNORE_MISSING);
 
         $data = new stdClass();
-        $data->summary = $section->summary;
+        $data->summary = file_rewrite_pluginfile_urls($section->summary, 'pluginfile.php', $context->id, 'course', 'section', $section->id);
         $mods = $course_user->get_modules($section);
         // Filter NOT Publication.
         $mods = array_filter($mods, function(stdClass $mod) {

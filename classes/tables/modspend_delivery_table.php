@@ -145,14 +145,16 @@ class modspend_delivery_table extends table_sql {
                     $submission = $DB->get_record('assign_submission',
                         array('assignment' => $cm->instance, 'userid' => $this->user_id), '*');
 
-                    if ($submission->status !== 'submitted') {
+                    $status = isset($submission->status) ?  $status = $submission->status : '';
+                    if ($status !== 'submitted') {
                         $row = new stdClass();
                         $row->course = $cm->course;
                         $row->id = $cm->id;
                         $row->section = $cm->sectionnum;
                         $row->name = $cm->name;
+                        $row->task = $cm->name;
                         $row->modname = $cm->modname;
-                        $row->status = $submission->status;
+                        $row->status = $status;
                         $instance = $DB->get_record(
                             'assign', array('id' => $cm->instance), '*', MUST_EXIST);
                         $row->duedate = $instance->duedate;
@@ -166,10 +168,33 @@ class modspend_delivery_table extends table_sql {
             }
         }
 
-        usort($data, function($a, $b) {
-            return $a->gradingduedate > $b->gradingduedate ? 1 : -1;
-        });
+        $data = $this->data_sort_columns($data);
 
+        return $data;
+    }
+
+    /**
+     * Data Sort Columns.
+     *
+     * @param $data
+     * @return mixed
+     * @throws coding_exception
+     */
+    protected function data_sort_columns($data) {
+        $columns = array_reverse($this->get_sort_columns());
+        foreach ($columns as $k => $v) {
+            usort($data, function($a, $b) use ($k, $v){
+                if (isset($a->{$k})) {
+                    if ($v === 3) {
+                        return $a->{$k} < $b->{$k} ? 1 : -1;
+                    } else {
+                        return $a->{$k} < $b->{$k} ? -1 : 1;
+                    }
+                } else {
+                    return true;
+                }
+            });
+        }
         return $data;
     }
 

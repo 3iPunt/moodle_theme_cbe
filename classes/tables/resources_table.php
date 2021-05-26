@@ -117,15 +117,15 @@ class resources_table extends table_sql {
      */
     public function get_data(): array {
         $course = get_course($this->course_id);
-        $data = [];
+        $filescm = [];
 
         $fastmodinfo = get_fast_modinfo($course);
         /** @var cm_info[] $cms */
         $cms = $fastmodinfo ? $fastmodinfo->get_cms() : [];
-
         foreach ($cms as $cm) {
             if ($cm->modname === 'resource' ||
                 $cm->modname === 'tresipuntvideo' ||
+                $cm->modname === 'folder' ||
                 $cm->modname === 'tresipuntaudio') {
                 $row = new stdClass();
                 $row->id = $cm->id;
@@ -137,16 +137,47 @@ class resources_table extends table_sql {
                 $files = $fs->get_area_files($cm->context->id, 'mod_' . $cm->modname, 'content');
                 foreach ($files as $file) {
                     if (!empty($file->get_mimetype())) {
-                        $row->filename = $file->get_filename();
-                        $row->type = $file->get_mimetype();
-                        $row->size = $file->get_filesize();
-                        break;
+                        $filecm = new stdClass();
+                        $filecm->filename = $file->get_filename();
+                        $filecm->type = $file->get_mimetype();
+                        $filecm->size = $file->get_filesize();
+                        $filecm->id = $cm->id;
+                        $filecm->section = $cm->sectionnum;
+                        $filecm->name = $cm->name;
+                        $filecm->modname = $cm->modname;
+                        $filescm[] = $filecm;
                     }
                 }
-
-
-                $data[] = $row;
             }
+        }
+
+        $filescm = $this->data_sort_columns($filescm);
+
+        return $filescm;
+
+    }
+
+    /**
+     * Data Sort Columns.
+     *
+     * @param $data
+     * @return mixed
+     * @throws coding_exception
+     */
+    protected function data_sort_columns($data) {
+        $columns = array_reverse($this->get_sort_columns());
+        foreach ($columns as $k => $v) {
+            usort($data, function($a, $b) use ($k, $v){
+                if (isset($a->{$k})) {
+                    if ($v === 3) {
+                        return $a->{$k} < $b->{$k} ? 1 : -1;
+                    } else {
+                        return $a->{$k} < $b->{$k} ? -1 : 1;
+                    }
+                } else {
+                    return true;
+                }
+            });
         }
         return $data;
     }
@@ -195,7 +226,10 @@ class resources_table extends table_sql {
      * @throws coding_exception
      */
     public function col_type(stdClass $row): string {
-        return !empty($row->type) ? core_filetypes::get_file_extension($row->type) : '-';
+        global $OUTPUT;
+        return !empty($row->type) ? '<div class="typeresource">'
+            . $OUTPUT->pix_icon(file_mimetype_icon($row->type), $row->type) .'<span class="name">' .
+            core_filetypes::get_file_extension($row->type) .'</span></div>' : '-';
     }
 
     /**

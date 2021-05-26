@@ -151,4 +151,3 @@ $THEME->prescsscallback = 'theme_cbe_get_pre_scss';
 $THEME->scss = function($theme) {
     return theme_cbe_get_main_scss_content($theme);
 };
-

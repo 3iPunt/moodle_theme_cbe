@@ -156,7 +156,36 @@ class virtualclasses_table extends table_sql {
                 $row->moderators = $moderatorids;
                 $row->participants = $viewerids;
                 $data[] = $row;
+
             }
+        }
+
+        $data = $this->data_sort_columns($data);
+
+        return $data;
+    }
+
+    /**
+     * Data Sort Columns.
+     *
+     * @param $data
+     * @return mixed
+     * @throws coding_exception
+     */
+    protected function data_sort_columns($data) {
+        $columns = array_reverse($this->get_sort_columns());
+        foreach ($columns as $k => $v) {
+            usort($data, function($a, $b) use ($k, $v){
+                if (isset($a->{$k})) {
+                    if ($v === 3) {
+                        return $a->{$k} < $b->{$k} ? 1 : -1;
+                    } else {
+                        return $a->{$k} < $b->{$k} ? -1 : 1;
+                    }
+                } else {
+                    return true;
+                }
+            });
         }
         return $data;
     }
