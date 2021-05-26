@@ -65,6 +65,28 @@ body[data-theme='cbe'] {
     }
   }
 
+  .fp-filename-icon {
+    span.fp-icon {
+      background-color: $primary-color;
+      width: 28px;
+      height: 28px;
+      margin: 0 2px 1px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      top: -7px;
+      left: -3px;
+      .icon {
+        margin: 0;
+      }
+    }
+    .fp-filename {
+      padding-right: 10px;
+      position: relative;
+      top: -5px;
+    }
+  }
 
 }
 

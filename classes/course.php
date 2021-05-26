@@ -136,10 +136,12 @@ class course  {
         $groups = groups_get_all_groups($this->course_id);
         $data = [];
         foreach ($groups as $group) {
-            $row = new stdClass();
-            $row->id = $group->id;
-            $row->name = $group->name;
-            $data[] = $row;
+            if (strpos($group->idnumber, 'GI_') === false) {
+                $row = new stdClass();
+                $row->id = $group->id;
+                $row->name = $group->name;
+                $data[] = $row;
+            }
         }
         return $data;
     }

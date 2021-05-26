@@ -60,6 +60,9 @@ body[data-theme='cbe'][data-role='user'] {
   }
 
   &#page-mod-assign-view,
+  &#page-mod-assign-editsubmission,
+  &#page-mod-assign-removesubmissionconfirm,
+  &#page-mod-assign-submit,
   &#page-mod-assign-overrides {
     div[role="main"]>h2 {
       &:after {
@@ -102,6 +105,14 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
+  &#page-mod-folder-view {
+    div[role="main"]>h2 {
+      &:after {
+        background-image: url('[[pix:mod_folder|icon]]');
+      }
+    }
+  }
+
   &#page-mod-feedback-view,
   &#page-mod-feedback-import {
     div[role="main"] {
@@ -119,6 +130,15 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h3 {
       &:after {
         background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+      }
+    }
+  }
+
+  &#page-mod-bigbluebuttonbn-mod {
+    div[role="main"]>h2 {
+      &:after {
+        left: -32px !important;
+        top: -2px !important;
       }
     }
   }

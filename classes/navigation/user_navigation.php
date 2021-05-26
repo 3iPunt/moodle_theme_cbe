@@ -117,6 +117,7 @@ class user_navigation extends navigation {
         $data['create_course'] = $this->is_dashboard() ? $this->get_data_createcourse() : [];
         $data['can_create_courses'] = $this->is_dashboard() ? user::can_create_courses() : false;
         $data['nav_cbe'] = $this->get_page();
+        $data['has_uniquename'] = get_config('theme_cbe', 'uniquenamecourse');
 
         return $data;
     }

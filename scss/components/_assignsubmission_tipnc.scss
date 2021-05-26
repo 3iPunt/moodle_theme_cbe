@@ -1,0 +1,14 @@
+div[data-region="assignsubmission_tipnc"] {
+  iframe.tipnc-iframe {
+    height: 600px;
+    width: 100%;
+  }
+}
+
+body[data-theme="cbe"][data-role="user"]#page-mod-assign-editsubmission {
+  .form-control-static {
+    width: 100%;
+  }
+}
+
+

@@ -54,6 +54,13 @@ body[data-theme='cbe'][data-role='user'] {
     position: relative;
   }
 
+  .filemanager {
+    .fp-thumbnail img {
+      padding: 8px;
+      background-color: $primary-color;
+    }
+  }
+
 }
 
 .userloggedinas .usermenu .userbutton .avatars .avatar.current {

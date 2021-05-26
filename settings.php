@@ -60,6 +60,13 @@ if ($ADMIN->fulltree) {
 
     $page->add($setting);
 
+
+    $settings->add($page);
+
+    // Funcionality settings.
+    $page = new admin_settingpage('theme_cbe_funcionalities', get_string('funcionalitiesssettings', 'theme_cbe'));
+
+
     $setting = (new admin_setting_configcheckbox(
         'theme_cbe/vclasses_direct',
         get_string('vclasses_direct', 'theme_cbe'),
@@ -69,8 +76,14 @@ if ($ADMIN->fulltree) {
 
     $page->add($setting);
 
+    $setting = (new admin_setting_configcheckbox(
+        'theme_cbe/uniquenamecourse',
+        get_string('uniquenamecourse_setting', 'theme_cbe'),
+        get_string('uniquenamecourse_setting_desc', 'theme_cbe'),
+        false
+    ));
+    $page->add($setting);
     $settings->add($page);
-
 
     // Advanced settings.
     $page = new admin_settingpage('theme_cbe_colours', get_string('colourssettings', 'theme_cbe'));

@@ -32,6 +32,7 @@ use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
+use theme_cbe\course_user;
 use theme_cbe\navigation\course_navigation;
 
 defined('MOODLE_INTERNAL') || die;
@@ -80,12 +81,14 @@ class course_left_section_menu_component implements renderable, templatable {
             'vclasses' => $this->get_vclasses_href(),
             'grades' => new moodle_url('/grade/report/index.php', ['id'=> $this->course_id]),
             'participants' => new moodle_url('/user/index.php', ['id'=> $this->course_id]),
+            'groups' => new moodle_url('/group/index.php', ['id'=> $this->course_id]),
             'calendar' => $cal->out(false),
             'settings' => $settings
         ];
         $data = new stdClass();
         $data->title = null;
         $data->links = $links;
+        $data->is_teacher = course_user::is_teacher($this->course_id);
         return $data;
     }
 
@@ -96,7 +99,6 @@ class course_left_section_menu_component implements renderable, templatable {
      * @throws moodle_exception
      */
     protected function get_vclasses_href (): stdClass {
-        global $PAGE;
         $vc = new stdClass();
         $vc->href = '#';
         $vc->blank = false;
@@ -106,18 +108,11 @@ class course_left_section_menu_component implements renderable, templatable {
             $modules = get_coursemodules_in_course('bigbluebuttonbn', $this->course_id);
             foreach ($modules as $mod) {
                 if ($mod->idnumber === 'MAIN') {
-                    $href = new moodle_url('/mod/bigbluebuttonbn/bbb_view.php',
-                        ['action'=> 'join', 'id' => $mod->id, 'bn' => $mod->instance]);
+                    $href = new moodle_url('/mod/bigbluebuttonbn/view.php',
+                        ['id' => $mod->id] );
                     $vc->href = $href->out(false);
                     $vc->blank = true;
                     $hasmain = true;
-                    $course = get_course($this->course_id);
-                    // Additional info related to the course.
-                    $bbbsession['course'] = $this->course_id;
-                    $bbbsession['coursename'] = $course->fullname;
-                    $bbbsession['cm'] = $mod->id;
-                    $bbbsession['bigbluebuttonbn'] = $mod->instance;
-                    bigbluebutton::view_bbbsession_set($PAGE->context, $bbbsession);
                     break;
                 }
             }
