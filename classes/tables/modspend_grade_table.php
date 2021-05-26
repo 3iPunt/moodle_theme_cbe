@@ -94,6 +94,8 @@ class modspend_grade_table extends table_sql {
         $this->is_collapsible = false;
 
         $this->sortable(true, 'gradingduedate', SORT_ASC);
+        $this->no_sorting('grade');
+        $this->no_sorting('status');
 
         $this->column_style('course', 'text-align', 'left');
         $this->column_style('task', 'text-align', 'left');
@@ -153,18 +155,20 @@ class modspend_grade_table extends table_sql {
                     foreach ($students as $student) {
                         $submission = $DB->get_record('assign_submission',
                             array('assignment' => $cm->instance, 'userid' => $student->id), '*');
-                        if ($submission->status === 'submitted') {
-                            $grades = assign_get_user_grades($instance, $student->id);
-                            if (count($grades) === 0) {
-                                $pending_graded ++;
-                            } else {
-                                $grade = current($grades);
-                                $rawgradeint = intval($grade->rawgrade);
-                                if ($rawgradeint < 0 || is_null($grade->rawgrade)) {
+                        if (isset($submission->status)) {
+                            if ($submission->status === 'submitted') {
+                                $grades = assign_get_user_grades($instance, $student->id);
+                                if (count($grades) === 0) {
                                     $pending_graded ++;
+                                } else {
+                                    $grade = current($grades);
+                                    $rawgradeint = intval($grade->rawgrade);
+                                    if ($rawgradeint < 0 || is_null($grade->rawgrade)) {
+                                        $pending_graded ++;
+                                    }
                                 }
+                                $submitted ++;
                             }
-                            $submitted ++;
                         }
                     }
 
@@ -187,10 +191,33 @@ class modspend_grade_table extends table_sql {
             }
         }
 
-        usort($data, function($a, $b) {
-            return $a->gradingduedate > $b->gradingduedate ? 1 : -1;
-        });
+        $data = $this->data_sort_columns($data);
 
+        return $data;
+    }
+
+    /**
+     * Data Sort Columns.
+     *
+     * @param $data
+     * @return mixed
+     * @throws coding_exception
+     */
+    protected function data_sort_columns($data) {
+        $columns = array_reverse($this->get_sort_columns());
+        foreach ($columns as $k => $v) {
+            usort($data, function($a, $b) use ($k, $v){
+                if (isset($a->{$k})) {
+                    if ($v === 3) {
+                        return $a->{$k} < $b->{$k} ? 1 : -1;
+                    } else {
+                        return $a->{$k} < $b->{$k} ? -1 : 1;
+                    }
+                } else {
+                    return true;
+                }
+            });
+        }
         return $data;
     }
 
