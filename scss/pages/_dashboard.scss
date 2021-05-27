@@ -5,6 +5,19 @@ body[data-theme='cbe'][data-role='user'] {
       header#page-header {
         display: none;
       }
+      #page-content {
+        .block_myoverview {
+          .block-card {
+            [data-region="courses-view"] {
+              .dashboard-card-deck {
+                .dashboard-card {
+
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 

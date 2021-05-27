@@ -24,14 +24,17 @@ body[data-theme='cbe'][data-role='user'] {
                 margin-right: 24px;
                 margin-bottom: 24px;
                 margin-top: 15px;
-                @media (min-width: 1600px) {
-                  width: calc(33% - 1.8rem);
+                @media (min-width: 576px) {
+                  width: calc(100% - 0.6rem);
                 }
-                @media (max-width: 1600px) {
-                  width: calc(50% - 1.8rem);
+                @media (min-width: 858px) {
+                  width: calc(47% - 0.4rem);
                 }
-                @media (max-width: 768px) {
-                  width: calc(100% - 1.8rem);
+                @media (min-width: 1470px) {
+                  width: calc(48% - 0.5rem);
+                }
+                @media (min-width: 1700px) {
+                  width: calc(32% - 1rem);
                 }
                 .card-img.dashboard-card-img {
                   height: 150px;
@@ -44,6 +47,32 @@ body[data-theme='cbe'][data-role='user'] {
                 .categoryname {
                   font-family: $fontbold;
                   color: $grey-medium;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.drawer-open-left {
+    #region-main {
+      #block-region-content {
+        section.card {
+          .card-body {
+            .card-text {
+              div[data-region="myoverview"] {
+                .card.dashboard-card[data-region="course-content"] {
+                  @media (min-width: 858px) {
+                    width: calc(100% - 0.4rem);
+                  }
+                  @media (min-width: 1470px) {
+                    width: calc(47% - 0.5rem);
+                  }
+                  @media (min-width: 1900px) {
+                    width: calc(32% - 1rem);
+                  }
                 }
               }
             }

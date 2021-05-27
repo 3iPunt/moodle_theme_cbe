@@ -29,12 +29,12 @@
     }
 }}
 <header id="page-header" class="row {{ nav_context }}">
-    <div class="col-9 pt-3 pb-3">
+    <div class="col-md-12 col-lg-12 col-xl-9 pt-3 pb-3">
         <div class="card header-board" style='background-image: url("{{{ courseimage }}}");'>
             <div class="degraded">
                 <div class="title-box">
                     <h3 class="category">{{ categoryname }}</h3>
-                    <h2 class="coursename">{{ coursename }}</h2>
+                    <h2 class="coursename">{{#shortentext}} 100, {{ coursename }} {{/shortentext}}</h2>
                 </div>
                 <ul class="teachers-box">
                     {{# teachers }}

@@ -64,7 +64,7 @@
             {{{ output.full_header }}}
 
             <div id="page-content" class="row pb-3 d-print-block {{ nav_context }}">
-                <div id="region-main-box" class="col-9">
+                <div id="region-main-box" class="col-md-12 col-lg-12 col-xl-9 row">
 
                     {{#hasregionmainsettingsmenu}}
                     <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
@@ -73,12 +73,12 @@
                     {{/hasregionmainsettingsmenu}}
 
                     {{# is_course_blocks }}
-                    <section id="left-menu-course">
+                    <section id="left-menu-course" class="col-md-12 col-lg-12 col-xl-3 order-2 order-xl-1" >
                         {{{ course_left_menu }}}
                     </section>
                     {{/ is_course_blocks }}
 
-                    <section class="in_course {{# is_course_blocks }}col-9{{/is_course_blocks}}{{^ is_course_blocks }}col-12{{/is_course_blocks}}"
+                    <section class="in_course {{# is_course_blocks }}col-md-12 col-lg-12 col-xl-9 pl-xl-3 order-1 order-xl-2{{/is_course_blocks}}{{^ is_course_blocks }}col-md-12 col-lg-12 col-xl-12{{/is_course_blocks}}"
                             id="region-main"
                             {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}}
                             aria-label="{{#str}}content{{/str}}"

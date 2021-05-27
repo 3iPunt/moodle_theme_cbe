@@ -60,7 +60,8 @@ $templatecontext = [
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
-    'logo' => render_cbe::get_logo()
+    'logo' => render_cbe::get_logo(),
+    'policies_url' => get_config('theme_cbe', 'policies')
 ];
 
 $templatecontext['flatnavigation'] = navigation::get_flatnav();
