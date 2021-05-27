@@ -7,6 +7,7 @@ body[data-theme='cbe'][data-role="user"] {
       background-color: $primary-color;
       width: 54px;
       height: 54px;
+      min-width: 54px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -82,6 +83,12 @@ body[data-theme='cbe'][data-role="user"] {
     }
     .item-mod {
       display: flex;
+      @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
       .mod {
         width: 60px;
         height: 60px;
@@ -130,9 +137,19 @@ body[data-theme='cbe'][data-role="user"] {
       }
       .text {
         margin: 25px 130px 20px 0;
+        @media (max-width: 600px) {
+          margin: 0;
+          text-align: center;
+          padding: 0 20px 16px;
+        }
         .name {
           font-family: $fontbold;
           font-size: 18px;
+          @media (max-width: 600px) {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 12px;
+          }
           a {
             color: $black-ligth;
             &:hover {
@@ -173,13 +190,24 @@ body[data-theme='cbe'][data-role="user"] {
           font-size: 16px;
           font-weight: 600;
           color: $grey-medium;
-          >span {
+          @media (max-width: 600px) {
+            display: flex;
+            flex-direction: column;
+          }
+          >span.date {
             font-weight: 300;
+          }
+          >span.separ {
+            margin: 0 5px;
+            @media (max-width: 600px) {
+              display: none;
+            }
           }
         }
         .publication {
           margin-top: 20px;
           margin-bottom: 25px;
+          text-align: left;
         }
       }
       .action-mod {
@@ -192,6 +220,14 @@ body[data-theme='cbe'][data-role="user"] {
           position: relative;
           margin-right: 0;
           margin-left: 5px;
+          @media (max-width: 600px) {
+            top: 0;
+          }
+        }
+      }
+      button.edit-module.action {
+        @media (max-width: 600px) {
+          top: -10px
         }
       }
     }
@@ -215,6 +251,9 @@ body[data-theme='cbe'][data-role="user"] {
           list-style: none;
           display: none;
           margin: 15px 20px 5px 55px;
+          @media (max-width: 600px) {
+            margin-left: 10px;
+          }
           &.expand {
             display: block;
           }
@@ -252,6 +291,9 @@ body[data-theme='cbe'][data-role="user"] {
               padding: 10px 20px 0 10px;
               margin-right: 180px;
               position: relative;
+              @media (max-width: 600px) {
+                margin-right: 5px;
+              }
               .fullname {
                 font-weight: 600;
                 font-size: 15px;

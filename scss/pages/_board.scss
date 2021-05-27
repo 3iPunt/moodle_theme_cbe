@@ -30,6 +30,7 @@ body[data-theme='cbe'][data-role='user'] {
           display: flex;
           width: 100%;
           overflow-x: scroll;
+          justify-content: flex-end;
           .picture-teacher {
             height: 70px;
             width: 70px;
@@ -123,6 +124,7 @@ body[data-theme='cbe'][data-role='user'] {
       }
       .text-action {
         margin-left: 15px;
+        margin-right: 25px;
       }
     }
 
@@ -137,6 +139,9 @@ body[data-theme='cbe'][data-role='user'] {
           border-radius: 0;
           background-color: #E6E6E6;
           margin-right: 10px;
+          @media (max-width: 600px) {
+            margin-bottom: 10px;
+          }
         }
       }
       .comment {
@@ -154,6 +159,14 @@ body[data-theme='cbe'][data-role='user'] {
         align-items: center;
         justify-content: space-between;
         margin-top: 10px;
+
+        .action-publication {
+          @media (max-width: 600px) {
+            display: flex;
+            flex-direction: row;
+          }
+        }
+
         .select-module {
           select {
             padding: 5px 14px;
@@ -202,12 +215,5 @@ body[data-theme='cbe'][data-role='user'] {
   .add-module.action {
     margin-top: 0 ;
   }
-
-  /* RESPONSIVE */
-
-
-
-
-
 
 }

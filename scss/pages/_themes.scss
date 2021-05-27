@@ -61,6 +61,11 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
           top: 76px;
           right: 0;
           height: 10px;
+          z-index: 200;
+          @media (max-width: 1199px) {
+            top: 216px;
+          }
+
         }
       }
     }
@@ -96,9 +101,8 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
       margin: 0 0 12px;
       .contentafterlink {
         margin: 10px 15px 0;
-        padding: 30px;
+        padding: 15px;
         border: 1px solid #f3f3f3;
-        background-color: #f9f9f9;
       }
     }
     .single-section {
