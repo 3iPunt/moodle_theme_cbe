@@ -12,7 +12,9 @@ body[data-theme='cbe'][data-role='user'] {
     .context-header-settings-menu {
       .dropdown, .dropleft {
         top: -43px;
-        a#action-menu-toggle-2 {
+        a#action-menu-toggle-2,
+        a#action-menu-toggle-3,
+        a#action-menu-toggle-4 {
           color: #fff;
           background-color: $primary-color;
           padding: 10px 12px;

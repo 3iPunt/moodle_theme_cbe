@@ -37,31 +37,31 @@
         "sitename": "Moodle Site"
     }
 }}
-<nav data-theme="cbe" class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+<nav id="nav-desktop" data-theme="cbe" class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex" aria-label="{{#str}}sitemenubar, admin{{/str}}">
 
-        <div id="navbar-burger" data-region="drawer-toggle" class="d-inline-block mr-3">
-            <button aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}" aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left mr-1 btn-light bg-gray" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav">{{#pix}}i/menubars{{/pix}}<span class="sr-only">{{#str}}sidepanel, core{{/str}}</span></button>
+    <div id="navbar-burger" data-region="drawer-toggle" class="d-inline-block mr-3">
+        <button aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}" aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left mr-1 btn-light bg-gray" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav">{{#pix}}i/menubars{{/pix}}<span class="sr-only">{{#str}}sidepanel, core{{/str}}</span></button>
+    </div>
+
+    <a id="navbar-logo" href="{{{ config.wwwroot }}}" class="navbar-brand aabtn {{# output.should_display_navbar_logo }}has-logo{{/ output.should_display_navbar_logo }}
+        {{^ output.should_display_navbar_logo }}
+
+    {{/ output.should_display_navbar_logo }}
+        ">
+        <div id="login-logo">
+            {{{ logo }}}
         </div>
+    </a>
 
-        <a id="navbar-logo" href="{{{ config.wwwroot }}}" class="navbar-brand aabtn {{# output.should_display_navbar_logo }}has-logo{{/ output.should_display_navbar_logo }}
-            {{^ output.should_display_navbar_logo }}
-                d-none d-sm-inline
-            {{/ output.should_display_navbar_logo }}
-                ">
-            <div id="login-logo">
-                {{{ logo }}}
-            </div>
-        </a>
+    {{# in_course }}
+        {{{ navbar_header_course }}}
+    {{/ in_course }}
 
-        {{# in_course }}
-            {{{ navbar_header_course }}}
-        {{/ in_course }}
+    <div id="navbar-auto" class="ml-auto">
+        {{{ output.search_box }}}
+    </div>
 
-        <div id="navbar-auto" class="ml-auto">
-            {{{ output.search_box }}}
-        </div>
-
-        {{# can_create_courses }}
+    {{# can_create_courses }}
         <button id="navbar-createcourse"
                 type="button"
                 class="btn btn-primary createcourse"
@@ -71,30 +71,31 @@
                 title="Crear curso nuevo">
             <i class="fa fa-plus" aria-hidden="true"></i>
         </button>
-        {{/ can_create_courses }}
+    {{/ can_create_courses }}
 
-        <!-- HIDDEN ? -->
-        <ul id="navbar-lang" class="navbar-nav d-none d-md-flex menu-lang">
-            <!-- custom_menu -->
-            {{{ output.custom_menu }}}
-            <!-- page_heading_menu -->
-            {{{ output.page_heading_menu }}}
-        </ul>
+    <!-- HIDDEN ? -->
+    <ul id="navbar-lang" class="navbar-nav d-none d-md-flex menu-lang">
+        <!-- custom_menu -->
+        {{{ output.custom_menu }}}
+        <!-- page_heading_menu -->
+        {{{ output.page_heading_menu }}}
+    </ul>
 
-        <div id="navbar-menu-apps">
-            {{{ menu_apps_button }}}
-        </div>
+    <div id="navbar-menu-apps">
+        {{{ menu_apps_button }}}
+    </div>
 
-        <ul id="navbar-usernav" class="nav navbar-nav usernav">
-            <!-- navbar_plugin_output -->
-            <li class="nav-item">
-                {{{ output.navbar_plugin_output }}}
-            </li>
-            <!-- user_menu -->
-            <li class="nav-item align-items-center pl-2">
-                {{{ output.user_menu }}}
-            </li>
-        </ul>
+    <ul id="navbar-usernav" class="nav navbar-nav usernav">
+        <!-- navbar_plugin_output -->
+        <li class="nav-item">
+            {{{ output.navbar_plugin_output }}}
+        </li>
+        <!-- user_menu -->
+        <li class="nav-item align-items-center pl-2">
+            {{{ output.user_menu }}}
+        </li>
+    </ul>
+
 </nav>
 {{# can_create_courses }}
     {{> theme_cbe/modals/dashboard_createcourse }}

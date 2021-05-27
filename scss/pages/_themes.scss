@@ -63,13 +63,15 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
           height: 10px;
           z-index: 200;
           @media (max-width: 1199px) {
-            top: 216px;
+            top: 274px;
           }
 
         }
       }
     }
-    a#action-menu-toggle-2 {
+    a#action-menu-toggle-2,
+    a#action-menu-toggle-3,
+    a#action-menu-toggle-4 {
       color: white;
       background-color: $primary-color;
       padding: 10px 12px;

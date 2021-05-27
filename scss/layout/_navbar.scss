@@ -10,7 +10,7 @@ body[data-theme='cbe'] {
     max-height: $nav-height;
     border-bottom: 1px solid $black-ligth;
     #login-logo {
-      display: flex;
+      display: flex !important;
       justify-content: center;
       align-items: center;
       height: $nav-height;
@@ -27,9 +27,7 @@ body[data-theme='cbe'] {
         }
         @media (max-width: 940px) {
           height: 35px;
-        }
-        @media (max-width: 700px) {
-          height: 30px;
+          margin-right: 0;
         }
       }
     }
@@ -92,6 +90,11 @@ body[data-theme='cbe'] {
             @media (max-width: 940px) {
               margin-right: 0;
             }
+            @media (max-width: 450px) {
+              font-size: 24px;
+              height: 18px;
+              width: 18px;
+            }
           }
           .usermenu {
             .userbutton {
@@ -104,6 +107,10 @@ body[data-theme='cbe'] {
                 border: 2px solid $grey-light;
                 @media (max-width: 940px) {
                   margin: 0;
+                }
+                @media (max-width: 450px) {
+                  height: 40px;
+                  width: 40px;
                 }
               }
             }
@@ -118,13 +125,13 @@ body[data-theme='cbe'] {
           [data-region="popover-region-messages"]
           {
             @media (max-width: 730px) {
-              display: none;
+              /*display: none;*/
             }
             @media (max-width: 575px) {
-              display: inline;
+              /*display: inline;*/
             }
             @media (max-width: 200px) {
-              display: none;
+              /*display: none;*/
             }
           }
         }
@@ -186,6 +193,11 @@ body[data-theme='cbe'] {
     border-radius: 20px;
     padding: 4px 8px 3px 9px;
     margin-right: 20px;
+    @media (max-width: 500px) {
+      position: absolute;
+      right: -11px;
+      top: 81px;
+    }
     &:hover {
       background-color: $grey-medium2;
     }
@@ -201,8 +213,16 @@ body[data-theme='cbe'] {
 
   &[data-role='user'] {
     nav.navbar {
+      @media (max-width: 450px) {
+        padding: 5px;
+      }
       .aabtn {
         z-index: 1050;
+      }
+      #navbar-burger {
+        @media (max-width: 450px) {
+          margin-right: 5px !important;
+        }
       }
       #navbar-menu-apps {
         position: relative;
@@ -314,16 +334,6 @@ body[data-theme='cbe'] {
         display: flex;
         align-items: center;
         justify-content: center;
-        @media (max-width: 940px) {
-          left: 0;
-        }
-        @media (max-width: 701px) {
-          left: 20px;
-        }
-        @media (max-width: 575px) {
-          left: 70px;
-          justify-content: flex-start;
-        }
         ul.course-menu {
           display: flex;
           list-style: none;
@@ -336,9 +346,6 @@ body[data-theme='cbe'] {
             font-size: 18px;
             position: relative;
             padding: 0 20px;
-            @media (max-width: 940px) {
-              padding: 0 10px;
-            }
             &.active {
               font-family: $fontbold;
               &::after {
@@ -355,34 +362,8 @@ body[data-theme='cbe'] {
             a.link {
               text-decoration: none;
               color: inherit;
-              @media (max-width: 1200px) {
-                font-size: 14px;
-              }
-              @media (max-width: 980px) {
-                font-size: 12px;
-              }
               &:hover {
                 color: $grey-medium;
-              }
-            }
-            &.tasks {
-              @media (max-width: 700px) {
-                display: none;
-              }
-            }
-            &.moreinfo {
-              @media (max-width: 620px) {
-                display: none;
-              }
-            }
-            &.board {
-              @media (max-width: 470px) {
-                display: none;
-              }
-            }
-            &.themes {
-              @media (max-width: 470px) {
-                display: none;
               }
             }
           }
@@ -399,5 +380,56 @@ body[data-theme='cbe'] {
       }
     }
   }
+
+  /* RESPONSIVE */
+  &[data-role='user'].path-theme,
+  &[data-role='user'].path-mod,
+  &[data-role='user'].path-course {
+
+    @media (max-width: 760px) {
+      #page-wrapper #page {
+        margin-top: 125px !important;
+      }
+    }
+
+
+    nav.navbar {
+      @media (max-width: 1200px) {
+        #navbar-header-course.desktop {
+          display: flex;
+          li.course-menu-item {
+            font-size: 14px !important;
+            padding: 0 10px !important;
+          }
+        }
+        #navbar-header-course.mobile {
+          display: none;
+        }
+      }
+      @media (max-width: 760px) {
+        #navbar-header-course.desktop {
+          display: none;
+        }
+        #navbar-header-course.mobile {
+          display: flex;
+          background-color: white;
+          top: 75px;
+          height: 50px;
+          border-bottom: 1px solid $black-ligth;
+          ul.course-menu {
+            height: 50px;
+          }
+          li.course-menu-item {
+            font-size: 14px !important;
+            padding: 0 10px !important;
+            &.active::after {
+              bottom: -21px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
 
 }
