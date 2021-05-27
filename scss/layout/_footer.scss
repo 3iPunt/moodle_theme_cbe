@@ -16,8 +16,24 @@ body[data-theme='cbe'] {
         align-items: center;
         justify-content: center;
         color: $black-ligth;
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
+        #theme_switch_link {
+          display: none;
+        }
         .more {
           margin-left: 6px;
+          position: relative;
+          top: 1px;
+        }
+        span.pipe {
+          margin: 0 8px 0 3px;
+          position: relative;
+          top: -1px;
+          @media (max-width: 768px) {
+            display: none;
+          }
         }
         a {
           color: $black-ligth;

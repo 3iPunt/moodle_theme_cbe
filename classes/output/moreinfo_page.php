@@ -77,7 +77,8 @@ class moreinfo_page implements renderable, templatable {
         $context = context_course::instance($this->course_id, IGNORE_MISSING);
 
         $data = new stdClass();
-        $data->summary = file_rewrite_pluginfile_urls($section->summary, 'pluginfile.php', $context->id, 'course', 'section', $section->id);
+        $data->summary = file_rewrite_pluginfile_urls(
+            $section->summary, 'pluginfile.php', $context->id, 'course', 'section', $section->id);
         $mods = $course_user->get_modules($section);
         // Filter NOT Publication.
         $mods = array_filter($mods, function(stdClass $mod) {

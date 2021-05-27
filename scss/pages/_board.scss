@@ -28,6 +28,8 @@ body[data-theme='cbe'][data-role='user'] {
           right: 0;
           list-style: none;
           display: flex;
+          width: 100%;
+          overflow-x: scroll;
           .picture-teacher {
             height: 70px;
             width: 70px;
@@ -200,6 +202,12 @@ body[data-theme='cbe'][data-role='user'] {
   .add-module.action {
     margin-top: 0 ;
   }
+
+  /* RESPONSIVE */
+
+
+
+
 
 
 }

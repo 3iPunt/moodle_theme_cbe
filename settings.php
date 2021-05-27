@@ -85,7 +85,7 @@ if ($ADMIN->fulltree) {
     $page->add($setting);
     $settings->add($page);
 
-    // Advanced settings.
+    // Colours settings.
     $page = new admin_settingpage('theme_cbe_colours', get_string('colourssettings', 'theme_cbe'));
 
     $name = 'theme_cbe/brandcolor';
@@ -116,6 +116,16 @@ if ($ADMIN->fulltree) {
         false
     ));
     $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+    $settings->add($page);
+
+    // Footer settings.
+    $page = new admin_settingpage('theme_cbe_footer', get_string('footersettings', 'theme_cbe'));
+
+    $setting = (new admin_setting_configtext(
+        'theme_cbe/policies', get_string('policies_url', 'theme_cbe'),  '',
+        false
+    ));
     $page->add($setting);
     $settings->add($page);
 

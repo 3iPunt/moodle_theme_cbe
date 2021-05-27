@@ -155,3 +155,6 @@ $string['uniquenamecourse_setting'] = 'Utilitzar Nom únic';
 $string['uniquenamecourse_setting_desc'] = 'En els formularis de creació i duplicat de curs, només es farà servir el nom curt (el nom llarg serà el mateix)';
 $string['copy'] = 'Còpia';
 $string['bbb_main'] = 'Classe virtual principal';
+$string['policies_url'] = 'URL Polítiques de privacitat';
+$string['policies'] = 'Polítiques de privacitat';
+$string['footersettings'] = 'Configuració de Footer';
