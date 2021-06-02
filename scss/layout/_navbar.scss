@@ -26,7 +26,7 @@ body[data-theme='cbe'] {
           height: 45px;
         }
         @media (max-width: 940px) {
-          height: 35px;
+          height: 32px;
           margin-right: 0;
         }
       }
@@ -89,11 +89,9 @@ body[data-theme='cbe'] {
             margin-right: 12px;
             @media (max-width: 940px) {
               margin-right: 0;
-            }
-            @media (max-width: 450px) {
-              font-size: 24px;
-              height: 18px;
-              width: 18px;
+              font-size: 23px;
+              height: 16px;
+              width: 16px;
             }
           }
           .usermenu {
@@ -120,18 +118,12 @@ body[data-theme='cbe'] {
                 content: inherit;
               }
             }
-          }
-          #nav-notification-popover-container,
-          [data-region="popover-region-messages"]
-          {
-            @media (max-width: 730px) {
-              /*display: none;*/
-            }
-            @media (max-width: 575px) {
-              /*display: inline;*/
-            }
-            @media (max-width: 200px) {
-              /*display: none;*/
+            @media (max-width: 940px) {
+              .menubar .dropdown-item i.icon::before {
+                position: relative;
+                top: -6px;
+                left: -13px;
+              }
             }
           }
         }
@@ -215,14 +207,15 @@ body[data-theme='cbe'] {
     nav.navbar {
       @media (max-width: 450px) {
         padding: 5px;
+        a#navbar-logo {
+          margin-right: 6px;
+        }
+        #navbar-burger {
+          margin-right: 5px !important;
+        }
       }
       .aabtn {
         z-index: 1050;
-      }
-      #navbar-burger {
-        @media (max-width: 450px) {
-          margin-right: 5px !important;
-        }
       }
       #navbar-menu-apps {
         position: relative;
@@ -231,7 +224,7 @@ body[data-theme='cbe'] {
         #menu-apps-btn {
           margin-right: 20px;
           cursor: pointer;
-          @media (max-width: 940px) {
+          @media (max-width: 450px) {
             margin-right: 0;
           }
           #dropdownMenuButton {
@@ -383,12 +376,17 @@ body[data-theme='cbe'] {
 
   /* RESPONSIVE */
   &[data-role='user'].path-theme,
-  &[data-role='user'].path-mod,
-  &[data-role='user'].path-course {
+  &[data-role='user'].path-mod ,
+  &[data-role='user']#page-course-view-topics {
 
     @media (max-width: 760px) {
       #page-wrapper #page {
         margin-top: 125px !important;
+      }
+      &#page-theme-cbe-view_modspend {
+        #page {
+          margin-top: 74px !important;
+        }
       }
     }
 
@@ -402,28 +400,63 @@ body[data-theme='cbe'] {
             padding: 0 10px !important;
           }
         }
-        #navbar-header-course.mobile {
-          display: none;
-        }
       }
       @media (max-width: 760px) {
         #navbar-header-course.desktop {
           display: none;
         }
-        #navbar-header-course.mobile {
+      }
+    }
+
+    nav#nav-mobile {
+      display: none;
+
+      @media (max-width: 760px) {
+        display: flex;
+        div#navbar-header-course {
+          position: absolute;
+          width: 100%;
+          left: 0;
+          align-items: center;
+          justify-content: center;
           display: flex;
-          background-color: white;
-          top: 75px;
+          background-color: #fff;
+          top: 74px;
           height: 50px;
           border-bottom: 1px solid $black-ligth;
           ul.course-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            overflow: hidden;
             height: 50px;
-          }
-          li.course-menu-item {
-            font-size: 14px !important;
-            padding: 0 10px !important;
-            &.active::after {
-              bottom: -21px !important;
+            padding: 0 !important;
+            li.course-menu-item {
+              margin: 0 0;
+              position: relative;
+              font-size: 14px !important;
+              padding: 0 10px !important;
+              &.active {
+                font-family: $fontbold;
+                &::after {
+                  content: " ";
+                  background-color: $primary-color;
+                  width: 100%;
+                  height: 12px;
+                  left: 0;
+                  position: absolute;
+                  border-radius: 4px;
+                  bottom: -21px !important;
+                }
+              }
+              a.link {
+                text-decoration: none;
+                color: inherit;
+                &:hover {
+                  color: $grey-medium;
+                }
+              }
             }
           }
         }

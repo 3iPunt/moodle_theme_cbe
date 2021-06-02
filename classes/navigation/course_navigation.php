@@ -188,6 +188,8 @@ class course_navigation extends navigation {
         if ($this->get_page() !== 'index') {
             $nav_header_course_component = new course_header_navbar_component($course_id);
             $nav_header_course = $output_theme_cbe->render($nav_header_course_component);
+        } else {
+            $nav_header_course = null;
         }
 
         $cbe_page = course_navigation::get_page();

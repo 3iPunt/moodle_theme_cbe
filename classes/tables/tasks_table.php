@@ -286,19 +286,25 @@ class tasks_table extends table_sql {
 
             $state = '-';
 
-            if ($submission->status === 'submitted') {
+            if (isset($submission->status)) {
+                $status = $submission->status;
+            } else {
+                $status = '';
+            }
+
+            if ($status === 'submitted') {
                 $state = get_string('submissionstatus_submitted', 'assign') .
                 '<i class="fa fa-archive submitted" aria-hidden="true"></i>';
             }
 
-            if (time() > $row->duedate && $submission->status !== 'submitted') {
+            if (time() > $row->duedate && $status !== 'submitted') {
                 $state = get_string('task_submit_duedate_out', 'theme_cbe') .
                     '<i class="fa fa-calendar-times-o out" aria-hidden="true"></i>';;
-            } else if (time() < $row->duedate && $submission->status !== 'submitted') {
-                if ($submission->status === 'draft') {
+            } else if (time() < $row->duedate && $status !== 'submitted') {
+                if ($status === 'draft') {
                     $state = get_string('submissionstatus_draft', 'assign') .
                         '<i class="fa fa-eraser draft" aria-hidden="true"></i>';
-                } else if ($submission->status === 'reopened') {
+                } else if ($status === 'reopened') {
                     $state = get_string('submissionstatus_reopened', 'theme_cbe') .
                         '<i class="fa fa-folder-open reopened" aria-hidden="true"></i>';;
                 }   else {

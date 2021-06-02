@@ -12,11 +12,19 @@ body[data-theme='cbe'][data-role='user'] {
         }
         h1, h2 {
           color: white;
+          @media (max-width: 500px) {
+            font-size: 24px;
+            margin-right: 35px;
+          }
         }
         .subtitle {
           font-size: 23px;
           color: white !important;
           margin-bottom: 4px;
+          @media (max-width: 500px) {
+            margin-right: 35px;
+            font-size: 18px;
+          }
         }
       }
     }
