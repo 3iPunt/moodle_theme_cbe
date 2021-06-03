@@ -50,7 +50,7 @@ define([
                 $div.append($row);
                 console.log(this);
             });
-            this.action.before($div);
+            this.container.prepend($div);
         }
 
         /** @type {jQuery} The jQuery node for the region. */
