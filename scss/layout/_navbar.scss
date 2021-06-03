@@ -414,7 +414,7 @@ body[data-theme='cbe'] {
       @media (max-width: 760px) {
         display: flex;
         div#navbar-header-course {
-          position: absolute;
+          position: fixed;
           width: 100%;
           left: 0;
           align-items: center;
@@ -424,6 +424,8 @@ body[data-theme='cbe'] {
           top: 74px;
           height: 50px;
           border-bottom: 1px solid $black-ligth;
+          z-index: 100;
+          box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
           ul.course-menu {
             display: flex;
             list-style: none;
