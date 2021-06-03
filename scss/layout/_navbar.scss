@@ -376,14 +376,24 @@ body[data-theme='cbe'] {
 
   /* RESPONSIVE */
   &[data-role='user'].path-theme,
-  &[data-role='user'].path-mod ,
+  &[data-role='user'].path-mod,
+  &[data-role='user'].path-grade,
+  &[data-role='user']#page-admin-roles-permissions,
+  &[data-role='user']#page-admin-roles-check,
+  &[data-role='user']#page-admin-roles-assign,
+  &[data-role='user']#page-filter-manage,
+  &[data-role='user']#page-report-competency-index,
+  &[data-role='user']#page-report-log-index,
+  &[data-role='user']#page-backup-backup,
+  &[data-role='user']#page-backup-restorefile,
   &[data-role='user']#page-course-view-topics {
 
     @media (max-width: 760px) {
       #page-wrapper #page {
         margin-top: 125px !important;
       }
-      &#page-theme-cbe-view_modspend {
+      &#page-theme-cbe-view_modspend,
+      &#page-grade-report-overview-index {
         #page {
           margin-top: 74px !important;
         }
