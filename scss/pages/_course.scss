@@ -23,6 +23,14 @@ body[data-theme='cbe'][data-role='user'] {
             h3.title {
               font-size: 20px;
               font-weight: 600;
+              .expand-menu, .contract-menu {
+                display: none;
+              }
+            }
+            #course_left_section_menu {
+              h3.title {
+                display: none;
+              }
             }
             .menu-left {
               list-style: none;
@@ -176,6 +184,30 @@ body[data-theme='cbe'][data-role='user'] {
                 padding: 10px 0;
                 &:hover {
                   color: white;
+                }
+              }
+            }
+            @media (max-width: 1200px) {
+              #course_left_section_pending_tasks,
+              #course_left_section_themes_navigation,
+              #course_left_section_menu {
+                .title {
+                  display: block !important;
+                  margin-bottom: 0;
+                  .expand-menu, .contract-menu {
+                    margin-left: 20px;
+                    &:hover {
+                      color: $primary-color;
+                      cursor: pointer;
+                    }
+                  }
+                }
+                .expand-menu {
+                  display: inline;
+                }
+                [data-region="expand"] {
+                  margin-top: 30px;
+                  display: none;
                 }
               }
             }

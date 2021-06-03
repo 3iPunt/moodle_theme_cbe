@@ -34,54 +34,50 @@ define([
          *
          */
         let ACTION = {
-            DELETE_BUTTON: '[data-action="delete"]'
+            EXPAND_BUTTON: '[data-action="expand"]',
+            CONTRACT_BUTTON: '[data-action="contract"]',
         };
 
         /**
          *
          */
-        let SERVICES = {
-            PUBLICATION_DELETE: 'theme_cbe_publication_delete'
+        let REGIONS = {
+            EXPAND_CONTENT: '[data-region="expand"]'
         };
 
         /**
-         * @constructor
          * @param {String} region
-         * @param {Number} cmid
+         * @constructor
          */
-        function CommentDelete(region, cmid) {
-            this.cmid = cmid;
-            this.node = $(region + '[data-cmid="' + cmid +'"]');
-            this.node.find(ACTION.DELETE_BUTTON).on('click', this.onDeleteButtonClick.bind(this));
+        function MenuExpand(region) {
+            this.node = $(region);
+            this.node.find(ACTION.EXPAND_BUTTON).on('click', this.onExpandButtonClick.bind(this));
+            this.node.find(ACTION.CONTRACT_BUTTON).on('click', this.onContractButtonClick.bind(this));
         }
 
-        CommentDelete.prototype.onDeleteButtonClick = function (e) {
+        MenuExpand.prototype.onExpandButtonClick = function (e) {
+            this.node.find(ACTION.CONTRACT_BUTTON).show();
+            $(e.currentTarget).hide();
+            this.node.find(REGIONS.EXPAND_CONTENT).show();
+        };
 
-            $(ACTION.DELETE_BUTTON).prop( "disabled", true );
-
-            const request = {
-                methodname: SERVICES.PUBLICATION_DELETE,
-                args: {
-                    cmid: this.cmid
-                }
-            };
-            Ajax.call([request])[0].done(function(response) {
-                location.reload();
-            }).fail(Notification.exception);
+        MenuExpand.prototype.onContractButtonClick = function (e) {
+            this.node.find(ACTION.EXPAND_BUTTON).show();
+            $(e.currentTarget).hide();
+            this.node.find(REGIONS.EXPAND_CONTENT).hide();
         };
 
         /** @type {jQuery} The jQuery node for the region. */
-        CommentDelete.prototype.node = null;
+        MenuExpand.prototype.node = null;
 
         return {
             /**
-             * @param {String} region
-             * @param {Number} cmid
              *
-             * @return {CommentDelete}
+             * @param {String} region
+             * @return {MenuExpand}
              */
-            initCommentDelete: function (region, cmid) {
-                return new CommentDelete(region, cmid);
+            initMenuExpand: function (region) {
+                return new MenuExpand(region);
             }
         };
     }

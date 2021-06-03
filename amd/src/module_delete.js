@@ -65,7 +65,6 @@ define([
                     cmid: this.cmid
                 }
             };
-            console.log(request);
             Ajax.call([request])[0].done(function(response) {
                 if (response.success) {
                     location.reload();

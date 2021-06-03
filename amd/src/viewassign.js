@@ -48,7 +48,6 @@ define([
                 let value_html = '<p class="value">' + $value.html() + '</p>';
                 $row.html(header_html + value_html);
                 $div.append($row);
-                console.log(this);
             });
             this.container.prepend($div);
         }

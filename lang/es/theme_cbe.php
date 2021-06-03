@@ -158,3 +158,4 @@ $string['bbb_main'] = 'Clase virtual principal';
 $string['policies_url'] = 'URL Políticas de privacidad';
 $string['policies'] = 'Políticas de privacidad';
 $string['footersettings'] = 'Configuración Footer';
+$string['left_section_menu'] = 'Menú de acceso rápido';

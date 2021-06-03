@@ -158,3 +158,4 @@ $string['bbb_main'] = 'Main virtual class';
 $string['policies_url'] = 'URL Privacy Policies';
 $string['policies'] = 'Privacy Policies';
 $string['footersettings'] = 'Footer Settings';
+$string['left_section_menu'] = 'Quick access menu';

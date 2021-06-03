@@ -86,7 +86,7 @@ class course_left_section_menu_component implements renderable, templatable {
             'settings' => $settings
         ];
         $data = new stdClass();
-        $data->title = null;
+        $data->title = get_string('left_section_menu', 'theme_cbe');
         $data->links = $links;
         $data->is_teacher = course_user::is_teacher($this->course_id);
         return $data;
