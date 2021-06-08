@@ -97,9 +97,11 @@
     </ul>
 
 </nav>
+{{# in_course }}
 <nav id="nav-mobile">
     {{{ navbar_header_course }}}
 </nav>
+{{/ in_course }}
 {{# can_create_courses }}
     {{> theme_cbe/modals/dashboard_createcourse }}
 {{/ can_create_courses }}

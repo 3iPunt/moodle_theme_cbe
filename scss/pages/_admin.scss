@@ -1,0 +1,12 @@
+body[data-theme='cbe'][data-role='user'] {
+
+  &#page-course-management {
+    div#course-category-listings {
+      @media (max-width: 960px) {
+        flex-direction: column;
+      }
+    }
+  }
+
+
+}

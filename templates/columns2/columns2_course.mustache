@@ -60,7 +60,7 @@
         {{> theme_cbe/navbar/navbar }}
         {{> theme_boost/nav-drawer }}
 
-        <div id="page" class="container-fluid d-print-block">
+        <div id="page" class="container-fluid d-print-block {{# in_course }}incourse{{/ in_course }}">
             {{{ output.full_header }}}
 
             <div id="page-content" class="row pb-3 d-print-block {{ nav_context }}">

@@ -42,6 +42,13 @@ body[data-theme='cbe'] {
     top: 5px;
   }
 
+  #recycle-bin-table img.icon {
+    background-color: $primary-color;
+    padding: 5px;
+    width: 15px;
+    height: 16px;
+  }
+
   .modchoosercontainer img.icon.icon {
     background-color: $primary-color;
     padding: 8px;
