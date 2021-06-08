@@ -38,6 +38,7 @@ $string['app_menu_maps'] = 'Mapes';
 $string['app_menu_videos'] = 'Videos';
 $string['app_menu_meets_bbb'] = 'Reunions BBB';
 $string['app_menu_jitsi'] = 'Reunions Jitsi';
+$string['app_menu_courses'] = 'Els meus cursos';
 $string['app_menu_cloud'] = 'Núvol NC + crear arxiu';
 $string['app_menu_chat'] = 'Xat';
 $string['app_menu_schedule'] = 'Calendari';
