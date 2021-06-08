@@ -184,7 +184,6 @@ class copycourse_form extends copy_form {
         $buttonarray = array();
         $buttonarray[] = $mform->createElement('submit', 'submitreturn', get_string('copyreturn', 'backup'));
         $buttonarray[] = $mform->createElement('submit', 'submitdisplay', get_string('copyview', 'backup'));
-        $buttonarray[] = $mform->createElement('cancel');
         $mform->addGroup($buttonarray, 'buttonar', '', ' ', false);
 
     }
