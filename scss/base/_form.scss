@@ -29,6 +29,7 @@ body[data-theme='cbe'][data-role='user'] {
     color: $grey-medium2;
     border-color:$grey-medium2;
     background-color: $grey-light;
+    white-space: normal;
     &:hover, &:active {
       color: white;
       background-color: $grey-medium2;

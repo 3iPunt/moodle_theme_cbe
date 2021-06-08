@@ -6,6 +6,7 @@
 @import "base/form";
 @import "base/icons";
 @import "base/navs";
+@import "base/responsive";
 
 @import "components/modal";
 @import "components/coursecard";
@@ -26,6 +27,7 @@
 @import "layout/editionmode";
 @import "layout/fullheader";
 
+@import "pages/admin";
 @import "pages/login";
 @import "pages/dashboard";
 @import "pages/course";

@@ -50,10 +50,8 @@ define([
 
         ViewMedia.prototype.onExpandButtonClick = function (e) {
             const cmid = $(e.currentTarget).data('cmid');
-            console.log(cmid);
             const media = this.node.find('.media-content[data-media="' + cmid + '"]');
             const button_contract = this.node.find('.contract-media[data-cmid="' + cmid + '"]');
-            console.log(button_contract);
             $(e.currentTarget).hide();
             $(button_contract).show();
             $(media).show();

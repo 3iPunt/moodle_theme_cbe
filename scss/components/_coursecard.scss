@@ -17,6 +17,9 @@ body[data-theme='cbe'][data-role="user"]  {
       overflow-x: scroll;
       scrollbar-color: $grey-border transparent;
       scrollbar-width: thin;
+      @media (max-width: 940px) {
+        top: 80px;
+      }
       .teacher {
         height: 50px;
         width: 50px;

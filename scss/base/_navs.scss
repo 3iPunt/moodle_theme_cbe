@@ -37,4 +37,23 @@ body[data-theme='cbe'][data-role='user'] {
       }
     }
   }
+
+  @media (max-width: 767.98px) {
+    .nav-tabs, .nav-pills {
+      background-color: transparent;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .nav-tabs .nav-link.active:not(:disabled):not(.disabled):active,
+    .nav-pills .nav-link.active:not(:disabled):not(.disabled):active,
+    .nav-tabs .nav-link.active:not(:disabled):not(.disabled).active,
+    .nav-pills .nav-link.active:not(:disabled):not(.disabled).active,
+    .show>.nav-tabs .nav-link.active.dropdown-toggle,
+    .show>.nav-pills .nav-link.active.dropdown-toggle {
+      color: $secondary-color;
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+    }
+  }
 }

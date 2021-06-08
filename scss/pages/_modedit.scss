@@ -95,6 +95,9 @@ body[data-theme='cbe'][data-role='user']#page-mod-assign-grantextension {
               right: 0;
               font-size: 12px;
               color: grey;
+              @media (max-width: 600px) {
+                position: initial;
+              }
             }
           }
 

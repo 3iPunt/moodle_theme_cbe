@@ -16,11 +16,19 @@ body[data-theme='cbe'][data-role='user'] {
             font-size: 44px;
             font-weight: 600;
             letter-spacing: 1px;
+            @media (max-width: 500px) {
+              font-size: 24px;
+              margin-right: 35px;
+            }
           }
           .subtitle {
             font-size: 23px;
             color: $grey-medium;
             margin-bottom: 4px;
+            @media (max-width: 500px) {
+              margin-right: 35px;
+              font-size: 18px;
+            }
           }
         }
         .tool-tooltip {

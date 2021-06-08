@@ -16,6 +16,9 @@
   .resourcecontent {
     margin: 60px 60px 30px;
     border: 4px solid #929292;
+    @media (max-width: 900px) {
+      margin: 0;
+    }
     .mediaplugin {
       margin: 0;
       > video.video-js {
@@ -174,11 +177,17 @@
 #page-theme-cbe-view_moreinfo[data-theme='cbe'][data-role="user"]   {
   .resourcecontent {
     margin: 15px 200px 40px !important;
+    @media (max-width: 900px) {
+      margin: 15px 20px 40px!important;
+    }
   }
 }
 
 #page-course-view-topics[data-theme='cbe'][data-role="user"] .activity.tresipuntvideo {
   .resourcecontent {
     margin: 0 60px 22px !important;
+    @media (max-width: 900px) {
+      margin: 0 0 22px !important;
+    }
   }
 }

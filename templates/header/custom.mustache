@@ -29,13 +29,13 @@
     }
 }}
 <header id="page-header" class="row {{ nav_context }} custom">
-    <div class="col-9 pt-3 pb-3 is_custom">
+    <div class="ccol-md-12 col-lg-12 col-xl-9 pt-3 pb-3 is_custom">
         <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}} header" style='background-image: url("{{{ courseimage }}}");'>
             <div class="degraded">
                 <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
                     <div class="text">
                         <h2 class="subtitle">{{ categoryname }}</h2>
-                        <h1 class="title">{{ coursename }}</h1>
+                        <h1 class="title">{{#shortentext}} 100, {{ coursename }} {{/shortentext}}</h1>
                     </div>
                     {{# is_teacher }}
                         <div class="tool-tooltip edition" data-toggle="tooltip" data-placement="left" title="{{# str }} edit_course, theme_cbe {{/ str }}">

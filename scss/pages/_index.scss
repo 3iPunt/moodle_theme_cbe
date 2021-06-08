@@ -16,6 +16,11 @@ body[data-theme='cbe'][data-role='user'][data-context="index"] {
     display: inline-block;
   }
 
+  &#page-site-index #region-main div[role="main"] {
+    border: 1px solid #d9d9d9;
+    padding: 0 19px;
+  }
+
   #region-main {
     #frontpage-category-combo {
       >h2 {
