@@ -127,14 +127,18 @@ class module  {
                 break;
             case 'url':
                 $module = $this->set_url($module);
+                $module = $this->set_description($module);
                 break;
             case 'resource':
                 $module = $this->set_resource($module);
+                $module = $this->set_description($module);
                 break;
             case 'tresipuntvideo':
             case 'tresipuntaudio':
                 $module = $this->set_media($module);
                 break;
+            default:
+                $module = $this->set_description($module);
         }
         return $module;
     }
@@ -348,6 +352,24 @@ class module  {
         return $module;
     }
 
+    /**
+     * Set Description.
+     *
+     * @param $module
+     * @return mixed
+     * @throws dml_exception
+     */
+    protected function set_description($module) {
+        global $DB;
+        if ($this->cm->showdescription) {
+            $instance = $DB->get_record($this->cm->modname, ['id' => $this->cm->instance]);
+            if (isset($instance)) {
+                $module->is_description = true;
+                $module->description = $instance->intro;
+            }
+        }
+        return $module;
+    }
 
     /**
      * Get Media
@@ -463,4 +485,5 @@ class module  {
             'modtitle' => get_string('pluginname', 'mod_' . $modname)
         ];
     }
+
 }

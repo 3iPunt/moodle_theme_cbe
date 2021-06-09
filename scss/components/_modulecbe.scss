@@ -68,18 +68,29 @@ body[data-theme='cbe'][data-role="user"] {
     align-items: normal;
     margin-bottom: 15px;
     position: relative;
-    .is_hidden_msg {
-      color: #212529;
-      background-color: #5bc0de;
-      font-size: 10px;
+    .alert-msgs {
+      display: flex;
       position: absolute;
-      padding: 1px 4px;
       right: 4px;
-      top: 6px;
+      top: 4px;
+      .is_hidden_msg {
+        color: #212529;
+        background-color: #5bc0de;
+        font-size: 10px;
+        padding: 1px 4px;
+        margin-left: 4px;
+        &.board_anchor {
+          background-color: #c6a633;
+        }
+      }
     }
     &.is_hidden {
       opacity: 0.5;
       border: 2px dashed $grey-border;
+    }
+    &.is_anchor {
+      border: 2px solid $grey-border;
+      box-shadow: rgba(0, 0, 0, 0.12) 0 2px 4px 0 inset;
     }
     .item-mod {
       display: flex;
@@ -136,7 +147,7 @@ body[data-theme='cbe'][data-role="user"] {
         }
       }
       .text {
-        margin: 25px 130px 20px 0;
+        margin: 25px 175px 20px 0;
         @media (max-width: 600px) {
           margin: 0;
           text-align: center;
@@ -216,17 +227,31 @@ body[data-theme='cbe'][data-role="user"] {
         position: absolute;
         right: 0;
         margin-right: 20px;
+        @media (max-width: 600px) {
+          max-width: 74px;
+          flex-wrap: wrap;
+          height: 60px;
+          top: 17px;
+        }
         >.action {
           position: relative;
           margin-right: 0;
           margin-left: 5px;
+          width: 30px;
+          height: 30px;
+          font-size: 14px;
+          background-color: $grey-medium2;
+          margin-top: 35px;
+          &.is_anchor {
+            background-color: #c6a633;
+          }
           @media (max-width: 600px) {
-            top: -14px;
+            top: 5px;
             font-size: 16px;
             width: 30px;
             height: 30px;
-            right: -3px;
-            background-color: $grey-medium2;
+            right: -12px;
+            margin-top: 5px;
           }
         }
       }
@@ -404,6 +429,10 @@ body[data-theme='cbe'][data-role="user"] {
   .module_media {
     .media-content {
       display: none;
+      .description {
+        padding: 15px 30px 30px;
+        text-align: left;
+      }
     }
     .expand {
       width: 100%;

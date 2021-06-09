@@ -105,19 +105,6 @@ class renderer extends plugin_renderer_base {
     /**
      * Defer to template.
      *
-     * @param participants_page $page
-     *
-     * @return string html for the page
-     * @throws moodle_exception
-     */
-    public function render_participants_page(participants_page $page): string {
-        $data = $page->export_for_template($this);
-        return parent::render_from_template('theme_cbe/pages/participants_page', $data);
-    }
-
-    /**
-     * Defer to template.
-     *
      * @param tasks_page $page
      *
      * @return string html for the page

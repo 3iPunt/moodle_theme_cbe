@@ -24,6 +24,7 @@
 
 namespace theme_cbe\output;
 
+use coding_exception;
 use core_user;
 use theme_cbe\course;
 use theme_cbe\course_user;
@@ -51,6 +52,9 @@ class board_page implements renderable, templatable {
 
     /** @var int Pub ID in URL */
     protected $pub;
+
+    /** @var int Course Module ID Anchor */
+    protected $anchor = null;
 
     /**
      * charge_page constructor.
@@ -96,6 +100,9 @@ class board_page implements renderable, templatable {
             }
         }
 
+        // Logical in Board
+        $mods = $this->set_logical($mods);
+
         $data = new stdClass();
         $data->courseid = $this->course_id;
         $data->user = $user;
@@ -106,6 +113,78 @@ class board_page implements renderable, templatable {
         $data->students = $course_cbe->get_users_by_role('student');
         $data->groups = $course_cbe->get_groups();
         return $data;
+    }
+
+    /**
+     * Set Logical in Board.
+     *
+     * @param $mods
+     * @return mixed
+     * @throws coding_exception
+     */
+    protected function set_logical($mods): array {
+        $newmods = [];
+        $anchor = null;
+        foreach ($mods as $mod) {
+            if ($this->is_hidden($mod)) {
+                $mod->board_is_hidden = true;
+                if (course_user::is_teacher($this->course_id)) {
+                    $newmods[] = $mod;
+                }
+            } else {
+                if ($this->is_anchor($mod)) {
+                    $mod->board_is_anchor = true;
+                    $anchor = $mod;
+                } else {
+                    $newmods[] = $mod;
+                }
+            }
+        }
+        array_unshift($newmods, $anchor);
+        return $newmods;
+    }
+
+    /**
+     * Is Hidden?
+     *
+     * @param $mod
+     * @return false
+     */
+    protected function is_hidden($mod): bool {
+        $is_hidden = false;
+        return $is_hidden;
+    }
+
+    /**
+     * Is Anchor?
+     *
+     * @param $mod
+     * @return false
+     */
+    protected function is_anchor($mod): bool {
+        return ($mod->id === $this->get_anchor());
+    }
+
+    /**
+     * Get Anchor.
+     *
+     * @return int|null
+     */
+    protected function get_anchor(): ?int {
+        if (is_null($this->anchor)) {
+            $this->set_anchor();
+            return $this->anchor;
+        } else {
+            return $this->anchor;
+        }
+    }
+
+    /**
+     * Set Anchor.
+     */
+    protected function set_anchor() {
+        // TODO: Crear lógica.
+        $this->anchor = 776;
     }
 
 }

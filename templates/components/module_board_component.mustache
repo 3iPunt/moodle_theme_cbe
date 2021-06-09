@@ -1,7 +1,17 @@
 <div class="item-mod">
-    {{# is_hidden }}
-        <span class="is_hidden_msg">{{# str }} hiddenfromstudents {{/ str }}</span>
-    {{/ is_hidden }}
+    <div class="alert-msgs">
+        {{# is_teacher }}
+            {{# is_hidden }}
+                <span class="is_hidden_msg">{{# str }} hiddenfromstudents {{/ str }}</span>
+            {{/ is_hidden }}
+            {{# board_is_hidden }}
+                <span class="is_hidden_msg board_hidden">{{# str }} board_hidden, theme_cbe {{/ str }}</span>
+            {{/ board_is_hidden }}
+            {{# board_is_anchor }}
+                <span class="is_hidden_msg board_anchor">{{# str }} board_anchor, theme_cbe {{/ str }}</span>
+            {{/ board_is_anchor }}
+        {{/ is_teacher }}
+    </div>
     <div class="mod" data-toggle="tooltip" data-placement="top" title="{{ modfullname }}">
         <a class="icon" href="{{ view_href }}" {{# view_blank }}target="_blank"{{/ view_blank }}>
             <img src="{{{ icon }}}" alt="">
@@ -17,32 +27,50 @@
     </div>
     <div class="action-mod">
         {{# is_teacher }}
+            {{# board_is_hidden }}
+            <button class="show-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} showin_board, theme_cbe {{/ str }}">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+            </button>
+            {{/ board_is_hidden }}
+            {{^ board_is_hidden }}
+            <button class="hide-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} hiddein_board, theme_cbe {{/ str }}">
+                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+            </button>
+            {{/ board_is_hidden }}
+            {{# board_is_anchor }}
+            <button class="anchor-module action is_anchor" data-toggle="tooltip" data-placement="bottom" title="{{# str }} unanchorin_board, theme_cbe {{/ str }}">
+                <i class="fa fa-anchor" aria-hidden="true"></i>
+            </button>
+            {{/ board_is_anchor }}
+            {{^ board_is_anchor }}
+            <button class="anchor-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} anchorin_board, theme_cbe {{/ str }}">
+                <i class="fa fa-anchor" aria-hidden="true"></i>
+            </button>
+            {{/ board_is_anchor }}
             <button data-toggle="modal" data-target=".deletemod-modal-lg-{{ id }}" class="delete-module action">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
-            <a href="{{ edit_href }}" class="edit-module action"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="{{ edit_href }}" class="edit-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} edititem_board, theme_cbe {{/ str }}">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
         {{/ is_teacher }}
         {{^ is_teacher }}
+            {{# board_is_anchor }}
+                <span class="anchor-module action is_anchor student"  data-toggle="tooltip" data-placement="bottom" title="{{# str }} board_anchor, theme_cbe {{/ str }}">
+                    <i class="fa fa-anchor" aria-hidden="true"></i>
+                </span>
+            {{/ board_is_anchor }}
             <a href="{{ view_href }}" class="view-module action"><i class="fa fa-eye" aria-hidden="true"></i></a>
         {{/ is_teacher }}
     </div>
 </div>
 <div class="module_media" data-region="media">
     {{# is_media }}
-        <div class="media-block">
-            <div class="expand">
-                <button class="expand-media action-media" data-cmid="{{ id }}" data-action="expand">
-                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                </button>
-                <button class="contract-media action-media" data-cmid="{{ id }}" data-action="contract">
-                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="media-content" data-media="{{ id }}">
-                <h3>{{{ media }}}</h3>
-            </div>
-        </div>
+        {{> theme_cbe/components/module_media_component }}
     {{/ is_media }}
+    {{# is_description }}
+        {{> theme_cbe/components/module_description_component }}
+    {{/ is_description }}
 </div>
 {{# is_teacher }}
         <div data-region="modal-mod-delete" data-cmid="{{ id }}" class="modal fade deletemodule-modal deletemod-modal-lg-{{ id }}" tabindex="-1" role="dialog" aria-labelledby="deletemod-modal-lg-{{ id }}" aria-hidden="true">
