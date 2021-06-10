@@ -71,13 +71,14 @@ class course_user  {
     /**
      * Get Modules.
      *
+     * @param bool $board
      * @param section_info|null $section
      * @return array
-     * @throws dml_exception
      * @throws coding_exception
+     * @throws dml_exception
      * @throws moodle_exception
      */
-    public function get_modules(section_info $section = null): array {
+    public function get_modules(bool $board = false, section_info $section = null): array {
         $modinfo = get_fast_modinfo($this->course_id);
         $cms = $modinfo->get_cms();
 
@@ -93,7 +94,7 @@ class course_user  {
             if ($cm->uservisible && in_array($cm->modname, module::get_list_modname())) {
                 if (is_null($section) || $section->section == $cm->sectionnum) {
                     $module = new module($cm->id);
-                    $modules[] = $module->export();
+                    $modules[] = $module->export($board);
                 }
             }
         }

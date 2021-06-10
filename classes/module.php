@@ -98,12 +98,13 @@ class module  {
     /**
      * Export module for render.
      *
+     * @param bool $board Is Board logical?
      * @return stdClass
-     * @throws dml_exception
      * @throws coding_exception
+     * @throws dml_exception
      * @throws moodle_exception
      */
-    public function export(): stdClass {
+    public function export(bool $board = false): stdClass {
         $module = new stdClass();
         $module->id = $this->cm_id;
         $module->modname = $this->get_modname();
@@ -121,24 +122,26 @@ class module  {
         $module->is_media = false;
         $module->is_mine = false;
         $module->sectionname = get_section_name($this->coursemoodle->id, $this->cm->sectionnum);
-        switch ($this->cm->modname) {
-            case publication::MODULE_PUBLICATION:
-                $module = $this->set_publication($module);
-                break;
-            case 'url':
-                $module = $this->set_url($module);
-                $module = $this->set_description($module);
-                break;
-            case 'resource':
-                $module = $this->set_resource($module);
-                $module = $this->set_description($module);
-                break;
-            case 'tresipuntvideo':
-            case 'tresipuntaudio':
-                $module = $this->set_media($module);
-                break;
-            default:
-                $module = $this->set_description($module);
+        if ($board) {
+            switch ($this->cm->modname) {
+                case publication::MODULE_PUBLICATION:
+                    $module = $this->set_publication($module);
+                    break;
+                case 'url':
+                    $module = $this->set_url($module);
+                    $module = $this->set_description($module);
+                    break;
+                case 'resource':
+                    $module = $this->set_resource($module);
+                    $module = $this->set_description($module);
+                    break;
+                case 'tresipuntvideo':
+                case 'tresipuntaudio':
+                    $module = $this->set_media($module);
+                    break;
+                default:
+                    $module = $this->set_description($module);
+            }
         }
         return $module;
     }

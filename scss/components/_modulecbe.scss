@@ -88,6 +88,10 @@ body[data-theme='cbe'][data-role="user"] {
       opacity: 0.5;
       border: 2px dashed $grey-border;
     }
+    &.is_board_hidden {
+      opacity: 0.5;
+      border: 2px dotted $grey-border;
+    }
     &.is_anchor {
       border: 2px solid $grey-border;
       box-shadow: rgba(0, 0, 0, 0.12) 0 2px 4px 0 inset;

@@ -26,14 +26,17 @@ namespace theme_cbe\output;
 
 use coding_exception;
 use core_user;
+use dml_exception;
 use theme_cbe\course;
 use theme_cbe\course_user;
+use theme_cbe\models\board;
 use theme_cbe\module;
 use moodle_exception;
 use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
+use theme_cbe\publication;
 use user_picture;
 
 defined('MOODLE_INTERNAL') || die;
@@ -56,14 +59,19 @@ class board_page implements renderable, templatable {
     /** @var int Course Module ID Anchor */
     protected $anchor = null;
 
+    /** @var board Board Model */
+    protected $board = null;
+
     /**
      * charge_page constructor.
      * @param int $course_id
      * @param int|null $pub
+     * @throws dml_exception
      */
     public function __construct(int $course_id, int $pub = null) {
         $this->course_id = $course_id;
         $this->pub = $pub;
+        $this->board = new board($this->course_id);
     }
 
     /**
@@ -90,7 +98,7 @@ class board_page implements renderable, templatable {
         $course_user = new course_user($this->course_id, $user->id);
         $course_cbe = new course($this->course_id);
 
-        $mods = $course_user->get_modules();
+        $mods = $course_user->get_modules(true);
 
         if (isset($this->pub)) {
             foreach ($mods as $mod) {
@@ -140,7 +148,9 @@ class board_page implements renderable, templatable {
                 }
             }
         }
-        array_unshift($newmods, $anchor);
+        if (!is_null($anchor)) {
+            array_unshift($newmods, $anchor);
+        }
         return $newmods;
     }
 
@@ -151,8 +161,15 @@ class board_page implements renderable, templatable {
      * @return false
      */
     protected function is_hidden($mod): bool {
-        $is_hidden = false;
-        return $is_hidden;
+        if ($mod->modname === publication::MODULE_PUBLICATION) {
+            return false;
+        } else {
+            if (!empty($this->board->get_order())) {
+                return !in_array($mod->id, $this->board->get_order());
+            } else {
+                return false;
+            }
+        }
     }
 
     /**
@@ -162,29 +179,7 @@ class board_page implements renderable, templatable {
      * @return false
      */
     protected function is_anchor($mod): bool {
-        return ($mod->id === $this->get_anchor());
-    }
-
-    /**
-     * Get Anchor.
-     *
-     * @return int|null
-     */
-    protected function get_anchor(): ?int {
-        if (is_null($this->anchor)) {
-            $this->set_anchor();
-            return $this->anchor;
-        } else {
-            return $this->anchor;
-        }
-    }
-
-    /**
-     * Set Anchor.
-     */
-    protected function set_anchor() {
-        // TODO: Crear lógica.
-        $this->anchor = 776;
+        return ($mod->id === $this->board->get_anchor());
     }
 
 }
