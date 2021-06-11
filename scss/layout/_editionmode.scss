@@ -83,6 +83,33 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics.editing {
       >ul.topics #section-0:only-child {
         display: none !important;
       }
+      li.section {
+        .content {
+          display: flex;
+          flex-direction: column;
+          >:nth-child(n) {
+            order: 2;
+          }
+          .mdl-right {
+            order: 1;
+            text-align: center;
+            .section-modchooser-link {
+              border-radius: 28px;
+              color: white;
+              background-color: $primary-color;
+              &:hover {
+                background-color: $primary-color-light;
+                text-decoration: none;
+              }
+              span.section-modchooser-text {
+                font-size: 13px;
+                position: relative;
+                top: -1px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 

@@ -169,3 +169,5 @@ $string['unanchorin_board'] = "Desanclar";
 $string['edititem_board'] = "Editar ítem";
 $string['board_hidden'] = "Ocultado en Tablón";
 $string['board_anchor'] = "Anclado en Tablón";
+$string['appsallexternals_setting'] = "APPs internas otra pestaña";
+$string['appsallexternals_setting_desc'] = "Si está activado, los enlaces de las APPs internas se abrirán en otra pestaña";

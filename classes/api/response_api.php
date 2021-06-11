@@ -158,7 +158,7 @@ class response_api {
      */
     protected function set_apps_internal() {
         if (isset($this->result['apps_internal'])) {
-            $apps = new apps($this->result['apps_internal'], false);
+            $apps = new apps($this->result['apps_internal'], get_config('theme_cbe', 'apssallexternals'));
             $this->apps_internal = $apps->apps;
         } else {
             throw new moodle_exception('No se han encontrado las apps internas');

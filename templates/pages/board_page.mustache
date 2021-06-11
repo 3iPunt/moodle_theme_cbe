@@ -57,7 +57,7 @@
                     </div>
                     <div class="action-publication">
                         <button id="publicate_cancel" class="btn cancel">{{# str }} cancel, theme_cbe {{/ str }}</button>
-                        <button id="publicate_confirm"  class="btn btn-primary publicate" data-action="publicate">
+                        <button id="publicate_confirm" class="btn btn-primary publicate" data-action="publicate" disabled>
                             {{# str }} share, theme_cbe {{/ str }}
                         </button>
                     </div>
@@ -67,7 +67,7 @@
     </div>
     {{/ is_teacher }}
     {{# modules }}
-        <div class="modulecbe {{ modname }} {{# is_hidden }}is_hidden{{/ is_hidden }} {{# board_is_anchor }}is_anchor{{/ board_is_anchor }} {{# board_is_hidden }}is_board_hidden{{/ board_is_hidden }}">
+        <div class="modulecbe {{ modname }} {{# is_hidden }}is_hidden{{/ is_hidden }} {{# board_is_anchor }}is_anchor{{/ board_is_anchor }} {{# board_is_hidden }}is_board_hidden{{/ board_is_hidden }}" data-cmid="{{ id }}">
         {{# is_publication }}
             {{> theme_cbe/components/publication_board_component }}
         {{/ is_publication }}

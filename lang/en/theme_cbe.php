@@ -169,3 +169,5 @@ $string['unanchorin_board'] = "Unpin";
 $string['edititem_board'] = "Edit item";
 $string['board_hidden'] = "Hidden in board";
 $string['board_anchor'] = "Anchored in board";
+$string['appsallexternals_setting'] = "Internal APPs another tab";
+$string['appsallexternals_setting_desc'] = "If activated, the internal APPs links will open in another tab";

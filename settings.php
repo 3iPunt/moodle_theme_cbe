@@ -66,7 +66,6 @@ if ($ADMIN->fulltree) {
     // Funcionality settings.
     $page = new admin_settingpage('theme_cbe_funcionalities', get_string('funcionalitiesssettings', 'theme_cbe'));
 
-
     $setting = (new admin_setting_configcheckbox(
         'theme_cbe/vclasses_direct',
         get_string('vclasses_direct', 'theme_cbe'),
@@ -80,6 +79,14 @@ if ($ADMIN->fulltree) {
         'theme_cbe/uniquenamecourse',
         get_string('uniquenamecourse_setting', 'theme_cbe'),
         get_string('uniquenamecourse_setting_desc', 'theme_cbe'),
+        false
+    ));
+    $page->add($setting);
+
+    $setting = (new admin_setting_configcheckbox(
+        'theme_cbe/apssallexternals',
+        get_string('appsallexternals_setting', 'theme_cbe'),
+        get_string('appsallexternals_setting_desc', 'theme_cbe'),
         false
     ));
     $page->add($setting);
