@@ -25,25 +25,25 @@
         </div>
         <div class="added"><span class="section">{{ sectionname }}</span><span class="separ">-</span><span class="date">{{ added }}</span></div>
     </div>
-    <div class="action-mod">
+    <div class="action-mod" data-region="actions-buttons" data-cmid="{{ id }}">
         {{# is_teacher }}
             {{# board_is_hidden }}
-            <button class="show-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} showin_board, theme_cbe {{/ str }}">
+            <button data-action="visible" class="show-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} showin_board, theme_cbe {{/ str }}">
                 <i class="fa fa-eye" aria-hidden="true"></i>
             </button>
             {{/ board_is_hidden }}
             {{^ board_is_hidden }}
-            <button class="hide-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} hiddein_board, theme_cbe {{/ str }}">
+            <button data-action="hidden" class="hide-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} hiddein_board, theme_cbe {{/ str }}">
                 <i class="fa fa-eye-slash" aria-hidden="true"></i>
             </button>
             {{/ board_is_hidden }}
             {{# board_is_anchor }}
-            <button class="anchor-module action is_anchor" data-toggle="tooltip" data-placement="bottom" title="{{# str }} unanchorin_board, theme_cbe {{/ str }}">
+            <button data-action="remove-anchor" class="anchor-module action is_anchor" data-toggle="tooltip" data-placement="bottom" title="{{# str }} unanchorin_board, theme_cbe {{/ str }}">
                 <i class="fa fa-anchor" aria-hidden="true"></i>
             </button>
             {{/ board_is_anchor }}
             {{^ board_is_anchor }}
-            <button class="anchor-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} anchorin_board, theme_cbe {{/ str }}">
+            <button data-action="anchor" class="anchor-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} anchorin_board, theme_cbe {{/ str }}">
                 <i class="fa fa-anchor" aria-hidden="true"></i>
             </button>
             {{/ board_is_anchor }}
@@ -97,6 +97,9 @@
     {{# is_teacher }}
         require(['theme_cbe/module_delete'], function(moduledelete) {
             moduledelete.initModuleDelete('[data-region="modal-mod-delete"][data-cmid="{{ id }}"]', {{ id }});
+        });
+        require(['theme_cbe/board'], function(board) {
+            board.initBoard('[data-region="actions-buttons"][data-cmid="{{ id }}"]', {{ id }});
         });
     {{/ is_teacher }}
 {{/js}}

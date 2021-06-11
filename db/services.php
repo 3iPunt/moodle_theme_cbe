@@ -19,6 +19,7 @@
  * @copyright   3iPunt <https://www.tresipunt.com/>
  */
 
+use theme_cbe\external\board_external;
 use theme_cbe\external\course_external;
 use theme_cbe\external\coursecard_external;
 use theme_cbe\external\module_external;
@@ -99,6 +100,38 @@ $functions = [
         'ajax' => true,
         'loginrequired' => true
     ],
+    'theme_cbe_board_anchor' => [
+        'classname' => board_external::class,
+        'methodname' => 'anchor',
+        'description' => 'Declare Course Module as anchor in board',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_board_remove_anchor' => [
+        'classname' => board_external::class,
+        'methodname' => 'remove_anchor',
+        'description' => 'Remove Course Module as anchor in board',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_board_visible' => [
+        'classname' => board_external::class,
+        'methodname' => 'visible',
+        'description' => 'Declare Course Module visible in board',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_board_hidden' => [
+        'classname' => board_external::class,
+        'methodname' => 'hidden',
+        'description' => 'Declare Course Module hidden in board',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
 ];
 $services = [
     'theme_cbe' => [
@@ -112,6 +145,10 @@ $services = [
             'theme_cbe_create_course',
             'theme_cbe_check_course_shortname',
             'theme_cbe_course_module_delete',
+            'theme_cbe_board_anchor',
+            'theme_cbe_board_remove_anchor',
+            'theme_cbe_board_visible',
+            'theme_cbe_board_hidden',
         ],
         'restrictedusers' => 0,
         'enabled' => 1

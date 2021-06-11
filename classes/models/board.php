@@ -26,7 +26,10 @@ namespace theme_cbe\models;
 
 use coding_exception;
 use dml_exception;
+use moodle_exception;
 use stdClass;
+use theme_cbe\course;
+use theme_cbe\course_user;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -47,8 +50,8 @@ class board  {
     /** @var int Course ID */
     protected $course;
 
-    /** @var string Order */
-    protected $order;
+    /** @var string Order Modules */
+    protected $ordermodules;
 
     /** @var int Anchor Course Module ID */
     protected $anchor;
@@ -79,26 +82,26 @@ class board  {
         $board = $DB->get_record(self::BOARD_TABLE, ['course' => $this->course ]);
         if (!empty($board)) {
             $this->id = $board->id;
-            $this->order = $board->order;
+            $this->ordermodules = $board->ordermodules;
             $this->anchor = $board->anchor;
             $this->userid = $board->userid;
             $this->timemodified = $board->timemodified;
         } else {
             $this->id = 0;
-            $this->order = [];
+            $this->ordermodules = [];
             $this->anchor = 0;
         }
     }
 
     /**
-     * Get Order
+     * Get Order modules
      *
      * @return string[]
      */
-    public function get_order(): array {
-        if (!empty($this->order)) {
-            $order = explode(',', $this->order);
-            return $order ? $order : [];
+    public function get_ordermodules(): array {
+        if (!empty($this->ordermodules)) {
+            $ordermodules = explode(',', $this->ordermodules);
+            return $ordermodules ? $ordermodules : [];
         } else {
             return [];
         }
@@ -110,6 +113,9 @@ class board  {
      * @return int
      */
     public function get_anchor(): int {
+        if (is_null($this->anchor)) {
+            return 0;
+        }
         return $this->anchor;
     }
 
@@ -124,21 +130,44 @@ class board  {
         global $DB, $USER;
         if ($this->id === 0) {
             $board = new stdClass();
-            $board->course = $this->course;
-            $board->order = null;
-            $board->anchor = $cmid;
-            $board->userid = $USER->id;
+            $board->course = (int)$this->course;
+            $board->ordermodules = null;
+            $board->anchor = (int)$cmid;
+            $board->userid = (int)$USER->id;
             $board->timemodified = time();
             return $DB->insert_record(self::BOARD_TABLE, $board);
         } else {
             $board = new stdClass();
-            $board->id = $this->id;
-            $board->course = $this->course;
-            $board->order = $this->order;
-            $board->anchor = $cmid;
-            $board->userid = $USER->id;
+            $board->id = (int)$this->id;
+            $board->course = (int)$this->course;
+            $board->ordermodules = $this->ordermodules;
+            $board->anchor = (int)$cmid;
+            $board->userid = (int)$USER->id;
             $board->timemodified = time();
             return $DB->update_record(self::BOARD_TABLE, $board);
+        }
+    }
+
+    /**
+     * Remove Mod Anchor.
+     *
+     * @param int $cmid
+     * @return bool|int
+     * @throws dml_exception
+     */
+    public function remove_mod_anchor(int $cmid) {
+        global $DB, $USER;
+        if ($this->get_anchor() === $cmid && $this->anchor > 0) {
+            $board = new stdClass();
+            $board->id = (int)$this->id;
+            $board->course = (int)$this->course;
+            $board->ordermodules = $this->ordermodules;
+            $board->anchor = null;
+            $board->userid = (int)$USER->id;
+            $board->timemodified = time();
+            return $DB->update_record(self::BOARD_TABLE, $board);
+        } else {
+            return false;
         }
     }
 
@@ -148,26 +177,29 @@ class board  {
      * @param int $cmid
      * @param bool $visible
      * @return bool|int
+     * @throws coding_exception
      * @throws dml_exception
+     * @throws moodle_exception
      */
-    public function update_order(int $cmid, bool $visible) {
+    public function update_ordermodules(int $cmid, bool $visible) {
         global $DB, $USER;
         if ($this->id === 0) {
             $board = new stdClass();
-            $board->course = $this->course;
-            $board->order = $visible ? $cmid : null;
+            $board->course = (int)$this->course;
+            $board->ordermodules = $visible ? $cmid : null;
             $board->anchor = null;
-            $board->userid = $USER->id;
+            $board->userid = (int)$USER->id;
             $board->timemodified = time();
             return $DB->insert_record(self::BOARD_TABLE, $board);
         } else {
             $board = new stdClass();
-            $board->id = $this->id;
-            $board->course = $this->course;
-            $board->order = $this->update_order_column($cmid, $visible);
-            $board->anchor = $this->get_anchor();
-            $board->userid = $USER->id;
+            $board->id = (int)$this->id;
+            $board->course = (int)$this->course;
+            $board->ordermodules = $this->update_ordermodules_column($cmid, $visible);
+            $board->anchor = (int)$this->get_anchor();
+            $board->userid = (int)$USER->id;
             $board->timemodified = time();
+            var_dump($board);
             return $DB->update_record(self::BOARD_TABLE, $board);
         }
     }
@@ -178,11 +210,44 @@ class board  {
      * @param int $cmid
      * @param bool $visible
      * @return string
+     * @throws moodle_exception
+     * @throws coding_exception
+     * @throws dml_exception
      */
-    protected function update_order_column(int $cmid, bool $visible) {
-        $ordernew = $this->get_order();
-        $orderold = $this->get_order();
-        return implode(",", $ordernew);
+    protected function update_ordermodules_column(int $cmid, bool $visible): string {
+        global $USER;
+
+        $old = $this->get_ordermodules();
+        $new = $this->get_ordermodules();
+
+        if (count($old) > 0) {
+            var_dump($old);
+            if ($visible) {
+                var_dump('Mostrar');
+            } else {
+                var_dump('Ocultar');
+            }
+            die();
+        } else {
+            var_dump('Vacio');
+            var_dump($old);
+            if ($visible) {
+                var_dump('Mostrar');
+            } else {
+                // Recuperamos todas y quitamos la nuestra.
+                $course_user = new course_user($this->course, $USER->id);
+                $mods = $course_user->get_modules(true);
+                $idmods = [];
+                foreach ($mods as $mod) {
+                    if ($mod->id !== $cmid) {
+                        $idmods[] = $mod->id;
+                    }
+                }
+                $new = $idmods;
+            }
+        }
+
+        return implode(",", $new);
     }
 
 }

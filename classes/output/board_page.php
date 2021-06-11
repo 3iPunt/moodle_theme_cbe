@@ -164,8 +164,8 @@ class board_page implements renderable, templatable {
         if ($mod->modname === publication::MODULE_PUBLICATION) {
             return false;
         } else {
-            if (!empty($this->board->get_order())) {
-                return !in_array($mod->id, $this->board->get_order());
+            if (!empty($this->board->get_ordermodules())) {
+                return !in_array($mod->id, $this->board->get_ordermodules());
             } else {
                 return false;
             }

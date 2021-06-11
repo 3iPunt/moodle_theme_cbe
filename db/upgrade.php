@@ -47,7 +47,7 @@ function xmldb_theme_cbe_upgrade($oldversion) {
             $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
             $table->add_field('course', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
             $table->add_field('order', XMLDB_TYPE_TEXT, null, null, null, null, null);
-            $table->add_field('anchor', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
+            $table->add_field('ordermodules', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
             $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
             $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
             $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
