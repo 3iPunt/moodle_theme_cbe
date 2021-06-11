@@ -186,7 +186,7 @@ class board  {
         if ($this->id === 0) {
             $board = new stdClass();
             $board->course = (int)$this->course;
-            $board->ordermodules = $visible ? $cmid : null;
+            $board->ordermodules = $this->update_ordermodules_column($cmid, $visible);
             $board->anchor = null;
             $board->userid = (int)$USER->id;
             $board->timemodified = time();
@@ -195,11 +195,11 @@ class board  {
             $board = new stdClass();
             $board->id = (int)$this->id;
             $board->course = (int)$this->course;
+            $ordermodules = $this->update_ordermodules_column($cmid, $visible);
             $board->ordermodules = $this->update_ordermodules_column($cmid, $visible);
             $board->anchor = (int)$this->get_anchor();
             $board->userid = (int)$USER->id;
             $board->timemodified = time();
-            var_dump($board);
             return $DB->update_record(self::BOARD_TABLE, $board);
         }
     }
@@ -215,39 +215,56 @@ class board  {
      * @throws dml_exception
      */
     protected function update_ordermodules_column(int $cmid, bool $visible): string {
-        global $USER;
 
         $old = $this->get_ordermodules();
-        $new = $this->get_ordermodules();
 
         if (count($old) > 0) {
-            var_dump($old);
+            // Update.
             if ($visible) {
-                var_dump('Mostrar');
+                $new = $old;
+                if (!in_array((string)$cmid,$old)) {
+                    array_push($new, $cmid);
+                }
             } else {
-                var_dump('Ocultar');
-            }
-            die();
-        } else {
-            var_dump('Vacio');
-            var_dump($old);
-            if ($visible) {
-                var_dump('Mostrar');
-            } else {
-                // Recuperamos todas y quitamos la nuestra.
-                $course_user = new course_user($this->course, $USER->id);
-                $mods = $course_user->get_modules(true);
-                $idmods = [];
-                foreach ($mods as $mod) {
-                    if ($mod->id !== $cmid) {
-                        $idmods[] = $mod->id;
+                $new = [];
+                foreach ($old as $item) {
+                    if ((string)$item !== (string)$cmid) {
+                        $new[] = $item;
                     }
                 }
-                $new = $idmods;
+            }
+        } else {
+            // Create.
+            $new = $this->get_allidmods($cmid, $visible);
+        }
+        return implode(",", $new);
+    }
+
+    /**
+     * Get ID mods.
+     *
+     * @param $cmid
+     * @param bool $visible
+     * @return array
+     * @throws coding_exception
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    protected function get_allidmods($cmid, bool $visible): array {
+        global $USER;
+        $course_user = new course_user($this->course, $USER->id);
+        $mods = $course_user->get_modules(true);
+        $idmods = [];
+        foreach ($mods as $mod) {
+            if ($visible) {
+                $idmods[] = $mod->id;
+            } else {
+                if ((string)$mod->id !== (string)$cmid) {
+                    $idmods[] = $mod->id;
+                }
             }
         }
-
-        return implode(",", $new);
+        return $idmods;
     }
 
 }
