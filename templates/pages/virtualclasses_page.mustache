@@ -15,7 +15,7 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
   }}
 {{!
-  @template theme_cbe/participants_page
+  @template theme_cbe/pages/virtualclasses_page
 
   Example context (json):
   {
@@ -34,7 +34,6 @@
     </main>
 </div>
 {{#js}}
-
     $('#myInput').on("keyup", function() {
     console.log($(this).val());
         $(".generaltable td:contains('" + $(this).val() + "')").parent().show();

@@ -60,8 +60,17 @@ define([
             this.node = $(region);
             this.node.find(ACTION.ALUMN_SELECT).on('change', this.onAlumnSelectChange.bind(this));
             this.node.find(ACTION.GROUP_SELECT).on('change', this.onGroupSelectChange.bind(this));
+            this.node.find(TEXT.COMMENT_TEXT).on('keyup', this.onCommentTextKeyUp.bind(this));
             this.node.find(ACTION.PUBLICATION_BUTTON).on('click', this.onPublicationButtonClick.bind(this));
         }
+
+        Publication.prototype.onCommentTextKeyUp = function (e) {
+            if (this.node.find(TEXT.COMMENT_TEXT).val().trim() !== '') {
+                $(ACTION.PUBLICATION_BUTTON).prop( "disabled", false );
+            } else {
+                $(ACTION.PUBLICATION_BUTTON).prop( "disabled", true );
+            }
+        };
 
         Publication.prototype.onAlumnSelectChange = function (e) {
             this.node.find(ACTION.GROUP_SELECT).val(0);
