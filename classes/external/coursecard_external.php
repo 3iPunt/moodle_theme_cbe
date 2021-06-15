@@ -90,7 +90,7 @@ class coursecard_external extends external_api {
         $role = $DB->get_record('role', array('shortname' => 'student'));
         $enrolmanager = new course_enrolment_manager($PAGE, $course, $instancefilter = null, $role->id,
             $searchfilter = '', $groupfilter = 0, $statusfilter = -1);
-        $students = $enrolmanager->get_users('id');
+        $students = $enrolmanager->get_users('id', 'ASC', 0, 0);
         $view_url = new moodle_url('/theme/cbe/view_board.php', ['id'=> $course_id]);
         $notification_url = new moodle_url('/' . course_navigation::PAGE_THEMES, ['id'=> $course_id]);
         $participants_url = new moodle_url('/user/index.php', ['id' => $course_id]);

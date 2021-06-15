@@ -8,6 +8,9 @@ body[data-theme='cbe'][data-role='user'] {
       border: 1px solid $border-color;
       margin-top: 0;
       word-break: break-word;
+      img {
+        max-width: 100%;
+      }
       h3.title {
         font-size: 28px;
         font-family: $fontbold;
@@ -32,10 +35,71 @@ body[data-theme='cbe'][data-role='user'] {
         #create_mod_section_zero {
           border: none;
           margin-bottom: 15px;
-          align-self: flex-end;
+          align-self: center;
+          background-color: $primary-color;
+          border-radius: 28px;
+          color: white;
+          >span {
+            margin-left: 4px;
+          }
+          &:hover {
+            background-color: $primary-color-light;
+            text-decoration: none;
+          }
+        }
+        .modulecbe {
+          border: none;
+          .mod {
+            border-radius: 0 !important;
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+          }
+          .text {
+            margin: 19px 175px 20px 0;
+            .added {
+              span.section {
+                display: none;
+              }
+              span.separ {
+                display: none;
+              }
+            }
+          }
+          .action-mod {
+            button.hide-module.action {
+              display: none;
+            }
+            button.anchor-module.action {
+              display: none;
+            }
+          }
+          .module_media {
+            button.action-media[data-action="expand"] {
+              display: none;
+            }
+            .media-content {
+              display: inline !important;
+              .media-resource {
+                border: 1px solid #dee2e6;
+                margin: 0 20px;
+              }
+              .description {
+                border: 1px solid #dee2e6;
+                margin: 0 20px;
+                padding: 25px 30px 10px;
+              }
+            }
+          }
         }
       }
     }
   }
 
+}
+
+#page-theme-cbe-view_moreinfo[data-theme='cbe'][data-role="user"] #region-main-box .modulecbe.tresipuntaudio .resourcecontent,
+#page-theme-cbe-view_moreinfo[data-theme='cbe'][data-role="user"] #region-main-box .modulecbe.tresipuntvideo .resourcecontent {
+  margin: 15px 200px !important;
+  border: 4px solid #929292;
 }

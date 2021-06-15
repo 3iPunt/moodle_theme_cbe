@@ -50,7 +50,9 @@ define([
             FULLNAME_OK: '#verify-fullname .fa-check-circle-o',
             FULLNAME_KO: '#verify-fullname .fa-times-circle-o',
             SHORTNAME_OK: '#verify-shortname .fa-check-circle-o',
-            SHORTNAME_KO: '#verify-shortname .fa-times-circle-o'
+            SHORTNAME_KO: '#verify-shortname .fa-times-circle-o',
+            CATEGORY_OK: '#verify-category .fa-check-circle-o',
+            CATEGORY_KO: '#verify-category .fa-times-circle-o'
         };
 
         let SERVICES = {
@@ -60,7 +62,8 @@ define([
 
         let VALIDATION = {
             'fullname': false,
-            'shortname': false
+            'shortname': false,
+            'category': false
         };
 
         /**
@@ -73,22 +76,36 @@ define([
             this.has_uniquename = has_uniquename;
             this.fullname = FORM.FULLNAME_INPUT;
             this.shortname = FORM.SHORTNAME_INPUT;
+            this.category = FORM.CATEGORY_SELECT;
             this.all_inputs = FORM.ALL_INPUTS;
             if (!this.has_uniquename) {
-                this.node.find(this.fullname).on('keyup', this.onFullnameChange.bind(this));
+                this.node.find(this.fullname).on('change', this.onFullnameChange.bind(this));
             } else {
                 VALIDATION.fullname = true;
             }
-            this.node.find(this.shortname).on('focusout', this.onShortnameFocusOut.bind(this));
-            this.node.find(this.all_inputs).on('focusout', this.onAllInputsFocusOut.bind(this));
+            this.node.find(this.shortname).on('change', this.onShortnameChange.bind(this));
+            this.node.find(this.category).on('change', this.onCategoryChange.bind(this));
+            this.node.find(this.all_inputs).on('change', this.onAllInputsChange.bind(this));
             this.node.find(ACTION.CREATE_BUTTON).on('click', this.onCreateCourseButtonClick.bind(this));
         }
 
-        CreateCourse.prototype.onAllInputsFocusOut = function (e) {
-            if (VALIDATION.fullname && VALIDATION.shortname) {
+        CreateCourse.prototype.onAllInputsChange = function (e) {
+            if (VALIDATION.fullname && VALIDATION.shortname && VALIDATION.category) {
                 $(ACTION.CREATE_BUTTON).prop( "disabled", false );
             } else {
                 $(ACTION.CREATE_BUTTON).prop( "disabled", true );
+            }
+        };
+
+        CreateCourse.prototype.onCategoryChange = function (e) {
+            if (this.node.find(this.category).val().trim() > 0) {
+                VALIDATION.category = true;
+                $(VERYFY_CHECK.CATEGORY_OK).show();
+                $(VERYFY_CHECK.CATEGORY_KO).hide();
+            } else {
+                VALIDATION.category = false;
+                $(VERYFY_CHECK.CATEGORY_OK).hide();
+                $(VERYFY_CHECK.CATEGORY_KO).show();
             }
         };
 
@@ -104,7 +121,7 @@ define([
             }
         };
 
-        CreateCourse.prototype.onShortnameFocusOut = function (e) {
+        CreateCourse.prototype.onShortnameChange = function (e) {
             const shortname = $(FORM.SHORTNAME_INPUT).val().trim();
             if (this.node.find(this.shortname).val().trim() !== '') {
                 const request = {
@@ -128,6 +145,8 @@ define([
                 }).fail(Notification.exception);
             } else {
                 VALIDATION.shortname = false;
+                $(VERYFY_CHECK.SHORTNAME_KO).show();
+                $(VERYFY_CHECK.SHORTNAME_OK).hide();
             }
         };
 

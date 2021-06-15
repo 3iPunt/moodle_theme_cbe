@@ -103,7 +103,6 @@ class course_navigation extends navigation {
         global $PAGE;
         $path = $PAGE->url->get_path();
         $pagetype = $PAGE->pagetype;
-        //var_dump($pagetype);die();
         if ($pagetype === 'theme-cbe-view_board') {
             return 'board';
         } else if ($pagetype === 'course-view-topics') {
@@ -124,6 +123,8 @@ class course_navigation extends navigation {
             return 'copycourse';
         } else if ($pagetype === 'theme-cbe-view_copycourse_progress') {
             return 'copycourse';
+        } else if ($pagetype === 'theme-cbe-view_editboard') {
+            return 'editboard';
         } else if ($pagetype === 'site-index') {
             return 'index';
         } else if (strpos($path, 'modedit.php') ) {
@@ -163,7 +164,7 @@ class course_navigation extends navigation {
         $data->coursename = $coursecbe->get_name();
         $data->categoryname = $coursecbe->get_category();
         $data->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
-        $data->copy_course = new moodle_url('/theme/cbe/view_copycourse.php', ['id'=> $courseid]);
+        $data->copy_course = new moodle_url('/' . self::PAGE_COPYCOURSE, ['id'=> $courseid]);
         return $data;
     }
 

@@ -79,7 +79,7 @@ class moreinfo_page implements renderable, templatable {
         $data = new stdClass();
         $data->summary = file_rewrite_pluginfile_urls(
             $section->summary, 'pluginfile.php', $context->id, 'course', 'section', $section->id);
-        $mods = $course_user->get_modules($section);
+        $mods = $course_user->get_modules(true, $section);
         // Filter NOT Publication.
         $mods = array_filter($mods, function(stdClass $mod) {
             return $mod->modname != publication::MODULE_PUBLICATION;
