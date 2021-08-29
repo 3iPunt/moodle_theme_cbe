@@ -15,7 +15,7 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template theme_cbe/columns2_course
+    @template theme_cbe/columns2_modedit
 
     Admin time setting template.
 
@@ -92,6 +92,8 @@
                         {{{ output.course_content_footer }}}
                     </section>
 
+                    {{> theme_cbe/components/create_file_nextcloud }}
+
                     {{#hasblocks}}
                     <section data-region="blocks-column" class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
                         {{{ sidepreblocks }}}
@@ -121,6 +123,10 @@
 
     require(['theme_cbe/viewassign'], function(viewassign) {
         viewassign.initViewAssign();
+    });
+
+    require(['theme_cbe/modedit'], function(modedit) {
+        modedit.initModedit();
     });
 
 {{/js}}

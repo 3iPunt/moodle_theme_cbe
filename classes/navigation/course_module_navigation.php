@@ -49,7 +49,8 @@ class course_module_navigation extends navigation {
 
     /** @var array Templates Header */
     protected $templates_header = [
-        'module' => 'theme_cbe/header/custom'
+        'module' => 'theme_cbe/header/custom',
+        'modedit' => 'theme_cbe/header/custom'
     ];
 
     /**
@@ -66,7 +67,11 @@ class course_module_navigation extends navigation {
      * @return string
      */
     public function get_template_layout(): string {
-        return 'theme_cbe/columns2/columns2_course';
+        if ($this->get_page() === 'modedit') {
+            return 'theme_cbe/columns2/columns2_modedit';
+        } else {
+            return 'theme_cbe/columns2/columns2_course';
+        }
     }
 
     /**
@@ -75,7 +80,13 @@ class course_module_navigation extends navigation {
     * @return string
     */
     protected function get_page(): string {
-        return 'module';
+        global $PAGE;
+        $path = $PAGE->url->get_path();
+        if (strpos($path, 'modedit.php') ) {
+            return 'modedit';
+        } else {
+            return 'module';
+        }
     }
 
     /**
