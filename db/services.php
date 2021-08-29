@@ -76,6 +76,22 @@ $functions = [
         'ajax' => true,
         'loginrequired' => true
     ],
+    'theme_cbe_publication_comment_delete' => [
+        'classname' => module_external::class,
+        'methodname' => 'publication_comment_delete',
+        'description' => 'Delete comment in Tresipuntshare module',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_publication_comment_edit' => [
+        'classname' => module_external::class,
+        'methodname' => 'publication_comment_edit',
+        'description' => 'Edit comment in Tresipuntshare module',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
     'theme_cbe_create_course' => [
         'classname' => course_external::class,
         'methodname' => 'create_course',

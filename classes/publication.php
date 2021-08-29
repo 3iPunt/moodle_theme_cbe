@@ -167,19 +167,20 @@ class publication  {
         $comments = $manager_comment->get_comments('', 'ASC');
 
         $data = [];
-
         foreach ($comments as $comment) {
             $author_cbe = new user($comment->userid);
             $author = $author_cbe->export();
 
             $comment = [
                 'id' => $comment->id,
+                'comment_id' => $comment->id,
                 'user_picture' => $author->picture,
                 'user_is_connected' => $author->is_connected,
                 'fullname' => $author->fullname,
                 'date' => userdate($comment->timecreated),
                 'timecreated' => $comment->timecreated,
-                'text' => $comment->content
+                'text' => $comment->content,
+                'textstript' => strip_tags($comment->content)
             ];
 
             $data[] = $comment;

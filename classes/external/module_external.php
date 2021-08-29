@@ -211,18 +211,11 @@ class module_external extends external_api {
         }
 
         if ($isteacher_in_course) {
-            $teacher_creator = $publication->get_teacher();
-            // User is creator of publication?
-            if ($USER->id == $teacher_creator) {
-                $success = true;
-                try  {
-                    course_delete_module($cmid);
-                } catch (moodle_exception $e) {
-                    $error = $e->getMessage();
-                }
-            } else {
-                $success = false;
-                $error = 'Esta publicación no le pertenece';
+            $success = true;
+            try  {
+                course_delete_module($cmid);
+            } catch (moodle_exception $e) {
+                $error = $e->getMessage();
             }
         } else {
             $success = false;
@@ -333,7 +326,122 @@ class module_external extends external_api {
         );
     }
 
+    /**
+     * @return external_function_parameters
+     */
+    public static function publication_comment_delete_parameters(): external_function_parameters {
+        return new external_function_parameters(
+            array(
+                'commentid' => new external_value(PARAM_INT, 'Comment ID')
+            )
+        );
+    }
 
+    /**
+     * @param string $commentid
+     * @return array
+     * @throws invalid_parameter_exception
+     * @throws moodle_exception
+     */
+    public static function publication_comment_delete(string $commentid): array {
+
+        global $CFG;
+
+        require_once($CFG->dirroot . '/comment/lib.php');
+
+        self::validate_parameters(
+            self::publication_comment_delete_parameters(), [
+                'commentid' => $commentid
+            ]
+        );
+
+        // Is teacher in course?
+        // Is him comment?
+        // Delete comment!
+
+        $success = true;
+        $url = '';
+        $error = '';
+
+        return [
+            'success' => $success,
+            'url' => $url,
+            'error' => $error
+        ];
+    }
+
+    /**
+     * @return external_single_structure
+     */
+    public static function publication_comment_delete_returns(): external_single_structure {
+        return new external_single_structure(
+            array(
+                'success' => new external_value(PARAM_BOOL, 'Was it a success?'),
+                'url' => new external_value(PARAM_URL, 'URL board with publication expand'),
+                'error' => new external_value(PARAM_TEXT, 'Error message'),
+            )
+        );
+    }
+
+    /**
+     * @return external_function_parameters
+     */
+    public static function publication_comment_edit_parameters(): external_function_parameters {
+        return new external_function_parameters(
+            array(
+                'commentid' => new external_value(PARAM_INT, 'Comment ID'),
+                'comment' => new external_value(PARAM_RAW, 'Comment')
+            )
+        );
+    }
+
+    /**
+     * @param string $commentid
+     * @param string $comment
+     * @return array
+     * @throws invalid_parameter_exception
+     * @throws moodle_exception
+     */
+    public static function publication_comment_edit(string $commentid, string $comment): array {
+
+        global $CFG;
+
+        require_once($CFG->dirroot . '/comment/lib.php');
+
+        self::validate_parameters(
+            self::publication_comment_edit_parameters(), [
+                'commentid' => $commentid,
+                'comment' => $comment
+            ]
+        );
+
+        // Is teacher in course?
+        // Is him comment?
+        // Edit comment!
+
+        $success = true;
+        $url = '';
+        $error = '';
+
+        return [
+            'success' => $success,
+            'url' => $url,
+            'error' => $error
+        ];
+    }
+
+    /**
+     * @return external_single_structure
+     */
+    public static function publication_comment_edit_returns(): external_single_structure {
+        return new external_single_structure(
+            array(
+                'success' => new external_value(PARAM_BOOL, 'Was it a success?'),
+                'url' => new external_value(PARAM_URL, 'URL board with publication expand'),
+                'error' => new external_value(PARAM_TEXT, 'Error message'),
+            )
+        );
+    }
 
 
     /**

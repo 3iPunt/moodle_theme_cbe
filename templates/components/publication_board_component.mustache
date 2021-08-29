@@ -14,11 +14,14 @@
         <div class="publication">{{{ comment }}}</div>
     </div>
     {{# is_teacher }}
-        {{# is_mine }}
-        <button data-toggle="modal" data-target=".bd-deletemodule-modal-lg-{{ id }}" class="edit-module action">
-            <i class="fa fa-trash-o" aria-hidden="true"></i>
-        </button>
-        {{/ is_mine }}
+        <div class="action-mod" data-region="actions-buttons" data-cmid="{{ id }}">
+            <button data-toggle="modal" data-target=".bd-deletemodule-modal-lg-{{ id }}" class="edit-module action">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+            <a href="{{ edit_href }}" class="edit-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} edititem_board, theme_cbe {{/ str }}">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+        </div>
     {{/ is_teacher }}
 </div>
 
@@ -46,6 +49,50 @@
                             <p class="comment-text">{{{ text }}}</p>
                             <div class="triangle"></div>
                         </div>
+                        <div class="action_buttons comment">
+                            {{# is_teacher }}
+                            <button data-toggle="modal" data-target=".bd-editcomment-modal-lg-{{ comment_id }}" class="edit-module action">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button data-toggle="modal" data-target=".bd-deletecomment-modal-lg-{{ comment_id }}" class="edit-module action">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                            <div data-region="modal-delete" data-commentid="{{ comment_id }}" class="modal fade bd-deletecomment-modal bd-deletecomment-modal-lg-{{ comment_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel-{{ comment_id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-lg cbe-modal">
+                                    <div class="modal-content">
+                                        <header>
+                                            <h1>{{# str }} delete_comment, theme_cbe {{/ str }}</h1>
+                                            <p>{{# str }} sure_comment_delete, theme_cbe {{/ str }}</p>
+                                            <p>{{# str }} sure_comment_delete_detail, theme_cbe {{/ str }}</p>
+                                            <div class="modal-comment"><span>"</span>{{{ text }}}<span>"</span></div>
+                                        </header>
+                                        <footer class="modal-footer">
+                                            <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                                            <button class="btn btn-primary delete" data-action="delete" >
+                                                {{# str }} confirm, theme_cbe {{/ str }}
+                                            </button>
+                                        </footer>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-region="modal-edit" data-commentid="{{ comment_id }}" class="modal fade bd-editcomment-modal bd-editcomment-modal-lg-{{ comment_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel-{{ comment_id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-lg cbe-modal">
+                                    <div class="modal-content">
+                                        <header>
+                                            <h1>{{# str }} edit_comment, theme_cbe {{/ str }}</h1>
+                                            <textarea class="textcomment" name="textarea" rows="10" cols="50">{{ textstript }}</textarea>
+                                        </header>
+                                        <footer class="modal-footer">
+                                            <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                                            <button class="btn btn-primary edit" data-action="edit" >
+                                                {{# str }} confirm, theme_cbe {{/ str }}
+                                            </button>
+                                        </footer>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/ is_teacher }}
+                        </div>
                     </li>
                 {{/ comments }}
             </ul>
@@ -59,7 +106,6 @@
 </div>
 
 {{# is_teacher }}
-    {{# is_mine }}
     <div data-region="modal-delete" data-cmid="{{ id }}" class="modal fade bd-deletemodule-modal bd-deletemodule-modal-lg-{{ id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModuleModalLabel-{{ id }}" aria-hidden="true">
         <div class="modal-dialog modal-lg cbe-modal">
             <div class="modal-content">
@@ -78,16 +124,13 @@
             </div>
         </div>
     </div>
-    {{/ is_mine }}
 {{/ is_teacher }}
 
 {{#js}}
     {{# is_teacher }}
-        {{# is_mine }}
         require(['theme_cbe/comment_delete'], function(commentdelete) {
             commentdelete.initCommentDelete('[data-region="modal-delete"][data-cmid="{{ id }}"]', {{ id }});
         });
-        {{/ is_mine }}
     {{/ is_teacher }}
     require(['theme_cbe/comment_send'], function(commentsend) {
         commentsend.initCommentSend('[data-region="send"]', {{ id }});

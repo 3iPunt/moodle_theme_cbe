@@ -376,6 +376,20 @@ body[data-theme='cbe'][data-role="user"] {
                 left: -10px;
               }
             }
+            .action_buttons.comment {
+              position: relative;
+              left: -176px;
+              top: 1px;
+              display: flex;
+              flex-direction: column;
+              button.edit-module.action {
+                width: 24px;
+                height: 24px;
+                font-size: 14px;
+                position: inherit;
+                margin: 1px;
+              }
+            }
           }
         }
         .expand-comments {
