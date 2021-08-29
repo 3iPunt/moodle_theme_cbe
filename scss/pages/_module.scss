@@ -27,8 +27,8 @@ body[data-theme='cbe'][data-role='user'] {
             position: absolute;
             left: -68px;
             top: -13px;
-            border-radius: 29px;
-            background-size: 30px;
+            border-radius: 15px;
+            background-size: 28px;
             background-position: center;
             background-repeat: no-repeat;
           }
@@ -112,10 +112,13 @@ body[data-theme='cbe'][data-role='user'] {
     }
   }
 
-  &#page-mod-folder-view {
+  &#page-mod-folder-view, {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_folder|icon]]');
+        background-color: $primary-color-light !important;
+        background-size: 20px !important;
+        border-radius: 30px !important;
       }
     }
   }
@@ -154,6 +157,9 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_tresipuntvideo|icon]]');
+        background-color: $primary-color-light !important;
+        background-size: 20px !important;
+        border-radius: 30px !important;
       }
     }
   }
@@ -162,6 +168,9 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_tresipuntaudio|icon]]');
+        background-color: $primary-color-light !important;
+        background-size: 20px !important;
+        border-radius: 30px !important;
       }
     }
   }
@@ -170,6 +179,9 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_resource|icon]]');
+        background-color: $primary-color-light !important;
+        background-size: 20px !important;
+        border-radius: 30px !important;
       }
     }
   }
@@ -178,6 +190,9 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_url|icon]]');
+        background-color: $primary-color-light !important;
+        background-size: 20px !important;
+        border-radius: 30px !important;
       }
     }
   }
@@ -186,6 +201,30 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_page|icon]]');
+        background-color: $primary-color-light !important;
+        background-size: 20px !important;
+        border-radius: 30px !important;
+      }
+    }
+  }
+
+  &#page-mod-folder-mod,
+  &#page-mod-page-mod,
+  &#page-mod-url-mod,
+  &#page-mod-tresipuntvideo-mod,
+  &#page-mod-tresipuntaudio-mod,
+  &#page-mod-resource-mod, {
+    div[role="main"]>h2 {
+      >img.icon {
+        left: -51px !important;
+        top: 4px !important;
+        width: 25px !important;
+        height: 25px !important;
+      }
+      &:after {
+        background-color: $primary-color-light !important;
+        background-size: 25px !important;
+        border-radius: 30px !important;
       }
     }
   }

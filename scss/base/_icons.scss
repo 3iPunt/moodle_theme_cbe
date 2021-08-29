@@ -1,6 +1,19 @@
 body[data-theme='cbe'] {
 
   .activity {
+    &.modtype_url,
+    &.modtype_tresipuntvideo,
+    &.modtype_tresipuntaudio,
+    &.modtype_folder,
+    &.modtype_page,
+    &.modtype_resource {
+      .activityinstance>a.aalink img.iconlarge.activityicon {
+        background-color: $primary-color-light !important;
+        border-radius: 20px !important;
+        padding: 15px;
+      }
+    }
+
     .activityinstance {
       >a.aalink {
         display: flex !important;
@@ -12,18 +25,20 @@ body[data-theme='cbe'] {
 
         img.iconlarge.activityicon {
           background-color: $primary-color;
+          border-radius: 10px;
           padding: 10px;
-          width: 46px;
-          height: 46px;
+          width: 50px;
+          height: 50px;
         }
       }
       >.inplaceeditable {
         >a.aalink {
           img.iconlarge.activityicon {
             background-color: $primary-color;
-            padding: 6px;
-            width: 30px;
-            height: 30px;
+            padding: 7px;
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
           }
           span.instancename {
             position: relative;
@@ -51,9 +66,10 @@ body[data-theme='cbe'] {
 
   .modchoosercontainer img.icon.icon {
     background-color: $primary-color;
-    padding: 8px;
+    padding: 12px;
     width: 40px;
     height: 40px;
+    border-radius: 15px;
   }
 
   #plugins-control-panel .pluginname img.icon.pluginicon {

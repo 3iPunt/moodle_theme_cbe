@@ -12,7 +12,15 @@ body[data-theme='cbe'][data-role="user"] {
       align-items: center;
       justify-content: center;
       margin-right: 10px;
-      border-radius: 27px;
+      border-radius: 15px;
+      &.resource_mod {
+        background-color: $primary-color-light !important;
+        border-radius: 30px !important;
+        .icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
       .icon {
         width: 30px;
         height: 30px;
@@ -108,13 +116,24 @@ body[data-theme='cbe'][data-role="user"] {
         width: 60px;
         height: 60px;
         background-color: $primary-color;
-        border-radius: 30px;
+        border-radius: 15px;
         margin: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
         min-width: 60px;
         cursor: pointer;
+        &.resource_mod {
+          background-color: $primary-color-light !important;
+          border-radius: 30px !important;
+          .icon {
+            width: 25px;
+            height: 25px;
+            >img {
+              width: 25px;
+            }
+          }
+        }
         .icon {
           width: 30px;
           height: 30px;
@@ -425,6 +444,13 @@ body[data-theme='cbe'][data-role="user"] {
           &:hover {
             color: $primary-color;
           }
+        }
+      }
+    }
+    &.tresipuntshare {
+      .item-mod {
+        .mod {
+          background-color: transparent !important;
         }
       }
     }

@@ -31,6 +31,7 @@ use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
+use theme_cbe\module;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -74,6 +75,7 @@ class module_component implements renderable, templatable {
         $data->modname = $this->cm->modname;
         $data->modfullname = $this->cm->modfullname;
         $data->name = $this->cm->name;
+        $data->is_resource = in_array($this->cm->modname, module::$resources);
         $data->view_url = new moodle_url('/mod/' . $this->cm->modname. '/view.php', ['id'=> $this->cm->id]);;
         $data->sectionname = get_section_name($this->course->id, $this->cm->sectionnum);
         return $data;
