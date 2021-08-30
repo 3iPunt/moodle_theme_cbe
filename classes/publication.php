@@ -173,13 +173,15 @@ class publication  {
             $author_cbe = new user($comment->userid);
             $author = $author_cbe->export();
 
+            $can_delete = false;
             $can_edit = false;
 
             if (course_user::is_teacher($this->cm->course)) {
-                $can_edit = true;
+                $can_delete = true;
             }
 
             if ((int)$author->id === (int)$USER->id) {
+                $can_delete = true;
                 $can_edit = true;
             }
 
@@ -193,7 +195,8 @@ class publication  {
                 'timecreated' => $comment->timecreated,
                 'text' => $comment->content,
                 'textstript' => strip_tags($comment->content),
-                'can_edit' => $can_edit
+                'can_edit' => $can_edit,
+                'can_delete' => $can_delete
             ];
 
             $data[] = $comment;
