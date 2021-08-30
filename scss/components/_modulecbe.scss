@@ -389,6 +389,9 @@ body[data-theme='cbe'][data-role="user"] {
                 position: inherit;
                 margin: 1px;
               }
+              @media (max-width: 600px) {
+                left: 0;
+              }
             }
           }
         }
@@ -465,6 +468,12 @@ body[data-theme='cbe'][data-role="user"] {
       .item-mod {
         .mod {
           background-color: transparent !important;
+        }
+        @media (max-width: 600px) {
+          a.edit-module.action {
+            top: -9px !important;
+            right: -5px !important;
+          }
         }
       }
     }
