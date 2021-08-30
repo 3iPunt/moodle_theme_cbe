@@ -155,6 +155,8 @@ class publication  {
      * @throws comment_exception
      */
     public function get_comments(): array {
+        global $USER;
+
         $args = new stdClass();
         $args->context = context_module::instance($this->cm_id);
         $args->courseid = $this->coursemoodle->id;
@@ -171,6 +173,16 @@ class publication  {
             $author_cbe = new user($comment->userid);
             $author = $author_cbe->export();
 
+            $can_edit = false;
+
+            if (course_user::is_teacher($this->cm->course)) {
+                $can_edit = true;
+            }
+
+            if ((int)$author->id === (int)$USER->id) {
+                $can_edit = true;
+            }
+
             $comment = [
                 'id' => $comment->id,
                 'comment_id' => $comment->id,
@@ -180,7 +192,8 @@ class publication  {
                 'date' => userdate($comment->timecreated),
                 'timecreated' => $comment->timecreated,
                 'text' => $comment->content,
-                'textstript' => strip_tags($comment->content)
+                'textstript' => strip_tags($comment->content),
+                'can_edit' => $can_edit
             ];
 
             $data[] = $comment;

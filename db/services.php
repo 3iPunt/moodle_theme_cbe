@@ -158,6 +158,8 @@ $services = [
             'theme_cbe_publication',
             'theme_cbe_publication_delete',
             'theme_cbe_publication_comment_send',
+            'theme_cbe_publication_comment_edit',
+            'theme_cbe_publication_comment_delete',
             'theme_cbe_create_course',
             'theme_cbe_check_course_shortname',
             'theme_cbe_course_module_delete',

@@ -36,6 +36,7 @@ use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
 use moodle_url;
+use theme_cbe\course_user;
 use theme_cbe\navigation\course_navigation;
 use theme_cbe\publication;
 use moodle_exception;
@@ -345,7 +346,7 @@ class module_external extends external_api {
      */
     public static function publication_comment_delete(string $commentid): array {
 
-        global $CFG;
+        global $CFG, $DB, $USER;
 
         require_once($CFG->dirroot . '/comment/lib.php');
 
@@ -354,14 +355,40 @@ class module_external extends external_api {
                 'commentid' => $commentid
             ]
         );
-
-        // Is teacher in course?
-        // Is him comment?
-        // Delete comment!
-
-        $success = true;
         $url = '';
         $error = '';
+
+        $comment = $DB->get_record('comments', array('id' => $commentid));
+
+        if ($comment) {
+            try {
+                $cmid = $comment->itemid;
+                list($course, $cm) = get_course_and_cm_from_cmid($cmid);
+                $owner = $comment->userid;
+
+                if (course_user::is_teacher($course->id) || (int)$USER->id === (int)$owner) {
+                    $args = new stdClass();
+                    $args->context = context_module::instance($comment->itemid);
+                    $args->courseid = $course->id;
+                    $args->cm = $cm;
+                    $args->area = 'tresipuntshare';
+                    $args->itemid = $comment->itemid;
+                    $args->component = 'mod_tresipuntshare';
+                    $manager_comment = new comment($args);
+                    $manager_comment->delete($commentid);
+                    $success = true;
+                }  else {
+                    $success = false;
+                    $error = 'El usuario no es profesor del curso, ni el comentario es suyo.';
+                }
+            } catch (moodle_exception $e) {
+                $success = false;
+                $error = $e->getMessage();
+            }
+        } else {
+            $success = false;
+            $error = 'El comentario no existe.';
+        }
 
         return [
             'success' => $success,
@@ -404,7 +431,7 @@ class module_external extends external_api {
      */
     public static function publication_comment_edit(string $commentid, string $comment): array {
 
-        global $CFG;
+        global $CFG, $DB, $USER, $PAGE;
 
         require_once($CFG->dirroot . '/comment/lib.php');
 
@@ -415,13 +442,51 @@ class module_external extends external_api {
             ]
         );
 
-        // Is teacher in course?
-        // Is him comment?
-        // Edit comment!
-
-        $success = true;
         $url = '';
         $error = '';
+
+        $comment_object = $DB->get_record('comments', array('id' => $commentid));
+
+        if ($comment_object) {
+            try {
+                $cmid = $comment_object->itemid;
+                $PAGE->set_context(context_module::instance($cmid));
+                $publication = new publication($cmid);
+                list($course, $cm) = get_course_and_cm_from_cmid($cmid);
+                $owner = $comment_object->userid;
+
+                if ((int)$USER->id === (int)$owner) {
+                    $args = new stdClass();
+                    $args->context = context_module::instance($comment_object->itemid);
+                    $args->courseid = $course->id;
+                    $args->cm = $cm;
+                    $args->area = 'tresipuntshare';
+                    $args->itemid = $comment_object->itemid;
+                    $args->component = 'mod_tresipuntshare';
+                    $manager_comment = new comment($args);
+                    if ($manager_comment->can_post()) {
+                        $newcom = $manager_comment->add(trim($comment));
+                        $success = true;
+                        $manager_comment->delete($commentid);
+                        $url = new moodle_url('/' . course_navigation::PAGE_BOARD,
+                            ['id'=> $publication->get_course()->id, 'pub' => $cmid ], 'comm-' . $newcom->id);
+                        $url = $url->out(false);
+                    } else {
+                        $success = false;
+                        $error = 'El usuario no puede crear comentarios.';
+                    }
+                }  else {
+                    $success = false;
+                    $error = 'El comentario no es suyo.';
+                }
+            } catch (moodle_exception $e) {
+                $success = false;
+                $error = $e->getMessage();
+            }
+        } else {
+            $success = false;
+            $error = 'El comentario no existe.';
+        }
 
         return [
             'success' => $success,

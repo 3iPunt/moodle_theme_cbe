@@ -1,0 +1,67 @@
+<li class="comment anchorcbe" id="comm-{{ id }}">
+    <div class="picture">
+        <img src="{{ user_picture }}" alt="{{ fullname }}">
+        <span class="online {{# user_is_connected }}connected{{/ user_is_connected }}"></span>
+    </div>
+    <div class="bocata">
+        <p class="fullname">{{ fullname }}</p>
+        <p class="date">{{ date }}</p>
+        <p class="comment-text">{{{ text }}}</p>
+        <div class="triangle"></div>
+    </div>
+    <div class="action_buttons comment">
+        {{# can_edit }}
+            <button data-toggle="modal" data-target=".bd-editcomment-modal-lg-{{ comment_id }}" class="edit-module action">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <button data-toggle="modal" data-target=".bd-deletecomment-modal-lg-{{ comment_id }}" class="edit-module action">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+            <div data-region="modal-comment-delete" data-commentid="{{ comment_id }}" class="modal fade bd-deletecomment-modal bd-deletecomment-modal-lg-{{ comment_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel-{{ comment_id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg cbe-modal">
+                    <div class="modal-content">
+                        <header>
+                            <h1>{{# str }} delete_comment, theme_cbe {{/ str }}</h1>
+                            <p>{{# str }} sure_comment_delete, theme_cbe {{/ str }}</p>
+                            <p>{{# str }} sure_comment_delete_detail, theme_cbe {{/ str }}</p>
+                            <div class="modal-comment"><span>"</span>{{{ text }}}<span>"</span></div>
+                        </header>
+                        <footer class="modal-footer">
+                            <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                            <button class="btn btn-primary delete" data-action="delete-comment" >
+                                {{# str }} confirm, theme_cbe {{/ str }}
+                            </button>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div data-region="modal-comment-edit" data-commentid="{{ comment_id }}" class="modal fade bd-editcomment-modal bd-editcomment-modal-lg-{{ comment_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel-{{ comment_id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg cbe-modal">
+                    <div class="modal-content">
+                        <header>
+                            <h1>{{# str }} edit_comment, theme_cbe {{/ str }}</h1>
+                            <textarea class="textcomment" name="textarea" rows="10" cols="50">{{ textstript }}</textarea>
+                        </header>
+                        <footer class="modal-footer">
+                            <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                            <button class="btn btn-primary edit" data-action="edit-comment" >
+                                {{# str }} confirm, theme_cbe {{/ str }}
+                            </button>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        {{/ can_edit }}
+    </div>
+</li>
+
+{{#js}}
+    {{# can_edit }}
+        require(['theme_cbe/comment_delete'], function(commentdelete) {
+            commentdelete.initCommentDelete('[data-region="modal-comment-delete"][data-commentid="{{ comment_id }}"]', {{ comment_id }});
+        });
+        require(['theme_cbe/comment_edit'], function(commentedit) {
+            commentedit.initCommentEdit('[data-region="modal-comment-edit"][data-commentid="{{ comment_id }}"]', {{ comment_id }});
+        });
+    {{/ can_edit }}
+{{/js}}
