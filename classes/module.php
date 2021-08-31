@@ -59,10 +59,10 @@ class module  {
     protected $coursemoodle;
 
     /** @var string[] Activities */
-    static protected $activities = ['assign', 'forum', 'quiz', 'feedback', 'bigbluebuttonbn'];
+    static public $activities = ['assign', 'forum', 'quiz', 'feedback', 'bigbluebuttonbn'];
 
     /** @var string[] Resources */
-    static protected $resources = ['tresipuntvideo', 'tresipuntaudio', 'resource', 'folder', 'url', 'page'];
+    static public $resources = ['tresipuntvideo', 'tresipuntaudio', 'resource', 'folder', 'url', 'page'];
 
     /**
      * constructor.
@@ -119,6 +119,7 @@ class module  {
         $module->view_blank = false;
         $module->theme = $this->get_theme();
         $module->edit_href = $this->get_edit_href();
+        $module->is_resource = $this->is_resource();
         $module->is_media = false;
         $module->is_mine = false;
         $module->sectionname = get_section_name($this->coursemoodle->id, $this->cm->sectionnum);
@@ -156,12 +157,21 @@ class module  {
     }
 
     /**
-     * Get Name
+     * Is Hidden?
      *
      * @return string
      */
     public function is_hidden(): string {
         return !$this->cm->visible;
+    }
+
+    /**
+     * Is Resource?
+     *
+     * @return bool
+     */
+    public function is_resource(): bool {
+        return in_array($this->cm->modname, self::$resources);
     }
 
     /**

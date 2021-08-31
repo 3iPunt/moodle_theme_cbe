@@ -12,7 +12,15 @@ body[data-theme='cbe'][data-role="user"] {
       align-items: center;
       justify-content: center;
       margin-right: 10px;
-      border-radius: 27px;
+      border-radius: 15px;
+      &.resource_mod {
+        background-color: $primary-color-light2 !important;
+        border-radius: 30px !important;
+        .icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
       .icon {
         width: 30px;
         height: 30px;
@@ -108,13 +116,24 @@ body[data-theme='cbe'][data-role="user"] {
         width: 60px;
         height: 60px;
         background-color: $primary-color;
-        border-radius: 30px;
+        border-radius: 15px;
         margin: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
         min-width: 60px;
         cursor: pointer;
+        &.resource_mod {
+          background-color: $primary-color-light2 !important;
+          border-radius: 30px !important;
+          .icon {
+            width: 25px;
+            height: 25px;
+            >img {
+              width: 25px;
+            }
+          }
+        }
         .icon {
           width: 30px;
           height: 30px;
@@ -357,6 +376,23 @@ body[data-theme='cbe'][data-role="user"] {
                 left: -10px;
               }
             }
+            .action_buttons.comment {
+              position: relative;
+              left: -176px;
+              top: 1px;
+              display: flex;
+              flex-direction: column;
+              button.edit-module.action {
+                width: 24px;
+                height: 24px;
+                font-size: 14px;
+                position: inherit;
+                margin: 1px;
+              }
+              @media (max-width: 600px) {
+                left: 0;
+              }
+            }
           }
         }
         .expand-comments {
@@ -424,6 +460,19 @@ body[data-theme='cbe'][data-role="user"] {
           display: none;
           &:hover {
             color: $primary-color;
+          }
+        }
+      }
+    }
+    &.tresipuntshare {
+      .item-mod {
+        .mod {
+          background-color: transparent !important;
+        }
+        @media (max-width: 600px) {
+          a.edit-module.action {
+            top: -9px !important;
+            right: -5px !important;
           }
         }
       }

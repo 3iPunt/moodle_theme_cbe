@@ -36,13 +36,14 @@ body[data-theme='cbe'][data-role="user"] {
             >a {
               align-items: center;
               .optionicon {
-                width: 46px;
-                height: 46px;
+                width: 56px;
+                height: 56px;
                 background-color: $primary-color;
                 background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
                 background-size: 30px 30px;
                 background-repeat: no-repeat;
                 background-position: 50%;
+                border-radius: 15px;
                 .icon-bigbluebutton {
                   display: none;
                 }
@@ -115,6 +116,16 @@ body[data-theme='cbe'][data-role="user"] {
                 align-items: center;
                 text-decoration: none;
                 color: $black-ligth;
+                border: 1px solid $grey-medium2;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                &.resource_mod {
+                  border-top-left-radius: 30px;
+                  border-bottom-left-radius: 30px;
+                  .mod-icon {
+                    background-size: 25px 25px;
+                  }
+                }
                 &:hover {
                   background-color: $grey-light;
                   .mod-icon {
@@ -128,6 +139,11 @@ body[data-theme='cbe'][data-role="user"] {
                   background-size: 35px 35px;
                   background-repeat: no-repeat;
                   background-position: 50%;
+                  border-radius: 15px;
+                  &.resource_mod {
+                    background-color: $primary-color-light2 !important;
+                    border-radius: 30px !important;
+                  }
                   &.forum {
                     background-image: url('[[pix:mod_forum|icon]]');
                   }
@@ -166,7 +182,6 @@ body[data-theme='cbe'][data-role="user"] {
                   padding-left: 20px;
                   font-size: 15px;
                   font-weight: 600;
-                  border: 1px solid $grey-medium2;
                   height: 60px;
                   display: flex;
                   align-items: center;
@@ -248,13 +263,22 @@ body[data-theme='cbe'][data-role="user"] {
     }
   }
 
-  .bd-deletemodule-modal {
+  .bd-deletemodule-modal,
+  .bd-deletecomment-modal,
+  .bd-editcomment-modal {
     .modal-comment {
       background-color: $grey-light;
       border-radius: 20px;
       padding: 20px;
       font-style: italic;
       text-align: left;
+    }
+    textarea.textcomment {
+      border: 1px solid #cacaca;
+      border-radius: 0;
+      margin: 10px;
+      padding: 10px;
+      width: 85%;
     }
   }
 
@@ -286,6 +310,7 @@ body[data-theme='cbe'][data-role="user"] {
               }
               &.fa-times-circle-o {
                 color: red;
+                display: inline;
               }
             }
           }

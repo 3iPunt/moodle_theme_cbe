@@ -34,35 +34,35 @@ define([
          *
          */
         let ACTION = {
-            DELETE_BUTTON: '[data-action="delete-comment"]'
+            DELETE_BUTTON: '[data-action="delete"]'
         };
 
         /**
          *
          */
         let SERVICES = {
-            COMMENT_DELETE: 'theme_cbe_publication_comment_delete'
+            PUBLICATION_DELETE: 'theme_cbe_publication_delete'
         };
 
         /**
          * @constructor
          * @param {String} region
-         * @param {Number} commentid
+         * @param {Number} cmid
          */
-        function CommentDelete(region, commentid) {
-            this.commentid = commentid;
-            this.node = $(region + '[data-commentid="' + commentid +'"]');
+        function PublicationDelete(region, cmid) {
+            this.cmid = cmid;
+            this.node = $(region + '[data-cmid="' + cmid +'"]');
             this.node.find(ACTION.DELETE_BUTTON).on('click', this.onDeleteButtonClick.bind(this));
         }
 
-        CommentDelete.prototype.onDeleteButtonClick = function (e) {
+        PublicationDelete.prototype.onDeleteButtonClick = function (e) {
 
             $(ACTION.DELETE_BUTTON).prop( "disabled", true );
 
             const request = {
-                methodname: SERVICES.COMMENT_DELETE,
+                methodname: SERVICES.PUBLICATION_DELETE,
                 args: {
-                    commentid: this.commentid
+                    cmid: this.cmid
                 }
             };
             Ajax.call([request])[0].done(function(response) {
@@ -71,17 +71,17 @@ define([
         };
 
         /** @type {jQuery} The jQuery node for the region. */
-        CommentDelete.prototype.node = null;
+        PublicationDelete.prototype.node = null;
 
         return {
             /**
              * @param {String} region
-             * @param {Number} commentid
+             * @param {Number} cmid
              *
-             * @return {CommentDelete}
+             * @return {PublicationDelete}
              */
-            initCommentDelete: function (region, commentid) {
-                return new CommentDelete(region, commentid);
+            initPublicationDelete: function (region, cmid) {
+                return new PublicationDelete(region, cmid);
             }
         };
     }

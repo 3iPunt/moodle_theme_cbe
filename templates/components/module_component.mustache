@@ -19,7 +19,7 @@
 
 }}
 <div class="module-component-cbe">
-    <div class="mod {{ modname }}" data-toggle="tooltip" data-placement="top" title="{{ modfullname }}">
+    <div class="mod {{ modname }} {{# is_resource }}resource_mod{{/ is_resource }}" data-toggle="tooltip" data-placement="top" title="{{ modfullname }}">
         <a class="icon" href="{{ view_url }}"></a>
     </div>
     <div class="data">

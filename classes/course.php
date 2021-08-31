@@ -81,12 +81,15 @@ class course  {
      * Get Category.
      *
      * @return string
-     * @throws moodle_exception
      */
     public function get_category(): string {
         $category_id = $this->course->category;
-        $category = core_course_category::get($category_id);
-        return $category->get_formatted_name();
+        try {
+            $category = core_course_category::get($category_id);
+            return $category->get_formatted_name();
+        } catch (moodle_exception $e) {
+            return '';
+        }
     }
 
     /**

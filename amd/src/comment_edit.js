@@ -34,14 +34,14 @@ define([
          *
          */
         let ACTION = {
-            DELETE_BUTTON: '[data-action="delete-comment"]'
+            EDIT_BUTTON: '[data-action="edit-comment"]'
         };
 
         /**
          *
          */
         let SERVICES = {
-            COMMENT_DELETE: 'theme_cbe_publication_comment_delete'
+            COMMENT_EDIT: 'theme_cbe_publication_comment_edit'
         };
 
         /**
@@ -49,39 +49,42 @@ define([
          * @param {String} region
          * @param {Number} commentid
          */
-        function CommentDelete(region, commentid) {
+        function CommentEdit(region, commentid) {
             this.commentid = commentid;
             this.node = $(region + '[data-commentid="' + commentid +'"]');
-            this.node.find(ACTION.DELETE_BUTTON).on('click', this.onDeleteButtonClick.bind(this));
+            this.node.find(ACTION.EDIT_BUTTON).on('click', this.onEditButtonClick.bind(this));
         }
 
-        CommentDelete.prototype.onDeleteButtonClick = function (e) {
+        CommentEdit.prototype.onEditButtonClick = function (e) {
 
-            $(ACTION.DELETE_BUTTON).prop( "disabled", true );
-
-            const request = {
-                methodname: SERVICES.COMMENT_DELETE,
-                args: {
-                    commentid: this.commentid
-                }
-            };
-            Ajax.call([request])[0].done(function(response) {
-                location.reload();
-            }).fail(Notification.exception);
+            var comment = this.node.find('.textcomment').val().trim();
+            if (comment !== '') {
+                $(ACTION.EDIT_BUTTON).prop( "disabled", true );
+                const request = {
+                    methodname: SERVICES.COMMENT_EDIT,
+                    args: {
+                        commentid: this.commentid,
+                        comment: comment
+                    }
+                };
+                Ajax.call([request])[0].done(function(response) {
+                    location.reload();
+                }).fail(Notification.exception);
+            }
         };
 
         /** @type {jQuery} The jQuery node for the region. */
-        CommentDelete.prototype.node = null;
+        CommentEdit.prototype.node = null;
 
         return {
             /**
              * @param {String} region
              * @param {Number} commentid
              *
-             * @return {CommentDelete}
+             * @return {CommentEdit}
              */
-            initCommentDelete: function (region, commentid) {
-                return new CommentDelete(region, commentid);
+            initCommentEdit: function (region, commentid) {
+                return new CommentEdit(region, commentid);
             }
         };
     }

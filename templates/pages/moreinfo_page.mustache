@@ -62,34 +62,36 @@
                     <h1>{{# str }} create_item, theme_cbe {{/ str }}</h1>
                     <p>{{# str }} select_activity_resource, theme_cbe {{/ str }}</p>
                 </header>
-                <main>
-                    <div class="column">
-                        <h2>{{# str }} activities_upper, theme_cbe {{/ str }}</h2>
-                        <ul class="select-modules">
-                            {{# create.activities }}
-                                <li class="select-module">
-                                    <a href="{{ mod_url }}" class="create-mod">
-                                        <div class="mod-icon {{ modname }}"></div>
-                                        <div class="text">{{ modtitle }}</div>
-                                    </a>
+                <main class="create_mod">
+                    <div class="mods">
+                        <div class="column">
+                            <h2>{{# str }} activities_upper, theme_cbe {{/ str }}</h2>
+                            <ul class="select-modules">
+                                {{# create.activities }}
+                                    <li class="select-module">
+                                        <a href="{{ mod_url }}" class="create-mod">
+                                            <div class="mod-icon {{ modname }}"></div>
+                                            <div class="text">{{ modtitle }}</div>
+                                        </a>
+                                    </li>
+                                {{/ create.activities}}
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h2>{{# str }} resources_upper, theme_cbe {{/ str }}</h2>
+                            <ul class="select-modules">
+                            <li class="select-module video">
+                                {{# create.resources }}
+                                    <li class="select-module">
+                                        <a href="{{ mod_url }}" class="create-mod resource_mod">
+                                            <div class="mod-icon {{ modname }} resource_mod"></div>
+                                            <div class="text">{{ modtitle }}</div>
+                                        </a>
+                                    </li>
+                                {{/ create.resources}}
                                 </li>
-                            {{/ create.activities}}
-                        </ul>
-                    </div>
-                    <div class="column">
-                        <h2>{{# str }} resources_upper, theme_cbe {{/ str }}</h2>
-                        <ul class="select-modules">
-                        <li class="select-module video">
-                            {{# create.resources }}
-                                <li class="select-module">
-                                    <a href="{{ mod_url }}" class="create-mod">
-                                        <div class="mod-icon {{ modname }}"></div>
-                                        <div class="text">{{ modtitle }}</div>
-                                    </a>
-                                </li>
-                            {{/ create.resources}}
-                            </li>
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </main>
             </div>

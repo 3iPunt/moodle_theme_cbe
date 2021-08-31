@@ -12,7 +12,7 @@
             {{/ board_is_anchor }}
         {{/ is_teacher }}
     </div>
-    <div class="mod" data-toggle="tooltip" data-placement="top" title="{{ modfullname }}">
+    <div class="mod {{# is_resource }}resource_mod{{/ is_resource }}" data-toggle="tooltip" data-placement="top" title="{{ modfullname }}">
         <a class="icon" href="{{ view_href }}" {{# view_blank }}target="_blank"{{/ view_blank }}>
             <img src="{{{ icon }}}" alt="">
         </a>
