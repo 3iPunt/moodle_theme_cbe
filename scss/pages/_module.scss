@@ -116,7 +116,7 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_folder|icon]]');
-        background-color: $primary-color-light !important;
+        background-color: $primary-color-light2 !important;
         background-size: 20px !important;
         border-radius: 30px !important;
       }
@@ -157,7 +157,7 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_tresipuntvideo|icon]]');
-        background-color: $primary-color-light !important;
+        background-color: $primary-color-light2 !important;
         background-size: 20px !important;
         border-radius: 30px !important;
       }
@@ -168,7 +168,7 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_tresipuntaudio|icon]]');
-        background-color: $primary-color-light !important;
+        background-color: $primary-color-light2 !important;
         background-size: 20px !important;
         border-radius: 30px !important;
       }
@@ -179,7 +179,7 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_resource|icon]]');
-        background-color: $primary-color-light !important;
+        background-color: $primary-color-light2 !important;
         background-size: 20px !important;
         border-radius: 30px !important;
       }
@@ -190,7 +190,7 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_url|icon]]');
-        background-color: $primary-color-light !important;
+        background-color: $primary-color-light2 !important;
         background-size: 20px !important;
         border-radius: 30px !important;
       }
@@ -201,7 +201,7 @@ body[data-theme='cbe'][data-role='user'] {
     div[role="main"]>h2 {
       &:after {
         background-image: url('[[pix:mod_page|icon]]');
-        background-color: $primary-color-light !important;
+        background-color: $primary-color-light2 !important;
         background-size: 20px !important;
         border-radius: 30px !important;
       }
@@ -222,7 +222,7 @@ body[data-theme='cbe'][data-role='user'] {
         height: 25px !important;
       }
       &:after {
-        background-color: $primary-color-light !important;
+        background-color: $primary-color-light2 !important;
         background-size: 25px !important;
         border-radius: 30px !important;
       }

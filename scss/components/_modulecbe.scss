@@ -14,7 +14,7 @@ body[data-theme='cbe'][data-role="user"] {
       margin-right: 10px;
       border-radius: 15px;
       &.resource_mod {
-        background-color: $primary-color-light !important;
+        background-color: $primary-color-light2 !important;
         border-radius: 30px !important;
         .icon {
           width: 20px;
@@ -124,7 +124,7 @@ body[data-theme='cbe'][data-role="user"] {
         min-width: 60px;
         cursor: pointer;
         &.resource_mod {
-          background-color: $primary-color-light !important;
+          background-color: $primary-color-light2 !important;
           border-radius: 30px !important;
           .icon {
             width: 25px;

@@ -136,11 +136,21 @@ define([
                         $(MSG.SHORTNAME).text(response.msg);
                         $(VERYFY_CHECK.SHORTNAME_KO).show();
                         $(VERYFY_CHECK.SHORTNAME_OK).hide();
+                        if (VALIDATION.fullname && VALIDATION.shortname && VALIDATION.category) {
+                            $(ACTION.CREATE_BUTTON).prop( "disabled", false );
+                        } else {
+                            $(ACTION.CREATE_BUTTON).prop( "disabled", true );
+                        }
                     } else {
                         $(VERYFY_CHECK.SHORTNAME_OK).show();
                         $(VERYFY_CHECK.SHORTNAME_KO).hide();
                         $(MSG.SHORTNAME).text('');
                         VALIDATION.shortname = true;
+                        if (VALIDATION.fullname && VALIDATION.shortname && VALIDATION.category) {
+                            $(ACTION.CREATE_BUTTON).prop( "disabled", false );
+                        } else {
+                            $(ACTION.CREATE_BUTTON).prop( "disabled", true );
+                        }
                     }
                 }).fail(Notification.exception);
             } else {
