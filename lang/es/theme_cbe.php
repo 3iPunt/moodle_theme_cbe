@@ -175,3 +175,11 @@ $string['board_hidden'] = "Ocultado en Tablón";
 $string['board_anchor'] = "Anclado en Tablón";
 $string['appsallexternals_setting'] = "APPs internas otra pestaña";
 $string['appsallexternals_setting_desc'] = "Si está activado, los enlaces de las APPs internas se abrirán en otra pestaña";
+
+$string['notice_filecreate'] = "Recuerda vincular el archivo después de crearlo desde el Repositorio NextCloud";
+$string['nc_createfile_nc'] = "Crear Fichero en NextCloud";
+$string['nc_createfile_word'] = "Crear archivo Word";
+$string['nc_createfile_excel'] = "Crear archivo Excel";
+$string['nc_createfile_pp'] = "Crear archivo PowerPoint";
+$string['nc_createfile_feedback'] = "Crear archivo Encuesta";
+$string['nc_createfile_form'] = "Crear Formulario";

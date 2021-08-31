@@ -89,6 +89,8 @@ class course_navigation extends navigation {
     public function get_template_layout(): string {
         if ($this->get_page() === 'index' || $this->get_page() === 'calendar') {
             return 'theme_cbe/columns2/columns2_index';
+        } else if ($this->get_page() === 'modedit') {
+            return 'theme_cbe/columns2/columns2_modedit';
         } else {
             return 'theme_cbe/columns2/columns2_course';
         }

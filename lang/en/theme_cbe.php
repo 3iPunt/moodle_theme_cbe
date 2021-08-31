@@ -175,3 +175,11 @@ $string['board_hidden'] = "Hidden in board";
 $string['board_anchor'] = "Anchored in board";
 $string['appsallexternals_setting'] = "Internal APPs another tab";
 $string['appsallexternals_setting_desc'] = "If activated, the internal APPs links will open in another tab";
+
+$string['notice_filecreate'] = "Remember to link the file after creating it from the NextCloud Repository";
+$string['nc_createfile_nc'] = "Create File in NextCloud";
+$string['nc_createfile_word'] = "Create Word file";
+$string['nc_createfile_excel'] = "Create Excel file";
+$string['nc_createfile_pp'] = "Create PowerPoint file";
+$string['nc_createfile_feedback'] = "Create Feedback file";
+$string['nc_createfile_form'] = "Create Form file";

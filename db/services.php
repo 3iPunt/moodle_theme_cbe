@@ -23,6 +23,7 @@ use theme_cbe\external\board_external;
 use theme_cbe\external\course_external;
 use theme_cbe\external\coursecard_external;
 use theme_cbe\external\module_external;
+use theme_cbe\external\nextcloud_external;
 use theme_cbe\external\section_external;
 
 defined('MOODLE_INTERNAL') || die();
@@ -148,6 +149,14 @@ $functions = [
         'ajax' => true,
         'loginrequired' => true
     ],
+    'theme_cbe_nextcloud_createfile' => [
+        'classname' => nextcloud_external::class,
+        'methodname' => 'createfile',
+        'description' => 'Create file in NextCloud',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
 ];
 $services = [
     'theme_cbe' => [
@@ -167,6 +176,7 @@ $services = [
             'theme_cbe_board_remove_anchor',
             'theme_cbe_board_visible',
             'theme_cbe_board_hidden',
+            'theme_cbe_nextcloud_createfile',
         ],
         'restrictedusers' => 0,
         'enabled' => 1
