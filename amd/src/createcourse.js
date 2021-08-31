@@ -83,7 +83,7 @@ define([
             } else {
                 VALIDATION.fullname = true;
             }
-            this.node.find(this.shortname).on('change', this.onShortnameChange.bind(this));
+            this.node.find(this.shortname).on('keyup', this.onShortnameChange.bind(this));
             this.node.find(this.category).on('change', this.onCategoryChange.bind(this));
             this.node.find(this.all_inputs).on('change', this.onAllInputsChange.bind(this));
             this.node.find(ACTION.CREATE_BUTTON).on('click', this.onCreateCourseButtonClick.bind(this));
@@ -123,7 +123,7 @@ define([
 
         CreateCourse.prototype.onShortnameChange = function (e) {
             const shortname = $(FORM.SHORTNAME_INPUT).val().trim();
-            if (this.node.find(this.shortname).val().trim() !== '') {
+            if (this.node.find(this.shortname).val().length > 3) {
                 const request = {
                     methodname: SERVICES.CHECK_COURSE_SHORTNAME,
                     args: {
