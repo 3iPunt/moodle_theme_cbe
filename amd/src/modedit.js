@@ -31,7 +31,7 @@ define([
          * @constructor
          */
         function Modedit() {
-            $('#create_file_nextcloud').appendTo('#fitem_id_introeditor');
+            $('#create_file_nextcloud').prependTo('#fitem_id_introattachments');
         }
 
         /** @type {jQuery} The jQuery node for the region. */

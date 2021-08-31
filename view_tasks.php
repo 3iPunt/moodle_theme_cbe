@@ -42,7 +42,7 @@ if (isset($course)) {
     $PAGE->set_title($course->fullname . ': '. $title);
     $PAGE->set_heading($title);
     $PAGE->set_url('/theme/cbe/view_tasks.php', array('id' => $id, 'courseid' => $course->id ));
-
+    $output = $PAGE->get_renderer('theme_cbe');
     echo $OUTPUT->header();
     $page = new tasks_page($id);
     echo $output->render($page);

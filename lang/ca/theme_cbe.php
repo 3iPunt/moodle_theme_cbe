@@ -175,3 +175,11 @@ $string['board_hidden'] = "Amagat en tauler";
 $string['board_anchor'] = "Ancorat en Tauler";
 $string['appsallexternals_setting'] = "APPs internes altra pestanya";
 $string['appsallexternals_setting_desc'] = "Si està activat, els enllaços de les APPs internes s'obriran en una altra pestanya";
+
+$string['notice_filecreate'] = "Recorda vincular l'arxiu després de crear-lo des del Repositori NextCloud";
+$string['nc_createfile_nc'] = "Crear Fitxer en NextCloud";
+$string['nc_createfile_word'] = "Crea un fitxer Word";
+$string['nc_createfile_excel'] = "Crea un fitxer Excel";
+$string['nc_createfile_pp'] = "Crea un fitxer PowerPoint";
+$string['nc_createfile_feedback'] = "Crea un fitxer Enquesta";
+$string['nc_createfile_form'] = "Crea un fitxer Formulari";
