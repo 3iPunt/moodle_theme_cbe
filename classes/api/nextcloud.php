@@ -58,18 +58,17 @@ class nextcloud  {
      * @return response_nc
      */
     public function create_file(string $type): response_nc {
+        // TODO. Not work!
         $curl = new curl();
         $url = 'https://nextcloud.test.digitaldemocratic.net/ocs/v2.php/apps/files/api/v1/templates/create';
         $curl->setHeader($this->get_headers());
         $params = [
-            'filePath' => '//NOMFITXER.docx'
+            'filePath' => ''
         ];
         try {
             $req = $curl->post($url, $params, $this->get_options_curl('POST'));
             $res = $curl->getResponse();
             $data = json_decode($req, true);
-            var_dump($data);
-            var_dump($res);
             $response = new response_nc(true, '');
         } catch (\Exception $e) {
             $response = new response_nc(false, '', new error('01040', $e->getMessage()));

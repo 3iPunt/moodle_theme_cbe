@@ -64,10 +64,6 @@ class nextcloud_external extends external_api {
         $success = true;
         $error = $type;
 
-        $nextcloud_api = new nextcloud();
-        $res = $nextcloud_api->create_file($type);
-        var_dump($res);
-
         return [
             'success' => $success,
             'error' => $error
