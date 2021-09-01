@@ -176,7 +176,10 @@ $string['board_anchor'] = "Anchored in board";
 $string['appsallexternals_setting'] = "Internal APPs another tab";
 $string['appsallexternals_setting_desc'] = "If activated, the internal APPs links will open in another tab";
 
-$string['notice_filecreate'] = "Remember to link the file after creating it from the NextCloud Repository";
+$string['notice_filecreate'] = 'The file {$a} was created successfully.<br><br>Remember to link it in the NextCloud Repository within Additional Files';
+$string['notice_error_filecreate'] = 'The file could not be created.<br><br>We recommend trying again later or creating it directly from the NextCloud application: {$a}.<br><br>When you have it created, remember to link it in the NextCloud Repository within Additional Files';
+$string['title_success_filecreate'] = 'NextCloud File Created';
+$string['title_error_filecreate'] = 'Error creating NextCloud File';
 $string['nc_createfile_nc'] = "Create File in NextCloud";
 $string['nc_createfile_word'] = "Create Word file";
 $string['nc_createfile_excel'] = "Create Excel file";

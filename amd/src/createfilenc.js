@@ -38,6 +38,22 @@ define([
         /**
          *
          */
+        let LINK = {
+            SUCCESS: '#urlnextcloudsuccess',
+            ERROR: '#urlnextclouderror'
+        };
+
+        /**
+         *
+         */
+        let MODAL = {
+            SUCCESS: '#fileNcSuccessModalCenter',
+            ERROR: '#fileNcErrorModalCenter'
+        };
+
+        /**
+         *
+         */
         let ACTION = {
             CREATE_WORD_BUTTON: '[data-action="word"]',
             CREATE_EXCEL_BUTTON: '[data-action="excel"]',
@@ -77,7 +93,13 @@ define([
             };
 
             Ajax.call([request])[0].done(function(response) {
-                console.log(response);
+                if (response.success) {
+                    $(REGION.CREATE_FILE_NC).find(MODAL.SUCCESS).modal('show');
+                    $(REGION.CREATE_FILE_NC).find(LINK.SUCCESS).text(response.link).attr("href", response.link);
+                } else {
+                    $(REGION.CREATE_FILE_NC).find(MODAL.ERROR).modal('show');
+                    $(REGION.CREATE_FILE_NC).find(LINK.ERROR).text(response.link).attr("href", response.link);
+                }
             }).fail(Notification.exception);
 
         };

@@ -10,9 +10,45 @@
         <button data-action="feedback" class="dropdown-item" type="button"><i class="fa fa-bar-chart" aria-hidden="true"></i> {{# str }} nc_createfile_feedback, theme_cbe {{/ str }}</button>
         <button data-action="form" class="dropdown-item" type="button"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{# str }} nc_createfile_form, theme_cbe {{/ str }}</button>
     </div>
-    <span class="notice-filenc small">
-        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{# str }} notice_filecreate, theme_cbe {{/ str }}</span>
+
+    <!-- Modal Success -->
+    <div class="modal fade" id="fileNcSuccessModalCenter" tabindex="-1" role="dialog" aria-labelledby="fileNcSuccessModalCenter" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="iconinfo">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="filenctitle">{{# str }} title_success_filecreate, theme_cbe {{/ str }}</h3>
+                    <p class="filencinfo">{{# str }} notice_filecreate, theme_cbe, <a id="urlnextcloudsuccess" href="#">link</a> {{/ str }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">{{# str }} ok {{/ str }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Error -->
+    <div class="modal fade" id="fileNcErrorModalCenter" tabindex="-1" role="dialog" aria-labelledby="fileNcErrorModalCenter" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="iconinfo">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="filenctitle">{{# str }} title_error_filecreate, theme_cbe {{/ str }}</h3>
+                    <p class="filencinfo">{{# str }} notice_error_filecreate, theme_cbe, <a id="urlnextclouderror" href="#">link</a> {{/ str }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">{{# str }} ok {{/ str }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+
 {{#js}}
 
     require(['theme_cbe/createfilenc'], function(createfilenc) {

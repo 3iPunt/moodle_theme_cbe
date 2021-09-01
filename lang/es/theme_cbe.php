@@ -176,7 +176,10 @@ $string['board_anchor'] = "Anclado en Tablón";
 $string['appsallexternals_setting'] = "APPs internas otra pestaña";
 $string['appsallexternals_setting_desc'] = "Si está activado, los enlaces de las APPs internas se abrirán en otra pestaña";
 
-$string['notice_filecreate'] = "Recuerda vincular el archivo después de crearlo desde el Repositorio NextCloud";
+$string['notice_filecreate'] = 'El archivo {$a} se ha creado correctamente.<br><br>Recuerde vincularlo en el Repositorio NextCloud dentro de Archivos Adicionales';
+$string['notice_error_filecreate'] = 'El archivo no se ha podido crear.<br><br>Le recomendamos intentarlo más tarde o crearlo directamente desde la aplicación NextCloud: {a}.<br><br>Cuando lo tenga creado, recuerde vincularlo en el Repositorio NextCloud dentro de Archivos Adicionales';
+$string['title_success_filecreate'] = 'Archivo NextCloud Creado';
+$string['title_error_filecreate'] = 'Error al crear Archivo NextCloud';
 $string['nc_createfile_nc'] = "Crear Fichero en NextCloud";
 $string['nc_createfile_word'] = "Crear archivo Word";
 $string['nc_createfile_excel'] = "Crear archivo Excel";

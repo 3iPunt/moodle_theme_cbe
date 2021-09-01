@@ -176,7 +176,10 @@ $string['board_anchor'] = "Ancorat en Tauler";
 $string['appsallexternals_setting'] = "APPs internes altra pestanya";
 $string['appsallexternals_setting_desc'] = "Si està activat, els enllaços de les APPs internes s'obriran en una altra pestanya";
 
-$string['notice_filecreate'] = "Recorda vincular l'arxiu després de crear-lo des del Repositori NextCloud";
+$string['notice_filecreate'] = 'El fitxer {$a} s\'ha creat correctament.<br><br>Recordeu vincular-lo en el Repositori NextCloud dins d\'Fitxers addicionals';
+$string['notice_error_filecreate'] = 'El fitxer no s\'ha pogut crear.<br><br>Us recomanem intentar més tard o crear-lo directament des de l\'aplicació NextCloud: {$a}.<br><br>Quan el tingui creat, recordi vincular-lo en el Repositori NextCloud dins d\'Fitxers addicionals';
+$string['title_success_filecreate'] = 'Arxiu NextCloud Creat';
+$string['title_error_filecreate'] = "Error a l'crear Arxiu NextCloud";
 $string['nc_createfile_nc'] = "Crear Fitxer en NextCloud";
 $string['nc_createfile_word'] = "Crea un fitxer Word";
 $string['nc_createfile_excel'] = "Crea un fitxer Excel";

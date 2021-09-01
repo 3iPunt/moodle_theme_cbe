@@ -22,6 +22,7 @@
 
 namespace theme_cbe\external;
 
+use dml_exception;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
@@ -52,6 +53,7 @@ class nextcloud_external extends external_api {
      * @param string $type
      * @return array
      * @throws invalid_parameter_exception
+     * @throws dml_exception
      */
     public static function createfile(string $type): array {
 
@@ -61,12 +63,15 @@ class nextcloud_external extends external_api {
             ]
         );
 
-        $success = true;
+        $success = false;
         $error = $type;
+        $host = empty(get_config('theme_cbe', 'host')) ? '' : get_config('theme_cbe', 'host');
+        $link = 'https://nextcloud.' . $host;
 
         return [
             'success' => $success,
-            'error' => $error
+            'error' => $error,
+            'link' => $link
         ];
     }
 
@@ -78,6 +83,7 @@ class nextcloud_external extends external_api {
             array(
                 'success' => new external_value(PARAM_BOOL, 'Was it a success?'),
                 'error' => new external_value(PARAM_TEXT, 'Error message'),
+                'link' => new external_value(PARAM_TEXT, 'Link'),
             )
         );
     }

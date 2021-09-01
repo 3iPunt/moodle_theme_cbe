@@ -13,5 +13,37 @@ body[data-theme='cbe'][data-role='user'] {
         color: #ffc107;
       }
     }
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h3.filenctitle {
+        font-weight: bolder;
+        font-size: 21px;
+        margin-bottom: 20px;
+      }
+      p.filencinfo {
+        padding: 10px 10px 0;
+      }
+      .iconinfo {
+        margin: 10px 0 20px;
+        i.fa {
+        font-size: 46px;
+        background-color: #e4e4e4;
+        border-radius: 52px;
+        padding: 10px;
+        &.fa-check {
+          color: #51bd51;
+        }
+        &.fa-exclamation-triangle {
+          color: #df0839;
+          padding: 16px;
+          font-size: 44px;
+        }
+      }
+      }
+
+    }
   }
+
 }
