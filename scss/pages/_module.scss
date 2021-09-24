@@ -2,7 +2,7 @@ body[data-theme='cbe'][data-role='user'] {
 
   #page-content.course #region-main-box {
     #region-main.in_course[data-region="module"],
-    #region-main.in_course[data-region="modedit"]  {
+    #region-main.in_course[data-region="modedit"] {
       background-color: white;
       border: 1px solid $border-color;
       padding: 30px !important;
@@ -14,217 +14,91 @@ body[data-theme='cbe'][data-role='user'] {
         >h2,>h3 {
           font-size: 28px;
           font-family: $fontbold;
-          margin: 0 0 24px 70px;
+          .icon-bigbluebutton {
+            display: none;
+          }
+        }
+      }
+      .box-title-module {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 20px;
+        &.in_create {
+          position: absolute;
+        }
+        .mod {
+          width: 60px;
+          height: 60px;
+          background-color: $primary-color;
+          border-radius: 30px;
+          margin: 0 10px 0 0;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 60px;
+          img.icon {
+            width: 27px;
+            height: 27px;
+            margin: 0;
+          }
+          .iconlarge.activityicon {
+            width: 60px;
+            min-width: 60px;
+            height: 60px;
+            display: flex;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 27px;
+            &.assign {
+              background-image: url('[[pix:mod_assign|icon]]');
+            }
+            &.forum {
+              background-image: url('[[pix:mod_forum|icon]]');
+            }
+            &.quiz {
+              background-image: url('[[pix:mod_quiz|icon]]');
+            }
+            &.feedback {
+              background-image: url('[[pix:mod_feedback|icon]]');
+            }
+            &.bigbluebuttonbn {
+              background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+            }
+          }
+          &.resource_mod {
+            background-color: white;
+            border: 4px solid $primary-color;
+            .module-resource-icon-component-cbe {
+              svg.theme-cbe-icon {
+                width: 27px;
+                height: 27px;
+                fill: $primary-color;
+              }
+              &.url {
+                svg.theme-cbe-icon {
+                  stroke: $primary-color;
+                }
+              }
+            }
+          }
+        }
+        .title-module {
+          display: inline;
+          font-size: 28px;
+          font-family: $fontbold;
+          margin: 0;
           position: relative;
           @media (max-width: 600px) {
             font-size: 22px;
           }
-          &:after {
-            content: "";
-            background-color: $primary-color;
-            height: 58px;
-            width: 58px;
-            position: absolute;
-            left: -68px;
-            top: -13px;
-            border-radius: 15px;
-            background-size: 28px;
-            background-position: center;
-            background-repeat: no-repeat;
+        }
+      }
+      &.is_module {
+        div[role="main"] {
+          >h2,>h3 {
+            display: none;
           }
         }
-      }
-    }
-  }
-
-  &#page-admin-roles-assign,
-  &#page-admin-roles-check,
-  &#page-backup-restorefile,
-  &#page-grade-grading-manage,
-  &#page-filter-manage,
-  &#page-question-category,
-  &#page-question-import,
-  &#page-question-export,
-  &#page-admin-roles-permissions {
-    div[role="main"] {
-      >h2 {
-        font-size: 28px;
-        font-family: $fontbold;
-        margin: 0 0 24px 0 !important;
-        &:after {
-          content: inherit !important;
-        }
-      }
-      >h3 {
-        font-size: 22px!important;
-        font-family: $font!important;
-        margin: 0 0 24px 0 !important;
-        &:after {
-          content: inherit !important;
-        }
-      }
-    }
-  }
-
-  &#page-mod-assign-view,
-  &#page-mod-assign-editsubmission,
-  &#page-mod-assign-removesubmissionconfirm,
-  &#page-mod-assign-submit,
-  &#page-mod-assign-overrides {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_assign|icon]]');
-      }
-    }
-  }
-
-  &#page-mod-forum-view,
-  &#page-mod-forum-report-summary-index,
-  &#page-mod-forum-subscribers,
-  &#page-mod-forum-export {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_forum|icon]]');
-      }
-    }
-  }
-
-  &#page-mod-quiz-view,
-  &#page-mod-quiz-overrides,
-  &#page-mod-quiz-report {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_quiz|icon]]');
-      }
-    }
-  }
-
-  &#page-mod-feedback-view,
-  &#page-mod-feedback-import,
-  &#page-mod-feedback-edit,
-  &#page-mod-feedback-analysis,
-  &#page-mod-feedback-show_entries,
-  &#page-mod-feedback-edit {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_feedback|icon]]');
-      }
-    }
-  }
-
-  &#page-mod-folder-view, {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_folder|icon]]');
-        background-color: $primary-color-light2 !important;
-        background-size: 20px !important;
-        border-radius: 30px !important;
-      }
-    }
-  }
-
-  &#page-mod-feedback-view,
-  &#page-mod-feedback-import {
-    div[role="main"] {
-      >h3 {
-        font-size: 22px!important;
-        margin: 30px 0 24px 0 !important;
-        &:after {
-          content: inherit !important;
-        }
-      }
-    }
-  }
-
-  &#page-mod-bigbluebuttonbn-view {
-    div[role="main"]>h3 {
-      &:after {
-        background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
-      }
-    }
-  }
-
-  &#page-mod-bigbluebuttonbn-mod {
-    div[role="main"]>h2 {
-      &:after {
-        left: -32px !important;
-        top: -2px !important;
-      }
-    }
-  }
-
-  &#page-mod-tresipuntvideo-view {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_tresipuntvideo|icon]]');
-        background-color: $primary-color-light2 !important;
-        background-size: 20px !important;
-        border-radius: 30px !important;
-      }
-    }
-  }
-
-  &#page-mod-tresipuntaudio-view {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_tresipuntaudio|icon]]');
-        background-color: $primary-color-light2 !important;
-        background-size: 20px !important;
-        border-radius: 30px !important;
-      }
-    }
-  }
-
-  &#page-mod-resource-view {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_resource|icon]]');
-        background-color: $primary-color-light2 !important;
-        background-size: 20px !important;
-        border-radius: 30px !important;
-      }
-    }
-  }
-
-  &#page-mod-url-view {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_url|icon]]');
-        background-color: $primary-color-light2 !important;
-        background-size: 20px !important;
-        border-radius: 30px !important;
-      }
-    }
-  }
-
-  &#page-mod-page-view {
-    div[role="main"]>h2 {
-      &:after {
-        background-image: url('[[pix:mod_page|icon]]');
-        background-color: $primary-color-light2 !important;
-        background-size: 20px !important;
-        border-radius: 30px !important;
-      }
-    }
-  }
-
-  &#page-mod-folder-mod,
-  &#page-mod-page-mod,
-  &#page-mod-url-mod,
-  &#page-mod-tresipuntvideo-mod,
-  &#page-mod-tresipuntaudio-mod,
-  &#page-mod-resource-mod, {
-    div[role="main"]>h2 {
-      >img.icon {
-        left: -51px !important;
-        top: 4px !important;
-        width: 25px !important;
-        height: 25px !important;
-      }
-      &:after {
-        background-color: $primary-color-light2 !important;
-        background-size: 25px !important;
-        border-radius: 30px !important;
       }
     }
   }

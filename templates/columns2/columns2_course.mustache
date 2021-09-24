@@ -78,7 +78,7 @@
                     </section>
                     {{/ is_course_blocks }}
 
-                    <section class="in_course {{# is_course_blocks }}col-md-12 col-lg-12 col-xl-9 pl-xl-3 {{/is_course_blocks}}{{^ is_course_blocks }}col-md-12 col-lg-12 col-xl-12{{/is_course_blocks}}"
+                    <section class="in_course {{# is_module }}is_module{{/ is_module }} {{# is_course_blocks }}col-md-12 col-lg-12 col-xl-9 pl-xl-3 {{/is_course_blocks}}{{^ is_course_blocks }}col-md-12 col-lg-12 col-xl-12{{/is_course_blocks}}"
                             id="region-main"
                             {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}}
                             aria-label="{{#str}}content{{/str}}"
@@ -86,6 +86,14 @@
                         {{#hasregionmainsettingsmenu}}
                             <div class="region_main_settings_menu_proxy"></div>
                         {{/hasregionmainsettingsmenu}}
+                        {{# is_module }}
+                            <div class="box-title-module">
+                                <div class="mod {{# is_resource }}resource_mod{{/ is_resource }}">
+                                    {{{ html_icon }}}
+                                </div>
+                                <h2 class="title-module">{{ module_title }}</h2>
+                            </div>
+                        {{/ is_module }}
                         {{{ output.course_content_header }}}
                         {{{ output.main_content }}}
                         {{{ output.activity_navigation }}}

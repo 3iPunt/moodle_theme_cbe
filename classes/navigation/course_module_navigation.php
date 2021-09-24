@@ -24,6 +24,7 @@
 
 namespace theme_cbe\navigation;
 
+use cm_info;
 use coding_exception;
 use moodle_exception;
 use moodle_url;
@@ -32,6 +33,7 @@ use stdClass;
 use theme_cbe\api\header_api;
 use theme_cbe\course;
 use theme_cbe\course_user;
+use theme_cbe\module;
 use theme_cbe\output\course_header_navbar_component;
 use theme_cbe\output\course_left_section_component;
 use theme_cbe\output\menu_apps_button;
@@ -135,13 +137,19 @@ class course_module_navigation extends navigation {
         $menu_apps_button_component = new menu_apps_button($this->header_api);
         $menu_apps_button = $output_theme_cbe->render($menu_apps_button_component);
 
+        $coursemodule = new module($cmid);
+
         $data['in_course'] = true;
         $data['course_left_menu'] = $course_left_menu;
         $data['navbar_header_course'] =  $nav_header_course;
         $data['is_course_blocks'] = true;
         $data['is_teacher'] = course_user::is_teacher($course_id);
         $data['menu_apps_button'] = $menu_apps_button;
-        $data['nav_context'] =  'course';
+        $data['nav_context'] = 'course';
+        $data['is_module'] = true;
+        $data['module_title'] = $coursemodule->get_name();
+        $data['html_icon'] = $coursemodule->get_html_icon();
+        $data['is_resource'] = $coursemodule->is_resource();
         $data['nav_cbe'] = course_module_navigation::get_page();
 
         return $data;

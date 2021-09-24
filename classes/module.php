@@ -109,6 +109,7 @@ class module  {
         $module->id = $this->cm_id;
         $module->modname = $this->get_modname();
         $module->icon = $this->get_icon();
+        $module->html_icon = $this->get_html_icon();
         $module->modfullname = $this->get_modfullname();
         $module->name = $this->get_name();
         $module->added = $this->get_added();
@@ -190,6 +191,24 @@ class module  {
      */
     public function get_icon(): string {
         return $this->cm->get_icon_url();
+    }
+
+    /**
+     * Get Icon
+     *
+     * @return string
+     * @throws coding_exception
+     */
+    public function get_html_icon(): string {
+        global $PAGE;
+        if (in_array($this->cm->modname, module::$resources)) {
+            $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+            $classname = 'theme_cbe\output\module_' . $this->cm->modname . '_icon_component';
+            $module_resource_icon_component = new $classname($this->cm);
+            return $output_theme_cbe->render($module_resource_icon_component);
+        } else {
+            return '<img class="icon" src="' . $this->cm->get_icon_url() . '" alt="">';
+        }
     }
 
     /**

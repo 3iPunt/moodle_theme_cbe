@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class module_component
+ * Class module_resource_icon_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
@@ -36,31 +36,24 @@ use theme_cbe\module;
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * Class module_component
+ * Class module_tresipuntvideo_icon_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class module_component implements renderable, templatable {
-
-    /** @var int CM ID */
-    protected $cmid;
-
-    /** @var stdClass Course */
-    protected $course;
+class module_resource_icon_component implements renderable, templatable {
 
     /** @var cm_info CM */
     protected $cm;
 
     /**
-     * module_component constructor.
+     * constructor.
      *
-     * @param int $cmid
-     * @throws moodle_exception
+     * @param cm_info|null $cm
      */
-    public function __construct(int $cmid) {
-        list($this->course, $this->cm) = get_course_and_cm_from_cmid($cmid);
+    public function __construct(cm_info $cm = null) {
+        $this->cm = $cm;
     }
 
     /**
@@ -68,17 +61,8 @@ class module_component implements renderable, templatable {
      *
      * @param renderer_base $output
      * @return stdClass
-     * @throws moodle_exception
      */
     public function export_for_template(renderer_base $output): stdClass {
-        $modulecbe = new module($this->cm->id);
-        //$data = new stdClass();
-        //$data->modname = $this->cm->modname;
-        //$data->modfullname = $this->cm->modfullname;
-        //$data->name = $this->cm->name;
-        //$data->is_resource = in_array($this->cm->modname, module::$resources);
-        //$data->view_url = new moodle_url('/mod/' . $this->cm->modname. '/view.php', ['id'=> $this->cm->id]);;
-        //$data->sectionname = get_section_name($this->course->id, $this->cm->sectionnum);
-        return $modulecbe->export();
+        return new stdClass();
     }
 }

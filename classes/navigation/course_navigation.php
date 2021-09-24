@@ -25,6 +25,7 @@
 namespace theme_cbe\navigation;
 
 use coding_exception;
+use html_writer;
 use moodle_exception;
 use moodle_url;
 use pix_icon;
@@ -32,6 +33,7 @@ use stdClass;
 use theme_cbe\api\header_api;
 use theme_cbe\course;
 use theme_cbe\course_user;
+use theme_cbe\module;
 use theme_cbe\output\course_header_navbar_component;
 use theme_cbe\output\course_left_section_component;
 use theme_cbe\output\menu_apps_button;
@@ -206,6 +208,32 @@ class course_navigation extends navigation {
             $is_course_blocks = false;
         }
 
+        if ($cbe_page === 'modedit') {
+            $modname = optional_param('add', null, PARAM_RAW);
+            if (!is_null($modname)) {
+                $data['has_icon'] = true;
+                if (in_array($modname, module::$resources)) {
+                    $data['is_resource'] = true;
+                    $activitylink = html_writer::start_tag('div', array('class' => 'cbe_icon_mod resource'));
+                    $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+                    $classname = 'theme_cbe\output\module_' . $modname . '_icon_component';
+                    $module_resource_icon_component = new $classname();
+                    $resourcemod = $output_theme_cbe->render($module_resource_icon_component);
+                    $activitylink .= $resourcemod;
+                } else {
+                    $data['is_resource'] = false;
+                    $activitylink = html_writer::start_div('cbe_icon_mod');
+                    $activitylink .= html_writer::empty_tag(
+                        'span',
+                        array(
+                            'class' => 'iconlarge activityicon ' .$modname));
+                }
+                $activitylink .= html_writer::end_div();
+                $data['html_icon'] = $activitylink;
+            }
+
+        }
+
         $data['in_course'] = true;
         $data['course_left_menu'] = $course_left_menu;
         $data['navbar_header_course'] =  $nav_header_course;
@@ -213,6 +241,7 @@ class course_navigation extends navigation {
         $data['is_teacher'] = course_user::is_teacher($course_id);
         $data['menu_apps_button'] = $menu_apps_button;
         $data['nav_context'] = 'course';
+
         $data['nav_cbe'] = $cbe_page;
 
         return $data;

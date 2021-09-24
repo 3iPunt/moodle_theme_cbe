@@ -521,6 +521,4 @@ class core_renderer extends \core_renderer {
 
         return $header . $this->skip_link_target('maincontent');
     }
-
-
 }

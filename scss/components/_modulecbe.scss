@@ -5,25 +5,33 @@ body[data-theme='cbe'][data-role="user"] {
     align-items: center;
     div.mod {
       background-color: $primary-color;
-      width: 54px;
-      height: 54px;
-      min-width: 54px;
+      width: 60px;
+      height: 60px;
+      min-width: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-right: 10px;
-      border-radius: 15px;
+      border-radius: 30px;
       &.resource_mod {
-        background-color: $primary-color-light2 !important;
-        border-radius: 30px !important;
-        .icon {
-          width: 20px;
-          height: 20px;
+        background-color: white;
+        border: 4px solid $primary-color;
+        .module-resource-icon-component-cbe {
+          svg.theme-cbe-icon {
+            width: 27px;
+            height: 27px;
+            fill: $primary-color;
+          }
+          &.url {
+            svg.theme-cbe-icon {
+              stroke: $primary-color;
+            }
+          }
         }
       }
       .icon {
-        width: 30px;
-        height: 30px;
+        width: 27px;
+        height: 27px;
         display: flex;
         margin: 0;
         background-color: transparent;
@@ -33,24 +41,6 @@ body[data-theme='cbe'][data-role="user"] {
         &:hover {
           opacity: 90%;
         }
-      }
-      &.assign .icon  {
-        background-image: url('[[pix:mod_assign|icon]]');
-      }
-      &.resource .icon  {
-        background-image: url('[[pix:mod_resource|icon]]');
-      }
-      &.tresipuntaudio .icon  {
-        background-image: url('[[pix:mod_tresipuntaudio|icon]]');
-      }
-      &.tresipuntvideo .icon  {
-        background-image: url('[[pix:mod_tresipuntvideo|icon]]');
-      }
-      &.bigbluebuttonbn .icon  {
-        background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
-      }
-      &.folder .icon  {
-        background-image: url('[[pix:mod_folder|icon]]');
       }
     }
     .data {
@@ -116,7 +106,7 @@ body[data-theme='cbe'][data-role="user"] {
         width: 60px;
         height: 60px;
         background-color: $primary-color;
-        border-radius: 15px;
+        border-radius: 30px;
         margin: 20px;
         display: flex;
         align-items: center;
@@ -124,19 +114,24 @@ body[data-theme='cbe'][data-role="user"] {
         min-width: 60px;
         cursor: pointer;
         &.resource_mod {
-          background-color: $primary-color-light2 !important;
-          border-radius: 30px !important;
-          .icon {
-            width: 25px;
-            height: 25px;
-            >img {
-              width: 25px;
+          background-color: white;
+          border: 4px solid $primary-color;
+          .module-resource-icon-component-cbe {
+            svg.theme-cbe-icon {
+              width: 27px;
+              height: 27px;
+              fill: $primary-color;
+            }
+            &.url {
+              svg.theme-cbe-icon {
+                stroke: $primary-color;
+              }
             }
           }
         }
         .icon {
-          width: 30px;
-          height: 30px;
+          width: 27px;
+          height: 27px;
           display: flex;
           margin: 0;
           background-color: transparent;
@@ -147,7 +142,7 @@ body[data-theme='cbe'][data-role="user"] {
             opacity: 90%;
           }
           >img {
-            width: 30px;
+            width: 27px;
           }
         }
         img.picture {

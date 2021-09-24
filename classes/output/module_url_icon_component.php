@@ -15,29 +15,54 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Course renderer.
+ * Class module_url_icon_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_cbe\core;
+namespace theme_cbe\output;
 
-use core_course_renderer;
+use cm_info;
+use moodle_exception;
+use moodle_url;
+use renderable;
+use renderer_base;
+use stdClass;
+use templatable;
+use theme_cbe\module;
 
-defined('MOODLE_INTERNAL') || die();
-
+defined('MOODLE_INTERNAL') || die;
 
 /**
- * Renderers to align Moove's course elements to what is expect
+ * Class module_url_icon_component
  *
  * @package     theme_cbe
  * @copyright   2021 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class course_renderer extends core_course_renderer {
+class module_url_icon_component implements renderable, templatable {
 
+    /** @var cm_info CM */
+    protected $cm;
 
+    /**
+     * constructor.
+     *
+     * @param cm_info|null $cm
+     */
+    public function __construct(cm_info $cm = null) {
+        $this->cm = $cm;
+    }
 
+    /**
+     * Export for template.
+     *
+     * @param renderer_base $output
+     * @return stdClass
+     */
+    public function export_for_template(renderer_base $output): stdClass {
+        return new stdClass();
+    }
 }
