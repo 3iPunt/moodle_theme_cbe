@@ -38,7 +38,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/host',
         get_string('host', 'theme_cbe'),
         get_string('host_desc', 'theme_cbe'),
-        false
+        ''
     ));
 
     $page->add($setting);
@@ -46,7 +46,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/logourl',
         get_string('logourl', 'theme_cbe'),
         get_string('logourl_desc', 'theme_cbe'),
-        false
+        ''
     ));
 
     $page->add($setting);
@@ -90,8 +90,17 @@ if ($ADMIN->fulltree) {
         false
     ));
     $page->add($setting);
-    $settings->add($page);
 
+    $setting = (new admin_setting_configtext(
+        'theme_cbe/hostnccreate',
+        get_string('hostnccreate', 'theme_cbe'),
+        get_string('hostnccreate_desc', 'theme_cbe'),
+        false
+    ));
+
+    $page->add($setting);
+
+    $settings->add($page);
     // Colours settings.
     $page = new admin_settingpage('theme_cbe_colours', get_string('colourssettings', 'theme_cbe'));
 

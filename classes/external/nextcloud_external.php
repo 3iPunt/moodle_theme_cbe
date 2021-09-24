@@ -22,6 +22,7 @@
 
 namespace theme_cbe\external;
 
+use coding_exception;
 use dml_exception;
 use external_api;
 use external_function_parameters;
@@ -43,30 +44,32 @@ class nextcloud_external extends external_api {
      */
     public static function createfile_parameters(): external_function_parameters {
         return new external_function_parameters(
-            [
-                'type' => new external_value(PARAM_TEXT, 'Type File to create')
-            ]
+            array()
         );
     }
 
     /**
-     * @param string $type
      * @return array
      * @throws invalid_parameter_exception
      * @throws dml_exception
+     * @throws coding_exception
      */
-    public static function createfile(string $type): array {
+    public static function createfile(): array {
 
         self::validate_parameters(
             self::createfile_parameters(), [
-                'type' => $type,
             ]
         );
 
-        $success = false;
-        $error = $type;
-        $host = empty(get_config('theme_cbe', 'host')) ? '' : get_config('theme_cbe', 'host');
-        $link = 'https://nextcloud.' . $host;
+        if (empty(get_config('theme_cbe', 'hostnccreate'))) {
+            $success = false;
+            $error = get_string('nextcloud_create_not_config', 'theme_cbe');
+            $link = '';
+        } else {
+            $link = get_config('theme_cbe', 'hostnccreate');
+            $success = true;
+            $error = '';
+        }
 
         return [
             'success' => $success,

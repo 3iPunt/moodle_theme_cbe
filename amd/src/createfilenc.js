@@ -32,34 +32,18 @@ define([
          *
          */
         let REGION = {
-            CREATE_FILE_NC: '#create_file_nextcloud'
-        };
-
-        /**
-         *
-         */
-        let LINK = {
-            SUCCESS: '#urlnextcloudsuccess',
-            ERROR: '#urlnextclouderror'
-        };
-
-        /**
-         *
-         */
-        let MODAL = {
-            SUCCESS: '#fileNcSuccessModalCenter',
-            ERROR: '#fileNcErrorModalCenter'
+            CREATE_FILE_NC: '#create_file_nextcloud',
+            BODY_NC: '#create_file_nextcloud_body',
+            IFRAME_NC: '#create_file_nextcloud_iframe',
+            ERROR_NC: '#nextcloud_error'
         };
 
         /**
          *
          */
         let ACTION = {
-            CREATE_WORD_BUTTON: '[data-action="word"]',
-            CREATE_EXCEL_BUTTON: '[data-action="excel"]',
-            CREATE_PP_BUTTON: '[data-action="pp"]',
-            CREATE_FEEDBACK_BUTTON: '[data-action="feedback"]',
-            CREATE_FORM_BUTTON: '[data-action="form"]'
+            CREATE_BUTTON: '[data-action="create_file_nextcloud"]',
+            CONTRACT_BUTTON: '[data-action="create_file_nextcloud_contract"]'
         };
 
         /**
@@ -74,31 +58,42 @@ define([
          */
         function Createfilenc() {
             this.node = $(REGION.CREATE_FILE_NC);
-            this.node.find(ACTION.CREATE_WORD_BUTTON).on('click', this.onCreateClick.bind(this));
-            this.node.find(ACTION.CREATE_EXCEL_BUTTON).on('click', this.onCreateClick.bind(this));
-            this.node.find(ACTION.CREATE_PP_BUTTON).on('click', this.onCreateClick.bind(this));
-            this.node.find(ACTION.CREATE_FEEDBACK_BUTTON).on('click', this.onCreateClick.bind(this));
-            this.node.find(ACTION.CREATE_FORM_BUTTON).on('click', this.onCreateClick.bind(this));
+            this.node.find(ACTION.CREATE_BUTTON).on('click', this.onCreateClick.bind(this));
+            this.node.find(ACTION.CONTRACT_BUTTON).on('click', this.onContractClick.bind(this));
         }
+
+        Createfilenc.prototype.onContractClick = function (e) {
+
+            this.node.find(REGION.BODY_NC).hide();
+            this.node.find(ACTION.CONTRACT_BUTTON).hide();
+            this.node.find(ACTION.CREATE_BUTTON).show();
+            this.node.find(REGION.IFRAME_NC).hide();
+
+        };
 
         Createfilenc.prototype.onCreateClick = function (e) {
 
-            let type = $(e.target).data('action');
+            this.node.find(REGION.BODY_NC).show();
+            this.node.find(ACTION.CONTRACT_BUTTON).show();
+            this.node.find(ACTION.CREATE_BUTTON).hide();
+            this.node.find(REGION.ERROR_NC).hide();
+
+            let node = this.node;
+
 
             const request = {
                 methodname: SERVICES.NC_CREATEFILE,
-                args: {
-                    type: type
-                }
+                args: {}
             };
 
             Ajax.call([request])[0].done(function(response) {
                 if (response.success) {
-                    $(REGION.CREATE_FILE_NC).find(MODAL.SUCCESS).modal('show');
-                    $(REGION.CREATE_FILE_NC).find(LINK.SUCCESS).text(response.link).attr("href", response.link);
+                    node.find(REGION.IFRAME_NC).show();
+                    node.find(REGION.IFRAME_NC).attr('src', response.link);
                 } else {
-                    $(REGION.CREATE_FILE_NC).find(MODAL.ERROR).modal('show');
-                    $(REGION.CREATE_FILE_NC).find(LINK.ERROR).text(response.link).attr("href", response.link);
+                    node.find(REGION.IFRAME_NC).hide();
+                    node.find(REGION.ERROR_NC).show();
+                    node.find(REGION.ERROR_NC).text(response.error);
                 }
             }).fail(Notification.exception);
 

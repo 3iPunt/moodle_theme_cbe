@@ -176,13 +176,10 @@ $string['board_anchor'] = "Anchored in board";
 $string['appsallexternals_setting'] = "Internal APPs another tab";
 $string['appsallexternals_setting_desc'] = "If activated, the internal APPs links will open in another tab";
 
-$string['notice_filecreate'] = 'The file {$a} was created successfully.<br><br>Remember to link it in the NextCloud Repository within Additional Files';
-$string['notice_error_filecreate'] = 'The file could not be created.<br><br>We recommend trying again later or creating it directly from the NextCloud application: {$a}.<br><br>When you have it created, remember to link it in the NextCloud Repository within Additional Files';
-$string['title_success_filecreate'] = 'NextCloud File Created';
-$string['title_error_filecreate'] = 'Error creating NextCloud File';
+
+$string['notice_filecreate'] = 'You can create a file on NextCloud from here. Remember to link it in the NextCloud Repository within Additional Files';
 $string['nc_createfile_nc'] = "Create File in NextCloud";
-$string['nc_createfile_word'] = "Create Word file";
-$string['nc_createfile_excel'] = "Create Excel file";
-$string['nc_createfile_pp'] = "Create PowerPoint file";
-$string['nc_createfile_feedback'] = "Create Feedback file";
-$string['nc_createfile_form'] = "Create Form file";
+
+$string['hostnccreate'] = "NextCloud file creation URL";
+$string['hostnccreate_desc'] = "Ex. https://nextcloud.demo.digitaldemocratic.net/apps/files";
+$string['nextcloud_create_not_config'] = "NextCloud is not configured correctly. Notify the administrator";
