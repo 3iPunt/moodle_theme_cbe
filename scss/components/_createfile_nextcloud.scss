@@ -10,11 +10,15 @@ body[data-theme='cbe'][data-role='user'] {
     .nextcloud-create-file-contract {
       display: none;
       margin-bottom: 10px;
+      position: relative;
+      z-index: 20;
     }
     #create_file_nextcloud_body {
       display: none;
       .notice_nc {
         margin-bottom: 10px;
+        z-index: 20;
+        position: relative;
         i.fa.fa-exclamation-triangle {
           color: #ff9e00;
         }
@@ -23,8 +27,17 @@ body[data-theme='cbe'][data-role='user'] {
           color: grey;
         }
       }
+      .hide_header {
+        background-color: #fff;
+        height: 76px;
+        position: relative;
+        top: -76px;
+        z-index: 10;
+      }
       #create_file_nextcloud_iframe {
         display: none;
+        position: relative;
+        top: -150px;
       }
       div#nextcloud_error {
         background-color: #dddddd;
@@ -32,6 +45,8 @@ body[data-theme='cbe'][data-role='user'] {
         text-align: center;
         font-weight: bold;
         font-size: 14px;
+        position: relative;
+        z-index: 20;
       }
     }
   }
