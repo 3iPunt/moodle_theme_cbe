@@ -59,7 +59,7 @@ class module  {
     protected $coursemoodle;
 
     /** @var string[] Activities */
-    static public $activities = ['assign', 'forum', 'quiz', 'feedback', 'bigbluebuttonbn'];
+    static public $activities = ['assign', 'forum', 'quiz', 'feedback', 'bigbluebuttonbn', 'h5pactivity'];
 
     /** @var string[] Resources */
     static public $resources = ['tresipuntvideo', 'tresipuntaudio', 'resource', 'folder', 'url', 'page'];

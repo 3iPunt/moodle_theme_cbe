@@ -177,6 +177,9 @@ body[data-theme='cbe'][data-role="user"] {
                   &.folder {
                     background-image: url('[[pix:mod_folder|icon]]');
                   }
+                  &.h5pactivity {
+                    background-image: url('[[pix:mod_h5pactivity|icon]]');
+                  }
                 }
                 .text {
                   padding-left: 20px;
