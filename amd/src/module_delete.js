@@ -34,7 +34,16 @@ define([
          *
          */
         let ACTION = {
-            DELETE_BUTTON: '[data-action="delete"]'
+            DELETE_BOARD_BUTTON: '.delete-module.action',
+            DELETE_BUTTON: '[data-action="delete"]',
+            CANCEL_BUTTON: '.btn.cancel'
+        };
+
+        /**
+         *
+         */
+        let REGIONS = {
+            MODULE: '#board-content .modulecbe'
         };
 
         /**
@@ -52,8 +61,21 @@ define([
         function ModuleDelete(region, cmid) {
             this.cmid = cmid;
             this.node = $(region);
+            this.module_node = $(REGIONS.MODULE + '[data-cmid="' + this.cmid + '"]');
             this.node.find(ACTION.DELETE_BUTTON).on('click', this.onDeleteButtonClick.bind(this));
+            this.module_node.find(ACTION.DELETE_BOARD_BUTTON).on('click', this.onDeleteBoardButtonClick.bind(this));
+            this.module_node.find(ACTION.CANCEL_BUTTON).on('click', this.onCancelButtonClick.bind(this));
         }
+
+        ModuleDelete.prototype.onCancelButtonClick = function (e) {
+            if (this.module_node.hasClass( "is_board_hidden" )) {
+                this.module_node.css('opacity', '0.5');
+            }
+        };
+
+        ModuleDelete.prototype.onDeleteBoardButtonClick = function (e) {
+            this.module_node.css('opacity', '1');
+        };
 
         ModuleDelete.prototype.onDeleteButtonClick = function (e) {
 
