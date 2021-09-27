@@ -147,6 +147,7 @@ class course_module_navigation extends navigation {
         $data['menu_apps_button'] = $menu_apps_button;
         $data['nav_context'] = 'course';
         $data['is_module'] = true;
+        $data['has_create_file_nextcloud'] = $coursemodule->get_modname() === 'assign';
         $data['module_title'] = $coursemodule->get_name();
         $data['html_icon'] = $coursemodule->get_html_icon();
         $data['is_resource'] = $coursemodule->is_resource();
