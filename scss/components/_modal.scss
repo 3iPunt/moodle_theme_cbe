@@ -13,40 +13,101 @@ body[data-theme='cbe'][data-role="user"] {
     .modal-body {
       .nav-tabs {
         border: none !important;
-        margin-bottom: 20px;
+        margin: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
         .nav-item {
-          border: 1px solid #e8e8e8;
-          background-color: #f1f1f1;
-          color: $grey-medium2;
+          border: none;
+          background-color: transparent;
+          color: $black-ligth;
           margin-right: 10px;
+          position: relative;
+          &[data-region=default-tab-nav] {
+            display: none;
+          }
+          &:hover {
+            background-color: $grey-light;
+          }
           &.active {
-            color: white;
-            font-weight: 600;
-            background-color: $primary-color;
+            font-weight: bold;
+            &::after {
+              content: " ";
+              background-color: $primary-color;
+              width: 100%;
+              height: 5px;
+              left: 0;
+              position: absolute;
+              border-radius: 12px;
+              bottom: 0px;
+            }
           }
         }
       }
       .tab-content, .searchresultitemscontainer-wrapper {
-        border: none !important;
+        border: 1px solid $grey-medium2;
         background-color: white !important;
       }
+
+
       .optionscontainer, .searchresultitemscontainer {
         [role="menuitem"][data-internal="bigbluebuttonbn"] {
           >.optioninfo {
             >a {
               align-items: center;
               .optionicon {
-                width: 56px;
-                height: 56px;
+                max-width: 60px !important;
+                height: 60px;
                 background-color: $primary-color;
                 background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
                 background-size: 30px 30px;
                 background-repeat: no-repeat;
                 background-position: 50%;
-                border-radius: 15px;
+                border-radius: 30px;
+                margin-right: 20px;
+                margin-left: 20px;
                 .icon-bigbluebutton {
                   display: none;
                 }
+              }
+            }
+          }
+        }
+      }
+      .modchoosercontainer .optionscontainer,
+      .modchoosercontainer .searchresultitemscontainer {
+        overflow-x: hidden;
+        display: grid !important;
+        flex-wrap: wrap !important;
+        margin-bottom: 0;
+        grid-template-columns: 50% 50%;
+        grid-gap: 2px;
+        .option {
+          margin: 0;
+          .optioninfo {
+            flex-direction: row !important;
+            a {
+              flex-direction: row !important;
+              align-items: center;
+              flex: initial !important;
+              .optionicon {
+                width: 100px;
+                max-width: 100px;
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+                img.icon.icon {
+                  background-color: $primary-color;
+                  padding: 14px;
+                  border-radius: 30px;
+                }
+              }
+            }
+            .optionactions {
+              align-items: center;
+              margin-left: 10px;
+              .btn-icon {
+                height: 25px !important;
+                width: 25px !important;
               }
             }
           }

@@ -55,5 +55,28 @@ body[data-theme='cbe'][data-role='user'] {
       background-color: $primary-color;
       border: 1px solid $primary-color;
     }
+    .modchoosercontainer .nav-tabs .nav-link.active:not(:disabled):not(.disabled).active {
+      background-color: inherit !important;
+      color: inherit !important;
+      border: inherit !important;
+      margin-bottom: inherit !important;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .modal-dialog.modchooser .modal-body .nav-tabs .nav-item {
+      top: 2px;
+    }
+    .modal-dialog.modchooser .modal-body .modchoosercontainer .optionscontainer .option .optioninfo a .optionicon,
+    .modal-dialog.modchooser .modal-body .modchoosercontainer .searchresultitemscontainer .option .optioninfo a .optionicon {
+      width: 70px;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .modal-dialog.modchooser .modal-body .modchoosercontainer .optionscontainer,
+    .modal-dialog.modchooser .modal-body .modchoosercontainer .searchresultitemscontainer {
+      grid-template-columns: 100% !important;
+    }
   }
 }
