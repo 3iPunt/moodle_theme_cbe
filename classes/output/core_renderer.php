@@ -40,6 +40,7 @@ use pix_icon;
 use renderer_base;
 use stdClass;
 use theme_cbe\course;
+use theme_cbe\module;
 use theme_cbe\navigation\course_module_navigation;
 use theme_cbe\navigation\header;
 use theme_cbe\navigation\navigation;
@@ -520,5 +521,32 @@ class core_renderer extends \core_renderer {
         $this->page->set_state(moodle_page::STATE_IN_BODY);
 
         return $header . $this->skip_link_target('maincontent');
+    }
+
+    /**
+     * Return HTML for a pix_icon.
+     *
+     * Theme developers: DO NOT OVERRIDE! Please override function
+     * {@link core_renderer::render_pix_icon()} instead.
+     *
+     * @param string $pix short pix name
+     * @param string $alt mandatory alt attribute
+     * @param string $component standard compoennt name like 'moodle', 'mod_forum', etc.
+     * @param array $attributes htm lattributes
+     * @return string HTML fragment
+     */
+    public function pix_icon($pix, $alt, $component='moodle', array $attributes = null) {
+        if (!is_siteadmin() &&
+            (in_array($component, module::$resources) || in_array($component, module::$others))) {
+            global $PAGE;
+            $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+            $classname = 'theme_cbe\output\module_' . $component . '_icon_component';
+            $module_resource_icon_component = new $classname();
+            return $output_theme_cbe->render($module_resource_icon_component);
+        } else {
+            $icon = new pix_icon($pix, $alt, $component, $attributes);
+            return $this->render($icon);
+        }
+
     }
 }

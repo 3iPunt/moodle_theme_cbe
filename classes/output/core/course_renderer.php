@@ -88,7 +88,7 @@ class course_renderer extends core_course_renderer {
 
 
 
-        if (in_array($mod->modname, module::$resources)) {
+        if (in_array($mod->modname, module::$resources) || in_array($mod->modname, module::$others)) {
             $activitylink = html_writer::start_tag('div', array('class' => 'cbe_icon_mod resource'));
             $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
             $classname = 'theme_cbe\output\module_' . $mod->modname . '_icon_component';

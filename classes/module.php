@@ -64,6 +64,9 @@ class module  {
     /** @var string[] Resources */
     static public $resources = ['tresipuntvideo', 'tresipuntaudio', 'resource', 'folder', 'url', 'page'];
 
+    /** @var string[] Others */
+    static public $others = ['label', 'tresipuntshare'];
+
     /**
      * constructor.
      *

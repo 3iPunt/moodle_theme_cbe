@@ -73,7 +73,6 @@ define([
         }
 
         ActivityChooser.prototype.refresh = function (e) {
-
             let recommended_tab = this.node.find(REGIONS.RECOMMENDED_TAB);
             let recommended_content = this.node.find(REGIONS.RECOMMENDED_CONTENT);
             let favourite_tab = this.node.find(REGIONS.FAVOURITE_TAB);
@@ -108,21 +107,18 @@ define([
                     }
                 }
             }
-
-
         };
 
-    ActivityChooser.prototype.order = function (e) {
-
-        $('.chooser-container .nav.nav-tabs').each(function(){
-            let $this = $(this);
-            $this.append($this.find('.nav-item.nav-link').get().sort(function(a, b) {
-                let region_a = $(a).data('region');
-                let region_b = $(b).data('region');
-                return ORDER[region_a] - ORDER[region_b];
-            }));
-        });
-    };
+        ActivityChooser.prototype.order = function (e) {
+            $('.chooser-container .nav.nav-tabs').each(function(){
+                let $this = $(this);
+                $this.append($this.find('.nav-item.nav-link').get().sort(function(a, b) {
+                    let region_a = $(a).data('region');
+                    let region_b = $(b).data('region');
+                    return ORDER[region_a] - ORDER[region_b];
+                }));
+            });
+        };
 
         /** @type {jQuery} The jQuery node for the region. */
         ActivityChooser.prototype.node = null;
