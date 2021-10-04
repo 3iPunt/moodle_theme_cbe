@@ -60,7 +60,6 @@ class user {
         $this->data = $data;
         $this->set('account');
         $this->set('avatar');
-        $this->set('password');
     }
 
     /**
