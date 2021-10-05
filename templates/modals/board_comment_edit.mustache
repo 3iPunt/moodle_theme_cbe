@@ -1,0 +1,37 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+  }}
+{{!
+  @template theme_cbe/modals/board_comment_edit
+
+
+}}
+<div data-region="modal-comment-edit" data-commentid="{{ comment_id }}" class="modal fade bd-editcomment-modal bd-editcomment-modal-lg-{{ comment_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel-{{ comment_id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg cbe-modal">
+        <div class="modal-content">
+            <header>
+                <h1>{{# str }} edit_comment, theme_cbe {{/ str }}</h1>
+                <textarea class="textcomment" name="textarea" rows="10" cols="50">{{ textstript }}</textarea>
+            </header>
+            <footer class="modal-footer">
+                <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
+                <button class="btn btn-primary edit" data-action="edit-comment" >
+                    {{# str }} confirm, theme_cbe {{/ str }}
+                </button>
+            </footer>
+        </div>
+    </div>
+</div>

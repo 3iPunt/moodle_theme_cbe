@@ -163,16 +163,106 @@ body[data-theme='cbe'][data-role="user"] {
         flex-direction: column;
         &.create_mod {
           .mods {
-            display: flex;
-            flex-direction: row;
-            @media (max-width: 991px) {
-              flex-direction: column
+            .nav-tabs {
+              border: none !important;
+              margin: 0 20px;
+              display: flex;
+              justify-content: space-between;
+              position: relative;
+              .nav-item {
+                border: none;
+                background-color: transparent;
+                color: $black-ligth;
+                margin-right: 10px;
+                position: relative;
+                &:hover {
+                  background-color: $grey-light;
+                }
+                a.nav-link {
+                  color: $black-ligth;
+                  &.active {
+                    font-weight: bold;
+                    border: none;
+                    color: $black-ligth;
+                    &::after {
+                      content: " ";
+                      background-color: $primary-color;
+                      width: 100%;
+                      height: 5px;
+                      left: 0;
+                      position: absolute;
+                      border-radius: 12px;
+                      bottom: 0;
+                    }
+                  }
+                }
+              }
+            }
+            .tab-content {
+              border: 1px solid $grey-medium2;
+              background-color: white !important;
+              padding: 20px;
+              .select-modules {
+                list-style: none;
+                display: grid;
+                flex-wrap: wrap;
+                margin-bottom: 0;
+                grid-template-columns: 50% 50%;
+                grid-gap: 2px;
+                .select-module {
+                  a.create-mod {
+                    display: flex;
+                    align-items: center;
+                    padding: 5px;
+                    .mod-icon {
+                      background-color: $primary-color;
+                      border-radius: 30px;
+                      width: 60px;
+                      height: 60px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      &.is_resource {
+                        background-color: white;
+                        border: 4px solid $primary-color;
+                        svg.theme-cbe-icon {
+                          height: 27px;
+                          width: 27px;
+                          fill: $primary-color;
+                        }
+                      }
+                      .icon.icon {
+                        height: 27px;
+                        width: 27px;
+                        margin: 0;
+                      }
+                      .icon-bigbluebutton {
+                        background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+                        background-size: 27px 27px;
+                        background-repeat: no-repeat;
+                        background-position: 50%;
+                        &:before {
+                          content: "";
+                        }
+                      }
+                    }
+                    .text {
+                      margin-left: 12px;
+                      color: $black-ligth;
+                    }
+                    &:hover {
+                      text-decoration: none;
+                      background-color: $grey-light;
+                    }
+                  }
+                }
+              }
             }
           }
           .sections {
+            text-align: center;
             label {
               margin: 20px 47px 0;
-              font-weight: 600;
             }
             select#selsection {
               width: 100%;
@@ -183,110 +273,6 @@ body[data-theme='cbe'][data-role="user"] {
                 max-width: 340px;
                 margin: 2px 20px 20px 0;
               }
-            }
-          }
-        }
-        .column {
-          width: 100%;
-          margin: 10px;
-          h2 {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 600;
-          }
-          ul.select-modules {
-            list-style: none;
-            margin-top: 25px;
-            @media (max-width: 991px) {
-              padding: 0;
-              margin-right: 12px;
-            }
-            li.select-module {
-              margin: 10px 0;
-              a.create-mod {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                text-decoration: none;
-                color: $black-ligth;
-                border: 1px solid $grey-medium2;
-                border-top-left-radius: 15px;
-                border-bottom-left-radius: 15px;
-                &.resource_mod {
-                  border-top-left-radius: 30px;
-                  border-bottom-left-radius: 30px;
-                  .mod-icon {
-                    background-size: 25px 25px;
-                  }
-                }
-                &:hover {
-                  background-color: $grey-light;
-                  .mod-icon {
-                    background-color: $primary-color-hover;
-                  }
-                }
-                .mod-icon {
-                  background-color: $primary-color;
-                  min-width: 60px;
-                  height: 60px;
-                  background-size: 35px 35px;
-                  background-repeat: no-repeat;
-                  background-position: 50%;
-                  border-radius: 15px;
-                  &.resource_mod {
-                    background-color: $primary-color-light2 !important;
-                    border-radius: 30px !important;
-                  }
-                  &.forum {
-                    background-image: url('[[pix:mod_forum|icon]]');
-                  }
-                  &.assign  {
-                    background-image: url('[[pix:mod_assign|icon]]');
-                  }
-                  &.resource {
-                    background-image: url('[[pix:mod_resource|icon]]');
-                  }
-                  &.quiz {
-                    background-image: url('[[pix:mod_quiz|icon]]');
-                  }
-                  &.url {
-                    background-image: url('[[pix:mod_url|icon]]');
-                  }
-                  &.tresipuntaudio {
-                    background-image: url('[[pix:mod_tresipuntaudio|icon]]');
-                  }
-                  &.tresipuntvideo {
-                    background-image: url('[[pix:mod_tresipuntvideo|icon]]');
-                  }
-                  &.feedback {
-                    background-image: url('[[pix:mod_feedback|icon]]');
-                  }
-                  &.bigbluebuttonbn {
-                    background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
-                  }
-                  &.page {
-                    background-image: url('[[pix:mod_page|icon]]');
-                  }
-                  &.folder {
-                    background-image: url('[[pix:mod_folder|icon]]');
-                  }
-                  &.h5pactivity {
-                    background-image: url('[[pix:mod_h5pactivity|icon]]');
-                  }
-                }
-                .text {
-                  padding-left: 20px;
-                  font-size: 15px;
-                  font-weight: 600;
-                  height: 60px;
-                  display: flex;
-                  align-items: center;
-                  position: relative;
-                  left: -1px;
-                  width: 100%;
-                }
-              }
-
             }
           }
         }

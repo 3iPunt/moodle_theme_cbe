@@ -14,22 +14,7 @@
             <button data-toggle="modal" data-target=".bd-editcomment-modal-lg-{{ comment_id }}" class="edit-module action">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
             </button>
-            <div data-region="modal-comment-edit" data-commentid="{{ comment_id }}" class="modal fade bd-editcomment-modal bd-editcomment-modal-lg-{{ comment_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel-{{ comment_id }}" aria-hidden="true">
-                <div class="modal-dialog modal-lg cbe-modal">
-                    <div class="modal-content">
-                        <header>
-                            <h1>{{# str }} edit_comment, theme_cbe {{/ str }}</h1>
-                            <textarea class="textcomment" name="textarea" rows="10" cols="50">{{ textstript }}</textarea>
-                        </header>
-                        <footer class="modal-footer">
-                            <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
-                            <button class="btn btn-primary edit" data-action="edit-comment" >
-                                {{# str }} confirm, theme_cbe {{/ str }}
-                            </button>
-                        </footer>
-                    </div>
-                </div>
-            </div>
+            {{> theme_cbe/modals/board_comment_edit }}
         {{/ can_edit }}
         {{# can_delete }}
             <button data-toggle="modal" data-target=".bd-deletecomment-modal-lg-{{ comment_id }}" class="edit-module action">

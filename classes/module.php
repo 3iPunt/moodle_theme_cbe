@@ -28,10 +28,13 @@ use cm_info;
 use coding_exception;
 use comment_exception;
 use context_module;
+use core_course\local\factory\content_item_service_factory;
+use core_course_external;
 use core_media_manager;
 use dml_exception;
 use moodle_exception;
 use moodle_url;
+use pix_icon;
 use stdClass;
 
 global $CFG;
@@ -454,44 +457,47 @@ class module  {
      * @throws moodle_exception
      */
     static public function get_list_modules(int $course_id, int $in_section = 1): array {
-        return [
-            'activities' => self::get_list_activities($course_id, $in_section),
-            'resources' => self::get_list_resources($course_id, $in_section),
-        ];
-    }
+        global $USER;
 
-    /**
-     * Get List Activities.
-     *
-     * @param int $course_id
-     * @param int $in_section
-     * @return array
-     * @throws coding_exception
-     * @throws moodle_exception
-     */
-    static public function get_list_activities(int $course_id, int $in_section = 1): array {
+        $favourites = [];
+        $recommended = [];
         $activities = [];
-        foreach (self::$activities as $activity) {
-            $activities[] = self::get_mod($course_id, $activity, $in_section);
-        }
-        return $activities;
-    }
-
-    /**
-     * Get List Resources.
-     *
-     * @param int $course_id
-     * @param int $in_section
-     * @return array
-     * @throws coding_exception
-     * @throws moodle_exception
-     */
-    static public function get_list_resources(int $course_id, int $in_section = 1): array {
         $resources = [];
-        foreach (self::$resources as $resource) {
-            $resources[] = self::get_mod($course_id, $resource, $in_section);
+
+        $course = get_course($course_id);
+        $contentitemservice = content_item_service_factory::get_content_item_service();
+
+        $items = $contentitemservice->get_content_items_for_user_in_course($USER, $course);
+
+        foreach ($items as $item) {
+            if ($item->name !== 'label' && $item->name !== 'tresipuntshare') {
+
+                $mod = self::get_mod($course_id, $item->name, $in_section);
+                $mod['is_resource'] = false;
+
+                if ($item->archetype === 0) {
+                    $activities[] = $mod;
+                } else {
+                    $mod['is_resource'] = true;
+                    $resources[] = $mod;
+                }
+
+                if ($item->favourite) {
+                    $favourites[] = $mod;
+                }
+                if ($item->recommended) {
+                    $recommended[] = $mod;
+                }
+            }
         }
-        return $resources;
+
+        return [
+            'has_favourites' => count($favourites) > 0,
+            'favourites' => $favourites,
+            'recommended' => $recommended,
+            'activities' => $activities,
+            'resources' => $resources,
+        ];
     }
 
     /**
@@ -505,6 +511,7 @@ class module  {
      * @throws moodle_exception
      */
     static public function get_mod(int $course_id, string $modname, int $in_section): array {
+        global $OUTPUT;
         $params = [
             'add' => $modname,
             'type' => '',
@@ -514,9 +521,22 @@ class module  {
             'sr' => 0
         ];
         $url = new moodle_url('/course/modedit.php', $params);
+
+        if (in_array($modname, module::$resources)) {
+            global $PAGE;
+            $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+            $classname = 'theme_cbe\output\module_' . $modname . '_icon_component';
+            $module_resource_icon_component = new $classname();
+            $icon = $output_theme_cbe->render($module_resource_icon_component);
+        } else {
+            $icon = new pix_icon('icon', '', $modname, array('class' => 'icon'));
+            $icon = $OUTPUT->render($icon);
+        }
+
         return [
             'mod_url' =>$url->out(false),
             'modname' => $modname,
+            'icon' => $icon,
             'modtitle' => get_string('pluginname', 'mod_' . $modname)
         ];
     }

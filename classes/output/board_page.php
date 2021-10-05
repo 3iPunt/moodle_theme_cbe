@@ -63,7 +63,7 @@ class board_page implements renderable, templatable {
     protected $board = null;
 
     /**
-     * charge_page constructor.
+     * board_page constructor.
      * @param int $course_id
      * @param int|null $pub
      * @throws dml_exception

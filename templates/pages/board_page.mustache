@@ -78,56 +78,7 @@
     {{/ modules }}
 </div>
 {{# is_teacher }}
-<div class="modal fade bd-createmodule-modal-lg" data-region="create-module" tabindex="-1" role="dialog" aria-labelledby="createModuleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg cbe-modal">
-        <div class="modal-content">
-            <header>
-                <h1>{{# str }} create_item, theme_cbe {{/ str }}</h1>
-                <p>{{# str }} select_activity_resource, theme_cbe {{/ str }}</p>
-            </header>
-            <main class="create_mod">
-                <div class="sections">
-                    <label for="selsection">Seleccione el tema donde irá el ítem</label>
-                    <select name="section" id="selsection" class="form-control" data-action="select-section">
-                        {{# themes }}
-                            <option value="{{ section }}">{{ name }}</option>
-                        {{/ themes }}
-                    </select>
-                </div>
-                <div class="mods">
-                    <div class="column">
-                        <h2>{{# str }} activities_upper, theme_cbe {{/ str }}</h2>
-                        <ul class="select-modules">
-                            {{# create.activities }}
-                                <li class="select-module">
-                                    <a href="{{ mod_url }}" class="create-mod">
-                                        <div class="mod-icon {{ modname }}"></div>
-                                        <div class="text">{{ modtitle }}</div>
-                                    </a>
-                                </li>
-                            {{/ create.activities}}
-                        </ul>
-                    </div>
-                    <div class="column">
-                        <h2>{{# str }} resources_upper, theme_cbe {{/ str }}</h2>
-                        <ul class="select-modules">
-                        <li class="select-module video">
-                            {{# create.resources }}
-                                <li class="select-module">
-                                    <a href="{{ mod_url }}" class="create-mod resource_mod">
-                                        <div class="mod-icon {{ modname }} resource_mod"></div>
-                                        <div class="text">{{ modtitle }}</div>
-                                    </a>
-                                </li>
-                            {{/ create.resources}}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-</div>
+    {{> theme_cbe/modals/board_create_module }}
 {{/ is_teacher }}
 {{#js}}
     require(['jquery'], function($) {

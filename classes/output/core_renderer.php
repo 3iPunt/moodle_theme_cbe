@@ -532,12 +532,18 @@ class core_renderer extends \core_renderer {
      * @param string $pix short pix name
      * @param string $alt mandatory alt attribute
      * @param string $component standard compoennt name like 'moodle', 'mod_forum', etc.
-     * @param array $attributes htm lattributes
+     * @param array|null $attributes htm lattributes
      * @return string HTML fragment
+     * @throws coding_exception
      */
-    public function pix_icon($pix, $alt, $component='moodle', array $attributes = null) {
+    public function pix_icon($pix, $alt, $component='moodle', array $attributes = null): string {
+        global $PAGE;
+        $path = $PAGE->url->get_path();
+
         if (!is_siteadmin() &&
-            (in_array($component, module::$resources) || in_array($component, module::$others))) {
+            (in_array($component, module::$resources) || in_array($component, module::$others)) &&
+            !strpos($path, 'modedit.php')
+        ) {
             global $PAGE;
             $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
             $classname = 'theme_cbe\output\module_' . $component . '_icon_component';
