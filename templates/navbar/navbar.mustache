@@ -68,9 +68,14 @@
                 data-toggle="modal"
                 data-tooltip="createcourse"
                 data-target="#createCourseModalCenter"
-                title="Crear curso nuevo">
+                title="{{# str }} createnewcourse {{/ str }}">
             <i class="fa fa-plus" aria-hidden="true"></i>
         </button>
+        {{# can_import_gc }}
+            <a id="navbar-importgc" class="btn btn-primary importgc" title="{{# str }} importgc, theme_cbe {{/ str }}" href="{{ import_gc_url }}">
+                {{#pix}} importgc, theme_cbe, {{# str }} importgc, theme_cbe {{/ str }}{{/pix}}
+            </a>
+        {{/ can_import_gc }}
     {{/ can_create_courses }}
 
     <!-- HIDDEN ? -->

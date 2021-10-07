@@ -27,6 +27,7 @@ namespace theme_cbe\navigation;
 use coding_exception;
 use core_course_category;
 use moodle_exception;
+use moodle_url;
 use pix_icon;
 use stdClass;
 use theme_cbe\api\header_api;
@@ -116,6 +117,8 @@ class user_navigation extends navigation {
         $data['nav_context'] = 'user';
         $data['create_course'] = $this->is_dashboard() ? $this->get_data_createcourse() : [];
         $data['can_create_courses'] = $this->is_dashboard() ? user::can_create_courses() : false;
+        $data['can_import_gc'] = $this->is_dashboard() ? user::can_import_gc() : false;
+        $data['import_gc_url'] = new moodle_url('/local/tresipuntimportgc/import_desc.php');
         $data['nav_cbe'] = $this->get_page();
         $data['has_uniquename'] = get_config('theme_cbe', 'uniquenamecourse');
 

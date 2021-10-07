@@ -67,6 +67,15 @@ if ($ADMIN->fulltree) {
     $page = new admin_settingpage('theme_cbe_funcionalities', get_string('funcionalitiesssettings', 'theme_cbe'));
 
     $setting = (new admin_setting_configcheckbox(
+        'theme_cbe/importgc',
+        get_string('importgc', 'theme_cbe'),
+        get_string('importgc_desc', 'theme_cbe'),
+        false
+    ));
+
+    $page->add($setting);
+    
+    $setting = (new admin_setting_configcheckbox(
         'theme_cbe/vclasses_direct',
         get_string('vclasses_direct', 'theme_cbe'),
         get_string('vclasses_direct_desc', 'theme_cbe'),

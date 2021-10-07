@@ -177,6 +177,20 @@ body[data-theme='cbe'] {
     }
   }
 
+  a#navbar-importgc {
+    z-index: 50;
+    background-color: white;
+    border: none;
+    padding: 0;
+    margin-right: 15px;
+    @media (max-width: 960px) {
+      display: none;
+    }
+    img.icon {
+      height: 30px;
+      width: 35px;
+    }
+  }
   button#navbar-createcourse {
     z-index: 50;
     background-color: white;

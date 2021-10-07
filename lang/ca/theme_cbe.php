@@ -183,3 +183,7 @@ $string['nc_createfile_nc'] = "Crear Fitxer en NextCloud";
 $string['hostnccreate'] = "URL de creació d'arxiu de NextCloud";
 $string['hostnccreate_desc'] = "Ex. https://nextcloud.demo.digitaldemocratic.net/apps/files";
 $string['nextcloud_create_not_config'] = "No és correcte NextCloud. Avisi a l'administrador";
+
+$string['importgc'] = "Importa Cursos de Google Classroom";
+$string['importgc_desc'] = "Si s'activa, el Creador de Cursos podrà importar cursos des del seu compte de Google Classroom. Ha d'estar instal·lat el plugin local_tresipuntimportgc";
+

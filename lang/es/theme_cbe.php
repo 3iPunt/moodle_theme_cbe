@@ -182,3 +182,6 @@ $string['nc_createfile_nc'] = "Crear Fichero en NextCloud";
 $string['hostnccreate'] = "URL de creación de archivo de NextCloud";
 $string['hostnccreate_desc'] = "Ej. https://nextcloud.demo.digitaldemocratic.net/apps/files";
 $string['nextcloud_create_not_config'] = "No está configurado correctamente NextCloud. Avise al administrador";
+
+$string['importgc'] = "Importar Cursos de Google Classroom";
+$string['importgc_desc'] = "Si se activa, el Creador de Cursos podrá importar cursos desde su cuenta de Google Classroom. Debe estar instalado el plugin local_tresipuntimportgc";

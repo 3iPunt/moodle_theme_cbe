@@ -123,4 +123,19 @@ class user  {
         return has_capability('moodle/course:create', $context);
     }
 
+    /**
+     * Can import Google Classroom?
+     *
+     * @return bool
+     * @throws coding_exception|dml_exception
+     */
+    static public function can_import_gc(): bool {
+        global $CFG;
+        if (file_exists($CFG->dirroot.'/local/tresipuntimportgc/version.php')) {
+            return has_capability('local/tresipuntimportgc:import',  context_system::instance());
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -64,6 +64,8 @@ class theme_cbe_observer {
                 $moduleinfo = new stdClass();
                 $moduleinfo->modulename = 'bigbluebuttonbn';
                 $moduleinfo->section = 0;
+                $moduleinfo->type = 0;
+                $moduleinfo->participants = '';
                 $moduleinfo->course = $courseid;
                 $moduleinfo->cmidnumber = 'MAIN';
                 $moduleinfo->welcome = '';
