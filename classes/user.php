@@ -93,12 +93,21 @@ class user  {
      *
      * @return string
      * @throws coding_exception
+     * @throws dml_exception
      */
     public function get_picture(): string {
         global $PAGE;
-        $userpicture = new user_picture($this->user);
-        $userpicture->size = 1;
-        return $userpicture->get_url($PAGE)->out(false);
+        $avatar_api = get_config('theme_cbe', 'avatar_api');
+        if ($avatar_api) {
+            // TODO. Picture
+            $userpicture = new user_picture($this->user);
+            $userpicture->size = 1;
+            return $userpicture->get_url($PAGE)->out(false);
+        } else {
+            $userpicture = new user_picture($this->user);
+            $userpicture->size = 1;
+            return $userpicture->get_url($PAGE)->out(false);
+        }
     }
 
     /**

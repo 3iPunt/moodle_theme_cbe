@@ -60,6 +60,33 @@ if ($ADMIN->fulltree) {
 
     $page->add($setting);
 
+    $setting = (new admin_setting_configcheckbox(
+        'theme_cbe/avatar_api',
+        get_string('avatar_api', 'theme_cbe'),
+        get_string('avatar_api_desc', 'theme_cbe'),
+        false
+    ));
+
+    $page->add($setting);
+
+    $setting = (new admin_setting_configtext(
+        'theme_cbe/avatar_api_url',
+        get_string('avatar_api_url', 'theme_cbe'),
+        get_string('avatar_api_url_desc', 'theme_cbe'),
+        ''
+    ));
+
+    $page->add($setting);
+
+    $setting = (new admin_setting_configtext(
+        'theme_cbe/avatar_profile_url',
+        get_string('avatar_profile_url', 'theme_cbe'),
+        get_string('avatar_profile_url_desc', 'theme_cbe'),
+        ''
+    ));
+
+    $page->add($setting);
+
 
     $settings->add($page);
 

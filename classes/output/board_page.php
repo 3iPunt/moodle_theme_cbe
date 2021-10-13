@@ -87,9 +87,14 @@ class board_page implements renderable, templatable {
         // Current User.
         $user = core_user::get_user($USER->id);
 
-        $userpicture = new user_picture($user);
-        $userpicture->size = 1;
-        $pictureurl = $userpicture->get_url($PAGE)->out(false);
+        $avatar_api = get_config('theme_cbe', 'avatar_api');
+        if ($avatar_api) {
+            $pictureurl = get_config('theme_cbe', 'avatar_api_url');
+        } else {
+            $userpicture = new user_picture($user);
+            $userpicture->size = 1;
+            $pictureurl = $userpicture->get_url($PAGE)->out(false);
+        }
 
         $user->fullname = fullname($user);
         $user->picture = $pictureurl;

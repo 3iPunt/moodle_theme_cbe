@@ -53,10 +53,7 @@ body[data-theme='cbe'] {
     }
     &[data-theme='cbe'] {
       .nav-item {
-        padding-right: 10px;
-        @media (max-width: 940px) {
-          padding-right: 0;
-        }
+        padding-right: 0;
       }
       .menu-lang {
         z-index: 1050;
@@ -182,7 +179,7 @@ body[data-theme='cbe'] {
     background-color: white;
     border: none;
     padding: 0;
-    margin-right: 15px;
+    margin-right: 5px;
     @media (max-width: 960px) {
       display: none;
     }
@@ -236,7 +233,7 @@ body[data-theme='cbe'] {
         top: -2px;
         z-index: 1050;
         #menu-apps-btn {
-          margin-right: 20px;
+          margin-right: 8px;
           cursor: pointer;
           @media (max-width: 450px) {
             margin-right: 0;

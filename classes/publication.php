@@ -185,10 +185,18 @@ class publication  {
                 $can_edit = true;
             }
 
+            $avatar_api = get_config('theme_cbe', 'avatar_api');
+            if ($avatar_api) {
+                // TODO. Picture
+                $authorpictureurl = $author->picture;
+            } else {
+                $authorpictureurl = $author->picture;
+            }
+
             $comment = [
                 'id' => $comment->id,
                 'comment_id' => $comment->id,
-                'user_picture' => $author->picture,
+                'user_picture' => $authorpictureurl,
                 'user_is_connected' => $author->is_connected,
                 'fullname' => $author->fullname,
                 'date' => userdate($comment->timecreated),

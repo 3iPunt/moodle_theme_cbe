@@ -185,3 +185,10 @@ $string['nextcloud_create_not_config'] = "No está configurado correctamente Nex
 
 $string['importgc'] = "Importar Cursos de Google Classroom";
 $string['importgc_desc'] = "Si se activa, el Creador de Cursos podrá importar cursos desde su cuenta de Google Classroom. Debe estar instalado el plugin local_tresipuntimportgc";
+
+$string['avatar_api'] = "Avatar API";
+$string['avatar_api_desc'] = "Si se activa esta opción, los avatares del usuarios serán recogidos del API de Avatar";
+$string['avatar_api_url'] = "URL Avatar API";
+$string['avatar_api_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/avatar-provider";
+$string['avatar_profile_url'] = "URL Perfil API";
+$string['avatar_profile_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/account";

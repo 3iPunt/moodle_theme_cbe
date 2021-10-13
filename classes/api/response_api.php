@@ -55,6 +55,12 @@ class response_api {
     /** @var user User links */
     public $user;
 
+    /** @var user_menu User Menu links */
+    public $user_menu;
+
+    /** @var string Avatar link */
+    public $user_avatar;
+
     /** @var string[] Apps internal */
     public $apps_internal;
 
@@ -80,9 +86,10 @@ class response_api {
         $this->set_colours();
         $this->set_background_login();
         $this->set_user();
+        $this->set_user_menu();
+        $this->set_user_avatar();
         $this->set_apps_internal();
         $this->set_apps_external();
-        //$this->set_css();
         return $this;
     }
 
@@ -113,19 +120,6 @@ class response_api {
     }
 
     /**
-     * Set CSS.
-     *
-     * @throws moodle_exception
-     */
-    protected function set_css() {
-        if (isset($this->result['css'])) {
-            $this->css = $this->result['css'];
-        } else {
-            throw new api_exception('No se ha encontrado CSS');
-        }
-    }
-
-    /**
      * Set colours.
      *
      * @throws moodle_exception
@@ -148,6 +142,30 @@ class response_api {
             $this->user = new user($this->result['user']);
         } else {
             throw new moodle_exception('No se han encontrado los enlaces de usuario');
+        }
+    }
+
+    /**
+     * Set user.
+     *
+     */
+    protected function set_user_menu() {
+        if (isset($this->result['user_menu'])) {
+            $this->user_menu = new user_menu($this->result['user_menu']);
+        } else {
+            $this->user_menu = new user_menu([]);
+        }
+    }
+
+    /**
+     * Set avatar.
+     *
+     */
+    protected function set_user_avatar() {
+        if (isset($this->result['user_avatar'])) {
+            $this->user_avatar = $this->result['user_avatar'];
+        } else {
+            $this->user_avatar = '';
         }
     }
 
