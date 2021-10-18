@@ -141,7 +141,12 @@ class user  {
     static public function can_import_gc(): bool {
         global $CFG;
         if (file_exists($CFG->dirroot.'/local/tresipuntimportgc/version.php')) {
-            return has_capability('local/tresipuntimportgc:import',  context_system::instance());
+            $importgc_enable = get_config('theme_cbe', 'importgc');
+            if ($importgc_enable) {
+                return has_capability('local/tresipuntimportgc:import',  context_system::instance());
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
