@@ -142,6 +142,9 @@ body[data-theme='cbe'][data-role='user'] {
                   cursor: pointer;
                   font-size: 18px;
                   font-weight: 600;
+                  &:hover {
+                    background-color: $grey-light;
+                  }
                   &.is_hidden {
                     opacity: 0.4;
                   }
