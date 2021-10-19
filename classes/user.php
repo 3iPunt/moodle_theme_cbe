@@ -96,13 +96,16 @@ class user  {
      * @throws dml_exception
      */
     public function get_picture(): string {
-        global $PAGE;
+        global $PAGE, $USER;
         $avatar_api = get_config('theme_cbe', 'avatar_api');
         if ($avatar_api) {
-            // TODO. Picture
-            $userpicture = new user_picture($this->user);
-            $userpicture->size = 1;
-            return $userpicture->get_url($PAGE)->out(false);
+            if ($USER->id === $this->user->id) {
+                return get_config('theme_cbe', 'avatar_api_url');
+            } else {
+                $src = get_config('theme_cbe', 'avatar_other_users');
+                $userdata = core_user::get_user($this->user->id);
+                return $src . $userdata->username;
+            }
         } else {
             $userpicture = new user_picture($this->user);
             $userpicture->size = 1;

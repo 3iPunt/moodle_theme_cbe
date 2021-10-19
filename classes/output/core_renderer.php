@@ -30,6 +30,7 @@ use action_menu_link_secondary;
 use coding_exception;
 use context_header;
 use core_text;
+use core_user;
 use custom_menu;
 use dml_exception;
 use html_writer;
@@ -191,22 +192,24 @@ class core_renderer extends \core_renderer {
         $opts = user_get_user_navigation_info($user, $this->page, $options);
 
         // 3IP. AVATAR API PROFILE.
-        $avatar_api = get_config('theme_cbe', 'avatar_api');
-        if ($avatar_api) {
-            $navitems = $opts->navitems;
-            $newnavitems = [];
-            foreach ($navitems as $item) {
-                if ($item->titleidentifier === 'profile,moodle') {
-                    $avatar_profile_url = get_config('theme_cbe', 'avatar_profile_url');
-                    $url = new moodle_url($avatar_profile_url);
-                    $item->url = $url;
-                    $newnavitems[] = $item;
+        if (!is_siteadmin()) {
+            $avatar_api = get_config('theme_cbe', 'avatar_api');
+            if ($avatar_api) {
+                $navitems = $opts->navitems;
+                $newnavitems = [];
+                foreach ($navitems as $item) {
+                    if ($item->titleidentifier === 'profile,moodle') {
+                        $avatar_profile_url = get_config('theme_cbe', 'avatar_profile_url');
+                        $url = new moodle_url($avatar_profile_url);
+                        $item->url = $url;
+                        $newnavitems[] = $item;
+                    }
+                    if ($item->titleidentifier === 'logout,moodle') {
+                        $newnavitems[] = $item;
+                    }
                 }
-                if ($item->titleidentifier === 'logout,moodle') {
-                    $newnavitems[] = $item;
-                }
+                $opts->navitems = $newnavitems;
             }
-            $opts->navitems = $newnavitems;
         }
 
         $avatarclasses = "avatars";
@@ -623,8 +626,9 @@ class core_renderer extends \core_renderer {
             if ($USER->id === $user->id) {
                 $src = get_config('theme_cbe', 'avatar_api_url');
             } else {
-                // TODO. Picture
-                $src = $userpicture->get_url($this->page, $this);
+                $src = get_config('theme_cbe', 'avatar_other_users');
+                $userdata = core_user::get_user($user->id);
+                $src = $src . $userdata->username;
             }
         } else {
             $src = $userpicture->get_url($this->page, $this);

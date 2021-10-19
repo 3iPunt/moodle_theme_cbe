@@ -79,6 +79,15 @@ if ($ADMIN->fulltree) {
     $page->add($setting);
 
     $setting = (new admin_setting_configtext(
+        'theme_cbe/avatar_other_users',
+        get_string('avatar_other_users', 'theme_cbe'),
+        get_string('avatar_other_users_desc', 'theme_cbe'),
+        false
+    ));
+
+    $page->add($setting);
+
+    $setting = (new admin_setting_configtext(
         'theme_cbe/avatar_profile_url',
         get_string('avatar_profile_url', 'theme_cbe'),
         get_string('avatar_profile_url_desc', 'theme_cbe'),

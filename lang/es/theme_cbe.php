@@ -192,3 +192,5 @@ $string['avatar_api_url'] = "URL Avatar API";
 $string['avatar_api_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/avatar-provider";
 $string['avatar_profile_url'] = "URL Perfil API";
 $string['avatar_profile_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/account";
+$string['avatar_other_users'] = "URL Avatar Otros Usuarios API";
+$string['avatar_other_users_desc'] = "Ex. https://api.test.digitaldemocratic.net/avatar/";
