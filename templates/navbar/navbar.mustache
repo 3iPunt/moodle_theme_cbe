@@ -69,7 +69,7 @@
                 data-tooltip="createcourse"
                 data-target="#createCourseModalCenter"
                 title="{{# str }} createnewcourse {{/ str }}">
-            <i class="fa fa-plus" aria-hidden="true"></i>
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
         </button>
         {{# can_import_gc }}
             <a id="navbar-importgc" class="btn btn-primary importgc" title="{{# str }} importgc, theme_cbe {{/ str }}" href="{{ import_gc_url }}">
@@ -92,6 +92,12 @@
             {{{ output.navbar_plugin_output }}}
         </li>
     </ul>
+
+    {{# has_dd_link }}
+        <a target="_blank" id="navbar-ddlink" class="btn btn-primary ddlink" title="{{# str }} ddlink_url, theme_cbe {{/ str }}" href="{{ ddlink_url }}">
+            {{#pix}} dd, theme_cbe, {{# str }} ddlink_url, theme_cbe {{/ str }}{{/pix}}
+        </a>
+    {{/ has_dd_link }}
 
     <div id="navbar-menu-apps">
         {{{ menu_apps_button }}}

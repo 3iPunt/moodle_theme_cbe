@@ -121,6 +121,8 @@ class user_navigation extends navigation {
         $data['import_gc_url'] = new moodle_url('/local/tresipuntimportgc/import_desc.php');
         $data['nav_cbe'] = $this->get_page();
         $data['has_uniquename'] = get_config('theme_cbe', 'uniquenamecourse');
+        $data['has_dd_link'] = get_config('theme_cbe', 'has_dd_link');
+        $data['ddlink_url'] = get_config('theme_cbe', 'ddlink_url');
 
         return $data;
     }

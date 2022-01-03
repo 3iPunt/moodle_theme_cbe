@@ -244,6 +244,9 @@ class course_navigation extends navigation {
         $data['menu_apps_button'] = $menu_apps_button;
         $data['nav_context'] = 'course';
 
+        $data['has_dd_link'] = get_config('theme_cbe', 'has_dd_link');
+        $data['ddlink_url'] = get_config('theme_cbe', 'ddlink_url');
+
         $data['nav_cbe'] = $cbe_page;
 
         return $data;

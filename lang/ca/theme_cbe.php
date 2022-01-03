@@ -195,3 +195,9 @@ $string['avatar_profile_url'] = "URL Perfil API";
 $string['avatar_profile_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/account";
 $string['avatar_other_users'] = "URL Avatar Altres Usuaris API";
 $string['avatar_other_users_desc'] = "Ex. https://api.test.digitaldemocratic.net/avatar/";
+
+$string['has_dd_link'] = "Enllaç Digital Democratic";
+$string['has_dd_link_desc'] = "Si està activat, apareixerà un enllaç a la barra de navegació a l'enllaç Digital Democratic";
+
+$string['ddlink_url'] = "URL Digital Democratic";
+$string['ddlink_url_desc'] = "EEnllaç en pestanya nova a Digital Democratic";

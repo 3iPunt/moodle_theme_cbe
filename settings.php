@@ -96,6 +96,24 @@ if ($ADMIN->fulltree) {
 
     $page->add($setting);
 
+    $setting = (new admin_setting_configcheckbox(
+        'theme_cbe/has_dd_link',
+        get_string('has_dd_link', 'theme_cbe'),
+        get_string('has_dd_link_desc', 'theme_cbe'),
+        true
+    ));
+
+    $page->add($setting);
+
+    $setting = (new admin_setting_configtext(
+        'theme_cbe/ddlink_url',
+        get_string('ddlink_url', 'theme_cbe'),
+        get_string('ddlink_url_desc', 'theme_cbe'),
+        ''
+    ));
+
+    $page->add($setting);
+
 
     $settings->add($page);
 

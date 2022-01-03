@@ -112,6 +112,8 @@ class system_navigation extends navigation {
         $data['create_course'] = false;
         $data['can_create_courses'] = false;
         $data['nav_cbe'] = $this->get_page();
+        $data['has_dd_link'] = get_config('theme_cbe', 'has_dd_link');
+        $data['ddlink_url'] = get_config('theme_cbe', 'ddlink_url');
 
         return $data;
     }

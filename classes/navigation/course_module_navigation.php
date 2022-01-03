@@ -153,6 +153,9 @@ class course_module_navigation extends navigation {
         $data['is_resource'] = $coursemodule->is_resource();
         $data['nav_cbe'] = course_module_navigation::get_page();
 
+        $data['has_dd_link'] = get_config('theme_cbe', 'has_dd_link');
+        $data['ddlink_url'] = get_config('theme_cbe', 'ddlink_url');
+
         return $data;
     }
 

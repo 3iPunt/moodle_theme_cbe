@@ -9,21 +9,22 @@ body[data-theme='cbe'] {
     height: $nav-height;
     max-height: $nav-height;
     border-bottom: 1px solid $black-ligth;
+    padding: 0 21px;
     #login-logo {
       display: flex !important;
       justify-content: center;
       align-items: center;
       height: $nav-height;
-      margin: 0 20px;
+      margin: 0 5px;
       z-index: 1032;
       @media (max-width: 1000px) {
         margin: 0;
       }
       > img {
-        height: 60px;
+        height: 39px;
         width: inherit;
         @media (max-width: 1200px) {
-          height: 45px;
+          height: 39px;
         }
         @media (max-width: 940px) {
           height: 32px;
@@ -39,16 +40,23 @@ body[data-theme='cbe'] {
     }
     button.btn.nav-link {
       border-radius: 0;
-      height: 30px;
-      width: 30px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 8px;
-      background-color: $grey-medium !important;
+      align-items: initial;
+      justify-content: flex-start;
+      margin: 0;
+      background-color: transparent !important;
+      border: none;
       color: white;
+      padding: 0;
+      width: 16px;
+      height: 16px;
       i.icon {
-        font-size: 18px;
+        font-size: 21px;
+        color: $black-ligth;
+        position: relative;
+        top: -1px;
+        width: 16px;
+        height: 16px;
       }
     }
     &[data-theme='cbe'] {
@@ -79,16 +87,21 @@ body[data-theme='cbe'] {
         z-index: 1050;
         .nav-item {
           i.icon {
-            height: 30px;
-            width: 30px;
-            font-size: 30px;
+            height: 16px;
+            width: auto;
+            font-size: 16px;
             color: $black-ligth;
-            margin-right: 12px;
-            @media (max-width: 940px) {
-              margin-right: 0;
-              font-size: 23px;
-              height: 16px;
-              width: 16px;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &.fa-comment {
+              font-size: 18px;
+            }
+            &.fa-bell {
+              margin-right: 0 !important;
+              position: relative;
+              top: 1px;
             }
           }
           .usermenu {
@@ -97,15 +110,16 @@ body[data-theme='cbe'] {
                 display: none;
               }
               img.userpicture {
-                height: 50px;
-                width: 50px;
+                height: 39px;
+                width: 39px;
                 border: 2px solid $grey-light;
+                margin: 0 !important;
                 @media (max-width: 940px) {
                   margin: 0;
                 }
                 @media (max-width: 450px) {
-                  height: 40px;
-                  width: 40px;
+                  height: 39px;
+                  width: 39px;
                 }
               }
             }
@@ -122,6 +136,9 @@ body[data-theme='cbe'] {
                 left: -13px;
               }
             }
+          }
+          .caret {
+            margin: 0 !important;
           }
         }
         .dropdown-item {
@@ -140,7 +157,7 @@ body[data-theme='cbe'] {
     .popover-region-container {
       border: 1px solid $grey-border;
       box-shadow: $shadow-color 0 3px 6px;
-      top: 48px;
+      top: 32px;
       padding: 15px;
       i.icon {
         height: 12px !important;
@@ -160,7 +177,7 @@ body[data-theme='cbe'] {
     border-right: 1px solid $black-ligth;
     top: 0;
     z-index: 1020;
-    padding-top: 90px;
+    padding-top: 60px;
     height: 100%;
     scrollbar-color: $grey-border transparent;
     scrollbar-width: thin;
@@ -174,35 +191,42 @@ body[data-theme='cbe'] {
     }
   }
 
-  a#navbar-importgc {
+  a#navbar-importgc, #navbar-ddlink {
     z-index: 50;
     background-color: white;
     border: none;
     padding: 0;
     margin-right: 5px;
+    img.icon {
+      height: 16px;
+      width: auto;
+      margin-right: 7px;
+    }
+  }
+  a#navbar-importgc {
+    margin-right: 0;
     @media (max-width: 960px) {
       display: none;
     }
     img.icon {
-      height: 30px;
-      width: 35px;
+      margin-right: 5px;
     }
   }
   button#navbar-createcourse {
     z-index: 50;
     background-color: white;
     color: $black-ligth;
-    border: 1px solid $black-ligth;
-    border-radius: 20px;
-    padding: 4px 8px 3px 9px;
-    margin-right: 20px;
+    border: none;
+    position: relative;
+    top: 3px;
+    margin-right: 5px;
     @media (max-width: 500px) {
       position: absolute;
       right: -11px;
       top: 81px;
     }
-    &:hover {
-      background-color: $grey-medium2;
+    .fa-plus-circle {
+      font-size: 19px;
     }
   }
 
@@ -230,10 +254,10 @@ body[data-theme='cbe'] {
       }
       #navbar-menu-apps {
         position: relative;
-        top: -2px;
+        top: 0;
         z-index: 1050;
         #menu-apps-btn {
-          margin-right: 8px;
+          margin-right: 5px;
           cursor: pointer;
           @media (max-width: 450px) {
             margin-right: 0;
@@ -250,12 +274,13 @@ body[data-theme='cbe'] {
           .dropdown-menu-right {
             border-radius: 5px;
             box-shadow: $shadow-color 0 3px 8px;
-            margin-top: 15px;
+            margin-top: 5px;
             padding: 10px;
             max-height: 500px;
             overflow-y: scroll;
             scrollbar-color: $grey-border transparent;
             scrollbar-width: thin;
+            width: 294px;
             @media (min-width: 0) {
               right: -104px;
             }
@@ -347,7 +372,7 @@ body[data-theme='cbe'] {
           overflow: hidden;
           li.course-menu-item {
             margin: 0 0;
-            font-size: 18px;
+            font-size: 16px;
             position: relative;
             padding: 0 20px;
             &.active {
@@ -360,7 +385,7 @@ body[data-theme='cbe'] {
                 left: 0;
                 position: absolute;
                 border-radius: 4px;
-                bottom: -30px;
+                bottom: -19px;
               }
             }
             a.link {
@@ -424,7 +449,7 @@ body[data-theme='cbe'] {
           justify-content: center;
           display: flex;
           background-color: #fff;
-          top: 74px;
+          top: $nav-height;
           height: 50px;
           border-bottom: 1px solid $black-ligth;
           z-index: 100;
