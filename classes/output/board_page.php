@@ -121,7 +121,10 @@ class board_page implements renderable, templatable {
         $data->user = $user;
         $data->is_teacher = course_user::is_teacher($this->course_id);
         $data->modules = $mods;
-        $data->themes = $course_cbe->get_themes();
+        $themes = $course_cbe->get_themes();
+        $unselect = ['section' => 'not', 'name' => get_string('create_module_theme', 'theme_cbe')];
+        //array_unshift($themes, $unselect);
+        $data->themes = $themes;
         $data->create = module::get_list_modules($this->course_id);
         $data->students = $course_cbe->get_users_by_role('student');
         $data->groups = $course_cbe->get_groups();

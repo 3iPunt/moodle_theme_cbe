@@ -72,13 +72,6 @@ class module_component implements renderable, templatable {
      */
     public function export_for_template(renderer_base $output): stdClass {
         $modulecbe = new module($this->cm->id);
-        //$data = new stdClass();
-        //$data->modname = $this->cm->modname;
-        //$data->modfullname = $this->cm->modfullname;
-        //$data->name = $this->cm->name;
-        //$data->is_resource = in_array($this->cm->modname, module::$resources);
-        //$data->view_url = new moodle_url('/mod/' . $this->cm->modname. '/view.php', ['id'=> $this->cm->id]);;
-        //$data->sectionname = get_section_name($this->course->id, $this->cm->sectionnum);
         return $modulecbe->export();
     }
 }
