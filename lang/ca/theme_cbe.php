@@ -201,3 +201,5 @@ $string['has_dd_link_desc'] = "Si està activat, apareixerà un enllaç a la bar
 
 $string['ddlink_url'] = "URL Digital Democratic";
 $string['ddlink_url_desc'] = "EEnllaç en pestanya nova a Digital Democratic";
+
+$string['create_course'] = 'Crear curs';

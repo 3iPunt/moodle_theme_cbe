@@ -201,3 +201,5 @@ $string['has_dd_link_desc'] = "If enabled, a link will appear in the navigation 
 
 $string['ddlink_url'] = "URL Digital Democratic";
 $string['ddlink_url_desc'] = "Link in new tab to Digital Democratic";
+
+$string['create_course'] = 'Create course';

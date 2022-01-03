@@ -72,14 +72,15 @@ body[data-theme='cbe'] {
             margin-left: inherit;
             vertical-align: inherit;
             content: "";
-            width: 30px;
-            height: 30px;
+            width: 16px;
+            height: 16px;
             background: url('[[pix:theme|lang]]');
+            background-size: 16px;
             color: $black-ligth;
             position: relative;
             border: none;
-            top: 2px;
-            margin-right: 19px;
+            top: 5px;
+            margin-right: -5px;
           }
         }
       }
@@ -197,6 +198,8 @@ body[data-theme='cbe'] {
     border: none;
     padding: 0;
     margin-right: 5px;
+    position: relative;
+    top: 0;
     img.icon {
       height: 16px;
       width: auto;
@@ -205,6 +208,8 @@ body[data-theme='cbe'] {
   }
   a#navbar-importgc {
     margin-right: 0;
+    position: relative;
+    top: 1px;
     @media (max-width: 960px) {
       display: none;
     }
@@ -218,7 +223,7 @@ body[data-theme='cbe'] {
     color: $black-ligth;
     border: none;
     position: relative;
-    top: 3px;
+    top: 4px;
     margin-right: 5px;
     @media (max-width: 500px) {
       position: absolute;
