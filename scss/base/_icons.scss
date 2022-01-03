@@ -114,6 +114,11 @@ body[data-theme='cbe'] {
     }
   }
 
+  .fp-iconview .fp-thumbnail img {
+    background-color: $primary-color;
+    padding: 10px;
+  }
+
   .fileuploadsubmission {
     img.icon.icon {
       background-color: $primary-color;
