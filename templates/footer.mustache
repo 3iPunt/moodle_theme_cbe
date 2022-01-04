@@ -25,6 +25,11 @@
 </div>
 <footer id="page-footer" class="py-3 bg-dark text-light">
     <div class="container">
+        {{# has_dd_link }}
+            <a target="_blank" id="footer-ddlink" class="btn btn-primary ddlink" title="{{# str }} ddlink_url, theme_cbe {{/ str }}" href="{{ ddlink_url }}">
+                {{#pix}} logo_footer, theme_cbe, {{# str }} ddlink_url, theme_cbe {{/ str }}{{/pix}}
+            </a>
+        {{/ has_dd_link }}
         <div class="politics">
             {{{ output.standard_footer_html }}} <span class="more"><span class="pipe">|</span><a href="{{ policies_url }}" target="_blank">{{#str}} policies, theme_cbe {{/str}}</a></span>
         </div>

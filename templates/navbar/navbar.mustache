@@ -93,12 +93,6 @@
         </li>
     </ul>
 
-    {{# has_dd_link }}
-        <a target="_blank" id="navbar-ddlink" class="btn btn-primary ddlink" title="{{# str }} ddlink_url, theme_cbe {{/ str }}" href="{{ ddlink_url }}">
-            {{#pix}} dd, theme_cbe, {{# str }} ddlink_url, theme_cbe {{/ str }}{{/pix}}
-        </a>
-    {{/ has_dd_link }}
-
     <div id="navbar-menu-apps">
         {{{ menu_apps_button }}}
     </div>
@@ -109,6 +103,12 @@
             {{{ output.user_menu }}}
         </li>
     </ul>
+
+    {{# has_dd_link }}
+        <a target="_blank" id="navbar-ddlink" class="btn btn-primary ddlink" title="{{# str }} ddlink_url, theme_cbe {{/ str }}" href="{{ ddlink_url }}">
+            {{#pix}} dd, theme_cbe, {{# str }} ddlink_url, theme_cbe {{/ str }}{{/pix}}
+        </a>
+    {{/ has_dd_link }}
 
 </nav>
 {{# in_course }}

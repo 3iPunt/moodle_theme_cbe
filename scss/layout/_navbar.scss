@@ -86,13 +86,14 @@ body[data-theme='cbe'] {
       }
       .usernav {
         z-index: 1050;
+        margin-right: 0;
         .nav-item {
           i.icon {
             height: 16px;
             width: auto;
             font-size: 16px;
             color: $black-ligth;
-            margin-right: 8px;
+            margin-right: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -106,6 +107,7 @@ body[data-theme='cbe'] {
             }
           }
           .usermenu {
+            margin-right: 16px;
             .userbutton {
               .usertext {
                 display: none;
@@ -197,24 +199,23 @@ body[data-theme='cbe'] {
     background-color: white;
     border: none;
     padding: 0;
-    margin-right: 5px;
+    margin-right: 0;
     position: relative;
     top: 0;
     img.icon {
       height: 16px;
       width: auto;
-      margin-right: 7px;
+      margin-right: 0;
     }
   }
   a#navbar-importgc {
-    margin-right: 0;
     position: relative;
     top: 1px;
     @media (max-width: 960px) {
       display: none;
     }
     img.icon {
-      margin-right: 5px;
+      margin-right: 4px;
     }
   }
   button#navbar-createcourse {
@@ -259,10 +260,10 @@ body[data-theme='cbe'] {
       }
       #navbar-menu-apps {
         position: relative;
-        top: 0;
+        top: 1px;
         z-index: 1050;
         #menu-apps-btn {
-          margin-right: 5px;
+          margin-right: 1px;
           cursor: pointer;
           @media (max-width: 450px) {
             margin-right: 0;
