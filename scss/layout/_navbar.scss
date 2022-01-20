@@ -503,7 +503,7 @@ body[data-theme='cbe'] {
 
 }
 
-body[data-theme='cbe'].admin {
+body[data-theme='cbe'][data-role="admin"] {
 
   #navbar-menu-apps {
     position: relative;
