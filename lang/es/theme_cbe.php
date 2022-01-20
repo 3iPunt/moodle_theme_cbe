@@ -204,3 +204,4 @@ $string['ddlink_url'] = "URL Digital Democratic";
 $string['ddlink_url_desc'] = "Enlace en pestaña nueva a Digital Democratic";
 
 $string['create_course'] = 'Crear curso';
+$string['testsettings'] = 'Tests';

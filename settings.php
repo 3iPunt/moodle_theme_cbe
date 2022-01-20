@@ -229,5 +229,9 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
+    // Test settings.
+    $page = new admin_settingpage('theme_cbe_test', get_string('testsettings', 'theme_cbe'));
+
+
     $settings->add($page);
 }

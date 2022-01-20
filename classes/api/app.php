@@ -61,10 +61,11 @@ class app  {
      * @param string $icon
      * @param string $href
      * @param bool $is_external
+     * @param string $name
      * @throws coding_exception
      * @throws dml_exception
      */
-    public function __construct(string $shortname, string $icon, string $href, bool $is_external, string $name) {
+    public function __construct(string $shortname, string $icon, string $href, bool $is_external, string $name = '') {
         $this->shortname = $shortname;
         $this->icon = $icon;
         $this->is_external = $is_external;
