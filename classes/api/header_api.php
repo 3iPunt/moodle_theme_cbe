@@ -72,18 +72,23 @@ class header_api  {
         $curl->setHeader($headers);
 
         try {
-            $result = $curl->get($url);
-            $result = json_decode($result, true);
+            $res = $curl->get($url);
+            $result = json_decode($res, true);
 
-            if (count($result)) {
-                $this->response = $this->validate($result);
-                // Set Colours
-                $this->set_colors();
-                // Set Avatar
-                $this->set_avatar();
+            if (isset($result)) {
+                if (count($result)) {
+                    $this->response = $this->validate($result);
+                    // Set Colours
+                    $this->set_colors();
+                    // Set Avatar
+                    $this->set_avatar();
+                } else {
+                    $this->response = new response(false, null,
+                        new error(1001, 'Error en la petición :' . json_encode($curl->getResponse())));
+                }
             } else {
                 $this->response = new response(false, null,
-                    new error(1001, 'Error en la petición :' . json_encode($curl->getResponse())));
+                    new error(1002, 'Error en la petición :' . strip_tags(json_encode($res))));
             }
 
         } catch (\Exception $e) {

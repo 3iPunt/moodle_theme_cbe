@@ -21,6 +21,7 @@
  */
 
 use theme_cbe\admin_settingspage_tabs;
+use theme_cbe\output\menu_apps_button;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -228,10 +229,6 @@ if ($ADMIN->fulltree) {
         get_string('rawscss_desc', 'theme_boost'), '', PARAM_RAW);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
-
-    // Test settings.
-    $page = new admin_settingpage('theme_cbe_test', get_string('testsettings', 'theme_cbe'));
-
 
     $settings->add($page);
 }

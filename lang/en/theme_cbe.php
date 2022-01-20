@@ -206,3 +206,4 @@ $string['ddlink_url_desc'] = "Link in new tab to Digital Democratic";
 
 $string['create_course'] = 'Create course';
 $string['testsettings'] = 'Tests';
+$string['tests_apps'] = 'Menu APPs';
