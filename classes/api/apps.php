@@ -62,7 +62,8 @@ class apps {
             $shortname = $this->set($item, 'shortname');
             $icon = $this->set($item, 'icon');
             $href = $this->set($item, 'href');
-            $app = new app($shortname, $icon, $href, $is_external);
+            $name = $this->set($item, 'name');
+            $app = new app($shortname, $icon, $href, $is_external, $name);
             $this->apps[] = $app->get();
         }
     }
