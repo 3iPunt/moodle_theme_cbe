@@ -37,7 +37,8 @@ body[data-theme='cbe'][data-role='user'] {
       #create_file_nextcloud_iframe {
         display: none;
         position: relative;
-        top: -150px;
+        top: -128px;
+        border: 2px solid #ebebeb;
       }
       div#nextcloud_error {
         background-color: #dddddd;
