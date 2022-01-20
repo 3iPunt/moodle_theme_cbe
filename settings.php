@@ -203,7 +203,13 @@ if ($ADMIN->fulltree) {
 
     $setting = (new admin_setting_configtext(
         'theme_cbe/policies', get_string('policies_url', 'theme_cbe'),  '',
-        false
+        '#'
+    ));
+    $page->add($setting);
+
+    $setting = (new admin_setting_configtext(
+        'theme_cbe/aviso_legal', get_string('aviso_legal_url', 'theme_cbe'),  '',
+        '#'
     ));
     $page->add($setting);
     $settings->add($page);

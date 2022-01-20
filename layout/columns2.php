@@ -61,7 +61,8 @@ $templatecontext = [
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     'logo' => render_cbe::get_logo(),
-    'policies_url' => get_config('theme_cbe', 'policies')
+    'policies_url' => get_config('theme_cbe', 'policies'),
+    'aviso_legal_url' => get_config('theme_cbe', 'aviso_legal')
 ];
 
 $templatecontext['flatnavigation'] = navigation::get_flatnav();
