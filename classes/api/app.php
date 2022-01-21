@@ -78,15 +78,9 @@ class app  {
      * Set Name.
      *
      * @param string $name
-     * @throws coding_exception
      */
     protected function set_name(string $name) {
-        $string = get_string('app_menu_' . $this->shortname, 'theme_cbe');
-        if (!strpos($string, ']]')) {
-            $this->name = $string;
-        } else {
-            $this->name = $name;
-        }
+        $this->name = $name;
     }
 
     /**
