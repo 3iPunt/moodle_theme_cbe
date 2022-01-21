@@ -76,7 +76,11 @@ class theme_cbe_observer {
                 $moduleinfo->record = 1;
                 $moduleinfo->name = get_string('bbb_main', 'theme_cbe');
                 $moduleinfo->visible = true;
-                create_module($moduleinfo);
+                try {
+                    create_module($moduleinfo);
+                } catch (moodle_exception $e) {
+                    error_log($e->getMessage());
+                }
             }
         }
 
