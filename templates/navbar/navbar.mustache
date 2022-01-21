@@ -64,7 +64,7 @@
     {{# can_create_courses }}
         <button id="navbar-createcourse"
                 type="button"
-                class="btn btn-primary createcourse"
+                class="btn btn-primary createcourse {{^ can_import_gc }}notigc{{/ can_import_gc }}"
                 data-toggle="modal"
                 data-tooltip="createcourse"
                 data-target="#createCourseModalCenter"
