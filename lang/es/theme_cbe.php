@@ -206,3 +206,6 @@ $string['ddlink_url_desc'] = "Enlace en pestaña nueva a Digital Democratic";
 $string['create_course'] = 'Crear curso';
 $string['testsettings'] = 'Tests';
 $string['tests_apps'] = 'Menu APPs';
+
+$string['shortname_placeholder'] = 'Rellene el nombre corto del curso';
+$string['fullname_placeholder'] = 'Rellene el nombre completo del nuevo curso';

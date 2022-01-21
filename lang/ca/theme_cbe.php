@@ -207,3 +207,6 @@ $string['ddlink_url_desc'] = "EEnllaç en pestanya nova a Digital Democratic";
 $string['create_course'] = 'Crear curs';
 $string['testsettings'] = 'Tests';
 $string['tests_apps'] = 'Menu APPs';
+
+$string['shortname_placeholder'] = 'Ompliu el nom curt del curs';
+$string['fullname_placeholder'] = 'Ompliu el nom complet del nou curs';
