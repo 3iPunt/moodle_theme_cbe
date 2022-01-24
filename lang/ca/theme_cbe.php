@@ -180,7 +180,7 @@ $string['appsallexternals_setting_desc'] = "Si està activat, els enllaços de l
 
 
 $string['notice_filecreate'] = "Podeu crear un arxiu en NextCloud des d'aquí. Recordeu vincular-lo en el Repositori NextCloud dins d'arxius addicionals";
-$string['nc_createfile_nc'] = "Crear Fitxer en NextCloud";
+$string['nc_createfile_nc'] = "Crear Fitxer a NextCloud";
 
 $string['hostnccreate'] = "URL de creació d'arxiu de NextCloud";
 $string['hostnccreate_desc'] = "Ex. https://nextcloud.demo.digitaldemocratic.net/apps/files";
