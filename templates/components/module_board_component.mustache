@@ -47,9 +47,11 @@
                 <i class="fa fa-anchor" aria-hidden="true"></i>
             </button>
             {{/ board_is_anchor }}
+            {{# can_deleted }}
             <button data-toggle="modal" data-target=".deletemod-modal-lg-{{ id }}" class="delete-module action">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
+            {{/ can_deleted }}
             <a href="{{ edit_href }}" class="edit-module action" data-toggle="tooltip" data-placement="bottom" title="{{# str }} edititem_board, theme_cbe {{/ str }}">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>

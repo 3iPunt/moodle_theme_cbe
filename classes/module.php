@@ -129,6 +129,7 @@ class module  {
         $module->is_resource = $this->is_resource();
         $module->is_media = false;
         $module->is_mine = false;
+        $module->can_deleted = $this->can_deleted();
         $module->sectionname = get_section_name($this->coursemoodle->id, $this->cm->sectionnum);
         if ($board) {
             switch ($this->cm->modname) {
@@ -363,6 +364,15 @@ class module  {
         $module->view_href = $url_module->externalurl;
         $module->view_blank = true;
         return $module;
+    }
+
+    /**
+     * Can deleted?
+     *
+     * @return bool
+     */
+    public function can_deleted(): bool {
+        return !(($this->cm->modname === 'bigbluebuttonbn') && ($this->cm->idnumber === 'MAIN'));
     }
 
     /**
