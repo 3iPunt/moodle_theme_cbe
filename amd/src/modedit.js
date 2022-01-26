@@ -27,12 +27,43 @@ define([
     ], function ($) {
         "use strict";
 
+        let BUTTONS = {
+            SUBMIT_1 : '#id_submitbutton',
+            SUBMIT_2 : '#id_submitbutton2',
+        };
+
+        let REGIONS = {
+            ALERTS: '.form-control-feedback',
+            ALERT_CBE: '#alert-cbe-modedit',
+        };
+
         /**
          * @constructor
          */
         function Modedit() {
             $('#create_file_nextcloud').prependTo('#fitem_id_introattachments');
+            let mform = $('.mform');
+            this.alertRestriction();
+            mform.find(BUTTONS.SUBMIT_1).on('click', this.alertRestriction.bind(this));
+            mform.find(BUTTONS.SUBMIT_2).on('click', this.alertRestriction.bind(this));
         }
+
+        Modedit.prototype.alertRestriction = function (e) {
+            let mform = $('.mform');
+            let alerts = mform.find(REGIONS.ALERTS);
+            let alert_is_visible = false;
+            alerts.each(function(){
+                let $this = $(this);
+                let text = $.trim($this.text());
+                if (text !== '') {
+                    alert_is_visible = true;
+                }
+            });
+            if (alert_is_visible) {
+                let $alert = $(REGIONS.ALERT_CBE);
+                $alert.removeClass('hidden');
+            }
+        };
 
         /** @type {jQuery} The jQuery node for the region. */
         Modedit.prototype.node = null;

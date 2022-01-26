@@ -209,3 +209,5 @@ $string['tests_apps'] = 'Menu APPs';
 
 $string['shortname_placeholder'] = 'Rellene el nombre corto del curso';
 $string['fullname_placeholder'] = 'Rellene el nombre completo del nuevo curso';
+
+$string['alert_modedit'] = 'Revisa el formulario: no cumple con las restricciones.';

@@ -204,4 +204,19 @@ body[data-theme='cbe'][data-role='user']#page-mod-assign-grantextension {
   }
 }
 
+body[data-theme='cbe'][data-role='user'][data-region="modedit"] {
+
+  .alert.cbe-alert {
+    background-color: $primary-color;
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 2222;
+    color: $secondary-color;
+    text-align: center;
+  }
+
+}
+
+
 

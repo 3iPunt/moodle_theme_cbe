@@ -210,3 +210,5 @@ $string['tests_apps'] = 'Menu APPs';
 
 $string['shortname_placeholder'] = 'Ompliu el nom curt del curs';
 $string['fullname_placeholder'] = 'Ompliu el nom complet del nou curs';
+
+$string['alert_modedit'] = 'Revisa el formulari: no acompleix les restriccions.';
