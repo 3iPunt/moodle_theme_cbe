@@ -82,7 +82,7 @@ class board  {
         $board = $DB->get_record(self::BOARD_TABLE, ['course' => $this->course ]);
         if (!empty($board)) {
             $this->id = $board->id;
-            $this->ordermodules = $board->ordermodules;
+            $this->ordermodules = !empty($board->ordermodules) ? $board->ordermodules : null;
             $this->anchor = $board->anchor;
             $this->userid = $board->userid;
             $this->timemodified = $board->timemodified;
@@ -96,12 +96,14 @@ class board  {
     /**
      * Get Order modules
      *
-     * @return string[]
+     * @return null
      */
-    public function get_ordermodules(): array {
+    public function get_ordermodules(): ?array {
         if (!empty($this->ordermodules)) {
             $ordermodules = explode(',', $this->ordermodules);
             return $ordermodules ? $ordermodules : [];
+        } else if (is_null($this->ordermodules)) {
+            return null;
         } else {
             return [];
         }
@@ -233,6 +235,8 @@ class board  {
                     }
                 }
             }
+        } else if (is_null($old)) {
+            $new = [$cmid];
         } else {
             // Create.
             $new = $this->get_allidmods($cmid, $visible);
