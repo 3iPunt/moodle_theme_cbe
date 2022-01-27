@@ -25,7 +25,7 @@ use theme_cbe\output\menu_apps_button;
 
 defined('MOODLE_INTERNAL') || die();
 
-global $ADMIN;
+global $ADMIN, $CFG;
 
 if ($ADMIN->fulltree) {
 
@@ -35,11 +35,31 @@ if ($ADMIN->fulltree) {
     $page = new admin_settingpage('theme_cbe_general',
         get_string('generalsettings', 'theme_cbe'));
 
+
+    $root = $CFG->wwwroot;
+
+    $default_host = '';
+    $default_logourl = '';
+    $default_avatar_api_url = '';
+    $default_avatar_other_users = '';
+    $default_avatar_profile_url = '';
+    $default_hostnccreate = '';
+    $index = strpos($root, 'moodle');
+    if ($index !== false) {
+        $default_host = substr($root,$index + 7);
+        $default_host = substr($root,$index + 7);
+        $default_logourl = 'https://api.' . $default_host . '/img/logo.png';
+        $default_avatar_api_url = 'https://sso.' . $default_host . '/auth/realms/master/avatar-provider';
+        $default_avatar_other_users = 'https://sso.' . $default_host . '/avatar/';
+        $default_avatar_profile_url = 'https://sso.' . $default_host . '/auth/realms/master/account';
+        $default_hostnccreate = 'https://nextcloud.' . $default_host . '/apps/files';
+    }
+
     $setting = (new admin_setting_configtext(
         'theme_cbe/host',
         get_string('host', 'theme_cbe'),
         get_string('host_desc', 'theme_cbe'),
-        ''
+        $default_host
     ));
 
     $page->add($setting);
@@ -47,7 +67,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/logourl',
         get_string('logourl', 'theme_cbe'),
         get_string('logourl_desc', 'theme_cbe'),
-        ''
+        $default_logourl
     ));
 
     $page->add($setting);
@@ -56,7 +76,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/header_api',
         get_string('header_api', 'theme_cbe'),
         get_string('header_api_desc', 'theme_cbe'),
-        false
+        true
     ));
 
     $page->add($setting);
@@ -65,7 +85,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/avatar_api',
         get_string('avatar_api', 'theme_cbe'),
         get_string('avatar_api_desc', 'theme_cbe'),
-        false
+        true
     ));
 
     $page->add($setting);
@@ -74,7 +94,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/avatar_api_url',
         get_string('avatar_api_url', 'theme_cbe'),
         get_string('avatar_api_url_desc', 'theme_cbe'),
-        ''
+        $default_avatar_api_url
     ));
 
     $page->add($setting);
@@ -83,7 +103,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/avatar_other_users',
         get_string('avatar_other_users', 'theme_cbe'),
         get_string('avatar_other_users_desc', 'theme_cbe'),
-        false
+        $default_avatar_other_users
     ));
 
     $page->add($setting);
@@ -92,7 +112,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/avatar_profile_url',
         get_string('avatar_profile_url', 'theme_cbe'),
         get_string('avatar_profile_url_desc', 'theme_cbe'),
-        ''
+        $default_avatar_profile_url
     ));
 
     $page->add($setting);
@@ -125,7 +145,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/importgc',
         get_string('importgc', 'theme_cbe'),
         get_string('importgc_desc', 'theme_cbe'),
-        false
+        true
     ));
 
     $page->add($setting);
@@ -134,7 +154,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/vclasses_direct',
         get_string('vclasses_direct', 'theme_cbe'),
         get_string('vclasses_direct_desc', 'theme_cbe'),
-        false
+        true
     ));
 
     $page->add($setting);
@@ -143,7 +163,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/uniquenamecourse',
         get_string('uniquenamecourse_setting', 'theme_cbe'),
         get_string('uniquenamecourse_setting_desc', 'theme_cbe'),
-        false
+        true
     ));
     $page->add($setting);
 
@@ -151,7 +171,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/apssallexternals',
         get_string('appsallexternals_setting', 'theme_cbe'),
         get_string('appsallexternals_setting_desc', 'theme_cbe'),
-        false
+        true
     ));
     $page->add($setting);
 
@@ -159,7 +179,7 @@ if ($ADMIN->fulltree) {
         'theme_cbe/hostnccreate',
         get_string('hostnccreate', 'theme_cbe'),
         get_string('hostnccreate_desc', 'theme_cbe'),
-        false
+        $default_hostnccreate
     ));
 
     $page->add($setting);
