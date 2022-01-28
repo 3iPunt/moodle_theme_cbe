@@ -147,7 +147,7 @@ class course_module_navigation extends navigation {
         $data['menu_apps_button'] = $menu_apps_button;
         $data['nav_context'] = 'course';
         $data['is_module'] = true;
-        $data['has_create_file_nextcloud'] = $coursemodule->get_modname() === 'assign';
+        $data['has_create_file_nextcloud'] = self::has_create_file_nextcloud($coursemodule);
         $data['module_title'] = $coursemodule->get_name();
         $data['html_icon'] = $coursemodule->get_html_icon();
         $data['is_resource'] = $coursemodule->is_resource();
@@ -157,6 +157,16 @@ class course_module_navigation extends navigation {
         $data['ddlink_url'] = get_config('theme_cbe', 'ddlink_url');
 
         return $data;
+    }
+
+    /**
+     * Has Create File Nextcloud?
+     *
+     * @param module $coursemodule
+     * @return bool
+     */
+    static public function has_create_file_nextcloud(module $coursemodule): bool {
+        return $coursemodule->get_modname() === 'assign' || $coursemodule->get_modname() === 'resource';
     }
 
     /**

@@ -41,7 +41,14 @@ define([
          * @constructor
          */
         function Modedit() {
-            $('#create_file_nextcloud').prependTo('#fitem_id_introattachments');
+            let $create_file_nextcloud = $('#create_file_nextcloud');
+            let $fitem_id_introattachments = $('#fitem_id_introattachments');
+            let $fitem_id_files = $('#fitem_id_files');
+            if ( $fitem_id_introattachments.length > 0 ) {
+                $create_file_nextcloud.prependTo('#fitem_id_introattachments');
+            } else if ($fitem_id_files.length > 0) {
+                $create_file_nextcloud.prependTo('#fitem_id_files');
+            }
             let mform = $('.mform');
             this.alertRestriction();
             mform.find(BUTTONS.SUBMIT_1).on('click', this.alertRestriction.bind(this));
