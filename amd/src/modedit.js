@@ -53,6 +53,8 @@ define([
             this.alertRestriction();
             mform.find(BUTTONS.SUBMIT_1).on('click', this.alertRestriction.bind(this));
             mform.find(BUTTONS.SUBMIT_2).on('click', this.alertRestriction.bind(this));
+            mform.find(BUTTONS.SUBMIT_1).on('click', this.alertRestrictionName.bind(this));
+            mform.find(BUTTONS.SUBMIT_2).on('click', this.alertRestrictionName.bind(this));
         }
 
         Modedit.prototype.alertRestriction = function (e) {
@@ -66,6 +68,19 @@ define([
                     alert_is_visible = true;
                 }
             });
+            if (alert_is_visible) {
+                let $alert = $(REGIONS.ALERT_CBE);
+                $alert.removeClass('hidden');
+            }
+        };
+
+        Modedit.prototype.alertRestrictionName = function (e) {
+            let alert_is_visible = false;
+            let mform = $('.mform');
+            let $name = mform.find('#id_name');
+            if ($name.val() === '') {
+                alert_is_visible = true;
+            }
             if (alert_is_visible) {
                 let $alert = $(REGIONS.ALERT_CBE);
                 $alert.removeClass('hidden');
