@@ -78,7 +78,8 @@ define([
             let alert_is_visible = false;
             let mform = $('.mform');
             let $name = mform.find('#id_name');
-            if ($name.val() === '') {
+            let $id_externalurl = mform.find('#id_externalurl');
+            if ($name.val() === '' || $id_externalurl.val() === '') {
                 alert_is_visible = true;
             }
             if (alert_is_visible) {
