@@ -30,6 +30,7 @@ use renderable;
 use renderer_base;
 use stdClass;
 use templatable;
+use theme_cbe\course;
 use theme_cbe\navigation\course_navigation;
 
 defined('MOODLE_INTERNAL') || die;
@@ -84,7 +85,8 @@ class course_header_navbar_component implements renderable, templatable {
         ];
         $data->more_info = [
             'href' => $url_more_info->out(false),
-            'active' => course_navigation::is_current_page(course_navigation::PAGE_MOREINFO)
+            'active' => course_navigation::is_current_page(course_navigation::PAGE_MOREINFO),
+            'title' => course::get_title_section0($this->course_id)
         ];
         return $data;
     }

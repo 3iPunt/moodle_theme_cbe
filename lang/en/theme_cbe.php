@@ -97,6 +97,10 @@ $string['share_with'] = "Share comment with:";
 $string['delete_post'] = "Delete Post";
 $string['sure_delete'] = "Are you sure you want to delete this post?";
 $string['sure_delete_detail'] = "If you delete the post, all student comments will be lost";
+$string['delete_comment'] = "Delete Comment";
+$string['edit_comment'] = "Edit Comment";
+$string['sure_comment_delete'] = "Are you sure to delete this comment?";
+$string['sure_comment_delete_detail'] = "The comment cannot be retrieved";
 $string['confirm'] = "Confirm";
 $string['task_table_section'] = "Theme";
 $string['task_table_task'] = "Task";
@@ -159,6 +163,8 @@ $string['copy'] = 'Copy';
 $string['bbb_main'] = 'Main virtual class';
 $string['policies_url'] = 'URL Privacy Policies';
 $string['policies'] = 'Privacy Policies';
+$string['aviso_legal_url'] = 'URL Center Legal Notice';
+$string['aviso_legal'] = 'Center Legal Notice';
 $string['footersettings'] = 'Footer Settings';
 $string['left_section_menu'] = 'Quick access menu';
 $string['edit_board'] = "Edit Board";
@@ -171,3 +177,38 @@ $string['board_hidden'] = "Hidden in board";
 $string['board_anchor'] = "Anchored in board";
 $string['appsallexternals_setting'] = "Internal APPs another tab";
 $string['appsallexternals_setting_desc'] = "If activated, the internal APPs links will open in another tab";
+
+
+$string['notice_filecreate'] = 'You can create a file on NextCloud from here. Remember to link it in the NextCloud Repository within Additional Files';
+$string['nc_createfile_nc'] = "Create File in NextCloud";
+
+$string['hostnccreate'] = "NextCloud file creation URL";
+$string['hostnccreate_desc'] = "Ex. https://nextcloud.demo.digitaldemocratic.net/apps/files";
+$string['nextcloud_create_not_config'] = "NextCloud is not configured correctly. Notify the administrator";
+
+$string['importgc'] = "Import Courses from Google Classroom";
+$string['importgc_desc'] = "If activated, the Course Creator will be able to import courses from their Google Classroom account. The local_tresipuntimportgc plugin must be installed";
+
+$string['avatar_api'] = "Avatar API";
+$string['avatar_api_desc'] = "f this option is activated, the user's avatars will be collected from the Avatar API";
+$string['avatar_api_url'] = "URL Avatar API";
+$string['avatar_api_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/avatar-provider";
+$string['avatar_profile_url'] = "URL Profile API";
+$string['avatar_profile_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/account";
+$string['avatar_other_users'] = "URL Avatar Other Users API";
+$string['avatar_other_users_desc'] = "Ex. https://api.test.digitaldemocratic.net/avatar/";
+
+$string['has_dd_link'] = "Digital Democratic Link";
+$string['has_dd_link_desc'] = "If enabled, a link will appear in the navigation bar to the Digital Democratic link";
+
+$string['ddlink_url'] = "URL Digital Democratic";
+$string['ddlink_url_desc'] = "Link in new tab to Digital Democratic";
+
+$string['create_course'] = 'Create course';
+$string['testsettings'] = 'Tests';
+$string['tests_apps'] = 'Menu APPs';
+
+$string['shortname_placeholder'] = 'Fill in the shortname of the course';
+$string['fullname_placeholder'] = 'Fill in the fullname of the new course';
+
+$string['alert_modedit'] = 'Check the form: does not meet the restrictions..';

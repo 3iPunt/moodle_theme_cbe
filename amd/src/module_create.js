@@ -43,6 +43,7 @@ define([
          */
         function ModuleCreate(region) {
             this.node = $(region);
+            this.onSelectSectionChange();
             this.node.find(ACTION.SECTION_SELECT).on('change', this.onSelectSectionChange.bind(this));
         }
 
@@ -59,7 +60,6 @@ define([
                 var href_new = href_first + section + href_last;
                 $(this).attr('href', href_new);
             });
-
         };
 
         /** @type {jQuery} The jQuery node for the region. */

@@ -5,17 +5,33 @@ body[data-theme='cbe'][data-role="user"] {
     align-items: center;
     div.mod {
       background-color: $primary-color;
-      width: 54px;
-      height: 54px;
-      min-width: 54px;
+      width: 60px;
+      height: 60px;
+      min-width: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-right: 10px;
-      border-radius: 27px;
+      border-radius: 30px;
+      &.resource_mod {
+        background-color: white;
+        border: 4px solid $primary-color;
+        .module-resource-icon-component-cbe {
+          svg.theme-cbe-icon {
+            width: 27px;
+            height: 27px;
+            fill: $primary-color;
+          }
+          &.url {
+            svg.theme-cbe-icon {
+              stroke: $primary-color;
+            }
+          }
+        }
+      }
       .icon {
-        width: 30px;
-        height: 30px;
+        width: 27px;
+        height: 27px;
         display: flex;
         margin: 0;
         background-color: transparent;
@@ -25,24 +41,6 @@ body[data-theme='cbe'][data-role="user"] {
         &:hover {
           opacity: 90%;
         }
-      }
-      &.assign .icon  {
-        background-image: url('[[pix:mod_assign|icon]]');
-      }
-      &.resource .icon  {
-        background-image: url('[[pix:mod_resource|icon]]');
-      }
-      &.tresipuntaudio .icon  {
-        background-image: url('[[pix:mod_tresipuntaudio|icon]]');
-      }
-      &.tresipuntvideo .icon  {
-        background-image: url('[[pix:mod_tresipuntvideo|icon]]');
-      }
-      &.bigbluebuttonbn .icon  {
-        background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
-      }
-      &.folder .icon  {
-        background-image: url('[[pix:mod_folder|icon]]');
       }
     }
     .data {
@@ -115,9 +113,25 @@ body[data-theme='cbe'][data-role="user"] {
         justify-content: center;
         min-width: 60px;
         cursor: pointer;
+        &.resource_mod {
+          background-color: white;
+          border: 4px solid $primary-color;
+          .module-resource-icon-component-cbe {
+            svg.theme-cbe-icon {
+              width: 27px;
+              height: 27px;
+              fill: $primary-color;
+            }
+            &.url {
+              svg.theme-cbe-icon {
+                stroke: $primary-color;
+              }
+            }
+          }
+        }
         .icon {
-          width: 30px;
-          height: 30px;
+          width: 27px;
+          height: 27px;
           display: flex;
           margin: 0;
           background-color: transparent;
@@ -128,7 +142,7 @@ body[data-theme='cbe'][data-role="user"] {
             opacity: 90%;
           }
           >img {
-            width: 30px;
+            width: 27px;
           }
         }
         img.picture {
@@ -280,12 +294,12 @@ body[data-theme='cbe'][data-role="user"] {
       div.comments-block {
         background-color: white;
         width: 100%;
-        outline: 1px solid $grey-border;
         display: flex;
         align-items: center;
         margin: 0 0 1px 0;
         flex-direction: column;
         position: relative;
+        border-top: 1px solid $grey-border;
         ul.comments {
           list-style: none;
           display: none;
@@ -357,6 +371,23 @@ body[data-theme='cbe'][data-role="user"] {
                 left: -10px;
               }
             }
+            .action_buttons.comment {
+              position: relative;
+              left: -176px;
+              top: 1px;
+              display: flex;
+              flex-direction: column;
+              button.edit-module.action {
+                width: 24px;
+                height: 24px;
+                font-size: 14px;
+                position: inherit;
+                margin: 1px;
+              }
+              @media (max-width: 600px) {
+                left: 0;
+              }
+            }
           }
         }
         .expand-comments {
@@ -424,6 +455,19 @@ body[data-theme='cbe'][data-role="user"] {
           display: none;
           &:hover {
             color: $primary-color;
+          }
+        }
+      }
+    }
+    &.tresipuntshare {
+      .item-mod {
+        .mod {
+          background-color: transparent !important;
+        }
+        @media (max-width: 600px) {
+          a.edit-module.action {
+            top: -9px !important;
+            right: -5px !important;
           }
         }
       }

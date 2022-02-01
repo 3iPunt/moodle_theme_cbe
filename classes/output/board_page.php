@@ -63,7 +63,7 @@ class board_page implements renderable, templatable {
     protected $board = null;
 
     /**
-     * charge_page constructor.
+     * board_page constructor.
      * @param int $course_id
      * @param int|null $pub
      * @throws dml_exception
@@ -87,9 +87,14 @@ class board_page implements renderable, templatable {
         // Current User.
         $user = core_user::get_user($USER->id);
 
-        $userpicture = new user_picture($user);
-        $userpicture->size = 1;
-        $pictureurl = $userpicture->get_url($PAGE)->out(false);
+        $avatar_api = get_config('theme_cbe', 'avatar_api');
+        if ($avatar_api) {
+            $pictureurl = get_config('theme_cbe', 'avatar_api_url');
+        } else {
+            $userpicture = new user_picture($user);
+            $userpicture->size = 1;
+            $pictureurl = $userpicture->get_url($PAGE)->out(false);
+        }
 
         $user->fullname = fullname($user);
         $user->picture = $pictureurl;
@@ -116,7 +121,10 @@ class board_page implements renderable, templatable {
         $data->user = $user;
         $data->is_teacher = course_user::is_teacher($this->course_id);
         $data->modules = $mods;
-        $data->themes = $course_cbe->get_themes();
+        $themes = $course_cbe->get_themes();
+        $unselect = ['section' => 'not', 'name' => get_string('create_module_theme', 'theme_cbe')];
+        //array_unshift($themes, $unselect);
+        $data->themes = $themes;
         $data->create = module::get_list_modules($this->course_id);
         $data->students = $course_cbe->get_users_by_role('student');
         $data->groups = $course_cbe->get_groups();
@@ -164,8 +172,11 @@ class board_page implements renderable, templatable {
         if ($mod->modname === publication::MODULE_PUBLICATION) {
             return false;
         } else {
-            if (!empty($this->board->get_ordermodules())) {
-                return !in_array($mod->id, $this->board->get_ordermodules());
+            $order = $this->board->get_ordermodules();
+            if (!empty($order)) {
+                return !in_array($mod->id, $order);
+            } else if (is_null($order)) {
+                return true;
             } else {
                 return false;
             }

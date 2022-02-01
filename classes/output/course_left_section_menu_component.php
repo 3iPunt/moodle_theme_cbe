@@ -104,19 +104,20 @@ class course_left_section_menu_component implements renderable, templatable {
         $vc->blank = false;
         $vc->name = get_string('course_menu_virtual', 'theme_cbe');
         $hasmain = false;
+        $modules = get_coursemodules_in_course('bigbluebuttonbn', $this->course_id);
+        $vc->is_visible = count($modules) > 0;
         if (get_config('theme_cbe', 'vclasses_direct')) {
-            $modules = get_coursemodules_in_course('bigbluebuttonbn', $this->course_id);
             foreach ($modules as $mod) {
-                if ($mod->idnumber === 'MAIN') {
+                if ($mod->idnumber === 'MAIN' && $mod->deletioninprogress !== '1') {
                     $href = new moodle_url('/mod/bigbluebuttonbn/view.php',
                         ['id' => $mod->id] );
                     $vc->href = $href->out(false);
                     $vc->blank = true;
+                    $vc->is_visible = true;
                     $hasmain = true;
                     break;
                 }
             }
-
         }
         if (!$hasmain) {
             $vc->href = new moodle_url('/' . course_navigation::PAGE_VCLASSES, ['id'=> $this->course_id]);

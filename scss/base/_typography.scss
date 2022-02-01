@@ -18,3 +18,24 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'PFHandbookPro';
+  src: url([[font:theme_cbe|PFHandbookPro-Light.otf]]);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PFHandbookPro Bold';
+  src: url([[font:theme_cbe|PFHandbookPro-Bold.otf]]);
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PFHandbookPro Thin';
+  src: url([[font:theme_cbe|PFHandbookPro-Thin.otf]]);
+  font-weight: bold;
+  font-style: normal;
+}

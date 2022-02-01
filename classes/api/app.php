@@ -61,14 +61,15 @@ class app  {
      * @param string $icon
      * @param string $href
      * @param bool $is_external
+     * @param string $name
      * @throws coding_exception
      * @throws dml_exception
      */
-    public function __construct(string $shortname, string $icon, string $href, bool $is_external) {
+    public function __construct(string $shortname, string $icon, string $href, bool $is_external, string $name = '') {
         $this->shortname = $shortname;
         $this->icon = $icon;
         $this->is_external = $is_external;
-        $this->set_name();
+        $this->set_name($name);
         $this->set_icon($icon);
         $this->set_href($href);
     }
@@ -76,10 +77,10 @@ class app  {
     /**
      * Set Name.
      *
-     * @throws coding_exception
+     * @param string $name
      */
-    protected function set_name() {
-        $this->name = get_string('app_menu_' . $this->shortname, 'theme_cbe');
+    protected function set_name(string $name) {
+        $this->name = $name;
     }
 
     /**

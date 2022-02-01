@@ -23,6 +23,7 @@ use theme_cbe\external\board_external;
 use theme_cbe\external\course_external;
 use theme_cbe\external\coursecard_external;
 use theme_cbe\external\module_external;
+use theme_cbe\external\nextcloud_external;
 use theme_cbe\external\section_external;
 
 defined('MOODLE_INTERNAL') || die();
@@ -72,6 +73,22 @@ $functions = [
         'classname' => module_external::class,
         'methodname' => 'publication_comment_send',
         'description' => 'Send comment in Tresipuntshare module',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_publication_comment_delete' => [
+        'classname' => module_external::class,
+        'methodname' => 'publication_comment_delete',
+        'description' => 'Delete comment in Tresipuntshare module',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
+    'theme_cbe_publication_comment_edit' => [
+        'classname' => module_external::class,
+        'methodname' => 'publication_comment_edit',
+        'description' => 'Edit comment in Tresipuntshare module',
         'type' => 'write',
         'ajax' => true,
         'loginrequired' => true
@@ -132,6 +149,14 @@ $functions = [
         'ajax' => true,
         'loginrequired' => true
     ],
+    'theme_cbe_nextcloud_createfile' => [
+        'classname' => nextcloud_external::class,
+        'methodname' => 'createfile',
+        'description' => 'Create file in NextCloud',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
 ];
 $services = [
     'theme_cbe' => [
@@ -142,6 +167,8 @@ $services = [
             'theme_cbe_publication',
             'theme_cbe_publication_delete',
             'theme_cbe_publication_comment_send',
+            'theme_cbe_publication_comment_edit',
+            'theme_cbe_publication_comment_delete',
             'theme_cbe_create_course',
             'theme_cbe_check_course_shortname',
             'theme_cbe_course_module_delete',
@@ -149,6 +176,7 @@ $services = [
             'theme_cbe_board_remove_anchor',
             'theme_cbe_board_visible',
             'theme_cbe_board_hidden',
+            'theme_cbe_nextcloud_createfile',
         ],
         'restrictedusers' => 0,
         'enabled' => 1

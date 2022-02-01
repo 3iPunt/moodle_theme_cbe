@@ -81,12 +81,15 @@ class course  {
      * Get Category.
      *
      * @return string
-     * @throws moodle_exception
      */
     public function get_category(): string {
         $category_id = $this->course->category;
-        $category = core_course_category::get($category_id);
-        return $category->get_formatted_name();
+        try {
+            $category = core_course_category::get($category_id);
+            return $category->get_formatted_name();
+        } catch (moodle_exception $e) {
+            return '';
+        }
     }
 
     /**
@@ -233,5 +236,24 @@ class course  {
         } else {
             return $section0;
         }
+    }
+
+    /**
+     * Get Title Section 0.
+     *
+     * @param int $course_id
+     * @return string
+     * @throws coding_exception
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
+    public static function get_title_section0(int $course_id): string {
+        $course = new course($course_id);
+        $section = $course->get_section_zero();
+        $title = $section->name;
+        if (empty($title)) {
+            $title = get_string('course_menu_moreinfo', 'theme_cbe');
+        }
+        return $title;
     }
 }

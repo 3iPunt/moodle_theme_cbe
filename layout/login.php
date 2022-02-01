@@ -37,7 +37,8 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes,
     'logo' => render_cbe::get_logo(),
     'loginbackground' => render_cbe::get_loginbackground(),
-    'policies_url' => get_config('theme_cbe', 'policies')
+    'policies_url' => get_config('theme_cbe', 'policies'),
+    'aviso_legal_url' => get_config('theme_cbe', 'aviso_legal')
 ];
 
 echo $OUTPUT->render_from_template('theme_cbe/login', $templatecontext);

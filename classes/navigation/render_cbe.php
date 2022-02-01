@@ -70,7 +70,17 @@ abstract class render_cbe  {
     protected function set_navigation() {
         global $PAGE;
         if (is_siteadmin()) {
-            $this->navigation = null;
+            $this->header_api = get_config('theme_cbe', 'header_api') ? new header_api() : null;
+            if (isset($this->header_api)) {
+                if (!$this->header_api->get_response()->success) {
+                    debugging(
+                        'ERROR IN API JSON: Host: ' . get_config('theme_cbe', 'host') . ' - ' .
+                        $this->header_api->get_response()->error->code . ' - ' .
+                        $this->header_api->get_response()->error->message
+                    );
+                    $this->header_api = null;
+                }
+            }
         } else {
             $this->header_api = get_config('theme_cbe', 'header_api') ? new header_api() : null;
             switch ($PAGE->context->contextlevel) {

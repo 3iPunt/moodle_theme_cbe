@@ -34,24 +34,24 @@ define([
          *
          */
         let ACTION = {
-            DELETE_BUTTON: '[data-action="delete"]'
+            DELETE_BUTTON: '[data-action="delete-comment"]'
         };
 
         /**
          *
          */
         let SERVICES = {
-            PUBLICATION_DELETE: 'theme_cbe_publication_delete'
+            COMMENT_DELETE: 'theme_cbe_publication_comment_delete'
         };
 
         /**
          * @constructor
          * @param {String} region
-         * @param {Number} cmid
+         * @param {Number} commentid
          */
-        function CommentDelete(region, cmid) {
-            this.cmid = cmid;
-            this.node = $(region + '[data-cmid="' + cmid +'"]');
+        function CommentDelete(region, commentid) {
+            this.commentid = commentid;
+            this.node = $(region + '[data-commentid="' + commentid +'"]');
             this.node.find(ACTION.DELETE_BUTTON).on('click', this.onDeleteButtonClick.bind(this));
         }
 
@@ -60,9 +60,9 @@ define([
             $(ACTION.DELETE_BUTTON).prop( "disabled", true );
 
             const request = {
-                methodname: SERVICES.PUBLICATION_DELETE,
+                methodname: SERVICES.COMMENT_DELETE,
                 args: {
-                    cmid: this.cmid
+                    commentid: this.commentid
                 }
             };
             Ajax.call([request])[0].done(function(response) {
@@ -76,12 +76,12 @@ define([
         return {
             /**
              * @param {String} region
-             * @param {Number} cmid
+             * @param {Number} commentid
              *
              * @return {CommentDelete}
              */
-            initCommentDelete: function (region, cmid) {
-                return new CommentDelete(region, cmid);
+            initCommentDelete: function (region, commentid) {
+                return new CommentDelete(region, commentid);
             }
         };
     }

@@ -97,6 +97,10 @@ $string['share_with'] = "Comparteix comentari amb:";
 $string['delete_post'] = "Esborrar Publicació";
 $string['sure_delete'] = "Estàs segur d'esborrar aquesta publicació?";
 $string['sure_delete_detail'] = "Si borra la publicació, es perdran tots els comentaris dels alumnes";
+$string['delete_comment'] = "Esborrar Comentari";
+$string['edit_comment'] = "Modifica Comentario";
+$string['sure_comment_delete'] = "Estàs segur d'esborrar aquest comentari?";
+$string['sure_comment_delete_detail'] = "El comentari no es podrà recuperar";
 $string['confirm'] = "Confirmar";
 $string['task_table_section'] = "Theme";
 $string['task_table_task'] = "Tasca";
@@ -157,8 +161,10 @@ $string['uniquenamecourse_setting'] = 'Utilitzar Nom únic';
 $string['uniquenamecourse_setting_desc'] = 'En els formularis de creació i duplicat de curs, només es farà servir el nom curt (el nom llarg serà el mateix)';
 $string['copy'] = 'Còpia';
 $string['bbb_main'] = 'Classe virtual principal';
-$string['policies_url'] = 'URL Polítiques de privacitat';
-$string['policies'] = 'Polítiques de privacitat';
+$string['policies_url'] = 'URL Política de privacitat';
+$string['policies'] = 'Política de privacitat';
+$string['aviso_legal_url'] = 'URL Avís legal de centre';
+$string['aviso_legal'] = 'Avís legal de centre';
 $string['footersettings'] = 'Configuració de Footer';
 $string['left_section_menu'] = "Menú d'accés ràpid";
 $string['edit_board'] = "Edita Tauler";
@@ -171,3 +177,38 @@ $string['board_hidden'] = "Amagat en tauler";
 $string['board_anchor'] = "Ancorat en Tauler";
 $string['appsallexternals_setting'] = "APPs internes altra pestanya";
 $string['appsallexternals_setting_desc'] = "Si està activat, els enllaços de les APPs internes s'obriran en una altra pestanya";
+
+
+$string['notice_filecreate'] = "Podeu crear un arxiu en NextCloud des d'aquí. Recordeu vincular-lo en el Repositori NextCloud dins d'arxius addicionals";
+$string['nc_createfile_nc'] = "Crear Fitxer a NextCloud";
+
+$string['hostnccreate'] = "URL de creació d'arxiu de NextCloud";
+$string['hostnccreate_desc'] = "Ex. https://nextcloud.demo.digitaldemocratic.net/apps/files";
+$string['nextcloud_create_not_config'] = "No és correcte NextCloud. Avisi a l'administrador";
+
+$string['importgc'] = "Importa Cursos de Google Classroom";
+$string['importgc_desc'] = "Si s'activa, el Creador de Cursos podrà importar cursos des del seu compte de Google Classroom. Ha d'estar instal·lat el plugin local_tresipuntimportgc";
+
+$string['avatar_api'] = "Avatar API";
+$string['avatar_api_desc'] = "Si s'activa aquesta opció, els avatars de l'usuaris seran recollits de l'API d'Avatar";
+$string['avatar_api_url'] = "URL Avatar API";
+$string['avatar_api_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/avatar-provider";
+$string['avatar_profile_url'] = "URL Perfil API";
+$string['avatar_profile_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/account";
+$string['avatar_other_users'] = "URL Avatar Altres Usuaris API";
+$string['avatar_other_users_desc'] = "Ex. https://api.test.digitaldemocratic.net/avatar/";
+
+$string['has_dd_link'] = "Enllaç Digital Democratic";
+$string['has_dd_link_desc'] = "Si està activat, apareixerà un enllaç a la barra de navegació a l'enllaç Digital Democratic";
+
+$string['ddlink_url'] = "URL Digital Democratic";
+$string['ddlink_url_desc'] = "EEnllaç en pestanya nova a Digital Democratic";
+
+$string['create_course'] = 'Crear curs';
+$string['testsettings'] = 'Tests';
+$string['tests_apps'] = 'Menu APPs';
+
+$string['shortname_placeholder'] = 'Ompliu el nom curt del curs';
+$string['fullname_placeholder'] = 'Ompliu el nom complet del nou curs';
+
+$string['alert_modedit'] = 'Revisa el formulari: no acompleix les restriccions.';

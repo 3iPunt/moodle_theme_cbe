@@ -97,6 +97,10 @@ $string['share_with'] = "Comparte comentario con:";
 $string['delete_post'] = "Borrar Publicación";
 $string['sure_delete'] = "¿Estás seguro de borrar esta publicación?";
 $string['sure_delete_detail'] = "Si borra la publicación, se perderán todos los comentarios de los alumnos";
+$string['delete_comment'] = "Borrar Comentario";
+$string['edit_comment'] = "Editar Comentario";
+$string['sure_comment_delete'] = "¿Estás seguro de borrar este comentario?";
+$string['sure_comment_delete_detail'] = "El comentario no se podrá recuperar";
 $string['confirm'] = "Confirmar";
 $string['task_table_section'] = "Tema";
 $string['task_table_task'] = "Tarea";
@@ -159,6 +163,8 @@ $string['copy'] = 'Copia';
 $string['bbb_main'] = 'Clase virtual principal';
 $string['policies_url'] = 'URL Políticas de privacidad';
 $string['policies'] = 'Políticas de privacidad';
+$string['aviso_legal_url'] = 'URL Aviso Legal del Centro';
+$string['aviso_legal'] = 'Aviso Legal del Centro';
 $string['footersettings'] = 'Configuración Footer';
 $string['left_section_menu'] = 'Menú de acceso rápido';
 $string['edit_board'] = "Editar Tablón";
@@ -171,3 +177,37 @@ $string['board_hidden'] = "Ocultado en Tablón";
 $string['board_anchor'] = "Anclado en Tablón";
 $string['appsallexternals_setting'] = "APPs internas otra pestaña";
 $string['appsallexternals_setting_desc'] = "Si está activado, los enlaces de las APPs internas se abrirán en otra pestaña";
+
+$string['notice_filecreate'] = 'Puede crear un archivo en NextCloud desde aquí. Recuerde vincularlo en el Repositorio NextCloud dentro de Archivos Adicionales';
+$string['nc_createfile_nc'] = "Crear Fichero en NextCloud";
+
+$string['hostnccreate'] = "URL de creación de archivo de NextCloud";
+$string['hostnccreate_desc'] = "Ej. https://nextcloud.demo.digitaldemocratic.net/apps/files";
+$string['nextcloud_create_not_config'] = "No está configurado correctamente NextCloud. Avise al administrador";
+
+$string['importgc'] = "Importar Cursos de Google Classroom";
+$string['importgc_desc'] = "Si se activa, el Creador de Cursos podrá importar cursos desde su cuenta de Google Classroom. Debe estar instalado el plugin local_tresipuntimportgc";
+
+$string['avatar_api'] = "Avatar API";
+$string['avatar_api_desc'] = "Si se activa esta opción, los avatares del usuarios serán recogidos del API de Avatar";
+$string['avatar_api_url'] = "URL Avatar API";
+$string['avatar_api_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/avatar-provider";
+$string['avatar_profile_url'] = "URL Perfil API";
+$string['avatar_profile_url_desc'] = "Ex. https://sso.demo.digitaldemocratic.net/auth/realms/master/account";
+$string['avatar_other_users'] = "URL Avatar Otros Usuarios API";
+$string['avatar_other_users_desc'] = "Ex. https://api.test.digitaldemocratic.net/avatar/";
+
+$string['has_dd_link'] = "Enlace Digital Democratic";
+$string['has_dd_link_desc'] = "Si está activado, aparecerá un enlace en la barra de navegación al enlace Digital Democratic";
+
+$string['ddlink_url'] = "URL Digital Democratic";
+$string['ddlink_url_desc'] = "Enlace en pestaña nueva a Digital Democratic";
+
+$string['create_course'] = 'Crear curso';
+$string['testsettings'] = 'Tests';
+$string['tests_apps'] = 'Menu APPs';
+
+$string['shortname_placeholder'] = 'Rellene el nombre corto del curso';
+$string['fullname_placeholder'] = 'Rellene el nombre completo del nuevo curso';
+
+$string['alert_modedit'] = 'Revisa el formulario: no cumple con las restricciones.';

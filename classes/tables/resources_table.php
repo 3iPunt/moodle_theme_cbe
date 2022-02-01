@@ -123,10 +123,7 @@ class resources_table extends table_sql {
         /** @var cm_info[] $cms */
         $cms = $fastmodinfo ? $fastmodinfo->get_cms() : [];
         foreach ($cms as $cm) {
-            if ($cm->modname === 'resource' ||
-                $cm->modname === 'tresipuntvideo' ||
-                $cm->modname === 'folder' ||
-                $cm->modname === 'tresipuntaudio') {
+            if ($cm->uservisible) {
                 $row = new stdClass();
                 $row->id = $cm->id;
                 $row->section = $cm->sectionnum;
@@ -134,7 +131,8 @@ class resources_table extends table_sql {
                 $row->modname = $cm->modname;
                 // Get File.
                 $fs = get_file_storage();
-                $files = $fs->get_area_files($cm->context->id, 'mod_' . $cm->modname, 'content');
+                $files = $fs->get_area_files(
+                    $cm->context->id, 'mod_' . $cm->modname, ['content', 'introattachment']);
                 foreach ($files as $file) {
                     if (!empty($file->get_mimetype())) {
                         $filecm = new stdClass();

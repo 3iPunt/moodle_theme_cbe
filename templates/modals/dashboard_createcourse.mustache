@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg cbe-modal">
         <div class="modal-content">
             <header>
-                <h1>Crear curso nuevo</h1>
+                <h1>{{# str }} createnewcourse {{/ str }}</h1>
                 <p></p>
             </header>
             <hr>
@@ -17,7 +17,7 @@
                             </button>
                         </div>
                         <div class="verify-input">
-                            <input type="text" class="form-control validation-input" id="fullname" placeholder="Rellene el nombre completo del nuevo curso">
+                            <input type="text" class="form-control validation-input" id="fullname" placeholder="{{# str }} fullname_placeholder, theme_cbe {{/ str }}">
                             <span id="verify-fullname" class="verify">
                                 <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                                 <i class="fa fa-times-circle-o" aria-hidden="true"></i>
@@ -32,7 +32,7 @@
                             </button>
                         </div>
                         <div class="verify-input">
-                            <input type="text" class="form-control validation-input" id="shortname"  placeholder="Rellene el nombre corto del curso">
+                            <input type="text" class="form-control validation-input" id="shortname"  placeholder="{{# str }} shortname_placeholder, theme_cbe {{/ str }}">
                             <span id="verify-shortname" class="verify">
                                 <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                                 <i class="fa fa-times-circle-o" aria-hidden="true"></i>
@@ -50,7 +50,7 @@
                                 </button>
                             </div>
                             <div class="verify-input">
-                                <input type="text" class="form-control validation-input" id="shortname"  placeholder="Rellene el nombre corto del curso">
+                                <input type="text" class="form-control validation-input" id="shortname"  placeholder="{{# str }} shortname_placeholder, theme_cbe {{/ str }}">
                                 <span id="verify-shortname" class="verify">
                                     <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                                     <i class="fa fa-times-circle-o" aria-hidden="true"></i>
@@ -92,7 +92,7 @@
                 <hr>
                 <footer class="modal-footer">
                     <button class="btn cancel" data-dismiss="modal">{{# str }} cancel, theme_cbe {{/ str }}</button>
-                    <button class="btn btn-primary create" data-action="create" disabled >Crear curso</button>
+                    <button class="btn btn-primary create" data-action="create" disabled >{{# str }} create_course, theme_cbe {{/ str }}</button>
                 </footer>
             </main>
         </div>

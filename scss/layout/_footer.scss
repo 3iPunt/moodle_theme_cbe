@@ -2,20 +2,33 @@ body[data-theme='cbe'] {
 
   footer#page-footer {
     background-color: white !important;
-    height: $footer-height;
+    min-height: $footer-height;
     border-top: 1px solid $black-ligth;
     display: flex;
     align-items: center;
+    font-family: $font-footer;
     a {
-      color: $black-ligth;
+      color: $grey-medium;
     }
     .container {
       text-align: center;
+      a#footer-ddlink {
+        background-color: transparent;
+        border: none;
+        width: 46px;
+        padding: 0;
+        margin: 0 0 10px;
+        img.icon {
+          width: 46px;
+          height: auto;
+        }
+      }
       div.politics {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: $black-ligth;
+        color: $grey-medium;
+        font-size: 19px;
         @media (max-width: 768px) {
           flex-direction: column;
         }
@@ -36,7 +49,7 @@ body[data-theme='cbe'] {
           }
         }
         a {
-          color: $black-ligth;
+          color: $grey-medium;
           text-decoration: none;
         }
       }

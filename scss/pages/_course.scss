@@ -104,6 +104,9 @@ body[data-theme='cbe'][data-role='user'] {
                   &.folder {
                     background-image: url('[[pix:mod_folder|icon]]');
                   }
+                  &.h5pactivity {
+                    background-image: url('[[pix:mod_h5pactivity|icon]]');
+                  }
                 }
                 .data {
                   display: flex;
@@ -139,6 +142,9 @@ body[data-theme='cbe'][data-role='user'] {
                   cursor: pointer;
                   font-size: 18px;
                   font-weight: 600;
+                  &:hover {
+                    background-color: $grey-light;
+                  }
                   &.is_hidden {
                     opacity: 0.4;
                   }
@@ -239,7 +245,9 @@ body[data-theme='cbe'][data-role='user'] {
 
 }
 
-body[data-theme='cbe'][data-role='user'].path-mod {
+body[data-theme='cbe'][data-role='user'].path-mod,
+body[data-theme='cbe'][data-role='user'].path-grade,
+body[data-theme='cbe'][data-role='user'].path-admin {
   #page-content.course {
     #region-main-box {
       #left-menu-course {

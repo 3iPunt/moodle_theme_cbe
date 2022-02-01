@@ -17,12 +17,14 @@
                 <span class="text">{{# str }} course_left_resources, theme_cbe {{/ str }}</span>
             </a>
         </li>
+        {{# links.vclasses.is_visible }}
         <li class="link">
             <a href="{{ links.vclasses.href }}" {{# links.vclasses.blank }} target="_blank"{{/ links.vclasses.blank }}>
                 <i class="fa fa-video-camera" aria-hidden="true"></i>
                 <span class="text">{{ links.vclasses.name }}</span>
             </a>
         </li>
+        {{/ links.vclasses.is_visible }}
         <li class="link">
             <a href="{{ links.grades }}">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -38,7 +40,7 @@
         {{# is_teacher }}
             <li class="link">
                 <a href="{{ links.groups }}">
-                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                     <span class="text">{{# str }} course_left_groups, theme_cbe {{/ str }}</span>
                 </a>
             </li>

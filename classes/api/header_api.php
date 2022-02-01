@@ -72,16 +72,23 @@ class header_api  {
         $curl->setHeader($headers);
 
         try {
-            $result = $curl->get($url);
-            $result = json_decode($result, true);
+            $res = $curl->get($url);
+            $result = json_decode($res, true);
 
-            if (count($result)) {
-                $this->response = $this->validate($result);
-                // Set Colours
-                $this->set_colors();
+            if (isset($result)) {
+                if (count($result)) {
+                    $this->response = $this->validate($result);
+                    // Set Colours
+                    $this->set_colors();
+                    // Set Avatar
+                    $this->set_avatar();
+                } else {
+                    $this->response = new response(false, null,
+                        new error(1001, 'Error en la petición :' . json_encode($curl->getResponse())));
+                }
             } else {
                 $this->response = new response(false, null,
-                    new error(1001, 'Error en la petición :' . json_encode($curl->getResponse())));
+                    new error(1002, 'Error en la petición :' . strip_tags(json_encode($res))));
             }
 
         } catch (\Exception $e) {
@@ -143,6 +150,31 @@ class header_api  {
         if ($update) {
             theme_reset_all_caches();
         }
+    }
+
+    /**
+     * Set avatar.
+     * @throws dml_exception
+     */
+    protected function set_avatar() {
+        // Avatar URL
+        $avatar_api_url = $this->response->data->user_avatar;
+        if (get_config('theme_cbe', 'avatar_api_url') !== $avatar_api_url) {
+            set_config('avatar_api_url', $avatar_api_url, 'theme_cbe');
+        }
+        // Profile URL
+        $user_menu_items = $this->response->data->user_menu->items;
+        if (count($user_menu_items) > 0) {
+            foreach ($user_menu_items as $item) {
+                if ($item->shortname === 'profile') {
+                    $avatar_profile_url = $item->href;
+                    if (get_config('theme_cbe', 'avatar_profile_url') !== $avatar_profile_url) {
+                        set_config('avatar_profile_url', $avatar_profile_url, 'theme_cbe');
+                    }
+                }
+            }
+        }
+
     }
 
     /**

@@ -64,13 +64,18 @@
     {{# can_create_courses }}
         <button id="navbar-createcourse"
                 type="button"
-                class="btn btn-primary createcourse"
+                class="btn btn-primary createcourse {{^ can_import_gc }}notigc{{/ can_import_gc }}"
                 data-toggle="modal"
                 data-tooltip="createcourse"
                 data-target="#createCourseModalCenter"
-                title="Crear curso nuevo">
-            <i class="fa fa-plus" aria-hidden="true"></i>
+                title="{{# str }} createnewcourse {{/ str }}">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
         </button>
+        {{# can_import_gc }}
+            <a id="navbar-importgc" class="btn btn-primary importgc" title="{{# str }} importgc, theme_cbe {{/ str }}" href="{{ import_gc_url }}">
+                {{#pix}} importgc, theme_cbe, {{# str }} importgc, theme_cbe {{/ str }}{{/pix}}
+            </a>
+        {{/ can_import_gc }}
     {{/ can_create_courses }}
 
     <!-- HIDDEN ? -->
@@ -81,20 +86,29 @@
         {{{ output.page_heading_menu }}}
     </ul>
 
-    <div id="navbar-menu-apps">
-        {{{ menu_apps_button }}}
-    </div>
-
     <ul id="navbar-usernav" class="nav navbar-nav usernav">
         <!-- navbar_plugin_output -->
         <li class="nav-item">
             {{{ output.navbar_plugin_output }}}
         </li>
+    </ul>
+
+    <div id="navbar-menu-apps">
+        {{{ menu_apps_button }}}
+    </div>
+
+    <ul id="navbar-usernav" class="nav navbar-nav usernav">
         <!-- user_menu -->
         <li class="nav-item align-items-center pl-2">
             {{{ output.user_menu }}}
         </li>
     </ul>
+
+    {{# has_dd_link }}
+        <a target="_blank" id="navbar-ddlink" class="btn btn-primary ddlink" title="{{# str }} ddlink_url, theme_cbe {{/ str }}" href="{{ ddlink_url }}">
+            {{#pix}} dd, theme_cbe, {{# str }} ddlink_url, theme_cbe {{/ str }}{{/pix}}
+        </a>
+    {{/ has_dd_link }}
 
 </nav>
 {{# in_course }}

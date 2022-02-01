@@ -27,6 +27,7 @@ namespace theme_cbe\api;
 use coding_exception;
 use dml_exception;
 use moodle_exception;
+use moodle_url;
 use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
@@ -59,10 +60,17 @@ class apps {
     public function __construct(array $data, bool $is_external) {
         $this->data = $data;
         foreach ($this->data as $item) {
+            $is_external_app = $is_external;
             $shortname = $this->set($item, 'shortname');
             $icon = $this->set($item, 'icon');
             $href = $this->set($item, 'href');
-            $app = new app($shortname, $icon, $href, $is_external);
+            $name = $this->set($item, 'name');
+            if ($shortname === 'courses') {
+                $is_external_app = false;
+                $home = new moodle_url('/');
+                $href = $home->out(false);
+            }
+            $app = new app($shortname, $icon, $href, $is_external_app, $name);
             $this->apps[] = $app->get();
         }
     }

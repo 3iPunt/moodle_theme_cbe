@@ -93,12 +93,24 @@ class user  {
      *
      * @return string
      * @throws coding_exception
+     * @throws dml_exception
      */
     public function get_picture(): string {
-        global $PAGE;
-        $userpicture = new user_picture($this->user);
-        $userpicture->size = 1;
-        return $userpicture->get_url($PAGE)->out(false);
+        global $PAGE, $USER;
+        $avatar_api = get_config('theme_cbe', 'avatar_api');
+        if ($avatar_api) {
+            if ($USER->id === $this->user->id) {
+                return get_config('theme_cbe', 'avatar_api_url');
+            } else {
+                $src = get_config('theme_cbe', 'avatar_other_users');
+                $userdata = core_user::get_user($this->user->id);
+                return $src . $userdata->username;
+            }
+        } else {
+            $userpicture = new user_picture($this->user);
+            $userpicture->size = 1;
+            return $userpicture->get_url($PAGE)->out(false);
+        }
     }
 
     /**
@@ -121,6 +133,26 @@ class user  {
     static public function can_create_courses(): bool {
         $context = context_system::instance();
         return has_capability('moodle/course:create', $context);
+    }
+
+    /**
+     * Can import Google Classroom?
+     *
+     * @return bool
+     * @throws coding_exception|dml_exception
+     */
+    static public function can_import_gc(): bool {
+        global $CFG;
+        if (file_exists($CFG->dirroot.'/local/tresipuntimportgc/version.php')) {
+            $importgc_enable = get_config('theme_cbe', 'importgc');
+            if ($importgc_enable) {
+                return has_capability('local/tresipuntimportgc:import',  context_system::instance());
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
 }

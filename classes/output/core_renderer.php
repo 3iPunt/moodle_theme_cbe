@@ -30,6 +30,7 @@ use action_menu_link_secondary;
 use coding_exception;
 use context_header;
 use core_text;
+use core_user;
 use custom_menu;
 use dml_exception;
 use html_writer;
@@ -37,12 +38,13 @@ use moodle_exception;
 use moodle_page;
 use moodle_url;
 use pix_icon;
+use popup_action;
 use renderer_base;
 use stdClass;
 use theme_cbe\course;
-use theme_cbe\navigation\course_module_navigation;
+use theme_cbe\module;
 use theme_cbe\navigation\header;
-use theme_cbe\navigation\navigation;
+use user_picture;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -111,7 +113,6 @@ class core_renderer extends \core_renderer {
     }
 
 
-
     /**
      * Construct a user menu, returning HTML that can be echoed out by a
      * layout file.
@@ -120,6 +121,8 @@ class core_renderer extends \core_renderer {
      * @param bool $withlinks true if a dropdown should be built.
      * @return string HTML fragment.
      * @throws \coding_exception
+     * @throws dml_exception
+     * @throws moodle_exception
      */
     public function user_menu($user = null, $withlinks = null) {
         global $USER, $CFG;
@@ -187,6 +190,27 @@ class core_renderer extends \core_renderer {
 
         // Get some navigation opts.
         $opts = user_get_user_navigation_info($user, $this->page, $options);
+
+        // 3IP. AVATAR API PROFILE.
+        if (!is_siteadmin()) {
+            $avatar_api = get_config('theme_cbe', 'avatar_api');
+            if ($avatar_api) {
+                $navitems = $opts->navitems;
+                $newnavitems = [];
+                foreach ($navitems as $item) {
+                    if ($item->titleidentifier === 'profile,moodle') {
+                        $avatar_profile_url = get_config('theme_cbe', 'avatar_profile_url');
+                        $url = new moodle_url($avatar_profile_url);
+                        $item->url = $url;
+                        $newnavitems[] = $item;
+                    }
+                    if ($item->titleidentifier === 'logout,moodle') {
+                        $newnavitems[] = $item;
+                    }
+                }
+                $opts->navitems = $newnavitems;
+            }
+        }
 
         $avatarclasses = "avatars";
         $avatarcontents = html_writer::span($opts->metadata['useravatar'], 'avatar current');
@@ -292,6 +316,9 @@ class core_renderer extends \core_renderer {
                         );
                         if (!empty($value->titleidentifier)) {
                             $al->attributes['data-title'] = $value->titleidentifier;
+                        }
+                        if ($value->titleidentifier === 'profile,moodle') {
+                            $al->attributes['target'] = '_blank';
                         }
                         $am->add($al);
                         break;
@@ -522,5 +549,138 @@ class core_renderer extends \core_renderer {
         return $header . $this->skip_link_target('maincontent');
     }
 
+    /**
+     * Return HTML for a pix_icon.
+     *
+     * Theme developers: DO NOT OVERRIDE! Please override function
+     * {@link core_renderer::render_pix_icon()} instead.
+     *
+     * @param string $pix short pix name
+     * @param string $alt mandatory alt attribute
+     * @param string $component standard compoennt name like 'moodle', 'mod_forum', etc.
+     * @param array|null $attributes htm lattributes
+     * @return string HTML fragment
+     * @throws coding_exception
+     */
+    public function pix_icon($pix, $alt, $component='moodle', array $attributes = null): string {
+        global $PAGE;
+        $path = $PAGE->url->get_path();
 
+        if (!is_siteadmin() &&
+            (in_array($component, module::$resources) || in_array($component, module::$others)) &&
+            !strpos($path, 'modedit.php')
+        ) {
+            global $PAGE;
+            $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+            $classname = 'theme_cbe\output\module_' . $component . '_icon_component';
+            $module_resource_icon_component = new $classname();
+            return $output_theme_cbe->render($module_resource_icon_component);
+        } else {
+            $icon = new pix_icon($pix, $alt, $component, $attributes);
+            return $this->render($icon);
+        }
+
+    }
+
+    /**
+     * Internal implementation of user image rendering.
+     *
+     * @param user_picture $userpicture
+     * @return string
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
+    protected function render_user_picture(user_picture $userpicture): string {
+        global $USER;
+
+        $user = $userpicture->user;
+        $canviewfullnames = has_capability('moodle/site:viewfullnames', $this->page->context);
+
+        if ($userpicture->alttext) {
+            if (!empty($user->imagealt)) {
+                $alt = $user->imagealt;
+            } else {
+                $alt = get_string('pictureof', '', fullname($user, $canviewfullnames));
+            }
+        } else {
+            $alt = '';
+        }
+
+        if (empty($userpicture->size)) {
+            $size = 35;
+        } else if ($userpicture->size === true or $userpicture->size == 1) {
+            $size = 100;
+        } else {
+            $size = $userpicture->size;
+        }
+
+        $class = $userpicture->class;
+
+        if ($user->picture == 0) {
+            $class .= ' defaultuserpic';
+        }
+
+        $avatar_api = get_config('theme_cbe', 'avatar_api');
+
+        if (!is_siteadmin() && $avatar_api) {
+            if ($USER->id === $user->id) {
+                $src = get_config('theme_cbe', 'avatar_api_url');
+            } else {
+                $src = get_config('theme_cbe', 'avatar_other_users');
+                $userdata = core_user::get_user($user->id);
+                $src = $src . $userdata->username;
+            }
+        } else {
+            $src = $userpicture->get_url($this->page, $this);
+        }
+
+        $attributes = array('src' => $src, 'class' => $class, 'width' => $size, 'height' => $size);
+        if (!$userpicture->visibletoscreenreaders) {
+            $alt = '';
+        }
+        $attributes['alt'] = $alt;
+
+        if (!empty($alt)) {
+            $attributes['title'] = $alt;
+        }
+
+        // get the image html output fisrt
+        $output = html_writer::empty_tag('img', $attributes);
+
+        // Show fullname together with the picture when desired.
+        if ($userpicture->includefullname) {
+            $output .= fullname($userpicture->user, $canviewfullnames);
+        }
+
+        // then wrap it in link if needed
+        if (!$userpicture->link) {
+            return $output;
+        }
+
+        if (empty($userpicture->courseid)) {
+            $courseid = $this->page->course->id;
+        } else {
+            $courseid = $userpicture->courseid;
+        }
+
+        if ($courseid == SITEID) {
+            $url = new moodle_url('/user/profile.php', array('id' => $user->id));
+        } else {
+            $url = new moodle_url('/user/view.php', array('id' => $user->id, 'course' => $courseid));
+        }
+
+        $attributes = array('href' => $url, 'class' => 'd-inline-block aabtn');
+        if (!$userpicture->visibletoscreenreaders) {
+            $attributes['tabindex'] = '-1';
+            $attributes['aria-hidden'] = 'true';
+        }
+
+        if ($userpicture->popup) {
+            $id = html_writer::random_id('userpicture');
+            $attributes['id'] = $id;
+            $this->add_action_handler(new popup_action('click', $url), $id);
+        }
+
+        return html_writer::tag('a', $output, $attributes);
+    }
 }

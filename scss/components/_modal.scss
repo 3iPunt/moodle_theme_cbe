@@ -13,39 +13,133 @@ body[data-theme='cbe'][data-role="user"] {
     .modal-body {
       .nav-tabs {
         border: none !important;
-        margin-bottom: 20px;
+        margin: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
         .nav-item {
-          border: 1px solid #e8e8e8;
-          background-color: #f1f1f1;
-          color: $grey-medium2;
+          border: none;
+          background-color: transparent;
+          color: $black-ligth;
           margin-right: 10px;
+          position: relative;
+          &[data-region=default-tab-nav] {
+            display: none;
+          }
+          &:hover {
+            background-color: $grey-light;
+          }
           &.active {
-            color: white;
-            font-weight: 600;
-            background-color: $primary-color;
+            font-weight: bold;
+            &::after {
+              content: " ";
+              background-color: $primary-color;
+              width: 100%;
+              height: 5px;
+              left: 0;
+              position: absolute;
+              border-radius: 12px;
+              bottom: 0;
+            }
           }
         }
       }
       .tab-content, .searchresultitemscontainer-wrapper {
-        border: none !important;
+        border: 1px solid $grey-medium2;
         background-color: white !important;
       }
+
+
       .optionscontainer, .searchresultitemscontainer {
         [role="menuitem"][data-internal="bigbluebuttonbn"] {
           >.optioninfo {
             >a {
               align-items: center;
               .optionicon {
-                width: 46px;
-                height: 46px;
+                max-width: 60px !important;
+                height: 60px;
                 background-color: $primary-color;
                 background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
                 background-size: 30px 30px;
                 background-repeat: no-repeat;
                 background-position: 50%;
-                .icon-bigbluebutton {
-                  display: none;
+                border-radius: 30px;
+                margin-right: 20px;
+                margin-left: 20px;
+              }
+            }
+          }
+        }
+      }
+      .modchoosercontainer .optionscontainer,
+      .modchoosercontainer .searchresultitemscontainer {
+        overflow-x: hidden;
+        display: grid !important;
+        flex-wrap: wrap !important;
+        margin-bottom: 0;
+        grid-template-columns: 50% 50%;
+        grid-gap: 2px;
+        .option {
+          margin: 0;
+          .optioninfo {
+            flex-direction: row !important;
+            a {
+              flex-direction: row !important;
+              align-items: center;
+              flex: initial !important;
+              .optionicon {
+                width: 100px;
+                max-width: 100px;
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+                display: flex;
+                justify-content: center;
+                .contain_icon {
+                  background-color: $primary-color;
+                  border-radius: 30px;
+                  width: 60px;
+                  height: 60px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  &.mod_resource,
+                  &.mod_tresipuntvideo,
+                  &.mod_tresipuntaudio,
+                  &.mod_folder,
+                  &.mod_url,
+                  &.mod_page,
+                  &.mod_label,
+                  &.mod_tresipuntshare {
+                    background-color: white;
+                    border: 4px solid $primary-color;
+                    svg.theme-cbe-icon {
+                      height: 27px;
+                      width: 27px;
+                      fill: $primary-color;
+                    }
+                  }
+                  .icon.icon {
+                    height: 27px !important;
+                    width: 27px !important;
+                  }
+                  .icon-bigbluebutton {
+                    background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+                    background-size: 27px 27px;
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    &:before {
+                      content: "";
+                    }
+                  }
                 }
+              }
+            }
+            .optionactions {
+              align-items: center;
+              margin-left: 10px;
+              .btn-icon {
+                height: 25px !important;
+                width: 25px !important;
               }
             }
           }
@@ -69,16 +163,106 @@ body[data-theme='cbe'][data-role="user"] {
         flex-direction: column;
         &.create_mod {
           .mods {
-            display: flex;
-            flex-direction: row;
-            @media (max-width: 991px) {
-              flex-direction: column
+            .nav-tabs {
+              border: none !important;
+              margin: 0 20px;
+              display: flex;
+              justify-content: space-between;
+              position: relative;
+              .nav-item {
+                border: none;
+                background-color: transparent;
+                color: $black-ligth;
+                margin-right: 10px;
+                position: relative;
+                &:hover {
+                  background-color: $grey-light;
+                }
+                a.nav-link {
+                  color: $black-ligth;
+                  &.active {
+                    font-weight: bold;
+                    border: none;
+                    color: $black-ligth;
+                    &::after {
+                      content: " ";
+                      background-color: $primary-color;
+                      width: 100%;
+                      height: 5px;
+                      left: 0;
+                      position: absolute;
+                      border-radius: 12px;
+                      bottom: 0;
+                    }
+                  }
+                }
+              }
+            }
+            .tab-content {
+              border: 1px solid $grey-medium2;
+              background-color: white !important;
+              padding: 20px;
+              .select-modules {
+                list-style: none;
+                display: grid;
+                flex-wrap: wrap;
+                margin-bottom: 0;
+                grid-template-columns: 50% 50%;
+                grid-gap: 2px;
+                .select-module {
+                  a.create-mod {
+                    display: flex;
+                    align-items: center;
+                    padding: 5px;
+                    .mod-icon {
+                      background-color: $primary-color;
+                      border-radius: 30px;
+                      width: 60px;
+                      height: 60px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      &.is_resource {
+                        background-color: white;
+                        border: 4px solid $primary-color;
+                        svg.theme-cbe-icon {
+                          height: 27px;
+                          width: 27px;
+                          fill: $primary-color;
+                        }
+                      }
+                      .icon.icon {
+                        height: 27px;
+                        width: 27px;
+                        margin: 0;
+                      }
+                      .icon-bigbluebutton {
+                        background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
+                        background-size: 27px 27px;
+                        background-repeat: no-repeat;
+                        background-position: 50%;
+                        &:before {
+                          content: "";
+                        }
+                      }
+                    }
+                    .text {
+                      margin-left: 12px;
+                      color: $black-ligth;
+                    }
+                    &:hover {
+                      text-decoration: none;
+                      background-color: $grey-light;
+                    }
+                  }
+                }
+              }
             }
           }
           .sections {
+            text-align: center;
             label {
               margin: 20px 47px 0;
-              font-weight: 600;
             }
             select#selsection {
               width: 100%;
@@ -89,93 +273,6 @@ body[data-theme='cbe'][data-role="user"] {
                 max-width: 340px;
                 margin: 2px 20px 20px 0;
               }
-            }
-          }
-        }
-        .column {
-          width: 100%;
-          margin: 10px;
-          h2 {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 600;
-          }
-          ul.select-modules {
-            list-style: none;
-            margin-top: 25px;
-            @media (max-width: 991px) {
-              padding: 0;
-              margin-right: 12px;
-            }
-            li.select-module {
-              margin: 10px 0;
-              a.create-mod {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                text-decoration: none;
-                color: $black-ligth;
-                &:hover {
-                  background-color: $grey-light;
-                  .mod-icon {
-                    background-color: $primary-color-hover;
-                  }
-                }
-                .mod-icon {
-                  background-color: $primary-color;
-                  min-width: 60px;
-                  height: 60px;
-                  background-size: 35px 35px;
-                  background-repeat: no-repeat;
-                  background-position: 50%;
-                  &.forum {
-                    background-image: url('[[pix:mod_forum|icon]]');
-                  }
-                  &.assign  {
-                    background-image: url('[[pix:mod_assign|icon]]');
-                  }
-                  &.resource {
-                    background-image: url('[[pix:mod_resource|icon]]');
-                  }
-                  &.quiz {
-                    background-image: url('[[pix:mod_quiz|icon]]');
-                  }
-                  &.url {
-                    background-image: url('[[pix:mod_url|icon]]');
-                  }
-                  &.tresipuntaudio {
-                    background-image: url('[[pix:mod_tresipuntaudio|icon]]');
-                  }
-                  &.tresipuntvideo {
-                    background-image: url('[[pix:mod_tresipuntvideo|icon]]');
-                  }
-                  &.feedback {
-                    background-image: url('[[pix:mod_feedback|icon]]');
-                  }
-                  &.bigbluebuttonbn {
-                    background-image: url('[[pix:mod_bigbluebuttonbn|icon]]');
-                  }
-                  &.page {
-                    background-image: url('[[pix:mod_page|icon]]');
-                  }
-                  &.folder {
-                    background-image: url('[[pix:mod_folder|icon]]');
-                  }
-                }
-                .text {
-                  padding-left: 20px;
-                  font-size: 15px;
-                  font-weight: 600;
-                  border: 1px solid $grey-medium2;
-                  height: 60px;
-                  display: flex;
-                  align-items: center;
-                  position: relative;
-                  left: -1px;
-                  width: 100%;
-                }
-              }
-
             }
           }
         }
@@ -248,13 +345,22 @@ body[data-theme='cbe'][data-role="user"] {
     }
   }
 
-  .bd-deletemodule-modal {
+  .bd-deletemodule-modal,
+  .bd-deletecomment-modal,
+  .bd-editcomment-modal {
     .modal-comment {
       background-color: $grey-light;
       border-radius: 20px;
       padding: 20px;
       font-style: italic;
       text-align: left;
+    }
+    textarea.textcomment {
+      border: 1px solid #cacaca;
+      border-radius: 0;
+      margin: 10px;
+      padding: 10px;
+      width: 85%;
     }
   }
 
@@ -286,6 +392,7 @@ body[data-theme='cbe'][data-role="user"] {
               }
               &.fa-times-circle-o {
                 color: red;
+                display: inline;
               }
             }
           }
