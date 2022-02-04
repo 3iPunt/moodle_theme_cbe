@@ -198,7 +198,6 @@ abstract class navigation  {
         $nav = $PAGE->flatnav;
 
         $nav->remove('contentbank');
-        $nav->remove('privatefiles');
 
         return $nav;
     }
