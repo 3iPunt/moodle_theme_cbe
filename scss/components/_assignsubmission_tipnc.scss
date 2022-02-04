@@ -30,6 +30,20 @@ body[data-theme="cbe"][data-role="user"]#page-mod-assign-editsubmission {
   }
 }
 
+body[data-theme="cbe"][data-role="user"]#page-mod-assign-grader {
+  div[data-region="assignsubmission_tipnc"] .hide_header {
+    height: 51px;
+    top: -66px;
+  }
+  div[data-region="assignsubmission_tipnc"] iframe.tipnc-iframe {
+    height: 600px;
+    width: 100%;
+    position: relative;
+    top: -115px;
+  }
+}
+
+
 body[data-theme="cbe"][data-role="user"]#page-mod-assign-view {
   #page section[data-region="module"] .submissionstatustable {
     h3 {
