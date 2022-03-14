@@ -25,7 +25,6 @@
 namespace theme_cbe\output;
 
 use theme_cbe\tables\resources_table;
-use theme_cbe\tables\tasks_table;
 use moodle_exception;
 use renderable;
 use renderer_base;
