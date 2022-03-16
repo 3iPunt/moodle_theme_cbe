@@ -24,17 +24,20 @@ namespace theme_cbe\cli;
 
 defined('MOODLE_INTERNAL') || die();
 
-global $CFG;
-
 class role {
 
     /**
      * Execute
      */
     static public function execute() {
-        cli_writeln('Roles configurados');
+        self::centre();
     }
 
+    static public function centre() {
+        // TODO.
+        // Crear rol desde un arquetipo.
+        cli_writeln('Role: centre');
+    }
 
 
 }

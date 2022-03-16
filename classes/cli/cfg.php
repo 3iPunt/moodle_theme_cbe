@@ -30,28 +30,44 @@ global $CFG;
 
 class cfg {
 
+    protected $root = '';
+
     /**
-     * Execute
+     * Execute.
+     *
+     * @param string|null $ncadmin
+     * @param string|null $ncpass
+     * @throws dml_exception
      */
-    static public function execute() {
+    static public function execute(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
+        // Core
         self::set(null, 'cron_enabled', true);
+        self::set(null, 'guestloginbutton ', 0);
+        self::set(null, 'enrol_plugins_enabled', 'manual');
+        self::set(null, 'enablemobilewebservice', 0);
+        self::set(null, 'enablebadges', 0);
+        self::set(null, 'forcelogin', true);
+        self::set('core_competency', 'enabled', 0);
+        self::set('moodlecourse', 'enablecompletion', 0);
+        // Theme
         self::set(null, 'theme', 'cbe');
-        self::theme();
-        purge_caches(['theme']);
-        cli_writeln('Purge Cache - Theme');
+        self::theme($wwwroot);
+        // Others Plugins
+        self::set('mod_jitsi', 'jitsi_privatesessions', 0);
+        self::set(null, 'bigbluebuttonbn_waitformoderator_default', true);
+        self::set(null, 'bigbluebuttonbn_participant_moderator_default', '0,3,4');
     }
 
     /**
      * Theme Configuration.
      *
+     * @param string $wwwroot
      * @throws dml_exception
      */
-    static public function theme() {
-        global $CFG;
-        $root = $CFG->wwwroot;
-        $index = strpos($root, 'moodle');
+    static public function theme(string $wwwroot) {
+        $index = strpos($wwwroot, 'moodle');
         if ($index !== false) {
-            $default_host = substr($root,$index + 7);
+            $default_host = substr($wwwroot,$index + 7);
             self::set('theme_cbe', 'host', $default_host);
             self::set('theme_cbe', 'logourl', 'https://api.' . $default_host . '/img/logo.png');
             self::set('theme_cbe', 'avatar_api_url', 'https://api.' . $default_host . '/img/logo.png');
@@ -76,9 +92,9 @@ class cfg {
      * @param $component
      * @param $name
      * @param $value
-     * @throws \dml_exception
+     * @throws dml_exception
      */
-    static protected function set($component, $name, $value) {
+    static public function set($component, $name, $value) {
         $old = get_config($component, $name);
         set_config($name, $value, $component);
         add_to_config_log($name, $old, $value, $component);
