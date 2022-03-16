@@ -74,7 +74,7 @@ class saml2 {
             $error = create_certificates($saml2auth, $dn, $numberofdays);
             cli_writeln('SAML2: Create Certificate');
         } catch (moodle_exception $e) {
-            cli_writeln('SAML2: ERROR Create - ' . $e->getMessage());
+            cli_writeln('SAML2: Already Created!! - ' . $e->getMessage());
             return null;
         }
 

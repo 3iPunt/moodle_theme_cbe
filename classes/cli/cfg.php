@@ -35,11 +35,10 @@ class cfg {
     /**
      * Execute.
      *
-     * @param string|null $ncadmin
-     * @param string|null $ncpass
+     * @param string $wwwroot
      * @throws dml_exception
      */
-    static public function execute(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
+    static public function execute(string $wwwroot) {
         // Core
         self::set(null, 'cron_enabled', true);
         self::set(null, 'guestloginbutton ', 0);

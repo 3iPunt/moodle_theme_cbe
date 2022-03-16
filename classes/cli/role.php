@@ -22,6 +22,9 @@
 
 namespace theme_cbe\cli;
 
+use coding_exception;
+use dml_exception;
+
 defined('MOODLE_INTERNAL') || die();
 
 class role {
@@ -33,10 +36,25 @@ class role {
         self::centre();
     }
 
+    /**
+     * Create rol Centre.
+     *
+     * @throws coding_exception
+     * @throws dml_exception
+     */
     static public function centre() {
-        // TODO.
-        // Crear rol desde un arquetipo.
-        cli_writeln('Role: centre');
+        global $DB;
+        $name = 'Centre';
+        $shortname = 'centre';
+        $description = "El rol del centre podrà gestionar la plataforma sense configuracions d'administrador";
+        $archetype = 'manager';
+        $rolecentre = $DB->get_record('role', ['shortname' => $shortname]);
+        if (empty($rolecentre)) {
+            $roleid = create_role($name, $shortname, $description, $archetype);
+            cli_writeln('Role: centre - ' . $roleid);
+        } else {
+            cli_writeln('Role: centre - Already Exist! - ' . $rolecentre->id);
+        }
     }
 
 

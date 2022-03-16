@@ -65,7 +65,7 @@ Description.
 
 Examples:
 
-    # php theme/cbe/postinstall.php --wwwroot=moodle.test1.digitaldemocratic.net --ncadmin=admin --ncpass=1234 --sitename="Digital Democratic" --contactname="Contact Name" --contactemail="contact@test.xxx"
+    # 
         Automatization environment
 
 ';

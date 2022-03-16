@@ -22,14 +22,12 @@
 
 namespace theme_cbe\cli;
 
-use coding_exception;
 use context_system;
 use dml_exception;
 use moodle_exception;
 
 defined('MOODLE_INTERNAL') || die();
 
-global $CFG;
 
 class capability {
 
@@ -39,9 +37,24 @@ class capability {
      * @throws dml_exception
      */
     static public function execute() {
+        self::manager();
         self::user();
         self::coursecreator();
         self::centre();
+    }
+
+    /**
+     * Manager
+     *
+     * @throws dml_exception
+     */
+    static public function manager() {
+        global $DB;
+        $rolename = 'manager';
+        $role = $DB->get_record('role', ['shortname' => $rolename]);
+        if ($role) {
+            cli_writeln('Add Capability: ' . 'not modified' . ' - ' . $rolename);
+        }
     }
 
     /**
@@ -96,8 +109,13 @@ class capability {
         $rolename = 'centre';
         $role = $DB->get_record('role', ['shortname' => $rolename]);
         if ($role) {
-            // TODO.
-            cli_writeln('Add Capability: ' . 'test' . ' - ' . $rolename);
+            cli_writeln('Add Capability: ' . 'not modified' . ' - ' . $rolename);
+            cli_writeln('Remove Capability: ' . 'not modified' . ' - ' . $rolename);
+            // Allow role assignments
+            self::assign_role($rolename, $role->id, 'coursecreator');
+            self::assign_role($rolename, $role->id, 'editingteacher');
+            self::assign_role($rolename, $role->id, 'teacher');
+            self::assign_role($rolename, $role->id, 'student');
         }
     }
 

@@ -24,9 +24,14 @@ namespace theme_cbe\cli;
 
 global $CFG;
 
+use context_system;
 use core_plugin_manager;
 use dml_exception;
 use repository;
+use repository_exception;
+use repository_instance_form;
+use repository_type;
+use stdClass;
 
 require_once($CFG->dirroot . '/my/lib.php');
 require_once($CFG->dirroot . '/repository/lib.php');
@@ -47,7 +52,7 @@ class nextcloud {
         // Repository NextCloud
         self::repository($wwwroot, $ncadmin, $ncpass);
         // Assign Submission
-        self::submission($wwwroot, $ncadmin, $ncpass);
+        //self::submission($wwwroot, $ncadmin, $ncpass);
     }
 
     /**
@@ -56,16 +61,35 @@ class nextcloud {
      * @param string $wwwroot
      * @param string|null $ncadmin
      * @param string|null $ncpass
+     * @throws repository_exception
+     * @throws dml_exception
+     * @throws \coding_exception
      */
     static public function repository(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
-        // TODO.
+
         $repositorytype = repository::get_type_by_typename('nextcloud');
         if (empty($repositorytype)) {
-            cli_writeln('NextCloud Repository: Error - Not exist!!');
-            return null;
+            $type = new repository_type('nextcloud');
+            $type->create();
+
+            $repositorytype = repository::get_type_by_typename('nextcloud');
+            if (empty($repositorytype)) {
+                cli_writeln('NextCloud Repository: Error - Not exist!!');
+                return null;
+            }
+            $repositorytype->update_visibility(true);
+            core_plugin_manager::reset_caches();
+            cli_writeln('NextCloud Repository: Actived');
+        } else {
+            cli_writeln('NextCloud Repository: Already Active!!');
         }
-        $repositorytype->update_visibility(true);
-        core_plugin_manager::reset_caches();
+
+        // TODO
+        // Create oAuth2
+        cli_writeln('NextCloud oAuth2: Not configured!!');
+        // Create NextCloud Repository Instance.
+        //// Problem: Current user don't have this capability: 'moodle/site:config'
+        cli_writeln('NextCloud Repository: Not configured!!');
     }
 
     /**
