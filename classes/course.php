@@ -217,11 +217,11 @@ class course  {
     /**
      * Get Section 0.
      *
-     * @return section_info
+     * @return section_info|null
      * @throws coding_exception
      * @throws moodle_exception
      */
-    public function get_section_zero(): section_info {
+    public function get_section_zero(): ?section_info {
         /** @var course_modinfo $modinfo*/
         $modinfo = get_fast_modinfo($this->course->id);
         $sections = $modinfo->get_section_info_all();
@@ -231,7 +231,7 @@ class course  {
                 $section0 = $section;
             }
         }
-        if (is_null($section0)) {
+        if (is_null($section0) && $this->course->id !== '1') {
             throw new moodle_exception(get_string('section_zero_error', 'theme_cbe'));
         } else {
             return $section0;
@@ -250,7 +250,7 @@ class course  {
     public static function get_title_section0(int $course_id): string {
         $course = new course($course_id);
         $section = $course->get_section_zero();
-        $title = $section->name;
+        $title = isset($section->name) ? $section->name : '';
         if (empty($title)) {
             $title = get_string('course_menu_moreinfo', 'theme_cbe');
         }
