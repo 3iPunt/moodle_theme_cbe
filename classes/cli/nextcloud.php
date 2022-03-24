@@ -52,7 +52,7 @@ class nextcloud {
         // Repository NextCloud
         self::repository($wwwroot, $ncadmin, $ncpass);
         // Assign Submission
-        //self::submission($wwwroot, $ncadmin, $ncpass);
+        self::submission($wwwroot, $ncadmin, $ncpass);
     }
 
     /**
