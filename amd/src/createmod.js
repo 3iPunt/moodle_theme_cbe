@@ -15,7 +15,7 @@
 
 /**
  *
- * @author  2021 3iPunt <https://www.tresipunt.com/>
+ * @author  2022 3iPunt <https://www.tresipunt.com/>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -34,44 +34,46 @@ define([
          *
          */
         let ACTION = {
-            SECTION_SELECT: '[data-action="select-section"]',
+            SELECT_BUTTON: '#selsection'
         };
 
         /**
-         * @constructor
-         * @param {String} region
+         *
          */
-        function ModuleCreate(region) {
+        let REGIONS = {
+            MODS_CONTENT: '#list-mods'
+        };
+
+        /**
+         * @param {String} region
+         * @constructor
+         */
+        function CreateMod(region) {
             this.node = $(region);
-            this.onSelectSectionChange();
-            this.node.find(ACTION.SECTION_SELECT).on('change', this.onSelectSectionChange.bind(this));
+            this.node.find(ACTION.SELECT_BUTTON).on('click', this.onSelectButtonClick.bind(this));
         }
 
-        ModuleCreate.prototype.onSelectSectionChange = function (e) {
-            const section = this.node.find(ACTION.SECTION_SELECT).val();
-            var hrefs = $('[data-region="create-module"]').find('.mods a[href*="/modedit.php"]');
-            hrefs.each(function() {
-                var href_current = $(this).attr('href');
-                var pos_sect = href_current.indexOf('&section=');
-                var href_first = href_current.substr(0, pos_sect + 9);
-                var href_slice = href_current.substr(pos_sect + 9);
-                var pos_ret = href_slice.indexOf('&return');
-                var href_last = href_slice.substr(pos_ret);
-                var href_new = href_first + section + href_last;
-                $(this).attr('href', href_new);
-            });
+        CreateMod.prototype.onSelectButtonClick = function (e) {
+            const $mods = this.node.find(REGIONS.MODS_CONTENT);
+            const $value = this.node.find(ACTION.SELECT_BUTTON).val();
+            if ($value !== 'not') {
+                $mods.removeClass('hidden');
+            } else {
+                $mods.addClass('hidden');
+            }
         };
 
         /** @type {jQuery} The jQuery node for the region. */
-        ModuleCreate.prototype.node = null;
+        CreateMod.prototype.node = null;
 
         return {
             /**
+             *
              * @param {String} region
-             * @return {ModuleCreate}
+             * @return {CreateMod}
              */
-            initModuleCreate: function (region) {
-                return new ModuleCreate(region);
+            initCreateMod: function (region) {
+                return new CreateMod(region);
             }
         };
     }
