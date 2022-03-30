@@ -51,6 +51,7 @@ class theme_cbe_observer {
     public static function course_created(course_created $event): bool {
 
         $courseid = $event->courseid;
+        // Virtual Class.
         if (get_config('theme_cbe', 'vclasses_direct')) {
             $modules = get_coursemodules_in_course('bigbluebuttonbn', $courseid);
             $hasmain = false;
@@ -82,6 +83,19 @@ class theme_cbe_observer {
                     error_log($e->getMessage());
                 }
             }
+        }
+
+        // Create Section Default
+        /** @var course_modinfo $modinfo*/
+        $modinfo = get_fast_modinfo($courseid);
+        $sections = $modinfo->get_section_info_all();
+        if (count($sections) < 2) {
+            // Create.
+            $course = get_course($courseid);
+            $newsection = course_create_section($courseid, 1);
+            $name = get_string('sectionname', 'format_'.
+                    $course->format) . ' ' . $newsection->section;
+            course_update_section($courseid, $newsection, array('name' => $name));
         }
 
         return true;
