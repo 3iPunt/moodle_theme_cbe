@@ -26,9 +26,9 @@ global $CFG;
 
 use auth_plugin_saml2;
 use auth_saml2\event\cert_regenerated;
-use coding_exception;
+use core_plugin_manager;
+use Google\Exception;
 use moodle_exception;
-use saml2_exception;
 
 require_once($CFG->dirroot . '/my/lib.php');
 require_once($CFG->dirroot . '/auth/saml2/auth.php');
@@ -50,6 +50,10 @@ class saml2 {
         self::certificate($sitename, $contactname, $contactemail);
         cfg::set('auth_saml2', 'duallogin', 0);
         cfg::set('auth_saml2', 'autocreate', true);
+        cfg::set('auth_saml2', 'field_updatelocal_firstname', 'onlogin');
+        cfg::set('auth_saml2', 'field_updatelocal_lastname', 'onlogin');
+        cfg::set('auth_saml2', 'field_updatelocal_email', 'onlogin');
+        self::enable();
     }
 
     /**
@@ -108,4 +112,31 @@ class saml2 {
         cli_writeln('SAML2: Lock Certificates');
     }
 
+    /**
+     * Enable Saml2
+     */
+    static function enable() {
+        global $CFG;
+        if (empty($CFG->auth)) {
+            $authsenabled = array();
+        } else {
+            $authsenabled = explode(',', $CFG->auth);
+        }
+        $auth = 'saml2';
+        try {
+            // add to enabled list
+            if (!in_array($auth, $authsenabled)) {
+                $authsenabled[] = $auth;
+                $authsenabled = array_unique($authsenabled);
+                $value = implode(',', $authsenabled);
+                add_to_config_log('auth', $CFG->auth, $value, 'core');
+                set_config('auth', $value);
+            }
+            \core\session\manager::gc(); // Remove stale sessions.
+            core_plugin_manager::reset_caches();
+            cli_writeln('SAML2: Enable');
+        } catch (moodle_exception $e) {
+            cli_writeln('SAML2: ERROR in Enable. ' . $e->getMessage());
+        }
+    }
 }
