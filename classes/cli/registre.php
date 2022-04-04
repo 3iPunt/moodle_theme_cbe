@@ -71,14 +71,21 @@ class registre {
             cli_writeln('Register: Site already registered!!');
         } else {
 
-            $hub = new stdClass();
-            $hub->token = get_site_identifier();
-            $hub->secret = $hub->token;
-            $hub->huburl = HUB_MOODLEORGHUBURL;
-            $hub->hubname = 'moodle';
-            $hub->confirmed = 0;
-            $hub->timemodified = time();
-            $hub->id = $DB->insert_record('registration_hubs', $hub);
+            $hub = $DB->get_record('registration_hubs', ['hubname' => 'moodle'], IGNORE_MULTIPLE);
+            if (empty($hub)) {
+                $hub = new stdClass();
+                $hub->token = get_site_identifier();
+                $hub->secret = $hub->token;
+                $hub->huburl = HUB_MOODLEORGHUBURL;
+                $hub->hubname = 'moodle';
+                $hub->confirmed = 0;
+                $hub->timemodified = time();
+                $hub->id = $DB->insert_record('registration_hubs', $hub);
+                cli_writeln('Register: Hub inserted!');
+            } else {
+                $hub->token = get_site_identifier();
+                cli_writeln('Register: Hub exists!');
+            }
 
             $params = registration::get_site_info();
             $params['token'] = $hub->token;

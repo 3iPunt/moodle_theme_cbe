@@ -164,7 +164,7 @@ class functionality {
         $params->blockname = $blockname;
         $params->pagetypepattern = 'my-index';
         $params->defaultregion = 'side-post';
-        $record = $DB->get_record($tablename, (array)$params);
+        $record = $DB->get_record($tablename, (array)$params, IGNORE_MULTIPLE);
         if (!$record) {
             $params->parentcontextid = 1;
             $params->showinsubcontexts = 0;
