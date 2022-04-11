@@ -100,7 +100,7 @@ class saml2 {
         $certfiles = array($saml2auth->certpem, $saml2auth->certcrt);
         foreach ($certfiles as $certfile) {
             try {
-                chmod($certfile, $CFG->filepermissions & 0440);
+                chmod($certfile, $CFG->filepermissions & 0640);
                 cli_writeln('SAML2: CHMOD Certificate - ' . $certfile);
             } catch (moodle_exception $e) {
                 cli_writeln('SAML2: ERROR Chmod - ' . $e->getMessage());
