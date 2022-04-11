@@ -101,9 +101,9 @@ class saml2 {
         foreach ($certfiles as $certfile) {
             try {
                 chmod($certfile, $CFG->filepermissions & 0640);
-                cli_writeln('SAML2: CHMOD Certificate - ' . $certfile);
+                cli_writeln('SAML2: CHMOD 0640 Certificate - ' . $certfile);
             } catch (moodle_exception $e) {
-                cli_writeln('SAML2: ERROR Chmod - ' . $e->getMessage());
+                cli_writeln('SAML2: ERROR 0640 Chmod - ' . $e->getMessage());
                 return null;
             }
         }

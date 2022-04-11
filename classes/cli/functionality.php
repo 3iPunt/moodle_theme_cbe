@@ -201,8 +201,9 @@ class functionality {
         $params = new stdClass();
         $params->blockname = $blockname;
         $params->pagetypepattern = 'my-index';
-        $record = $DB->get_record($tablename, (array)$params);
-        if ($record) {
+        $records = $DB->get_records($tablename, (array)$params);
+        if (count($records) > 0) {
+            $record = current($records);
             $params->id = $record->id;
             $params->defaultweight = $weight;
             $DB->update_record($tablename, $params);
@@ -239,8 +240,9 @@ class functionality {
         $params = new stdClass();
         $params->blockname = $blockname;
         $params->pagetypepattern = 'my-index';
-        $record = $DB->get_record($tableinst, (array)$params);
-        if ($record) {
+        $records = $DB->get_records($tableinst, (array)$params);
+        if (count($records) > 0) {
+            $record = current($records);
             $paramshide = new stdClass();
             $paramshide->blockinstanceid = $record->id;
             $paramshide->contextid = 1;
