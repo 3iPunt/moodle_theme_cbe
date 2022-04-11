@@ -48,6 +48,8 @@ class cfg {
         self::set(null, 'forcelogin', true);
         self::set('core_competency', 'enabled', 0);
         self::set('moodlecourse', 'enablecompletion', 0);
+        self::set('moodlecourse', 'maxbytes', 52428800);
+        self::set(null, 'maxbytes', 52428800);
         // Theme
         self::set(null, 'theme', 'cbe');
         self::theme($wwwroot);
