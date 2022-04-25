@@ -69,6 +69,7 @@ class user  {
      *
      * @return stdClass
      * @throws coding_exception
+     * @throws dml_exception
      */
     public function export(): stdClass {
         $user = new stdClass();
@@ -120,7 +121,7 @@ class user  {
      */
     public function is_connected(): string {
         $now = time();
-        $lastaccess = $this->user->lastaccess;
+        $lastaccess = isset($this->user->lastaccess) ? $this->user->lastaccess: 0;
         return $now - (int)$lastaccess < 900;
     }
 
