@@ -213,3 +213,5 @@ $string['fullname_placeholder'] = 'Ompliu el nom complet del nou curs';
 
 $string['alert_modedit'] = 'Revisa el formulari: no acompleix les restriccions.';
 $string['create_module_not_sections'] = 'Aquest curs no disposa de Temes, per la qual cosa aquest ítem es crearà a la secció "{$a}".';
+
+$string['choosereadme'] = "Benvingut al tema CBE per a l'entorn de Digital Democratic";
