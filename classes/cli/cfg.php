@@ -56,10 +56,22 @@ class cfg {
         // Theme
         self::set(null, 'theme', 'cbe');
         self::theme($wwwroot);
-        // Others Plugins
-        self::set('mod_jitsi', 'jitsi_privatesessions', 0);
+        // Big Blue Button
         self::set(null, 'bigbluebuttonbn_waitformoderator_default', true);
         self::set(null, 'bigbluebuttonbn_participant_moderator_default', '0,3,4');
+        self::set(null, 'bigbluebuttonbn_recording_editable', true);
+        self::set(null, 'bigbluebuttonbn_disablecam_default', false);
+        self::set(null, 'bigbluebuttonbn_disablecam_editable', true);
+        self::set(null, 'bigbluebuttonbn_disablemic_editable', true);
+        self::set(null, 'bigbluebuttonbn_disableprivatechat_editable', true);
+        self::set(null, 'bigbluebuttonbn_disablepublicchat_editable', true);
+        self::set(null, 'bigbluebuttonbn_disablenote_editable', true);
+        self::set(null, 'bigbluebuttonbn_hideuserlist_editable', true);
+        self::set(null, 'bigbluebuttonbn_lockedlayout_editable', true);
+        self::set(null, 'bigbluebuttonbn_lockonjoin_editable', true);
+        self::set(null, 'bigbluebuttonbn_lockonjoinconfigurable_editable', true);
+        // Others Plugins
+        self::set('mod_jitsi', 'jitsi_privatesessions', 0);
     }
 
     /**
