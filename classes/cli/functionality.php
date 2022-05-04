@@ -23,8 +23,7 @@
 namespace theme_cbe\cli;
 
 use context_system;
-use core_course_external;
-use dml_exception;
+use moodle_exception;
 use stdClass;
 
 global $CFG;
@@ -36,7 +35,6 @@ class functionality {
 
     /**
      * Execute
-     * @throws dml_exception
      */
     static public function execute() {
         self::blocks();
@@ -44,19 +42,17 @@ class functionality {
     }
 
     /**
-     * Execute
-     * @throws dml_exception
+     * Blocks
      */
     static public function blocks() {
         self::create_block('tresipuntmodspend');
-        self::blocks_position();
         self::blocks_hide();
+        self::blocks_position();
         my_reset_page_for_all_users(MY_PAGE_PRIVATE, 'my-index');
     }
 
     /**
      * Modules
-     * @throws dml_exception
      */
     static public function modules() {
         self::module_hide('book');
@@ -80,74 +76,83 @@ class functionality {
 
     /**
      * Module Hide
-     * @throws dml_exception
+     * @param string $modname
      */
     static public function module_hide(string $modname) {
         global $DB;
-        $params = new stdClass;
-        $params->name = $modname;
-        $record = $DB->get_record('modules', (array)$params);
-        if ($record) {
-            $params->id = $record->id;
-            $params->visible = 0;
-            $DB->update_record('modules', $params);
-            cli_writeln('Module: ' . $modname . ' hide!');
+        try {
+            $params = new stdClass;
+            $params->name = $modname;
+            $record = $DB->get_record('modules', (array)$params);
+            if ($record) {
+                $params->id = $record->id;
+                $params->visible = 0;
+                $DB->update_record('modules', $params);
+                cli_writeln('Module: ' . $modname . ' hide!');
+            }
+        } catch (moodle_exception $e) {
+            cli_writeln('Module Hide: ' . $modname . ' ERROR - ' . $e->getMessage());
         }
     }
 
     /**
      * Module Recommended Reset.
      *
-     * @throws dml_exception
      */
     static public function module_recommended_reset() {
         global $DB;
-        $tablefav = 'favourite';
-        $records = $DB->get_records($tablefav, [
-            'component' => 'core_course'
-        ]);
+        try {
+            $tablefav = 'favourite';
+            $records = $DB->get_records($tablefav, [
+                'component' => 'core_course'
+            ]);
 
-        foreach ($records as $record) {
-            $find = 'recommend_mod_';
-            $itemtype = isset($record->itemtype) ? $record->itemtype : null;
-            if (strpos($itemtype, $find) === 0) {
-                $modname = str_replace($find, '', $itemtype);
-                $DB->delete_records($tablefav, ['id' => $record->id]);
-                cli_writeln('Module: ' . $modname . ' reset recommended!');
+            foreach ($records as $record) {
+                $find = 'recommend_mod_';
+                $itemtype = isset($record->itemtype) ? $record->itemtype : null;
+                if (strpos($itemtype, $find) === 0) {
+                    $modname = str_replace($find, '', $itemtype);
+                    $DB->delete_records($tablefav, ['id' => $record->id]);
+                    cli_writeln('Module: ' . $modname . ' reset recommended!');
+                }
             }
+        } catch (moodle_exception $e) {
+            cli_writeln('Module Recommended Reset: ERROR - ' . $e->getMessage());
         }
-
     }
 
     /**
      * Module Recommended.
      *
      * @param string $modname
-     * @throws dml_exception
      */
     static public function module_recommended(string $modname) {
         global $DB;
-        $tablemodules = 'modules';
-        $paramsmods = new stdClass();
-        $paramsmods->name = $modname;
-        $recordmod = $DB->get_record($tablemodules, (array)$paramsmods);
-        if ($recordmod) {
-            $context = context_system::instance();
-            $tablefav = 'favourite';
-            $params = new stdClass;
-            $params->component = 'core_course';
-            $params->itemtype = 'recommend_mod_' . $modname;
-            $params->itemid = $recordmod->id;
-            $params->contextid = $context->id;
-            $params->contextid = $context->id;
-            $record = $DB->get_record($tablefav, (array)$params);
-            if (!$record) {
-                $params->userid = 1;
-                $params->timecreated = time();
-                $params->timemodified = time();
-                $DB->insert_record($tablefav, $params);
-                cli_writeln('Module Recommended: ' . $modname);
+        try {
+            $tablemodules = 'modules';
+            $paramsmods = new stdClass();
+            $paramsmods->name = $modname;
+            $recordmod = $DB->get_record($tablemodules, (array)$paramsmods);
+            if ($recordmod) {
+                $context = context_system::instance();
+                $tablefav = 'favourite';
+                $params = new stdClass;
+                $params->component = 'core_course';
+                $params->itemtype = 'recommend_mod_' . $modname;
+                $params->itemid = $recordmod->id;
+                $params->contextid = $context->id;
+                $params->contextid = $context->id;
+                $record = $DB->get_record($tablefav, (array)$params);
+                if (!$record) {
+                    $params->userid = 1;
+                    $params->timecreated = time();
+                    $params->timemodified = time();
+                    $DB->insert_record($tablefav, $params);
+                    cli_writeln('Module Recommended: ' . $modname);
+                }
             }
+        } catch (moodle_exception $e) {
+            cli_writeln('Module Recommended: ' . $modname . ' ERROR - ' . $e->getMessage());
         }
     }
 
@@ -155,17 +160,16 @@ class functionality {
      * Create block
      *
      * @param string $blockname
-     * @throws dml_exception
      */
     static protected function create_block(string $blockname) {
         global $DB;
-        $tablename = 'block_instances';
-        $params = new stdClass;
-        $params->blockname = $blockname;
-        $params->pagetypepattern = 'my-index';
-        $params->defaultregion = 'side-post';
-        $record = $DB->get_record($tablename, (array)$params, IGNORE_MULTIPLE);
-        if (!$record) {
+        try {
+            $tablename = 'block_instances';
+            $params = new stdClass();
+            $params->blockname = $blockname;
+            $params->pagetypepattern = 'my-index';
+            $DB->delete_records($tablename, (array)$params);
+            $params->defaultregion = 'side-pre';
             $params->parentcontextid = 1;
             $params->showinsubcontexts = 0;
             $params->subpagepattern = null;
@@ -175,17 +179,19 @@ class functionality {
             $params->timemodified = time();
             $DB->insert_record($tablename, $params);
             cli_writeln('Block: ' . $blockname);
+        } catch (moodle_exception $e) {
+            cli_writeln('Create Block: ' . $blockname . ' ERROR - ' . $e->getMessage());
         }
     }
 
     /**
      * Position blocks
      *
-     * @throws dml_exception
      */
     static protected function blocks_position() {
         self::block_position('timeline', 3);
         self::block_position('calendar_month', 1);
+        self::block_position('tresipuntmodspend', 2);
     }
 
     /**
@@ -193,28 +199,40 @@ class functionality {
      *
      * @param string $blockname
      * @param int $weight
-     * @throws dml_exception
      */
     static protected function block_position(string $blockname, int $weight) {
         global $DB;
-        $tablename = 'block_instances';
-        $params = new stdClass();
-        $params->blockname = $blockname;
-        $params->pagetypepattern = 'my-index';
-        $records = $DB->get_records($tablename, (array)$params);
-        if (count($records) > 0) {
-            $record = current($records);
-            $params->id = $record->id;
-            $params->defaultweight = $weight;
-            $DB->update_record($tablename, $params);
-            cli_writeln('Block Position: ' . $blockname);
+        try {
+            $tablename = 'block_instances';
+            $params = new stdClass();
+            $params->blockname = $blockname;
+            $params->pagetypepattern = 'my-index';
+            $records = $DB->get_records($tablename, (array)$params);
+            if (count($records) > 0) {
+                $record = current($records);
+                $params->id = $record->id;
+                $params->defaultweight = $weight;
+                $DB->update_record($tablename, $params);
+                cli_writeln('Block Position: ' . $blockname . ' (' . $params->id . ') - ' . $weight);
+                $tablenamepos = 'block_positions';
+                $posparams = new stdClass();
+                $posparams->blockinstanceid = $params->id;
+                $posparams->pagetype = 'my-index';
+                $DB->delete_records($tablenamepos, (array)$posparams);
+                $posparams->contextid = 1;
+                $posparams->visible = 1;
+                $posparams->region = 'side-pre';
+                $posparams->weight = $weight;
+                $DB->insert_record($tablenamepos, (array)$posparams);
+            }
+        } catch (moodle_exception $e) {
+            cli_writeln('Block Position: ' . $blockname . ' ERROR - ' . $e->getMessage());
         }
     }
 
     /**
      * Hide blocks
      *
-     * @throws dml_exception
      */
     static protected function blocks_hide() {
         self::block_hide('lp');
@@ -229,41 +247,40 @@ class functionality {
      * Hide blocks
      *
      * @param string $blockname
-     * @throws dml_exception
      */
     static protected function block_hide(string $blockname) {
         global $DB;
+        try {
+            $tableinst = 'block_instances';
+            $tablepos = 'block_positions';
 
-        $tableinst = 'block_instances';
-        $tablepos = 'block_positions';
-
-        $params = new stdClass();
-        $params->blockname = $blockname;
-        $params->pagetypepattern = 'my-index';
-        $records = $DB->get_records($tableinst, (array)$params);
-        if (count($records) > 0) {
-            $record = current($records);
-            $paramshide = new stdClass();
-            $paramshide->blockinstanceid = $record->id;
-            $paramshide->contextid = 1;
-            $paramshide->pagetype = 'my-index';
-            $recordhide = $DB->get_record($tablepos, (array)$paramshide);
-            if ($recordhide) {
-                $recordhide->visible = 0;
-                $recordhide->weight = 0;
-                $DB->update_record($tablepos, $recordhide);
-            } else {
-                $paramshide->subpage = $record->subpagepattern;
-                $paramshide->visible = 0;
-                $paramshide->region = $record->defaultregion;
-                $paramshide->weight = 0;
-                $DB->insert_record($tablepos, $paramshide);
+            $params = new stdClass();
+            $params->blockname = $blockname;
+            $params->pagetypepattern = 'my-index';
+            $records = $DB->get_records($tableinst, (array)$params);
+            if (count($records) > 0) {
+                $record = current($records);
+                $paramshide = new stdClass();
+                $paramshide->blockinstanceid = $record->id;
+                $paramshide->contextid = 1;
+                $paramshide->pagetype = 'my-index';
+                $recordhide = $DB->get_record($tablepos, (array)$paramshide);
+                if ($recordhide) {
+                    $recordhide->visible = 0;
+                    $recordhide->weight = 0;
+                    $DB->update_record($tablepos, $recordhide);
+                } else {
+                    $paramshide->subpage = $record->subpagepattern;
+                    $paramshide->visible = 0;
+                    $paramshide->region = $record->defaultregion;
+                    $paramshide->weight = 0;
+                    $DB->insert_record($tablepos, $paramshide);
+                }
+                cli_writeln('Block Hide: ' . $blockname);
             }
-            cli_writeln('Block Hide: ' . $blockname);
+        } catch (moodle_exception $e) {
+            cli_writeln('Block Hide: ' . $blockname . ' ERROR - ' . $e->getMessage());
         }
     }
-
-
-
 
 }

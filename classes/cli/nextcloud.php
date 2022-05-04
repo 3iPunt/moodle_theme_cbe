@@ -81,7 +81,7 @@ class nextcloud {
             core_plugin_manager::reset_caches();
             cli_writeln('NextCloud Repository: Actived');
         } else {
-            cli_writeln('NextCloud Repository: Already Active!!');
+            cli_writeln('NextCloud Repository: Already Actived!!');
         }
 
         // TODO

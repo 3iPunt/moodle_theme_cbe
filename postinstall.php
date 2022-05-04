@@ -26,6 +26,7 @@
 use theme_cbe\cli\capability;
 use theme_cbe\cli\cfg;
 use theme_cbe\cli\functionality;
+use theme_cbe\cli\langs;
 use theme_cbe\cli\nextcloud;
 use theme_cbe\cli\registre;
 use theme_cbe\cli\role;
@@ -45,6 +46,7 @@ require(__DIR__.'/classes/cli/nextcloud.php');
 require(__DIR__.'/classes/cli/registre.php');
 require(__DIR__.'/classes/cli/role.php');
 require(__DIR__.'/classes/cli/saml2.php');
+require(__DIR__.'/classes/cli/langs.php');
 
 $usage = 'Automation of the Digital Democratic environment. Site configuration and plugins, Roles, Capabilities and other functionalities.
 
@@ -114,9 +116,11 @@ if (isset($wwwroot)) {
     // 6. NextCloud
     nextcloud::execute($wwwroot, $ncadmin, $ncpass);
     // 7. SAML2
-    saml2::execute($wwwroot, $sitename, $contactname, $contactemail);
+    saml2::execute($sitename, $contactname, $contactemail);
+    // 8. Languages
+    langs::execute();
 
-    // 8. Final!
+    // 9. Final!
     purge_caches();
     cli_writeln('Purge Cache');
 

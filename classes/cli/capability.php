@@ -94,6 +94,7 @@ class capability {
             self::add('mod/assign:viewownsubmissionsummary', $rolename, $role->id);
             self::add('moodle/user:manageownfiles', $rolename, $role->id);
             self::add('repository/user:view', $rolename, $role->id);
+            self::add('moodle/category:viewcourselist', $rolename, $role->id);
             // Allow role assignments
             self::assign_role($rolename, $role->id, 'editingteacher');
         }
@@ -163,20 +164,25 @@ class capability {
      * @param $username
      * @param $roleid
      * @param $roleassign
-     * @throws dml_exception
      */
     static protected function assign_role($username, $roleid, $roleassign) {
         global $DB;
-        $role = $DB->get_record('role', ['shortname' => $roleassign]);
-        if ($role) {
-            $params = new \stdClass();
-            $params->roleid = $roleid;
-            $params->allowassign = $role->id;
-            $record = $DB->get_record('role_allow_assign', (array)$params);
-            if (!$record) {
-                $DB->insert_record('role_allow_assign', $params);
-                cli_writeln('Assign Role: ' . $username . ' to ' . $roleassign);
+        try {
+            $role = $DB->get_record('role', ['shortname' => $roleassign]);
+            if ($role) {
+                $params = new \stdClass();
+                $params->roleid = $roleid;
+                $params->allowassign = $role->id;
+                $record = $DB->get_record('role_allow_assign', (array)$params);
+                if (!$record) {
+                    $DB->insert_record('role_allow_assign', $params);
+                    cli_writeln('Assign Role: ' . $username . ' to ' . $roleassign);
+                } else {
+                    cli_writeln('Assign Role: ' . $username . ' to ' . $roleassign . ' - Already assigned!');
+                }
             }
+        } catch (moodle_exception $e) {
+            cli_writeln('Assign Role: ' . $username . '(' . $roleassign . ') ERROR - ' . $e->getMessage());
         }
     }
 
