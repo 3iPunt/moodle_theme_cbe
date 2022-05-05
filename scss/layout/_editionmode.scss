@@ -19,6 +19,16 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics {
       }
     }
     .singlebutton {
+      position: relative;
+      @media (max-width: 1700px) {
+        top: 200px;
+      }
+      @media (max-width: 1199px) {
+        top: -76px;
+      }
+      @media (max-width: 760px) {
+        top: 0;
+      }
       button {
         visibility: hidden;
         &:before {

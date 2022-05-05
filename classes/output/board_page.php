@@ -103,6 +103,8 @@ class board_page implements renderable, templatable {
         $course_user = new course_user($this->course_id, $user->id);
         $course_cbe = new course($this->course_id);
 
+        $sectionzero = $course_cbe->get_section_zero();
+
         $mods = $course_user->get_modules(true);
 
         if (isset($this->pub)) {
@@ -123,11 +125,13 @@ class board_page implements renderable, templatable {
         $data->modules = $mods;
         $themes = $course_cbe->get_themes();
         $unselect = ['section' => 'not', 'name' => get_string('create_module_theme', 'theme_cbe')];
-        //array_unshift($themes, $unselect);
+        array_unshift($themes, $unselect);
         $data->themes = $themes;
         $data->create = module::get_list_modules($this->course_id);
         $data->students = $course_cbe->get_users_by_role('student');
         $data->groups = $course_cbe->get_groups();
+        $data->has_sections = count($themes) > 1;
+        $data->section_zero_name = course::get_title_section0($this->course_id);
         return $data;
     }
 

@@ -28,19 +28,27 @@
             </header>
             <main class="create_mod">
                 <div class="sections">
+                    {{# has_sections }}
                     <label for="selsection">{{# str }} create_module_theme, theme_cbe {{/ str }}</label>
                     <select name="section" id="selsection" class="form-control" data-action="select-section">
                         {{# themes }}
                             <option value="{{ section }}">{{ name }}</option>
                         {{/ themes }}
                     </select>
+                    {{/ has_sections}}
+                    {{^ has_sections }}
+                        <div class="alert alert-info" role="alert">
+                            {{# str }} create_module_not_sections, theme_cbe, {{ section_zero_name }} {{/ str }}
+                        </div>
+                    {{/ has_sections}}
+
                 </div>
-                <div class="mods" id="list-mods">
+                <div class="mods {{# has_sections }}hidden{{/ has_sections}}" id="list-mods">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         {{# create.has_favourites }}
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#favourites" role="tab" aria-controls="home" aria-selected="true">
-                                Favoritos
+                                {{# str }} favourites {{/ str }}
                             </a>
                         </li>
                         {{/ create.has_favourites }}
@@ -129,3 +137,12 @@
         </div>
     </div>
 </div>
+{{# has_sections }}
+    {{#js}}
+
+        require(['theme_cbe/createmod'], function(createmod) {
+            createmod.initCreateMod('[data-region="create-module"]');
+        });
+
+    {{/js}}
+{{/ has_sections}}

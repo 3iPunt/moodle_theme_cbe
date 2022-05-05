@@ -211,3 +211,6 @@ $string['shortname_placeholder'] = 'Rellene el nombre corto del curso';
 $string['fullname_placeholder'] = 'Rellene el nombre completo del nuevo curso';
 
 $string['alert_modedit'] = 'Revisa el formulario: no cumple con las restricciones.';
+$string['create_module_not_sections'] = 'Este curso no dispone de Temas, por lo que este ítem se creará en la sección "{$a}".';
+
+$string['choosereadme'] = 'Bienvenido al tema CBE para el entorno de Digital Democratic';
