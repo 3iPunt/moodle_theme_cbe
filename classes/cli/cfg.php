@@ -86,8 +86,8 @@ class cfg {
             $default_host = substr($wwwroot,$index + 7);
             self::set('theme_cbe', 'host', $default_host);
             self::set('theme_cbe', 'logourl', 'https://api.' . $default_host . '/img/logo.png');
-            self::set('theme_cbe', 'avatar_api_url', 'https://api.' . $default_host . '/img/logo.png');
-            self::set('theme_cbe', 'avatar_other_users', 'https://sso.' . $default_host . '/avatar/');
+            self::set('theme_cbe', 'avatar_api_url', 'https://sso.' . $default_host . '/auth/realms/master/avatar-provider');
+            self::set('theme_cbe', 'avatar_other_users', 'https://api.' . $default_host . '/avatar/');
             self::set('theme_cbe', 'avatar_profile_url', 'https://sso.' . $default_host . '/auth/realms/master/account');
             self::set('theme_cbe', 'hostnccreate', 'https://nextcloud.' . $default_host . '/apps/files');
             self::set('theme_cbe', 'aviso_legal', 'https://api.' . $default_host . '/legal');
