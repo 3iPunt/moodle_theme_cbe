@@ -108,7 +108,7 @@ class nextcloud {
         }
         cfg::set('assignsubmission_tipnc', 'user', $ncadmin);
         cfg::set('assignsubmission_tipnc', 'password', $ncpass);
-        cfg::set('assignsubmission_tipnc', 'folder', 'tasks');
+        cfg::set('assignsubmission_tipnc', 'folder', '');
         cfg::set('assignsubmission_tipnc', 'template', 'template.docx');
         cfg::set('assignsubmission_tipnc', 'location', '/apps/onlyoffice/');
     }
