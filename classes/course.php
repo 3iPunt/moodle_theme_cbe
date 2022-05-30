@@ -256,4 +256,15 @@ class course  {
         }
         return $title;
     }
+
+    /**
+     * Can delete course?
+     *
+     * @return bool
+     * @throws coding_exception
+     */
+    public function can_delete_course(): bool {
+        global $USER;
+        return course_user::is_teacher($this->course_id, $USER->id);
+    }
 }

@@ -65,6 +65,14 @@
                 {{/ can_create_courses }}
                 {{/ is_teacher }}
             </div>
+            {{# can_delete_course }}
+                <div class="tool-tooltip delete" data-toggle="tooltip" data-placement="left" title="{{# str }} delete_course, theme_cbe {{/ str }}">
+                    <a href="{{ delete_course_url }}" class="tool-link delete-course action">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <span class="triangle"></span>
+                    </a>
+                </div>
+           {{/ can_delete_course }}
         </div>
     </div>
 </header>

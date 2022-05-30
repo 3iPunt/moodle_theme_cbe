@@ -214,3 +214,5 @@ $string['alert_modedit'] = 'Revisa el formulario: no cumple con las restriccione
 $string['create_module_not_sections'] = 'Este curso no dispone de Temas, por lo que este ítem se creará en la sección "{$a}".';
 
 $string['choosereadme'] = 'Bienvenido al tema CBE para el entorno de Digital Democratic';
+
+$string['delete_course'] = 'Borrar curso';

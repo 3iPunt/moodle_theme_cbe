@@ -215,3 +215,5 @@ $string['alert_modedit'] = 'Check the form: does not meet the restrictions.';
 $string['create_module_not_sections'] = 'This course does not have Topics, so this item will be created in the "{$a}" section "{$a}".';
 
 $string['choosereadme'] = 'Welcome to CBE theme for Digital Democratic Environment';
+
+$string['delete_course'] = 'Delete course';
