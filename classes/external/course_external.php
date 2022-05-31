@@ -22,6 +22,7 @@
 
 namespace theme_cbe\external;
 
+use context_course;
 use core_course_category;
 use core_user_external;
 use external_api;
@@ -31,6 +32,7 @@ use external_value;
 use invalid_parameter_exception;
 use moodle_exception;
 use moodle_url;
+use theme_cbe\course_user;
 use theme_cbe\user;
 
 defined('MOODLE_INTERNAL') || die();

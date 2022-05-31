@@ -95,6 +95,7 @@ class capability {
             self::add('moodle/user:manageownfiles', $rolename, $role->id);
             self::add('repository/user:view', $rolename, $role->id);
             self::add('moodle/category:viewcourselist', $rolename, $role->id);
+            self::remove('moodle/course:delete', $rolename, $role->id);
             // Allow role assignments
             self::assign_role($rolename, $role->id, 'editingteacher');
         }

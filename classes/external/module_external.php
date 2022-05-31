@@ -508,7 +508,6 @@ class module_external extends external_api {
         );
     }
 
-
     /**
      * @return external_function_parameters
      */

@@ -156,7 +156,7 @@ $functions = [
         'type' => 'write',
         'ajax' => true,
         'loginrequired' => true
-    ],
+    ]
 ];
 $services = [
     'theme_cbe' => [
@@ -176,7 +176,7 @@ $services = [
             'theme_cbe_board_remove_anchor',
             'theme_cbe_board_visible',
             'theme_cbe_board_hidden',
-            'theme_cbe_nextcloud_createfile',
+            'theme_cbe_nextcloud_createfile'
         ],
         'restrictedusers' => 0,
         'enabled' => 1

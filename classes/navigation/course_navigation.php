@@ -169,6 +169,9 @@ class course_navigation extends navigation {
         $data->categoryname = $coursecbe->get_category();
         $data->edit_course= new moodle_url('/course/edit.php', ['id'=> $courseid]);
         $data->copy_course = new moodle_url('/' . self::PAGE_COPYCOURSE, ['id'=> $courseid]);
+        $data->can_delete_course = $coursecbe->can_delete_course();
+        $data->courseid = $courseid;
+        $data->delete_course_url = new moodle_url('/theme/cbe/delete_course.php', ['id'=> $courseid]);;
         return $data;
     }
 

@@ -76,44 +76,60 @@ body[data-theme='cbe'][data-role='user'] {
             }
           }
         }
-        .tool-tooltip {
-          position: absolute;
-          right: -10px;
-          top: 15px;
-          &.copy {
-            top: 65px;
-            .tool-link {
-              i {
-                font-size: 25px;
-              }
-            }
-          }
+
+      }
+      .tool-tooltip {
+        position: absolute;
+        right: -10px;
+        top: 15px;
+        &.copy {
+          top: 65px;
           .tool-link {
-            background-color: $primary-color;
-            height: 45px;
-            width: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 9px 0 0 10px;
-            cursor: pointer;
             i {
-              color: white;
               font-size: 25px;
             }
+          }
+        }
+        &.delete {
+          left: -10px;
+          bottom: 20px;
+          top: inherit;
+          .tool-link {
+            border-radius: 0 10px 10px 0;
+            border: none;
             .triangle {
-              width: 0;
-              height: 0;
-              border-top: 10px solid $primary-color-hard;
-              border-right: 10px solid transparent;
-              position: absolute;
-              bottom: -10px;
-              right: 0;
+              right: inherit;
+              left: 0;
+              border-left: 10px solid transparent;
+              border-right: inherit;
             }
-            &:hover, &:focus {
-              background-color: $primary-color-light !important;
-              text-decoration: none;
-            }
+          }
+        }
+        .tool-link {
+          background-color: $primary-color;
+          height: 45px;
+          width: 60px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 9px 0 0 10px;
+          cursor: pointer;
+          i {
+            color: white;
+            font-size: 25px;
+          }
+          .triangle {
+            width: 0;
+            height: 0;
+            border-top: 10px solid $primary-color-hard;
+            border-right: 10px solid transparent;
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+          }
+          &:hover, &:focus {
+            background-color: $primary-color-light !important;
+            text-decoration: none;
           }
         }
       }

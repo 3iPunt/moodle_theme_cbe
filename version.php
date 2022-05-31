@@ -18,15 +18,15 @@
  * Plugin version and other meta-data are defined here.
  *
  * @package     theme_cbe
- * @copyright   2021 Tresipunt
+ * @copyright   2022 Tresipunt
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'theme_cbe';
-$plugin->release = '1.1.0';
-$plugin->version = 2021083101;
+$plugin->release = '1.1.1';
+$plugin->version = 2022053001;
 $plugin->requires = 2020110900;
 $plugin->maturity = MATURITY_ALPHA;
 $plugin->dependencies = array(
