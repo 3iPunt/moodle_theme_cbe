@@ -73,6 +73,7 @@ class cfg {
         // Others Plugins
         self::set('mod_jitsi', 'jitsi_privatesessions', 0);
         self::set('url', 'display', 3);
+        self::set('resource', 'displayoptions', '0,1,2,3,4,5,6');
     }
 
     /**
