@@ -49,6 +49,7 @@ class cfg {
         self::set('core_competency', 'enabled', 0);
         self::set('moodlecourse', 'enablecompletion', 0);
         self::set('moodlecourse', 'maxbytes', 52428800);
+        self::set('moodlecourse', 'showactivitydates', 0);
         self::set(null, 'maxbytes', 52428800);
         self::set(null, 'forum_maxbytes', 512000);
         self::set('assignsubmission_file', 'maxbytes', 0);
@@ -72,6 +73,8 @@ class cfg {
         self::set(null, 'bigbluebuttonbn_lockonjoinconfigurable_editable', true);
         // Others Plugins
         self::set('mod_jitsi', 'jitsi_privatesessions', 0);
+        self::set('url', 'display', 3);
+        self::set('resource', 'displayoptions', '0,1,2,3,4,5,6');
     }
 
     /**
@@ -117,7 +120,5 @@ class cfg {
         $component = isset($component) ? $component . ' - ' : 'core - ' ;
         cli_writeln('CFG: ' . $component . $name . ': ' . $value);
     }
-
-
 
 }

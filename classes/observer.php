@@ -74,7 +74,7 @@ class theme_cbe_observer {
                 file_prepare_draft_area(
                     $draftid_editor, null, null, null, null, array('subdirs'=>true));
                 $moduleinfo->introeditor = array('text'=> '', 'format'=> FORMAT_HTML, 'itemid'=>$draftid_editor);
-                $moduleinfo->record = 1;
+                $moduleinfo->record = 0;
                 $moduleinfo->name = get_string('bbb_main', 'theme_cbe');
                 $moduleinfo->visible = true;
                 try {
