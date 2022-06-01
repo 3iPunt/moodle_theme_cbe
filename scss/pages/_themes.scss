@@ -110,6 +110,9 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
     }
     li.activity {
       margin: 0 0 30px;
+      &.hasinfo {
+        border: none;
+      }
       .contentafterlink {
         margin: 10px 15px 0;
         padding: 15px;
@@ -118,6 +121,9 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
           margin-right: 0;
         }
       }
+      /*div[data-region="activity-dates"] {
+        display: none;
+      }*/
     }
     .single-section {
       background-color: #fff;
