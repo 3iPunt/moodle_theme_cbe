@@ -73,6 +73,7 @@ class cfg {
         self::set(null, 'bigbluebuttonbn_lockonjoinconfigurable_editable', true);
         // Others Plugins
         self::set('mod_jitsi', 'jitsi_privatesessions', 0);
+        self::set('url', 'displayoptions', '0,1,3,5,6');
         self::set('url', 'display', 3);
         self::set('resource', 'displayoptions', '0,1,2,3,4,5,6');
     }
