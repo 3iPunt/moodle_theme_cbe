@@ -49,6 +49,7 @@ class cfg {
         self::set('core_competency', 'enabled', 0);
         self::set('moodlecourse', 'enablecompletion', 0);
         self::set('moodlecourse', 'maxbytes', 52428800);
+        self::set('moodlecourse', 'showactivitydates', 0);
         self::set(null, 'maxbytes', 52428800);
         self::set(null, 'forum_maxbytes', 512000);
         self::set('assignsubmission_file', 'maxbytes', 0);

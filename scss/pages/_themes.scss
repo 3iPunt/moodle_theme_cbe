@@ -121,9 +121,9 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
           margin-right: 0;
         }
       }
-      /*div[data-region="activity-dates"] {
-        display: none;
-      }*/
+      div[data-region="activity-dates"] {
+        margin: 16px;
+      }
     }
     .single-section {
       background-color: #fff;
