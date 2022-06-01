@@ -169,7 +169,7 @@ class functionality {
             $params->blockname = $blockname;
             $params->pagetypepattern = 'my-index';
             $DB->delete_records($tablename, (array)$params);
-            $params->defaultregion = 'side-pre';
+            $params->defaultregion = 'side-post';
             $params->parentcontextid = 1;
             $params->showinsubcontexts = 0;
             $params->subpagepattern = null;
@@ -221,7 +221,7 @@ class functionality {
                 $DB->delete_records($tablenamepos, (array)$posparams);
                 $posparams->contextid = 1;
                 $posparams->visible = 1;
-                $posparams->region = 'side-pre';
+                $posparams->region = 'side-post';
                 $posparams->weight = $weight;
                 $DB->insert_record($tablenamepos, (array)$posparams);
             }
