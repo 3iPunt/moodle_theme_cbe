@@ -118,6 +118,4 @@ class cfg {
         cli_writeln('CFG: ' . $component . $name . ': ' . $value);
     }
 
-
-
 }
