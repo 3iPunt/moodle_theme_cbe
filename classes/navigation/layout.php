@@ -78,4 +78,14 @@ class layout extends render_cbe {
             $this->data = $data;
         }
     }
+
+    /**
+     * Is DarkHeader?
+     *
+     * @return bool
+     * @throws \dml_exception
+     */
+    public static function is_darkheader(): bool {
+        return get_config('theme_cbe', 'darkheader') ? true : false;
+    }
 }

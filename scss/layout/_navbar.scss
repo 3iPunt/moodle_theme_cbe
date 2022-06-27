@@ -10,6 +10,30 @@ body[data-theme='cbe'] {
     max-height: $nav-height;
     border-bottom: 1px solid $black-ligth;
     padding: 0 21px;
+
+    &.cbe-darkheader {
+      background-color: black !important;
+      border-bottom: 1px solid white !important;
+      .nav-link i.icon {
+        color: white !important;
+      }
+      a#navbar-importgc, #navbar-ddlink {
+        background-color: black !important;
+      }
+
+      #navbar-menu-apps #menu-apps-btn #dropdownMenuButton[aria-expanded="true"] {
+        background-color: #2a2a2a !important;
+      }
+
+      div#navbar-header-course ul.course-menu {
+        color: white !important;
+      }
+      button#navbar-createcourse {
+        background-color: black !important;
+        color: white !important;
+      }
+    }
+
     #login-logo {
       display: flex !important;
       justify-content: center;

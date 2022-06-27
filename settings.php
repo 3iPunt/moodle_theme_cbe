@@ -183,10 +183,20 @@ if ($ADMIN->fulltree) {
     ));
 
     $page->add($setting);
-
     $settings->add($page);
+
     // Colours settings.
     $page = new admin_settingpage('theme_cbe_colours', get_string('colourssettings', 'theme_cbe'));
+
+    $setting = (new admin_setting_configcheckbox(
+        'theme_cbe/darkheader',
+        get_string('darkheader', 'theme_cbe'),
+        get_string('darkheader_desc', 'theme_cbe'),
+        false
+    ));
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
 
     $name = 'theme_cbe/brandcolor';
     $title = get_string('brandcolor', 'theme_boost');

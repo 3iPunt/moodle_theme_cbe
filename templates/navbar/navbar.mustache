@@ -37,7 +37,7 @@
         "sitename": "Moodle Site"
     }
 }}
-<nav id="nav-desktop" data-theme="cbe" class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+<nav id="nav-desktop" data-theme="cbe" class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex {{#darkheader}}cbe-darkheader{{/darkheader}}" aria-label="{{#str}}sitemenubar, admin{{/str}}">
 
     <div id="navbar-burger" data-region="drawer-toggle" class="d-inline-block mr-3">
         <button aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}" aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left mr-1 btn-light bg-gray" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav">{{#pix}}i/menubars{{/pix}}<span class="sr-only">{{#str}}sidepanel, core{{/str}}</span></button>
@@ -73,7 +73,12 @@
         </button>
         {{# can_import_gc }}
             <a id="navbar-importgc" class="btn btn-primary importgc" title="{{# str }} importgc, theme_cbe {{/ str }}" href="{{ import_gc_url }}">
-                {{#pix}} importgc, theme_cbe, {{# str }} importgc, theme_cbe {{/ str }}{{/pix}}
+                {{^darkheader}}
+                    {{#pix}} importgc, theme_cbe, {{# str }} importgc, theme_cbe {{/ str }}{{/pix}}
+                {{/darkheader}}
+                {{#darkheader}}
+                    {{#pix}} importgc_white, theme_cbe, {{# str }} importgc, theme_cbe {{/ str }}{{/pix}}
+                {{/darkheader}}
             </a>
         {{/ can_import_gc }}
     {{/ can_create_courses }}
@@ -106,7 +111,12 @@
 
     {{# has_dd_link }}
         <a target="_blank" id="navbar-ddlink" class="btn btn-primary ddlink" title="{{# str }} ddlink_url, theme_cbe {{/ str }}" href="{{ ddlink_url }}">
-            {{#pix}} dd, theme_cbe, {{# str }} ddlink_url, theme_cbe {{/ str }}{{/pix}}
+            {{^darkheader}}
+                {{#pix}} dd, theme_cbe, {{# str }} ddlink_url, theme_cbe {{/ str }}{{/pix}}
+            {{/darkheader}}
+            {{#darkheader}}
+                {{#pix}} dd_white, theme_cbe, {{# str }} ddlink_url, theme_cbe {{/ str }}{{/pix}}
+            {{/darkheader}}
         </a>
     {{/ has_dd_link }}
 

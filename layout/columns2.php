@@ -71,4 +71,6 @@ $templatecontext['firstcollectionlabel'] = navigation::get_flatnav()->get_collec
 $layout_cbe = new layout();
 $data = $layout_cbe->get_data($templatecontext);
 
+$data['darkheader'] = $layout_cbe->is_darkheader();
+
 echo $OUTPUT->render_from_template($layout_cbe->get_template(), $data);
