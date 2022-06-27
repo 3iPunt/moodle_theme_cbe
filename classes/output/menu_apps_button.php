@@ -31,6 +31,7 @@ use stdClass;
 use templatable;
 use theme_cbe\api\app;
 use theme_cbe\api\header_api;
+use theme_cbe\navigation\layout;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -64,6 +65,7 @@ class menu_apps_button implements renderable, templatable {
         $data = new stdClass();
         $data->active = $this->is_active();
         $data->apps = isset($this->header_api) ? $this->get_apps_api() : $this->get_apps();
+        $data->darkheader = layout::is_darkheader();
         return $data;
     }
 

@@ -216,3 +216,6 @@ $string['create_module_not_sections'] = 'Este curso no dispone de Temas, por lo 
 $string['choosereadme'] = 'Bienvenido al tema CBE para el entorno de Digital Democratic';
 
 $string['delete_course'] = 'Borrar curso';
+
+$string['darkheader'] = 'Cabecera Oscura';
+$string['darkheader_desc'] = 'Si selecciona esta opción, la cabecera se hará oscura para profesores y alumnos. Con fondo negro y texto e iconos en blanco.';

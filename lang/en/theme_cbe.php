@@ -217,3 +217,6 @@ $string['create_module_not_sections'] = 'This course does not have Topics, so th
 $string['choosereadme'] = 'Welcome to CBE theme for Digital Democratic Environment';
 
 $string['delete_course'] = 'Delete course';
+
+$string['darkheader'] = 'Dark Header';
+$string['darkheader_desc'] = 'If you select this option, the header will be made dark for teachers and students. With black background and white text and icons.';
