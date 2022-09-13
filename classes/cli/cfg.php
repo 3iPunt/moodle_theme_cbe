@@ -94,7 +94,7 @@ class cfg {
             self::set('theme_cbe', 'avatar_other_users', 'https://api.' . $default_host . '/avatar/');
             self::set('theme_cbe', 'avatar_profile_url', 'https://sso.' . $default_host . '/auth/realms/master/account');
             self::set('theme_cbe', 'hostnccreate', 'https://nextcloud.' . $default_host . '/apps/files');
-            self::set('theme_cbe', 'aviso_legal', 'https://api.' . $default_host . '/legal');
+            self::set('theme_cbe', 'aviso_legal', 'https://admin.' . $default_host . '/legal_text?lang=ca');
         }
         self::set('theme_cbe', 'header_api', true);
         self::set('theme_cbe', 'avatar_api', true);
