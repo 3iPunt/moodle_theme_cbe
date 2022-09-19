@@ -52,13 +52,11 @@
                             </a>
                         </li>
                         {{/ create.has_favourites }}
-                        {{^ create.has_favourites }}
                         <li class="nav-item">
-                            <a class="nav-link active" id="recommended-tab" data-toggle="tab" href="#recommended" role="tab" aria-controls="recommended" aria-selected="false">
+                            <a class="nav-link" id="recommended-tab" data-toggle="tab" href="#recommended" role="tab" aria-controls="recommended" aria-selected="false">
                                 {{# str }} recommended {{/ str }}
                             </a>
                         </li>
-                        {{/ create.has_favourites }}
                         <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#activities" role="tab" aria-controls="profile" aria-selected="false">
                                 {{# str }} activities {{/ str }}
@@ -72,7 +70,7 @@
                     </ul>
                     <div class="tab-content" id="modsContent">
                         {{# create.has_favourites }}
-                        <div class="tab-pane fade show active" id="favourites" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="tab-pane fade show active" id="favourites" role="tabpanel">
                             <ul class="select-modules">
                                 {{# create.favourites }}
                                     <li class="select-module">
@@ -87,8 +85,7 @@
                             </ul>
                         </div>
                         {{/ create.has_favourites }}
-                        {{^ create.has_favourites }}
-                        <div class="tab-pane fade show active" id="recommended" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane fade" id="recommended" role="tabpanel">
                             <ul class="select-modules">
                                 {{# create.recommended }}
                                     <li class="select-module">
@@ -102,8 +99,7 @@
                                 {{/ create.recommended}}
                             </ul>
                         </div>
-                        {{/ create.has_favourites }}
-                        <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="tab-pane fade" id="activities" role="tabpanel">
                             <ul class="select-modules">
                                 {{# create.activities }}
                                     <li class="select-module">
@@ -117,7 +113,7 @@
                                 {{/ create.activities}}
                             </ul>
                         </div>
-                        <div class="tab-pane fade" id="resources" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="tab-pane fade" id="resources" role="tabpanel">
                             <ul class="select-modules">
                                 {{# create.resources }}
                                     <li class="select-module">
