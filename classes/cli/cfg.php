@@ -76,6 +76,7 @@ class cfg {
         self::set('url', 'displayoptions', '0,1,3,5,6');
         self::set('url', 'display', 3);
         self::set('resource', 'displayoptions', '0,1,2,3,4,5,6');
+        self::set('page', 'printintro', true);
     }
 
     /**

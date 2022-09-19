@@ -70,8 +70,13 @@ class functionality {
         self::module_recommended_reset();
         self::module_recommended('assign');
         self::module_recommended('resource');
-        self::module_recommended('folder');
+        self::module_recommended('tresipuntaudio');
+        self::module_recommended('bigbluebuttonbn');
+        self::module_recommended('page');
+        self::module_recommended('quiz');
+        self::module_recommended('label');
         self::module_recommended('url');
+        self::module_recommended('tresipuntvideo');
     }
 
     /**

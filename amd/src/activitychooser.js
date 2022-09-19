@@ -62,52 +62,7 @@ define([
         function ActivityChooser(region) {
             this.node = $(region);
             this.order();
-            this.refresh();
-            window.setInterval(() => this.refresh(), 500);
-            this.node.find(REGIONS.RECOMMENDED_TAB).on('click', this.refresh.bind(this));
-            this.node.find(REGIONS.RESOURCES_TAB).on('click', this.refresh.bind(this));
-            this.node.find(REGIONS.ACTIVITY_TAB).on('click', this.refresh.bind(this));
-            this.node.find(REGIONS.FAVOURITE_TAB).on('click', this.refresh.bind(this));
-            this.node.find('[data-action="manage-module-favourite"]')
-                .on('click', this.refresh.bind(this));
         }
-
-        ActivityChooser.prototype.refresh = function (e) {
-            let recommended_tab = this.node.find(REGIONS.RECOMMENDED_TAB);
-            let recommended_content = this.node.find(REGIONS.RECOMMENDED_CONTENT);
-            let favourite_tab = this.node.find(REGIONS.FAVOURITE_TAB);
-            let favourite_content = this.node.find(REGIONS.FAVOURITE_CONTENT);
-            let activity_tab = this.node.find(REGIONS.ACTIVITY_TAB);
-            let resources_tab = this.node.find(REGIONS.RESOURCES_TAB);
-            let all_tabs = this.node.find('.chooser-container .nav.nav-tabs .nav-item.nav-link');
-            let all_contents = this.node.find('.chooser-container .tab-pane');
-
-            if ( !activity_tab.hasClass('active') && !resources_tab.hasClass('active')) {
-                if ( !favourite_tab.hasClass('d-none') ) {
-                    all_tabs.removeClass('active');
-                    all_contents.removeClass('active');
-                    favourite_tab.addClass('active');
-                    favourite_content.addClass('active');
-                    recommended_tab.hide();
-                } else {
-                    if ( !recommended_tab.hasClass('d-none') ) {
-                        recommended_tab.show();
-                        all_tabs.removeClass('active');
-                        all_contents.removeClass('active');
-                        recommended_tab.addClass('active');
-                        recommended_content.addClass('active');
-                    }
-                }
-            } else {
-                if ( !favourite_tab.hasClass('d-none') ) {
-                    recommended_tab.hide();
-                } else {
-                    if ( !recommended_tab.hasClass('d-none') ) {
-                        recommended_tab.show();
-                    }
-                }
-            }
-        };
 
         ActivityChooser.prototype.order = function (e) {
             $('.chooser-container .nav.nav-tabs').each(function(){
