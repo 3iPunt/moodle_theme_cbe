@@ -65,7 +65,7 @@ class module  {
     static public $activities = ['assign', 'forum', 'quiz', 'feedback', 'bigbluebuttonbn', 'h5pactivity'];
 
     /** @var string[] Resources */
-    static public $resources = ['tresipuntvideo', 'tresipuntaudio', 'resource', 'folder', 'url', 'page'];
+    static public $resources = ['tresipuntvideo', 'tresipuntaudio', 'tipnextcloud', 'resource', 'folder', 'url', 'page'];
 
     /** @var string[] Others */
     static public $others = ['label', 'tresipuntshare'];

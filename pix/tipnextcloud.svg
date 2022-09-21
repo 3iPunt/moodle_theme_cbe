@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="109.43903mm"
+   height="49.821777mm"
+   viewBox="0 0 109.43903 49.821777"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)"
+   sodipodi:docname="tipnextcloud.svg">
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath8812">
+      <circle
+         id="circle8814"
+         cx="95.669289"
+         cy="95.669296"
+         r="79.724197"
+         style="fill:#00080d;fill-opacity:1;stroke-width:1" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="219.71496"
+     inkscape:cy="192.8579"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-23.805039,-32.899456)">
+    <path
+       inkscape:connector-curvature="0"
+       id="path1052"
+       d="m 78.607971,32.899456 c -11.34369,0 -20.958407,7.690276 -23.938326,18.109729 -2.589869,-5.526635 -8.202182,-9.398511 -14.666605,-9.398511 -8.890115,0 -16.198001,7.307904 -16.198001,16.198005 0,8.89009 7.307886,16.201327 16.198001,16.201327 6.464423,0 12.076736,-3.874242 14.666605,-9.401848 2.979919,10.420244 12.594636,18.113076 23.938326,18.113076 11.259797,0 20.825486,-7.576808 23.881599,-17.879522 2.63771,5.402119 8.18057,9.168294 14.55316,9.168294 8.89012,0 16.20134,-7.311237 16.20134,-16.201327 0,-8.890101 -7.31122,-16.198005 -16.20134,-16.198005 -6.37259,0 -11.91545,3.763815 -14.55316,9.164965 C 99.433457,40.473731 89.867768,32.899456 78.607971,32.899456 Z m 0,9.508608 c 8.563189,0 15.403942,6.837436 15.403942,15.400615 0,8.563165 -6.840753,15.403941 -15.403942,15.403941 -8.563155,0 -15.400604,-6.840776 -15.400604,-15.403941 0,-8.563179 6.837449,-15.400612 15.400604,-15.400615 z M 40.00304,51.119285 c 3.751711,0 6.692713,2.937652 6.692713,6.689394 0,3.751724 -2.941002,6.692719 -6.692713,6.692719 -3.751745,0 -6.689411,-2.940995 -6.689411,-6.692719 0,-3.751742 2.937666,-6.689394 6.689411,-6.689394 z m 77.03969,0 c 3.75178,0 6.69275,2.937652 6.69275,6.689394 0,3.751724 -2.941,6.692719 -6.69275,6.692719 -3.75167,0 -6.68937,-2.940995 -6.68937,-6.692719 0,-3.751742 2.9377,-6.689394 6.68937,-6.689394 z"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;white-space:normal;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5.34827;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       inkscape:export-filename="Nextcloud Hub logo variants.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+  </g>
+</svg>
