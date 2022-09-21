@@ -148,6 +148,7 @@ class course_module_navigation extends navigation {
         $data['nav_context'] = 'course';
         $data['is_module'] = true;
         $data['has_create_file_nextcloud'] = self::has_create_file_nextcloud($coursemodule);
+        $data['nextcloud_desc'] = self::get_create_file_nextcloud_desc($coursemodule->get_modname());
         $data['module_title'] = $coursemodule->get_name();
         $data['html_icon'] = $coursemodule->get_html_icon();
         $data['is_resource'] = $coursemodule->is_resource();
@@ -166,7 +167,33 @@ class course_module_navigation extends navigation {
      * @return bool
      */
     static public function has_create_file_nextcloud(module $coursemodule): bool {
-        return $coursemodule->get_modname() === 'assign' || $coursemodule->get_modname() === 'resource';
+        return $coursemodule->get_modname() === 'assign' ||
+            $coursemodule->get_modname() === 'resource' ||
+            $coursemodule->get_modname() === 'tipnextcloud';
+    }
+
+    /**
+     *  Create File Nextcloud Description
+     *
+     * @param module $coursemodule
+     * @return bool
+     * @throws coding_exception
+     */
+
+
+    /**
+     * Get Create File Nextcloud Description
+     *
+     * @param string $coursemodulename
+     * @return \lang_string|string
+     * @throws coding_exception
+     */
+    static public function get_create_file_nextcloud_desc(string $coursemodulename) {
+        if ($coursemodulename === 'tipnextcloud') {
+            return get_string('notice_filecreate_tip', 'theme_cbe');
+        } else {
+            return get_string('notice_filecreate', 'theme_cbe');
+        }
     }
 
     /**
