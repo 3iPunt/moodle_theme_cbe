@@ -219,3 +219,5 @@ $string['delete_course'] = 'Borrar curso';
 
 $string['darkheader'] = 'Cabecera Oscura';
 $string['darkheader_desc'] = 'Si selecciona esta opción, la cabecera se hará oscura para profesores y alumnos. Con fondo negro y texto e iconos en blanco.';
+
+$string['notice_filecreate_tip'] = 'Recupera la URL de NextCloud en compartir.';

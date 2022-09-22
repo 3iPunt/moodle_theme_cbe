@@ -42,12 +42,15 @@ define([
          */
         function Modedit() {
             let $create_file_nextcloud = $('#create_file_nextcloud');
+            let $fitem_id_url = $('#fitem_id_url');
             let $fitem_id_introattachments = $('#fitem_id_introattachments');
             let $fitem_id_files = $('#fitem_id_files');
             if ( $fitem_id_introattachments.length > 0 ) {
                 $create_file_nextcloud.prependTo('#fitem_id_introattachments');
             } else if ($fitem_id_files.length > 0) {
                 $create_file_nextcloud.prependTo('#fitem_id_files');
+            } else if($fitem_id_url.length > 0) {
+                $create_file_nextcloud.prependTo('#fitem_id_url');
             }
             let mform = $('.mform');
             this.alertRestriction();

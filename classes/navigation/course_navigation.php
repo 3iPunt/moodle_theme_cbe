@@ -234,8 +234,9 @@ class course_navigation extends navigation {
                 $activitylink .= html_writer::end_div();
                 $data['html_icon'] = $activitylink;
             }
-            if ($modname === 'assign' || $modname === 'resource') {
+            if ($modname === 'assign' || $modname === 'resource' || $modname === 'tipnextcloud') {
                 $data['has_create_file_nextcloud'] = true;
+                $data['nextcloud_desc'] = course_module_navigation::get_create_file_nextcloud_desc($modname);
             }
         }
 
