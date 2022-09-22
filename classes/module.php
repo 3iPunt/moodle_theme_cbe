@@ -413,7 +413,18 @@ class module  {
             $instance = $DB->get_record($this->cm->modname, ['id' => $this->cm->instance]);
             if (isset($instance)) {
                 $module->is_description = true;
-                $module->description = $instance->intro;
+
+                $context = context_module::instance($this->cm->id);
+
+                $introrewrite = file_rewrite_pluginfile_urls(
+                    $instance->intro,
+                    'pluginfile.php',
+                    $context->id,
+                    'mod_' . $this->cm->modname,
+                    'intro',
+                    null);
+
+                $module->description = format_text($introrewrite, FORMAT_HTML, array('filter' => true));
             }
         }
         return $module;
