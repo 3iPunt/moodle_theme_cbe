@@ -3,6 +3,21 @@ body[data-theme='cbe'] {
   .activity {
 
     .activityinstance {
+      .module-resource-icon-component-cbe {
+        position: absolute;
+        left: 33px;
+        top: 16px;
+        svg.theme-cbe-icon {
+          width: 27px;
+          height: 27px;
+          fill: $primary-color;
+        }
+        &.url {
+          svg.theme-cbe-icon {
+            stroke: $primary-color;
+          }
+        }
+      }
       >a.aalink,
       >.inplaceeditable >a.aalink {
         .cbe_icon_mod {
@@ -18,18 +33,6 @@ body[data-theme='cbe'] {
           &.resource {
             background-color: white;
             border: 4px solid $primary-color;
-            .module-resource-icon-component-cbe {
-              svg.theme-cbe-icon {
-                width: 27px;
-                height: 27px;
-                fill: $primary-color;
-              }
-              &.url {
-                svg.theme-cbe-icon {
-                  stroke: $primary-color;
-                }
-              }
-            }
           }
           img.iconlarge.activityicon {
             width: 27px;
@@ -52,13 +55,22 @@ body[data-theme='cbe'] {
         }
       }
       >.inplaceeditable {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .module-resource-icon-component-cbe {
+          position: absolute;
+          left: 49px;
+          top: 16px;
+        }
         >a.aalink {
           display: inline-flex;
           align-items: center;
         }
         >a.quickeditlink.aalink {
           position: relative;
-          top: -6px;
+          top: -2px;
+          left: 9px;
         }
       }
     }

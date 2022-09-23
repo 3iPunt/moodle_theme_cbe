@@ -65,6 +65,19 @@ class course_renderer extends core_course_renderer {
             return $output;
         }
 
+        $isresource = in_array($mod->modname, module::$resources) || in_array($mod->modname, module::$others);
+
+        if ($isresource) {
+
+            $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
+            $classname = 'theme_cbe\output\module_' . $mod->modname . '_icon_component';
+            $module_resource_icon_component = new $classname($mod);
+            $resourcemod = $output_theme_cbe->render($module_resource_icon_component);
+
+            $output .= $resourcemod;
+
+        }
+
         //Accessibility: for files get description via icon, this is very ugly hack!
         $instancename = $mod->get_formatted_name();
         $altname = $mod->modfullname;
@@ -88,29 +101,24 @@ class course_renderer extends core_course_renderer {
 
 
 
-        if (in_array($mod->modname, module::$resources) || in_array($mod->modname, module::$others)) {
-            $activitylink = html_writer::start_tag('div', array('class' => 'cbe_icon_mod resource'));
-            $output_theme_cbe = $PAGE->get_renderer('theme_cbe');
-            $classname = 'theme_cbe\output\module_' . $mod->modname . '_icon_component';
-            $module_resource_icon_component = new $classname($mod);
-            $resourcemod = $output_theme_cbe->render($module_resource_icon_component);
-            $activitylink .= $resourcemod;
-        } else {
-            $activitylink = html_writer::start_div('cbe_icon_mod');
-            $activitylink .= html_writer::empty_tag(
-                'img',
-                array(
-                    'src' => $mod->get_icon_url(),
-                    'class' => 'iconlarge activityicon',
-                    'alt' => '',
-                    'role' => 'presentation',
-                    'aria-hidden' => 'true'));
-        }
+        $activitylinkclass = $isresource ? 'cbe_icon_mod resource' : 'cbe_icon_mod';
+        $activitylinkimgclass = $isresource ? 'iconlarge activityicon hidden' : 'iconlarge activityicon';
+
+        $activitylink = html_writer::start_div($activitylinkclass);
+        $activitylink .= html_writer::empty_tag(
+            'img',
+            array(
+                'src' => $mod->get_icon_url(),
+                'class' => $activitylinkimgclass,
+                'alt' => '',
+                'role' => 'presentation',
+                'aria-hidden' => 'true'));
 
         $activitylink .= html_writer::end_div();
 
         $activitylink .= html_writer::tag(
             'span', $instancename . $altname, array('class' => 'instancename'));
+
         if ($mod->uservisible) {
             $output .= html_writer::link(
                 $url, $activitylink, array('class' => 'aalink' . $linkclasses, 'onclick' => $onclick));
@@ -119,6 +127,8 @@ class course_renderer extends core_course_renderer {
             // about visibility, without the actual link ($mod->is_visible_on_course_page()).
             $output .= html_writer::tag('div', $activitylink, array('class' => $textclasses));
         }
+
+
         return $output;
     }
 }
