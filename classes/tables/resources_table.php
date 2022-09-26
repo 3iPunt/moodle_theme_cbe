@@ -79,11 +79,12 @@ class resources_table extends table_sql {
         $this->define_baseurl($moodle_url);
 
         $this->define_columns([
-            'name', 'filename', 'type', 'size'
+            'name', 'filename', 'location', 'type', 'size'
         ]);
         $this->define_headers([
             get_string('course_left_resources', 'theme_cbe'),
             get_string('filename', 'theme_cbe'),
+            get_string('location', 'theme_cbe'),
             get_string('type', 'theme_cbe'),
             get_string('size', 'theme_cbe')
         ]);
@@ -132,18 +133,35 @@ class resources_table extends table_sql {
                 // Get File.
                 $fs = get_file_storage();
                 $files = $fs->get_area_files(
-                    $cm->context->id, 'mod_' . $cm->modname, ['content', 'introattachment']);
+                    $cm->context->id, 'mod_' . $cm->modname, ['intro', 'content', 'introattachment']);
                 foreach ($files as $file) {
                     if (!empty($file->get_mimetype())) {
-                        $filecm = new stdClass();
-                        $filecm->filename = $file->get_filename();
-                        $filecm->type = $file->get_mimetype();
-                        $filecm->size = $file->get_filesize();
-                        $filecm->id = $cm->id;
-                        $filecm->section = $cm->sectionnum;
-                        $filecm->name = $cm->name;
-                        $filecm->modname = $cm->modname;
-                        $filescm[] = $filecm;
+                        $show = true;
+                        if ($file->get_filearea() === 'intro') {
+                            $inintro = strpos($this->get_intro($cm, $file->get_filearea()), $file->get_filename());
+                            if (!$inintro) {
+                                $show = false;
+                            }
+                        }
+                        if ($file->get_filearea() === 'content' && $cm->modname === 'page') {
+                            $inintro = strpos($this->get_intro($cm, $file->get_filearea()), $file->get_filename());
+                            if (!$inintro) {
+                                $show = false;
+                            }
+                        }
+                        if ($show) {
+                            $filecm = new stdClass();
+                            $filecm->filename = $file->get_filename();
+                            $filecm->type = $file->get_mimetype();
+                            $filecm->size = $file->get_filesize();
+                            $filecm->id = $cm->id;
+                            $filecm->section = $cm->sectionnum;
+                            $filecm->name = $cm->name;
+                            $filecm->location = $file->get_filearea();
+                            $filecm->modname = $cm->modname;
+                            $filescm[] = $filecm;
+                        }
+
                     }
                 }
             }
@@ -153,6 +171,20 @@ class resources_table extends table_sql {
 
         return $filescm;
 
+    }
+
+    /**
+     * Get Intro.
+     *
+     * @param cm_info $cm
+     * @param string $filearea
+     * @return string
+     * @throws dml_exception
+     */
+    protected function get_intro(cm_info $cm, string $filearea): string {
+        global $DB;
+        $instance = $DB->get_record($cm->modname, ['id' => $cm->instance], $fields='*', IGNORE_MISSING);
+        return isset($instance->$filearea) ? $instance->$filearea : '';
     }
 
     /**
@@ -214,6 +246,26 @@ class resources_table extends table_sql {
      */
     public function col_filename(stdClass $row): string {
         return !empty($row->filename) ? $row->filename : '-';
+    }
+
+    /**
+     * Col location
+     *
+     * @param stdClass $row Full data of the current row.
+     * @return string
+     * @throws coding_exception
+     */
+    public function col_location(stdClass $row): string {
+        switch ($row->location) {
+            case 'intro':
+                return get_string('intro', 'theme_cbe');
+            case 'content':
+                return get_string('content', 'theme_cbe');
+            case 'introattachment':
+                return get_string('introattachment', 'theme_cbe');
+            default:
+                return '-';
+        }
     }
 
     /**

@@ -222,3 +222,7 @@ $string['darkheader'] = 'Dark Header';
 $string['darkheader_desc'] = 'If you select this option, the header will be made dark for teachers and students. With black background and white text and icons.';
 
 $string['notice_filecreate_tip'] = 'Retrieve NextCloud URL in share.';
+$string['location'] = 'Location';
+$string['intro'] = 'Description';
+$string['content'] = 'Content';
+$string['introattachment'] = 'Attachment';
