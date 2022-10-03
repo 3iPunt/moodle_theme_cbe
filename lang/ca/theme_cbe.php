@@ -221,7 +221,7 @@ $string['delete_course'] = 'Esborrar curs';
 $string['darkheader'] = 'Capçalera Fosca';
 $string['darkheader_desc'] = 'Si seleccioneu aquesta opció, la capçalera es farà fosca per a professors i alumnes. Amb fons negre i text i icones en blanc.';
 
-$string['notice_filecreate_tip'] = 'Recupera la URL de NextCloud per compartir.';
+$string['notice_filecreate_tip'] = 'Recupera la URL de NextCloud per compartir. De vegades, NextCloud triga a mostrar-se, tingui paciència.';
 $string['location'] = 'Ubicació';
 $string['intro'] = 'Descripció';
 $string['content'] = 'Contingut';
