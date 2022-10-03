@@ -1,0 +1,33 @@
+.atto_tipnc_iframe_set {
+
+  iframe#file_nextcloud_iframe {
+    position: relative;
+    top: -88px;
+    border: 2px solid #ebebeb;
+    z-index: 4;
+  }
+
+  .hide_header {
+    background-color: #fff;
+    height: 52px;
+    position: relative;
+    top: -36px;
+    z-index: 5;
+  }
+
+  div#file_url_button {
+    z-index: 100;
+    align-self: flex-end;
+    position: relative;
+    top: 13px;
+    text-align: end;
+    >a {
+      font-size: 9px;
+      background-color: white;
+      &:hover {
+        background-color: grey;
+        color: white;
+      }
+    }
+  }
+}
