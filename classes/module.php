@@ -62,10 +62,35 @@ class module  {
     protected $coursemoodle;
 
     /** @var string[] Activities */
-    static public $activities = ['assign', 'forum', 'quiz', 'feedback', 'bigbluebuttonbn', 'h5pactivity'];
+    static public $activities = [
+        'assign',
+        'bigbluebuttonbn',
+        'chat',
+        'choice',
+        'feedback',
+        'forum',
+        'glossary',
+        'h5pactivity',
+        'lesson',
+        'lti',
+        'quiz',
+        'scorm',
+        'survey',
+        'workshop',
+    ];
 
     /** @var string[] Resources */
-    static public $resources = ['tresipuntvideo', 'tresipuntaudio', 'tipnextcloud', 'resource', 'folder', 'url', 'page'];
+    static public $resources = [
+        'tresipuntvideo',
+        'tresipuntaudio',
+        'tipnextcloud',
+        'resource',
+        'folder',
+        'url',
+        'page',
+        'book',
+        'imscp'
+    ];
 
     /** @var string[] Others */
     static public $others = ['label', 'tresipuntshare'];
