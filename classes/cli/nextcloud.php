@@ -53,6 +53,10 @@ class nextcloud {
         self::repository($wwwroot, $ncadmin, $ncpass);
         // Assign Submission
         self::submission($wwwroot, $ncadmin, $ncpass);
+        // Mod Tip NextCloud
+        self::modtipnc($wwwroot);
+        // Atto NextCloud
+        self::attotipnc($wwwroot);
     }
 
     /**
@@ -62,8 +66,6 @@ class nextcloud {
      * @param string|null $ncadmin
      * @param string|null $ncpass
      * @throws repository_exception
-     * @throws dml_exception
-     * @throws \coding_exception
      */
     static public function repository(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
 
@@ -111,6 +113,38 @@ class nextcloud {
         cfg::set('assignsubmission_tipnc', 'folder', '');
         cfg::set('assignsubmission_tipnc', 'template', 'template.docx');
         cfg::set('assignsubmission_tipnc', 'location', '/apps/onlyoffice/');
+        cli_writeln('Assign Submission NextCloud configured!!');
+    }
+
+    /**
+     * Mod Tip NextCloud.
+     *
+     * @param string $wwwroot
+     * @throws dml_exception
+     */
+    static public function modtipnc(string $wwwroot) {
+        $index = strpos($wwwroot, 'moodle');
+        if ($index !== false) {
+            $default_host = substr($wwwroot,$index + 7);
+            cfg::set('tipnextcloud', 'host_nextcloud', 'https://nextcloud.' . $default_host);
+        }
+        cfg::set('tipnextcloud ', 'host_nextcloud_enabled', true);
+        cli_writeln('Module TIP NextCloud configured!!');
+    }
+
+    /**
+     * ATTO NextCloud.
+     *
+     * @param string $wwwroot
+     * @throws dml_exception
+     */
+    static public function attotipnc(string $wwwroot) {
+        $index = strpos($wwwroot, 'moodle');
+        if ($index !== false) {
+            $default_host = substr($wwwroot,$index + 7);
+            cfg::set('atto_tipnc', 'host_nextcloud', 'https://nextcloud.' . $default_host);
+        }
+        cli_writeln('ATTO TIP NextCloud configured!!');
     }
 
 }
