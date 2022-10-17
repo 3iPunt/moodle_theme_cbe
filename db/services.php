@@ -19,6 +19,7 @@
  * @copyright   3iPunt <https://www.tresipunt.com/>
  */
 
+use theme_cbe\external\blockright_external;
 use theme_cbe\external\board_external;
 use theme_cbe\external\course_external;
 use theme_cbe\external\coursecard_external;
@@ -156,7 +157,15 @@ $functions = [
         'type' => 'write',
         'ajax' => true,
         'loginrequired' => true
-    ]
+    ],
+    'theme_cbe_block_right_set_status' => [
+        'classname' => blockright_external::class,
+        'methodname' => 'set_status',
+        'description' => 'Set user preference Block Right, expanded o contracted',
+        'type' => 'write',
+        'ajax' => true,
+        'loginrequired' => true
+    ],
 ];
 $services = [
     'theme_cbe' => [
@@ -176,7 +185,8 @@ $services = [
             'theme_cbe_board_remove_anchor',
             'theme_cbe_board_visible',
             'theme_cbe_board_hidden',
-            'theme_cbe_nextcloud_createfile'
+            'theme_cbe_nextcloud_createfile',
+            'theme_cbe_block_right_set_status'
         ],
         'restrictedusers' => 0,
         'enabled' => 1
