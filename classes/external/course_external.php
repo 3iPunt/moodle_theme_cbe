@@ -49,10 +49,10 @@ class course_external extends external_api {
     public static function create_course_parameters(): external_function_parameters {
         return new external_function_parameters(
             array(
-                'fullname' => new external_value(PARAM_TEXT, 'Course Fullname', true),
-                'shortname' => new external_value(PARAM_TEXT, 'Course Shortname', true),
-                'category' => new external_value(PARAM_INT, 'Category ID', true),
-                'visible' => new external_value(PARAM_BOOL, 'Visibility', true),
+                'fullname' => new external_value(PARAM_TEXT, 'Course Fullname'),
+                'shortname' => new external_value(PARAM_TEXT, 'Course Shortname'),
+                'category' => new external_value(PARAM_INT, 'Category ID'),
+                'visible' => new external_value(PARAM_BOOL, 'Visibility'),
             )
         );
     }
@@ -151,7 +151,7 @@ class course_external extends external_api {
     public static function check_course_shortname_parameters(): external_function_parameters {
         return new external_function_parameters(
             array(
-                'shortname' => new external_value(PARAM_TEXT, 'Course Shortname', true)
+                'shortname' => new external_value(PARAM_TEXT, 'Course Shortname')
             )
         );
     }
