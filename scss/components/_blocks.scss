@@ -118,6 +118,16 @@ body[data-theme='cbe'][data-role="user"] {
 
 
   }
+
+  .block_completion_progress img.moduleIcon,
+  .progressEventInfo img.moduleIcon {
+    background-color: $primary-color;
+    border-radius: 15px;
+    padding: 4px 5px;
+    min-width: 30px;
+    height: 30px;
+  }
+
 }
 
 body[data-theme='cbe'][data-role="user"].block-right-hide {
