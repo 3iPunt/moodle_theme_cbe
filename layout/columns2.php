@@ -44,9 +44,21 @@ if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
 
-$bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;
+
+$blockrightopen = (get_user_preferences('theme_cbe_blockright', '0') == '0');
+
+if (!$hasblocks) {
+    $extraclasses[] = 'block-right-hide';
+} else {
+    if ($blockrightopen) {
+        $extraclasses[] = 'block-right-hide';
+    }
+}
+
+$bodyattributes = $OUTPUT->body_attributes($extraclasses);
+
 $buildregionmainsettings = !$PAGE->include_region_main_settings_in_header_actions();
 // If the settings menu will be included in the header then don't add it here.
 $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settings_menu() : false;
