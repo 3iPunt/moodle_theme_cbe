@@ -24,9 +24,11 @@ namespace theme_cbe\cli;
 
 global $CFG;
 
+use admin_settingpage;
 use context_system;
 use core_plugin_manager;
 use dml_exception;
+use editor_atto_subplugins_setting;
 use repository;
 use repository_exception;
 use repository_instance_form;
@@ -143,7 +145,24 @@ class nextcloud {
         if ($index !== false) {
             $default_host = substr($wwwroot,$index + 7);
             cfg::set('atto_tipnc', 'host_nextcloud', 'https://nextcloud.' . $default_host);
+
+            cli_writeln('ATTO TIP NextCloud Host');
         }
+
+        $attoconfig = 'collapse = collapse
+style1 = title, bold, italic
+list = unorderedlist, orderedlist, indent
+links = link
+files = emojipicker, image, media, recordrtc, h5p, tipnc
+style2 = underline, strike, subscript, superscript
+align = align
+insert = equation, charmap, table, clear
+undo = undo
+accessibility = accessibilitychecker, accessibilityhelper
+other = html';
+
+        cfg::set('editor_atto ', 'toolbar', $attoconfig);
+
         cli_writeln('ATTO TIP NextCloud configured!!');
     }
 
