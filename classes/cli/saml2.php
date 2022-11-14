@@ -71,11 +71,10 @@ class saml2 {
             'stateOrProvinceName' => 'Catalunya',
             'organizationalUnitName' => $sitename,
         );
-        $numberofdays = 200;
 
         $saml2auth = new auth_plugin_saml2();
         try {
-            $error = create_certificates($saml2auth, $dn, $numberofdays);
+            $error = create_certificates($saml2auth, $dn);
             cli_writeln('SAML2: Create Certificate');
         } catch (moodle_exception $e) {
             cli_writeln('SAML2: Already Created!! - ' . $e->getMessage());
