@@ -49,6 +49,7 @@ class nextcloud {
      * @param string|null $ncadmin
      * @param string|null $ncpass
      * @throws dml_exception
+     * @throws repository_exception
      */
     static public function execute(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
         // Repository NextCloud
@@ -67,6 +68,7 @@ class nextcloud {
      * @param string $wwwroot
      * @param string|null $ncadmin
      * @param string|null $ncpass
+     * @return null
      * @throws repository_exception
      */
     static public function repository(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
