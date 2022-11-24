@@ -31,3 +31,6 @@
     }
   }
 }
+.atto_form input#_atto_link_urlentry ~ span.input-group-append .openlinkbrowser {
+  display: none;
+}
