@@ -7,26 +7,31 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
       background-size: cover;
       min-height: 130px;
       .degraded {
-        background: linear-gradient(180deg,rgba(0,0,0,0.8) 10%,rgba(0,0,0,0) 100%);
+        background: linear-gradient(180deg,rgba(0,0,0,0.7) 5%,rgba(0,0,0,0) 100%);
+        border-radius: 5px;
       }
       .card-body {
-        padding: 20px 20px 0;
+        padding: 20px 46px 0;
         .page-header-headings {
           h1 {
             font-size: 44px;
             font-weight: 600;
             letter-spacing: 1px;
+            margin-top: 11px;
             color: white;
-            margin-bottom: 18px;
             @media (max-width: 500px) {
               font-size: 24px;
               margin-right: 35px;
             }
           }
           h2 {
-            font-size: 23px;
-            color: white;
+            font-size: 16px;
             margin-bottom: 4px;
+            background-color: #cdcdcd;
+            display: inline;
+            padding: 6px 12px 3px;
+            border-radius: 10px;
+            color: #737373;
             @media (max-width: 500px) {
               margin-right: 35px;
               font-size: 18px;
@@ -35,33 +40,27 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
         }
         .tool-tooltip.edition {
           position: absolute;
-          right: -10px;
+          right: 10px;
           top: 15px;
           .tool-link {
-            background-color: $primary-color;
-            height: 45px;
-            width: 60px;
+            background-color: $grey-light;
+            height: 36px;
+            width: 36px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 9px 0 0 10px;
+            border-radius: 5px;
             cursor: pointer;
             i {
-              color: white;
+              color: $black-ligth;
               font-size: 25px;
             }
-            .triangle {
-              width: 0;
-              height: 0;
-              border-top: 10px solid $primary-color-hard;
-              border-right: 10px solid transparent;
-              position: absolute;
-              bottom: -10px;
-              right: 0;
-            }
             &:hover, &:focus {
-              background-color: $primary-color-light !important;
+              background-color: $primary-color !important;
               text-decoration: none;
+              i {
+                color: white;
+              }
             }
           }
         }
@@ -81,16 +80,17 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
     a#action-menu-toggle-2,
     a#action-menu-toggle-3,
     a#action-menu-toggle-4 {
-      color: white;
-      background-color: $primary-color;
-      padding: 10px 12px;
+      color: $black-ligth;
+      background-color: $grey-light;
+      padding: 5px 6px 3px;
       position: relative;
-      right: -21px;
-      top: -9px;
-      border-radius: 10px 0 0 10px;
+      right: -2px;
+      top: -20px;
+      border-radius: 6px;
       z-index: 2;
       &:hover {
-        background-color: $primary-color-light !important;
+        background-color: $primary-color !important;
+        color: white;
       }
     }
   }
@@ -102,10 +102,12 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics{
         display: none;
       }
       .section.main {
-        background-color: #fff;
+        background-color: white;
         margin: 0 0 15px;
-        border: 1px solid $border-color;
         padding: 15px 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: $box-shadow;
       }
     }
     li.activity {

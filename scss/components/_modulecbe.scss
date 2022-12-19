@@ -12,10 +12,10 @@ body[data-theme='cbe'][data-role="user"] {
       align-items: center;
       justify-content: center;
       margin-right: 10px;
-      border-radius: 30px;
+      border-radius: 6px;
       &.resource_mod {
         background-color: white;
-        border: 4px solid $primary-color;
+        border: 3px solid $primary-color;
         .module-resource-icon-component-cbe {
           svg.theme-cbe-icon {
             width: 27px;
@@ -62,20 +62,21 @@ body[data-theme='cbe'][data-role="user"] {
 
   .modulecbe {
     background-color: white;
-    border: 1px solid $grey-border;
     align-items: normal;
     margin-bottom: 15px;
     position: relative;
+    border: none;
     .alert-msgs {
       display: flex;
       position: absolute;
-      right: 4px;
-      top: 4px;
+      right: 20px;
+      top: 15px;
       .is_hidden_msg {
         color: #212529;
         background-color: #5bc0de;
         font-size: 10px;
-        padding: 1px 4px;
+        padding: 3px 6px 1px;
+        border-radius: 5px;
         margin-left: 4px;
         &.board_anchor {
           background-color: #c6a633;
@@ -106,7 +107,7 @@ body[data-theme='cbe'][data-role="user"] {
         width: 60px;
         height: 60px;
         background-color: $primary-color;
-        border-radius: 30px;
+        border-radius: 6px;
         margin: 20px;
         display: flex;
         align-items: center;
@@ -115,7 +116,7 @@ body[data-theme='cbe'][data-role="user"] {
         cursor: pointer;
         &.resource_mod {
           background-color: white;
-          border: 4px solid $primary-color;
+          border: 3px solid $primary-color;
           .module-resource-icon-component-cbe {
             svg.theme-cbe-icon {
               width: 27px;
@@ -254,12 +255,12 @@ body[data-theme='cbe'][data-role="user"] {
         >.action {
           position: relative;
           margin-right: 0;
-          margin-left: 5px;
+          margin-left: 10px;
           width: 30px;
           height: 30px;
-          font-size: 14px;
-          background-color: $grey-medium2;
+          font-size: 18px;
           margin-top: 35px;
+          top: 20px;
           &.is_anchor {
             background-color: #c6a633;
           }
@@ -291,6 +292,7 @@ body[data-theme='cbe'][data-role="user"] {
       display: flex;
       align-items: center;
       flex-direction: column;
+      border-radius: 5px;
       div.comments-block {
         background-color: white;
         width: 100%;
@@ -361,15 +363,6 @@ body[data-theme='cbe'][data-role="user"] {
                 font-size: 14px;
                 margin-bottom: 8px;
               }
-              .triangle {
-                width: 0;
-                height: 0;
-                border-top: 10px solid #e8e8e8;
-                border-left: 10px solid transparent;
-                position: absolute;
-                top: 0;
-                left: -10px;
-              }
             }
             .action_buttons.comment {
               position: relative;
@@ -413,7 +406,6 @@ body[data-theme='cbe'][data-role="user"] {
       }
       .action_comment {
         height: 60px;
-        outline: 1px solid $grey-border;
         display: flex;
         align-items: center;
         width: 100%;
@@ -421,6 +413,10 @@ body[data-theme='cbe'][data-role="user"] {
         background-color: white;
         z-index: 10;
         position: relative;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border: none;
+        outline: none;
         img.picture-current {
           height: 38px;
           width: 38px;

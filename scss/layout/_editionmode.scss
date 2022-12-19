@@ -9,14 +9,6 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics {
       position: absolute;
       bottom: 54px;
       right: -10px;
-      &.triangle-edit {
-        bottom: 59px;
-        right: -10px;
-      }
-      &.triangle-config {
-        bottom: 8px;
-        right: -10px;
-      }
     }
     .singlebutton {
       position: relative;
@@ -85,10 +77,12 @@ body[data-theme='cbe'][data-role='user']#page-course-view-topics.editing {
     background-color: #cacaca!important;
     .course-content {
       >ul.topics .section.main, .single-section {
-        background-color: #fff;
+        background-color: white;
         margin: 0 0 15px;
-        border: 5px dashed #8a8a8a;
         padding: 15px 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: $box-shadow;
       }
       >ul.topics #section-0:only-child {
         /*display: none !important;*/

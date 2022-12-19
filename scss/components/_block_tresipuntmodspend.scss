@@ -6,4 +6,20 @@ body[data-theme='cbe'][data-role="user"]  {
     white-space: normal;
   }
 
+  .block_tresipuntmodspend >.content a.modspend {
+    padding: 8px 18px 6px;
+    font-size: 13px !important;
+    white-space: normal;
+    width: 100%;
+    margin: 4px 0;
+    background-color: white;
+    border: 2px solid $primary-color;
+    border-radius: 5px;
+    color: black;
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+
 }

@@ -6,11 +6,14 @@ body[data-theme='cbe'][data-role='user'] {
       background-position: center;
       background-size: cover;
       .degraded {
-        background: linear-gradient(180deg,rgba(0,0,0,0.8) 10%,rgba(0,0,0,0) 100%);
+        background: linear-gradient(180deg,rgba(0,0,0,0.7) 5%,rgba(0,0,0,0) 100%);
+        border-radius: 5px;
         .card-body {
-          padding: 24px 24px 14px;
+          padding: 25px 50px 11px;
         }
         h1, h2 {
+          font-size: 44px;
+          margin-top: 11px;
           color: white;
           @media (max-width: 500px) {
             font-size: 24px;
@@ -18,9 +21,13 @@ body[data-theme='cbe'][data-role='user'] {
           }
         }
         .subtitle {
-          font-size: 23px;
-          color: white !important;
+          font-size: 16px;
           margin-bottom: 4px;
+          background-color: #cdcdcd;
+          display: inline;
+          padding: 6px 12px 3px;
+          border-radius: 10px;
+          color: #737373;
           @media (max-width: 500px) {
             margin-right: 35px;
             font-size: 18px;
@@ -35,7 +42,9 @@ body[data-theme='cbe'][data-role='user'] {
     main.contain {
       background-color: white;
       padding: 30px;
-      border: 1px solid $border-color;
+      border: none;
+      border-radius: 5px;
+      box-shadow: $box-shadow;
       margin-top: 0;
       >h2 {
         text-align: center;

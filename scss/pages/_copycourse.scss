@@ -5,8 +5,10 @@ body[data-theme='cbe'][data-role='user'] {
     main.contain {
       background-color: white;
       padding: 30px;
-      border: 1px solid $border-color;
       margin-top: 0;
+      border: none;
+      border-radius: 5px;
+      box-shadow: $box-shadow;
       h3.title {
         font-size: 28px;
         font-family: $fontbold;
