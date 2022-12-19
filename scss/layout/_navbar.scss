@@ -344,7 +344,7 @@ body[data-theme='cbe'] {
             background-color: $grey-light;
             border-radius: 5px;
             &[aria-expanded="true"] {
-              background-color: $primary-color-light;
+              background-color: $primary-color;
               img.icon {
                 color: white;
               }
@@ -357,14 +357,15 @@ body[data-theme='cbe'] {
           }
           .dropdown-menu-right {
             border-radius: 5px;
-            box-shadow: $shadow-color 0 3px 8px;
-            margin-top: 5px;
+            box-shadow: rgb(0 0 0 / 16%) 0 0 10px;
+            margin-top: 11px;
             padding: 10px;
             max-height: 500px;
             overflow-y: scroll;
             scrollbar-color: $grey-border transparent;
             scrollbar-width: thin;
             width: 294px;
+            border: none;
             @media (min-width: 0) {
               right: -104px;
             }
@@ -378,7 +379,7 @@ body[data-theme='cbe'] {
               list-style: none;
               display: grid;
               flex-wrap: wrap;
-              padding: 2px 2px 0 0;
+              padding: 2px 2px 10px 0;
               margin-bottom: 0;
               grid-template-columns: 133px 133px;
               grid-gap: 12px 2px;
@@ -621,14 +622,15 @@ body[data-theme='cbe'][data-role="admin"] {
       }
       .dropdown-menu-right {
         border-radius: 5px;
-        box-shadow: $shadow-color 0 3px 8px;
-        margin-top: 5px;
+        box-shadow: rgb(0 0 0 / 16%) 0 0 10px;
+        margin-top: 11px;
         padding: 10px;
         max-height: 500px;
         overflow-y: scroll;
         scrollbar-color: $grey-border transparent;
         scrollbar-width: thin;
         width: 300px;
+        border: none;
         @media (min-width: 0) {
           right: -104px;
         }
@@ -642,7 +644,7 @@ body[data-theme='cbe'][data-role="admin"] {
           list-style: none;
           display: grid;
           flex-wrap: wrap;
-          padding: 2px 2px 0 0;
+          padding: 2px 2px 10px 0;
           margin-bottom: 0;
           grid-template-columns: 133px 133px;
           grid-gap: 12px 2px;
