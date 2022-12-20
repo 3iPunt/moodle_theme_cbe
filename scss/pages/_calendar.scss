@@ -1,5 +1,6 @@
 body[data-theme='cbe'][data-role='user']#page-calendar-view,
-body[data-theme='cbe'][data-role='user']#page-my-index {
+body[data-theme='cbe'][data-role='user']#page-my-index,
+body[data-theme='cbe'][data-role='user']#page-user-files {
 
   .calendarmonth,
   .popover-body,
@@ -13,6 +14,17 @@ body[data-theme='cbe'][data-role='user']#page-my-index {
   }
 
 
+}
+
+
+body[data-theme='cbe'][data-role='user']#page-calendar-view,
+body[data-theme='cbe'][data-role='user']#page-user-profile,
+body[data-theme='cbe'][data-role='user']#page-grade-report-overview-index,
+body[data-theme='cbe'][data-role='user']#page-user-files {
+
+  #region-main {
+    box-shadow: $box-shadow;
+  }
 }
 
 

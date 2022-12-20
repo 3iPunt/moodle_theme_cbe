@@ -42,6 +42,11 @@ body[data-theme='cbe'][data-role='user'] {
     border: none;
   }
 
+  #region-main {
+    border: none;
+    border-radius: 5px;
+  }
+
   [data-region="blocks-column"] {
     margin-top: 18px;
     .card {

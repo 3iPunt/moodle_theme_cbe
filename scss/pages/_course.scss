@@ -214,7 +214,8 @@ body[data-theme='cbe'][data-role='user'] {
                 margin: 0;
                 padding: 10px 0;
                 &:hover {
-                  color: white;
+                  color: $black-ligth;
+                  background-color: $grey-light;
                 }
               }
             }

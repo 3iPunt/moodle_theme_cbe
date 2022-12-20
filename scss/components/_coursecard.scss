@@ -74,14 +74,14 @@ body[data-theme='cbe'][data-role="user"]  {
         }
         .not_nums {
           position: absolute;
-          top: 2px;
+          top: -7px;
           left: 17px;
           text-align: center;
-          background-color: red;
-          color: white;
+          background-color: $primary-color;
+          color: #fff;
           border-radius: 22px;
-          padding: 0 4px;
-          font-size: 12px;
+          padding: 2px 3px 1px;
+          font-size: 11px;
           min-width: 19px;
         }
       }
