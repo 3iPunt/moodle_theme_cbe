@@ -48,11 +48,12 @@ require(__DIR__.'/classes/cli/role.php');
 require(__DIR__.'/classes/cli/saml2.php');
 require(__DIR__.'/classes/cli/langs.php');
 
-$usage = 'Automation of the Digital Democratic environment. Site configuration and plugins, Roles, Capabilities and other functionalities.
+$usage = 'Automation of the Digital Democratic environment. Site configuration and plugins,
+Roles, Capabilities and other functionalities.
 
 Usage:
     # php postinstall.php --wwwroot=<wwwroot>  --ncadmin=<ncadmin> --ncpass=<ncpass>
-    
+
     --wwwroot=<wwwroot>  www Root.
     --ncadmin=<ncadmin>  Name Admin NextCloud.
     --ncpass=<ncpass>  Password Admin NextCloud.
@@ -67,7 +68,9 @@ Description.
 
 Examples:
 
-    # php theme/cbe/postinstall.php --wwwroot=moodle.test1.digitaldemocratic.net --ncadmin=admin --ncpass=1234 --sitename="Digital Democratic" --contactname="Contact Name" --contactemail="contact@test.xxx"
+    # php theme/cbe/postinstall.php --wwwroot=moodle.test1.digitaldemocratic.net
+    --ncadmin=admin --ncpass=1234 --sitename="Digital Democratic"
+    --contactname="Contact Name" --contactemail="contact@test.xxx"
         Automatization environment
 
 ';
@@ -102,7 +105,6 @@ $contactname = $options['contactname'] ?? null;
 $contactemail = $options['contactemail'] ?? null;
 
 if (isset($wwwroot)) {
-
     // 1. Registre
     registre::execute($sitename, $contactname, $contactemail);
     // 2. Configuration
@@ -119,15 +121,10 @@ if (isset($wwwroot)) {
     saml2::execute($sitename, $contactname, $contactemail);
     // 8. Languages
     langs::execute();
-
-    // 9. Final!
+    // 9. Final.
     purge_caches();
     cli_writeln('Purge Cache');
 
 } else {
     cli_error('param wwwroot is required!');
 }
-
-
-
-

@@ -26,17 +26,17 @@ use context_system;
 use moodle_exception;
 use stdClass;
 
+defined('MOODLE_INTERNAL') || die();
+
 global $CFG;
 require_once($CFG->dirroot . '/my/lib.php');
-
-defined('MOODLE_INTERNAL') || die();
 
 class functionality {
 
     /**
      * Execute
      */
-    static public function execute() {
+    public static function execute() {
         self::blocks();
         self::modules();
     }
@@ -44,7 +44,7 @@ class functionality {
     /**
      * Blocks
      */
-    static public function blocks() {
+    public static function blocks() {
         self::create_block('tresipuntmodspend');
         self::blocks_hide();
         self::blocks_position();
@@ -54,7 +54,7 @@ class functionality {
     /**
      * Modules
      */
-    static public function modules() {
+    public static function modules() {
         self::module_hide('book');
         self::module_hide('chat');
         self::module_hide('choice');
@@ -83,7 +83,7 @@ class functionality {
      * Module Hide
      * @param string $modname
      */
-    static public function module_hide(string $modname) {
+    public static function module_hide(string $modname) {
         global $DB;
         try {
             $params = new stdClass;
@@ -104,7 +104,7 @@ class functionality {
      * Module Recommended Reset.
      *
      */
-    static public function module_recommended_reset() {
+    public static function module_recommended_reset() {
         global $DB;
         try {
             $tablefav = 'favourite';
@@ -131,7 +131,7 @@ class functionality {
      *
      * @param string $modname
      */
-    static public function module_recommended(string $modname) {
+    public static function module_recommended(string $modname) {
         global $DB;
         try {
             $tablemodules = 'modules';
@@ -166,7 +166,7 @@ class functionality {
      *
      * @param string $blockname
      */
-    static protected function create_block(string $blockname) {
+    protected static function create_block(string $blockname) {
         global $DB;
         try {
             $tablename = 'block_instances';
@@ -193,7 +193,7 @@ class functionality {
      * Position blocks
      *
      */
-    static protected function blocks_position() {
+    protected static function blocks_position() {
         self::block_position('timeline', 3);
         self::block_position('calendar_month', 1);
         self::block_position('tresipuntmodspend', 2);
@@ -205,7 +205,7 @@ class functionality {
      * @param string $blockname
      * @param int $weight
      */
-    static protected function block_position(string $blockname, int $weight) {
+    protected static function block_position(string $blockname, int $weight) {
         global $DB;
         try {
             $tablename = 'block_instances';
@@ -239,7 +239,7 @@ class functionality {
      * Hide blocks
      *
      */
-    static protected function blocks_hide() {
+    protected static function blocks_hide() {
         self::block_hide('lp');
         self::block_hide('private_files');
         self::block_hide('online_users');
@@ -253,7 +253,7 @@ class functionality {
      *
      * @param string $blockname
      */
-    static protected function block_hide(string $blockname) {
+    protected static function block_hide(string $blockname) {
         global $DB;
         try {
             $tableinst = 'block_instances';

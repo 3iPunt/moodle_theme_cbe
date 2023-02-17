@@ -39,7 +39,7 @@ class langs {
      * Execute.
      *
      */
-    static public function execute() {
+    public static function execute() {
         self::configlang('ca');
         get_string_manager()->reset_caches();
     }
@@ -49,7 +49,7 @@ class langs {
      *
      * @param string $lang
      */
-    static public function configlang(string $lang) {
+    public static function configlang(string $lang) {
         self::install($lang);
         self::checkout($lang);
         self::import($lang);
@@ -61,7 +61,7 @@ class langs {
      *
      * @param string $lang
      */
-    static public function install(string $lang) {
+    public static function install(string $lang) {
         core_php_time_limit::raise();
         $controller = new controller();
         try {
@@ -79,7 +79,7 @@ class langs {
      *
      * @param string $lang
      */
-    static public function checkout(string $lang) {
+    public static function checkout(string $lang) {
         core_php_time_limit::raise(HOURSECS);
         raise_memory_limit(MEMORY_EXTRA);
         try {
@@ -96,7 +96,7 @@ class langs {
      *
      * @param string $lang
      */
-    static public function checkin(string $lang) {
+    public static function checkin(string $lang) {
         core_php_time_limit::raise(HOURSECS);
         raise_memory_limit(MEMORY_EXTRA);
         try {
@@ -113,7 +113,7 @@ class langs {
      *
      * @param string $lang
      */
-    static public function import(string $lang) {
+    public static function import(string $lang) {
         global $CFG;
         $routeimport = $CFG->dirroot . '/admin/tool/customlang/cli/import.php';
         cli_writeln('Langs: Import ' . strtoupper($lang));

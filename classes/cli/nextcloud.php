@@ -22,23 +22,16 @@
 
 namespace theme_cbe\cli;
 
-global $CFG;
-
-use admin_settingpage;
-use context_system;
 use core_plugin_manager;
 use dml_exception;
-use editor_atto_subplugins_setting;
 use repository;
 use repository_exception;
-use repository_instance_form;
 use repository_type;
-use stdClass;
-
-require_once($CFG->dirroot . '/my/lib.php');
-require_once($CFG->dirroot . '/repository/lib.php');
 
 defined('MOODLE_INTERNAL') || die();
+global $CFG;
+require_once($CFG->dirroot . '/my/lib.php');
+require_once($CFG->dirroot . '/repository/lib.php');
 
 class nextcloud {
 
@@ -51,14 +44,14 @@ class nextcloud {
      * @throws dml_exception
      * @throws repository_exception
      */
-    static public function execute(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
-        // Repository NextCloud
+    public static function execute(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
+        // Repository NextCloud.
         self::repository($wwwroot, $ncadmin, $ncpass);
-        // Assign Submission
+        // Assign Submission.
         self::submission($wwwroot, $ncadmin, $ncpass);
-        // Mod Tip NextCloud
+        // Mod Tip NextCloud.
         self::modtipnc($wwwroot);
-        // Atto NextCloud
+        // Atto NextCloud.
         self::attotipnc($wwwroot);
     }
 
@@ -68,10 +61,10 @@ class nextcloud {
      * @param string $wwwroot
      * @param string|null $ncadmin
      * @param string|null $ncpass
-     * @return null
+     *
      * @throws repository_exception
      */
-    static public function repository(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
+    public static function repository(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
 
         $repositorytype = repository::get_type_by_typename('nextcloud');
         if (empty($repositorytype)) {
@@ -91,10 +84,10 @@ class nextcloud {
         }
 
         // TODO
-        // Create oAuth2
+        // Create oAuth2.
         cli_writeln('NextCloud oAuth2: Not configured!!');
         // Create NextCloud Repository Instance.
-        //// Problem: Current user don't have this capability: 'moodle/site:config'
+        // Problem: Current user don't have this capability: 'moodle/site:config'.
         cli_writeln('NextCloud Repository: Not configured!!');
     }
 
@@ -106,12 +99,13 @@ class nextcloud {
      * @param string|null $ncpass
      * @throws dml_exception
      */
-    static public function submission(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
+    public static function submission(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
         $index = strpos($wwwroot, 'moodle');
         if ($index !== false) {
-            $default_host = substr($wwwroot,$index + 7);
-            cfg::set('assignsubmission_tipnc', 'host', 'https://nextcloud.' . $default_host);
+            $defaulthost = substr($wwwroot, $index + 7);
+            cfg::set('assignsubmission_tipnc', 'url', 'https://nextcloud.' . $defaulthost);
         }
+        cfg::set('assignsubmission_tipnc', 'host', 'dd-apps-nextcloud-nginx');
         cfg::set('assignsubmission_tipnc', 'user', $ncadmin);
         cfg::set('assignsubmission_tipnc', 'password', $ncpass);
         cfg::set('assignsubmission_tipnc', 'folder', '');
@@ -124,15 +118,20 @@ class nextcloud {
      * Mod Tip NextCloud.
      *
      * @param string $wwwroot
+     * @param string|null $ncadmin
+     * @param string|null $ncpass
      * @throws dml_exception
      */
-    static public function modtipnc(string $wwwroot) {
+    public static function modtipnc(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
         $index = strpos($wwwroot, 'moodle');
         if ($index !== false) {
-            $default_host = substr($wwwroot,$index + 7);
-            cfg::set('tipnextcloud', 'host_nextcloud', 'https://nextcloud.' . $default_host);
+            $defaulthost = substr($wwwroot, $index + 7);
+            cfg::set('tipnextcloud', 'url_nextcloud', 'https://nextcloud.' . $defaulthost);
         }
+        cfg::set('tipnextcloud', 'host_nextcloud', 'dd-apps-nextcloud-nginx');
         cfg::set('tipnextcloud ', 'host_nextcloud_enabled', true);
+        cfg::set('tipnextcloud', 'user_nextcloud', $ncadmin);
+        cfg::set('tipnextcloud', 'password_nextcloud', $ncpass);
         cli_writeln('Module TIP NextCloud configured!!');
     }
 
@@ -142,11 +141,11 @@ class nextcloud {
      * @param string $wwwroot
      * @throws dml_exception
      */
-    static public function attotipnc(string $wwwroot) {
+    public static function attotipnc(string $wwwroot) {
         $index = strpos($wwwroot, 'moodle');
         if ($index !== false) {
-            $default_host = substr($wwwroot,$index + 7);
-            cfg::set('atto_tipnc', 'host_nextcloud', 'https://nextcloud.' . $default_host);
+            $defaulthost = substr($wwwroot, $index + 7);
+            cfg::set('atto_tipnc', 'host_nextcloud', 'https://nextcloud.' . $defaulthost);
 
             cli_writeln('ATTO TIP NextCloud Host');
         }
