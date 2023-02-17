@@ -52,7 +52,7 @@ if ($ADMIN->fulltree) {
         $default_avatar_api_url = 'https://sso.' . $default_host . '/auth/realms/master/avatar-provider';
         $default_avatar_other_users = 'https://sso.' . $default_host . '/avatar/';
         $default_avatar_profile_url = 'https://sso.' . $default_host . '/auth/realms/master/account';
-        $default_hostnccreate = 'https://nextcloud.' . $default_host . '/apps/files';
+        $default_hostnccreate = 'https://nextcloud.' . $default_host . '/apps/files/';
     }
 
     $setting = (new admin_setting_configtext(
@@ -149,7 +149,7 @@ if ($ADMIN->fulltree) {
     ));
 
     $page->add($setting);
-    
+
     $setting = (new admin_setting_configcheckbox(
         'theme_cbe/vclasses_direct',
         get_string('vclasses_direct', 'theme_cbe'),
