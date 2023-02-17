@@ -11,6 +11,9 @@ body[data-theme='cbe'][data-role='user'] {
         background-color: $grey-light;
         span.media-left {
           background-color: $primary-color;
+          i {
+            color: white !important;
+          }
         }
       }
 
@@ -64,7 +67,7 @@ body[data-theme='cbe'][data-role='user'] {
         }
         &[data-key="sitesettings"] {
           .media .media-body {
-            top: 3px;
+            top: 7px;
           }
         }
         &[data-type="30"] {
@@ -81,24 +84,26 @@ body[data-theme='cbe'][data-role='user'] {
       }
       .media {
         span.media-left {
-          background-color: $grey-medium2;
-          border-radius: 15px;
-          width: 30px;
-          height: 30px;
+          background-color: $grey-light;
+          border-radius: 5px;
+          width: 36px;
+          height: 36px;
           display: flex;
           align-items: center;
           justify-content: center;
           position: relative;
           left: -7px;
           i.icon {
-            color: white;
+            color: $black-ligth;
             margin-right: 0;
-            font-size: 14px;
+            font-size: 21px;
+            width: initial;
+            height: initial;
           }
         }
         .media-body {
           position: relative;
-          top: 5px;
+          top: 7px;
         }
       }
     }

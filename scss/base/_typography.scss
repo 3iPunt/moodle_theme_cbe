@@ -1,25 +1,4 @@
 @font-face {
-  font-family: 'Montserrat';
-  src: url([[font:theme_cbe|Montserrat-Regular.ttf]]);
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat Bold';
-  src: url([[font:theme_cbe|Montserrat-Bold.ttf]]);
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat Thin';
-  src: url([[font:theme_cbe|Montserrat-Thin.ttf]]);
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'PFHandbookPro';
   src: url([[font:theme_cbe|PFHandbookPro-Light.otf]]);
   font-weight: normal;
@@ -37,5 +16,28 @@
   font-family: 'PFHandbookPro Thin';
   src: url([[font:theme_cbe|PFHandbookPro-Thin.otf]]);
   font-weight: bold;
+  font-style: normal;
+}
+
+// League Spartan.
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: url([[font:theme_cbe|LeagueSpartan-Regular.ttf]]);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LeagueSpartan Bold';
+  src: url([[font:theme_cbe|LeagueSpartan-Bold.ttf]]);
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LeagueSpartan Light';
+  src: url([[font:theme_cbe|LeagueSpartan-Light.ttf]]);
+  font-weight: normal;
   font-style: normal;
 }

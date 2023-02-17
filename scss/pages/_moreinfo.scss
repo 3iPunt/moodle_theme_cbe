@@ -5,7 +5,9 @@ body[data-theme='cbe'][data-role='user'] {
     main.contain {
       background-color: white;
       padding: 30px;
-      border: 1px solid $border-color;
+      border: none;
+      border-radius: 5px;
+      box-shadow: $box-shadow;
       margin-top: 0;
       word-break: break-word;
       img {
@@ -80,9 +82,10 @@ body[data-theme='cbe'][data-role='user'] {
             }
             .media-content {
               display: inline !important;
+              padding-bottom: 4px;
               .media-resource {
                 border: 1px solid #dee2e6;
-                margin: 0 20px;
+                margin: 0 20px 20px
               }
               .description {
                 border: 1px solid #dee2e6;
@@ -101,5 +104,5 @@ body[data-theme='cbe'][data-role='user'] {
 #page-theme-cbe-view_moreinfo[data-theme='cbe'][data-role="user"] #region-main-box .modulecbe.tresipuntaudio .resourcecontent,
 #page-theme-cbe-view_moreinfo[data-theme='cbe'][data-role="user"] #region-main-box .modulecbe.tresipuntvideo .resourcecontent {
   margin: 15px 200px !important;
-  border: 4px solid #929292;
+  border: 3px solid #929292;
 }

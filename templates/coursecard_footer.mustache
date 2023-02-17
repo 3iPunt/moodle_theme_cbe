@@ -1,8 +1,6 @@
 <footer class="course-footer">
     <div class="user-role">
-        <button type="button" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ rolename }} ">
-            {{# pix }} role_{{ role }}, theme_cbe, {{ rolename }} {{/ pix }}
-        </button>
+        <span class="card-role">#{{ rolename }}</span>
     </div>
     <div class="students">
         <a type="button" href="{{ participants_url }}" class="btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ students_num }} {{# str }} students {{/ str }}">
@@ -10,7 +8,7 @@
         </a>
     </div>
     <div class="notification">
-        <a type="button" class="btn-tooltip" href="{{ view_url }}" data-toggle="tooltip" data-placement="bottom" title="{{ not_nums }} {{# str }} notifications, theme_cbe {{/ str }}">
+        <a type="button" class="btn-tooltip nots" href="{{ view_url }}" data-toggle="tooltip" data-placement="bottom" title="{{ not_nums }} {{# str }} notifications, theme_cbe {{/ str }}">
             {{# has_notifications }}
             <i class="fa fa-bell" aria-hidden="true"></i>
             {{/ has_notifications }}
@@ -21,8 +19,5 @@
         {{# has_notifications }}
         <span class="not_nums">{{ not_nums }}</span>
         {{/ has_notifications }}
-    </div>
-    <div class="user-role">
-        <a href="{{ view_url }}" class="btn btn-secondary aula">{{# str }} view_course, theme_cbe {{/ str }}</a>
     </div>
 </footer>

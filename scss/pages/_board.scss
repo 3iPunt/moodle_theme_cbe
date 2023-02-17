@@ -7,15 +7,22 @@ body[data-theme='cbe'][data-role='user'] {
       background-size: cover;
       min-height: 250px;
       color: white;
+      border-radius: 5px;
       .degraded {
         background: rgb(0,0,0);
-        background: linear-gradient(180deg,rgba(0,0,0,0.8) 10%,rgba(0,0,0,0) 100%);
+        background: linear-gradient(180deg,rgba(0,0,0,0.7) 5%,rgba(0,0,0,0) 100%);
         min-height: 200px;
+        border-radius: 5px;
         .title-box {
-          padding: 24px;
+          padding: 25px 50px;
           h3.category {
-            font-size: 23px;
+            font-size: 16px;
             margin-bottom: 4px;
+            background-color: #cdcdcd;
+            display: inline;
+            padding: 6px 12px 3px;
+            border-radius: 10px;
+            color: #737373;
             @media (max-width: 500px) {
               margin-right: 35px;
               font-size: 18px;
@@ -23,8 +30,7 @@ body[data-theme='cbe'][data-role='user'] {
           }
           h2.coursename {
             font-size: 44px;
-            font-weight: 600;
-            letter-spacing: 1px;
+            margin-top: 11px;
             @media (max-width: 500px) {
               font-size: 24px;
               margin-right: 35px;
@@ -33,24 +39,28 @@ body[data-theme='cbe'][data-role='user'] {
         }
         ul.teachers-box {
           position: absolute;
-          bottom: 0;
-          right: 0;
+          bottom: -40px;
+          right:-25px;
           list-style: none;
           display: flex;
           width: 100%;
           overflow-x: scroll;
           justify-content: flex-end;
+          flex-direction: row-reverse;
           scrollbar-color: $grey-border transparent;
           scrollbar-width: thin;
           @media (max-width: 500px) {
             bottom: -10px;
           }
+          .teacher {
+            padding: 0;
+          }
           .picture-teacher {
-            height: 70px;
-            width: 70px;
+            height: 62px;
+            width: 62px;
             border-radius: 35px;
             border: 3px solid white;
-            margin-right: 20px;
+            margin-right: 5px;
             @media (max-width: 500px) {
               height: 40px;
               width: 40px;
@@ -66,7 +76,7 @@ body[data-theme='cbe'][data-role='user'] {
             background-color: darkgrey;
             border: 2px solid white;
             position: absolute;
-            right: 26px;
+            right: 12px;
             bottom: 1px;
             @media (max-width: 500px) {
               right: 7px;
@@ -80,7 +90,7 @@ body[data-theme='cbe'][data-role='user'] {
       }
       .tool-tooltip {
         position: absolute;
-        right: -10px;
+        right: 10px;
         top: 15px;
         &.copy {
           top: 65px;
@@ -91,45 +101,33 @@ body[data-theme='cbe'][data-role='user'] {
           }
         }
         &.delete {
-          left: -10px;
-          bottom: 20px;
-          top: inherit;
+          right: 10px;
+          top: 114px;
           .tool-link {
-            border-radius: 0 10px 10px 0;
+            border-radius: 5px;
             border: none;
-            .triangle {
-              right: inherit;
-              left: 0;
-              border-left: 10px solid transparent;
-              border-right: inherit;
-            }
           }
         }
         .tool-link {
-          background-color: $primary-color;
-          height: 45px;
-          width: 60px;
+          background-color: $grey-light;
+          height: 36px;
+          width: 36px;
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: 9px 0 0 10px;
+          border-radius: 5px;
           cursor: pointer;
+
           i {
-            color: white;
+            color: $black-ligth;
             font-size: 25px;
           }
-          .triangle {
-            width: 0;
-            height: 0;
-            border-top: 10px solid $primary-color-hard;
-            border-right: 10px solid transparent;
-            position: absolute;
-            bottom: -10px;
-            right: 0;
-          }
           &:hover, &:focus {
-            background-color: $primary-color-light !important;
+            background-color: $primary-color !important;
             text-decoration: none;
+            i {
+              color: white;
+            }
           }
         }
       }
@@ -138,9 +136,10 @@ body[data-theme='cbe'][data-role='user'] {
 
   #publicate-module {
     background-color: white;
-    border: 1px solid $grey-border;
-    box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px;
+    box-shadow: $box-shadow;
     margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
     #create_on_hold {
       display: flex;
       align-items: center;
@@ -178,11 +177,12 @@ body[data-theme='cbe'][data-role='user'] {
       .select_type {
         margin-bottom: 15px;
         select {
-          padding: 5px 14px;
+          padding: 14px 14px;
           border: 0;
-          border-radius: 0;
-          background-color: #E6E6E6;
+          border-radius: 5px;
+          background-color: white;
           margin-right: 10px;
+          box-shadow: 0 0 10px rgb(0 0 0 / 6%);
           @media (max-width: 600px) {
             margin-bottom: 10px;
           }
@@ -191,10 +191,11 @@ body[data-theme='cbe'][data-role='user'] {
       .comment {
         textarea {
           width: 100%;
-          background-color: #E6E6E6;
+          background-color: $grey-light;
           border: 0;
           padding: 17px;
           height: 115px;
+          border-radius: 5px;
         }
       }
       .action_buttons {
@@ -219,6 +220,10 @@ body[data-theme='cbe'][data-role='user'] {
             background-color: #E6E6E6;
             margin-right: 10px;
           }
+          .btn:hover {
+            background-color: $primary-color;
+            color: white;
+          }
         }
         button.cancel {
           border: none;
@@ -237,13 +242,13 @@ body[data-theme='cbe'][data-role='user'] {
   [data-region="board-content"] .action,
   [data-region="moreinfo"] .action {
     font-size: 20px;
-    color: white;
+    color: $black-ligth;
     margin-right: 20px;
     cursor: pointer;
-    background-color: $grey-medium2;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,9 +256,13 @@ body[data-theme='cbe'][data-role='user'] {
     right: 0;
     margin-top: 30px;
     border: none;
+    box-shadow: 0 0 5px rgb(0 0 0 / 15%);
     &:hover, &:focus {
       background-color: $primary-color !important;
       text-decoration: none;
+      i {
+        color: white;
+      }
     }
   }
   .add-module.action {

@@ -1,7 +1,7 @@
 body[data-theme='cbe'][data-role='user'] {
 
   .btn {
-    border-radius: 0;
+    border-radius: 5px;
   }
 
   .btn-primary {
@@ -16,6 +16,13 @@ body[data-theme='cbe'][data-role='user'] {
     border: none;
   }
 
+  .btn-outline-primary {
+    background-color: white;
+    color: $black-ligth;
+    border: 2px solid $primary-color;
+    font-family: $fontbold;
+  }
+
   .btn-secondary:hover,
   .btn-secondary:not(:disabled):not(.disabled):active,
   .btn-secondary:not(:disabled):not(.disabled).active,
@@ -26,14 +33,20 @@ body[data-theme='cbe'][data-role='user'] {
   }
 
   .btn-outline-secondary {
-    color: $grey-medium2;
-    border-color:$grey-medium2;
-    background-color: $grey-light;
+    background-color: white;
     white-space: normal;
+    border: none;
+    padding: 9px 13px;
+    border-radius: 5px;
+    color: $black-ligth;
+    box-shadow: $box-shadow !important;
     &:hover, &:active {
       color: white;
       background-color: $grey-medium2;
       border-color: $grey-medium2;
+    }
+    &::after {
+      color: $primary-color;
     }
   }
 

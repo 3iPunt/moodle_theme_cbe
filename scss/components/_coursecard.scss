@@ -3,30 +3,33 @@ body[data-theme='cbe'][data-role="user"]  {
   .dashboard-card {
     .action-visibles {
       position: absolute;
-      bottom: 77px;
+      bottom: 32px;
       right: 8px;
       color: grey;
     }
     .teachers {
       position: absolute;
-      top: 118px;
-      right: 12px;
-      display: flex;
-      max-width: 250px;
+      top: 130px;
+      left: 0;
+      width: 255px;
       padding-bottom: 7px;
+      padding-left: 10px;
       overflow-x: scroll;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
       scrollbar-color: $grey-border transparent;
       scrollbar-width: thin;
       @media (max-width: 940px) {
         top: 80px;
       }
       .teacher {
-        height: 50px;
-        width: 50px;
-        margin: 0 0 0 10px;
+        height: 40px;
+        width: 40px;
+        margin: 0 -20px 0 0;
         img.picture-teacher {
-          width: 50px;
-          height: 50px;
+          width: 40px;
+          height: 40px;
           border-radius: 25px;
           border: 1px solid white;
           box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
@@ -35,58 +38,91 @@ body[data-theme='cbe'][data-role="user"]  {
     }
   }
 
-
-  footer.course-footer {
-    border-top: 1px solid $grey-border;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .user-role img.icon {
-      width: 32px;
-      height: 32px;
-    }
-    .notification {
-      position: relative;
-      i {
-        color: #929292;
-        font-size: 31px;
+  .course-card-footer-main {
+    position: absolute;
+    width: 100%;
+    footer.course-footer {
+      border-top: 1px solid $grey-border;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      .user-role img.icon {
+        width: 32px;
+        height: 32px;
       }
-      .not_nums {
-        position: absolute;
-        top: 2px;
-        left: 17px;
-        text-align: center;
-        background-color: red;
-        color: white;
-        border-radius: 22px;
-        padding: 0px 4px;
-        font-size: 12px;
-        min-width: 19px;
-      }
-    }
-    .students {
-      >a.btn-tooltip {
-        &:hover {
-          text-decoration: none;
+      .notification {
+        position: relative;
+        i {
+          color: $black-ligth;
+          font-size: 12px;
+        }
+        a.btn-tooltip.nots {
+          border: none;
+          background-color: white;
+          border-radius: 4px;
+          padding: 0;
+          margin: 0;
+          position: relative;
+          box-shadow: 0 0 5px rgb(0 0 0 / 15%);
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .not_nums {
+          position: absolute;
+          top: -7px;
+          left: 17px;
+          text-align: center;
+          background-color: $primary-color;
+          color: #fff;
+          border-radius: 22px;
+          padding: 2px 3px 1px;
+          font-size: 11px;
+          min-width: 19px;
         }
       }
-      span {
-        font-size: 21px;
-        font-family: $fontbold;
-        color: $grey-medium;
-        margin-left: 8px;
+      .students {
+        position: absolute;
+        right: 0;
+        top: 134px;
+        background-color: white;
+        padding: 5px 10px 3px;
+        border-radius: 6px;
+        box-shadow: 1px 3px 5px rgb(0 0 0 / 8%);
+        margin-right: 12px;
+        >a.btn-tooltip {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+        span {
+          margin-left: 8px;
+          font-size: 13px;
+          font-family: $fontbold;
+          color: $black-ligth;
+        }
+        i.fa-users {
+          font-size: 15px;
+          color: $black-ligth;
+        }
       }
-      i.fa-users {
-        font-size: 26px;
-        color: $grey-medium;
-      }
-    }
-    .user-role {
-      a.btn.aula {
-        &:hover {
+      .user-role {
+        .card-role {
           background-color: $primary-color;
           color: white;
+          padding: 5px 8px 4px;
+          border-radius: 17px;
+          font-size: 12px;
+        }
+        a.btn.aula {
+          &:hover {
+            background-color: $primary-color;
+            color: white;
+          }
         }
       }
     }

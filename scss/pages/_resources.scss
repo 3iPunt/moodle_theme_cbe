@@ -4,7 +4,9 @@ body[data-theme='cbe'][data-role='user'] {
     main.contain {
       background-color: white;
       padding: 30px;
-      border: 1px solid $border-color;
+      border: none;
+      border-radius: 5px;
+      box-shadow: $box-shadow;
       margin-top: 0;
       .title_page {
         font-size: 30px;

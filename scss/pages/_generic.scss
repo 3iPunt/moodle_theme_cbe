@@ -5,7 +5,9 @@ body[data-theme='cbe'][data-role='user'] {
       section#region-main.in_course[data-region="generic"] {
         background-color: white;
         padding: 30px;
-        border: 1px solid $border-color;
+        border: none;
+        border-radius: 5px;
+        box-shadow: $box-shadow;
         div[role="main"]>h2 {
           font-size: 28px;
           font-family: $fontbold;

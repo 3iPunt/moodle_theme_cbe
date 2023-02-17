@@ -38,12 +38,22 @@ body[data-theme='cbe'][data-role='user'] {
   }
 
   .card {
-    border: 1px solid $grey-border;
-    border-radius: 0;
+    border-radius: 5px;
+    border: none;
+  }
+
+  #region-main {
+    border: none;
+    border-radius: 5px;
   }
 
   [data-region="blocks-column"] {
     margin-top: 18px;
+    .card {
+      border-radius: 5px;
+      border: none;
+      box-shadow: $box-shadow !important;
+    }
   }
 
   .btn-tooltip {

@@ -44,7 +44,6 @@
                             <div class="tool-tooltip edition" data-toggle="tooltip" data-placement="left" title="{{# str }} edit_course, theme_cbe {{/ str }}">
                                 <a class="tool-link" href="{{ edit_course }}">
                                     <i class="fa fa-wrench" aria-hidden="true"></i>
-                                    <div class="triangle"></div>
                                 </a>
                             </div>
                         {{/ is_teacher }}
@@ -52,9 +51,6 @@
                         {{#settingsmenu}}
                             <div class="context-header-settings-menu">
                                 {{{settingsmenu}}}
-                                {{# is_teacher }}
-                                <div class="tri triangle-config"></div>
-                                {{/ is_teacher }}
                             </div>
                         {{/settingsmenu}}
                         <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
