@@ -26,9 +26,6 @@ use context_system;
 use dml_exception;
 use moodle_exception;
 
-defined('MOODLE_INTERNAL') || die();
-
-
 class capability {
 
     /**
@@ -36,7 +33,7 @@ class capability {
      *
      * @throws dml_exception
      */
-    static public function execute() {
+    public static function execute() {
         self::manager();
         self::user();
         self::coursecreator();
@@ -48,7 +45,7 @@ class capability {
      *
      * @throws dml_exception
      */
-    static public function manager() {
+    public static function manager() {
         global $DB;
         $rolename = 'manager';
         $role = $DB->get_record('role', ['shortname' => $rolename]);
@@ -62,7 +59,7 @@ class capability {
      *
      * @throws dml_exception
      */
-    static public function user() {
+    public static function user() {
         global $DB;
         $rolename = 'user';
         $role = $DB->get_record('role', ['shortname' => $rolename]);
@@ -81,7 +78,7 @@ class capability {
      *
      * @throws dml_exception
      */
-    static public function coursecreator() {
+    public static function coursecreator() {
         global $DB;
         $rolename = 'coursecreator';
         $role = $DB->get_record('role', ['shortname' => $rolename]);
@@ -96,7 +93,7 @@ class capability {
             self::add('repository/user:view', $rolename, $role->id);
             self::add('moodle/category:viewcourselist', $rolename, $role->id);
             self::remove('moodle/course:delete', $rolename, $role->id);
-            // Allow role assignments
+            // Allow role assignments.
             self::assign_role($rolename, $role->id, 'editingteacher');
         }
     }
@@ -106,14 +103,14 @@ class capability {
      *
      * @throws dml_exception
      */
-    static public function centre() {
+    public static function centre() {
         global $DB;
         $rolename = 'centre';
         $role = $DB->get_record('role', ['shortname' => $rolename]);
         if ($role) {
             cli_writeln('Add Capability: ' . 'not modified' . ' - ' . $rolename);
             cli_writeln('Remove Capability: ' . 'not modified' . ' - ' . $rolename);
-            // Allow role assignments
+            // Allow role assignments.
             self::assign_role($rolename, $role->id, 'coursecreator');
             self::assign_role($rolename, $role->id, 'editingteacher');
             self::assign_role($rolename, $role->id, 'teacher');
@@ -129,7 +126,7 @@ class capability {
      * @param $roleid
      * @throws dml_exception
      */
-    static protected function add($capability, $rolename, $roleid) {
+    protected static function add($capability, $rolename, $roleid) {
         $contextid = context_system::instance();
         try {
             assign_capability($capability, CAP_ALLOW, $roleid, $contextid);
@@ -148,7 +145,7 @@ class capability {
      * @param $roleid
      * @throws dml_exception
      */
-    static protected function remove($capability, $rolename, $roleid) {
+    protected static function remove($capability, $rolename, $roleid) {
         $contextid = context_system::instance();
         try {
             unassign_capability($capability, $roleid, $contextid);
@@ -166,7 +163,7 @@ class capability {
      * @param $roleid
      * @param $roleassign
      */
-    static protected function assign_role($username, $roleid, $roleassign) {
+    protected static function assign_role($username, $roleid, $roleassign) {
         global $DB;
         try {
             $role = $DB->get_record('role', ['shortname' => $roleassign]);
@@ -186,5 +183,4 @@ class capability {
             cli_writeln('Assign Role: ' . $username . '(' . $roleassign . ') ERROR - ' . $e->getMessage());
         }
     }
-
 }

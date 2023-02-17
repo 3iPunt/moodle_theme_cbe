@@ -25,14 +25,12 @@ namespace theme_cbe\cli;
 use coding_exception;
 use dml_exception;
 
-defined('MOODLE_INTERNAL') || die();
-
 class role {
 
     /**
      * Execute
      */
-    static public function execute() {
+    public static function execute() {
         self::centre();
     }
 
@@ -42,7 +40,7 @@ class role {
      * @throws coding_exception
      * @throws dml_exception
      */
-    static public function centre() {
+    public static function centre() {
         global $DB;
         $name = 'Centre';
         $shortname = 'centre';

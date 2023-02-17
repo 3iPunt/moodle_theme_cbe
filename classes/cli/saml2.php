@@ -22,19 +22,18 @@
 
 namespace theme_cbe\cli;
 
-global $CFG;
-
 use auth_plugin_saml2;
 use auth_saml2\event\cert_regenerated;
 use core_plugin_manager;
-use Google\Exception;
 use moodle_exception;
+
+defined('MOODLE_INTERNAL') || die();
+
+global $CFG;
 
 require_once($CFG->dirroot . '/my/lib.php');
 require_once($CFG->dirroot . '/auth/saml2/auth.php');
 require_once($CFG->dirroot . '/auth/saml2/setuplib.php');
-
-defined('MOODLE_INTERNAL') || die();
 
 class saml2 {
 
@@ -46,7 +45,7 @@ class saml2 {
      * @param string $contactemail
      * @throws \dml_exception
      */
-    static public function execute(string $sitename, string $contactname, string $contactemail) {
+    public static function execute(string $sitename, string $contactname, string $contactemail) {
         self::certificate($sitename, $contactname, $contactemail);
         cfg::set('auth_saml2', 'duallogin', 0);
         cfg::set('auth_saml2', 'autocreate', true);
@@ -58,9 +57,12 @@ class saml2 {
 
     /**
      * Certificate
-     *
+     * @param string $sitename
+     * @param string $contactname
+     * @param string $contactemail
+     * @return null
      */
-    static protected function certificate(string $sitename, string $contactname, string $contactemail) {
+    protected static function certificate(string $sitename, string $contactname, string $contactemail) {
         global $USER, $CFG;
         $dn = array(
             'commonName' => $sitename,
@@ -114,7 +116,7 @@ class saml2 {
     /**
      * Enable Saml2
      */
-    static function enable() {
+    public static function enable() {
         global $CFG;
         if (empty($CFG->auth)) {
             $authsenabled = array();
@@ -123,7 +125,7 @@ class saml2 {
         }
         $auth = 'saml2';
         try {
-            // add to enabled list
+            // add to enabled list.
             if (!in_array($auth, $authsenabled)) {
                 $authsenabled[] = $auth;
                 $authsenabled = array_unique($authsenabled);

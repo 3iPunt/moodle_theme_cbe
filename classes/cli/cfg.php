@@ -24,10 +24,6 @@ namespace theme_cbe\cli;
 
 use dml_exception;
 
-defined('MOODLE_INTERNAL') || die();
-
-global $CFG;
-
 class cfg {
 
     protected $root = '';
@@ -38,8 +34,8 @@ class cfg {
      * @param string $wwwroot
      * @throws dml_exception
      */
-    static public function execute(string $wwwroot) {
-        // Core
+    public static function execute(string $wwwroot) {
+        // Core.
         self::set(null, 'cron_enabled', true);
         self::set(null, 'guestloginbutton ', 0);
         self::set(null, 'enrol_plugins_enabled', 'manual');
@@ -54,10 +50,10 @@ class cfg {
         self::set(null, 'forum_maxbytes', 512000);
         self::set('assignsubmission_file', 'maxbytes', 0);
         self::set('workshop', 'maxbytes', 0);
-        // Theme
+        // Theme.
         self::set(null, 'theme', 'cbe');
         self::theme($wwwroot);
-        // Big Blue Button
+        // Big Blue Button.
         self::set(null, 'bigbluebuttonbn_waitformoderator_default', true);
         self::set(null, 'bigbluebuttonbn_participant_moderator_default', '0,3,4');
         self::set(null, 'bigbluebuttonbn_recording_editable', true);
@@ -71,12 +67,13 @@ class cfg {
         self::set(null, 'bigbluebuttonbn_lockedlayout_editable', true);
         self::set(null, 'bigbluebuttonbn_lockonjoin_editable', true);
         self::set(null, 'bigbluebuttonbn_lockonjoinconfigurable_editable', true);
-        // Others Plugins
+        // Others Plugins.
         self::set('mod_jitsi', 'jitsi_privatesessions', 0);
         self::set('url', 'displayoptions', '0,1,3,5,6');
         self::set('url', 'display', 3);
         self::set('resource', 'displayoptions', '0,1,2,3,4,5,6');
         self::set('page', 'printintro', true);
+        self::set('assign', 'submissionreceipts', false);
     }
 
     /**
@@ -85,17 +82,17 @@ class cfg {
      * @param string $wwwroot
      * @throws dml_exception
      */
-    static public function theme(string $wwwroot) {
+    public static function theme(string $wwwroot) {
         $index = strpos($wwwroot, 'moodle');
         if ($index !== false) {
-            $default_host = substr($wwwroot,$index + 7);
-            self::set('theme_cbe', 'host', $default_host);
-            self::set('theme_cbe', 'logourl', 'https://api.' . $default_host . '/img/logo.png');
-            self::set('theme_cbe', 'avatar_api_url', 'https://sso.' . $default_host . '/auth/realms/master/avatar-provider');
-            self::set('theme_cbe', 'avatar_other_users', 'https://api.' . $default_host . '/avatar/');
-            self::set('theme_cbe', 'avatar_profile_url', 'https://sso.' . $default_host . '/auth/realms/master/account');
-            self::set('theme_cbe', 'hostnccreate', 'https://nextcloud.' . $default_host . '/apps/files');
-            self::set('theme_cbe', 'aviso_legal', 'https://admin.' . $default_host . '/legal_text?lang=ca');
+            $defaulthost = substr($wwwroot, $index + 7);
+            self::set('theme_cbe', 'host', $defaulthost);
+            self::set('theme_cbe', 'logourl', 'https://api.' . $defaulthost . '/img/logo.png');
+            self::set('theme_cbe', 'avatar_api_url', 'https://sso.' . $defaulthost . '/auth/realms/master/avatar-provider');
+            self::set('theme_cbe', 'avatar_other_users', 'https://api.' . $defaulthost . '/avatar/');
+            self::set('theme_cbe', 'avatar_profile_url', 'https://sso.' . $defaulthost . '/auth/realms/master/account');
+            self::set('theme_cbe', 'hostnccreate', 'https://nextcloud.' . $defaulthost . '/apps/files/');
+            self::set('theme_cbe', 'aviso_legal', 'https://admin.' . $defaulthost . '/legal_text?lang=ca');
         }
         self::set('theme_cbe', 'header_api', true);
         self::set('theme_cbe', 'avatar_api', true);
@@ -115,11 +112,11 @@ class cfg {
      * @param $value
      * @throws dml_exception
      */
-    static public function set($component, $name, $value) {
+    public static function set($component, $name, $value) {
         $old = get_config($component, $name);
         set_config($name, $value, $component);
         add_to_config_log($name, $old, $value, $component);
-        $component = isset($component) ? $component . ' - ' : 'core - ' ;
+        $component = isset($component) ? $component . ' - ' : 'core - ';
         cli_writeln('CFG: ' . $component . $name . ': ' . $value);
     }
 

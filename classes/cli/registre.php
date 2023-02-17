@@ -25,11 +25,7 @@ namespace theme_cbe\cli;
 use core\hub\registration;
 use curl;
 use dml_exception;
-use moodle_url;
 use stdClass;
-
-defined('MOODLE_INTERNAL') || die();
-
 
 class registre {
 
@@ -41,7 +37,7 @@ class registre {
      * @param string|null $contactemail
      * @throws dml_exception
      */
-    static public function execute(string $sitename = null, string $contactname = null,string $contactemail = null) {
+    public static function execute(string $sitename = null, string $contactname = null, string $contactemail = null) {
         global $DB;
 
         $data = new stdClass();
@@ -93,7 +89,7 @@ class registre {
             $curl = new curl();
 
             try {
-               $curl->get(
+                $curl->get(
                    HUB_MOODLEORGHUBURL . '/local/hub/siteregistration.php',
                    $params);
                 $response = $curl->getResponse();
@@ -108,6 +104,5 @@ class registre {
             }
         }
     }
-
 
 }
