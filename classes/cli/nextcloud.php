@@ -50,7 +50,7 @@ class nextcloud {
         // Assign Submission.
         self::submission($wwwroot, $ncadmin, $ncpass);
         // Mod Tip NextCloud.
-        self::modtipnc($wwwroot);
+        self::modtipnc($wwwroot, $ncadmin, $ncpass);
         // Atto NextCloud.
         self::attotipnc($wwwroot);
     }

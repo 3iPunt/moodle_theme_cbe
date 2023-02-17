@@ -73,7 +73,7 @@ class cfg {
         self::set('url', 'display', 3);
         self::set('resource', 'displayoptions', '0,1,2,3,4,5,6');
         self::set('page', 'printintro', true);
-        self::set('assign', 'submissionreceipts', false);
+        self::set('assign', 'submissionreceipts', 0);
     }
 
     /**

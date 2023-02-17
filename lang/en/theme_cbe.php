@@ -183,7 +183,7 @@ $string['notice_filecreate'] = 'You can create a file on NextCloud from here. Re
 $string['nc_createfile_nc'] = "Create File in NextCloud";
 
 $string['hostnccreate'] = "NextCloud file creation URL";
-$string['hostnccreate_desc'] = "Ex. https://nextcloud.demo.digitaldemocratic.net/apps/files";
+$string['hostnccreate_desc'] = "Ex. https://nextcloud.demo.digitaldemocratic.net/apps/files/";
 $string['nextcloud_create_not_config'] = "NextCloud is not configured correctly. Notify the administrator";
 
 $string['importgc'] = "Import Courses from Google Classroom";
