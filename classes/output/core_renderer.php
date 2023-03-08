@@ -202,6 +202,7 @@ class core_renderer extends \core_renderer {
                         $avatar_profile_url = get_config('theme_cbe', 'avatar_profile_url');
                         $url = new moodle_url($avatar_profile_url);
                         $item->url = $url;
+                        $item->title = fullname($USER);
                         $newnavitems[] = $item;
                     }
                     if ($item->titleidentifier === 'logout,moodle') {
