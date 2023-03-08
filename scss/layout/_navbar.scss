@@ -195,12 +195,9 @@ body[data-theme='cbe'] {
           margin: 7px 0;
           &:hover, &:active, &:focus {
             background-color: $grey-light;
-            span.menu-action-text, i.icon, span.onlytext {
+            span.menu-action-text, i.icon {
               color: $black-ligth;
             }
-          }
-          span.onlytext {
-            padding-left: 29px;
           }
         }
       }

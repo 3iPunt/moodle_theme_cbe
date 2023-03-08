@@ -197,16 +197,12 @@ class core_renderer extends \core_renderer {
             if ($avatar_api) {
                 $navitems = $opts->navitems;
                 $newnavitems = [];
-                $item = new stdClass();
-                $item->titleidentifier = fullname($USER);
-                $item->title = fullname($USER);
-                $item->itemtype = 'title';
-                $newnavitems[] = $item;
                 foreach ($navitems as $item) {
                     if ($item->titleidentifier === 'profile,moodle') {
                         $avatar_profile_url = get_config('theme_cbe', 'avatar_profile_url');
                         $url = new moodle_url($avatar_profile_url);
                         $item->url = $url;
+                        $item->title = fullname($USER);
                         $newnavitems[] = $item;
                     }
                     if ($item->titleidentifier === 'logout,moodle') {
@@ -294,10 +290,6 @@ class core_renderer extends \core_renderer {
                     case 'divider':
                         // If the nav item is a divider, add one and skip link processing.
                         $am->add($divider);
-                        break;
-
-                    case 'title':
-                        $am->add(html_writer::span($value->title, 'onlytext'));
                         break;
 
                     case 'invalid':
